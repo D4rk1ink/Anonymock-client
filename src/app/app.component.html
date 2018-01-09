@@ -1,15 +1,1 @@
-<input type="text" [ngModel]="path" (ngModelChange)="onPathChange($event)"/>
-<hr>
-<table>
-    <tr *ngFor="let key of param | keys">
-        <td>{{ key }}</td>
-        <td><input type="text" [ngModel]="param[key]" (ngModelChange)="onParamValueChange(key, $event)" /></td>
-    </tr>
-</table>
-<hr>
-<table>
-    <tr *ngFor="let key of env | keys">
-        <td>{{ key }}</td>
-        <td><input type="text" [ngModel]="env[key]" (ngModelChange)="onEnvValueChange(key, $event)" /></td>
-    </tr>
-</table>
+<router-outlet></router-outlet>
