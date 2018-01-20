@@ -1,0 +1,35 @@
+@import "colors";
+
+.entity-group {
+    border: 1px solid $gray_1;
+    border-radius: 1px;
+    .header {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        max-height: 35px;
+    }
+    .expand {
+        max-height: 0px;
+        overflow: hidden;
+        transition:  height, max-height .5s;
+        .item {
+            display: flex;
+            border-top: 1px solid $gray_1;
+            .key {
+                padding: 0px;
+                border-right: 1px solid $gray_1;
+            }
+            .value {
+                padding: 0px;
+            }
+            input {
+                border: 0px;
+            }
+        }
+    }
+    .expand.active {
+        max-height: 500px !important;
+    }
+}

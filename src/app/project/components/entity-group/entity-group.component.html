@@ -1,0 +1,18 @@
+<div class="entity-group">
+    <div class="header">
+        <div class="w-25 toggle">
+        </div>
+        <div class="w-75 name" (click)="onExpand()">
+            {{ title }}
+        </div>
+        <div class="w-25 new" (click)="onNew()">
+          new
+        </div>
+    </div>
+    <div class="expand {{ (isExpand) ? 'active' : '' }}">
+        <div class="item" *ngFor="let i of keys.length | range">
+            <div class="key w-25"><input type="text" placeholder="key" name="key" [ngModel]="keys[i]" (focus)="onKeyFocus($event, i)" (keyup)="onKey($event, i)"/></div>
+            <div class="value w-75"><input type="text" placeholder="value" name="value" [ngModel]="values[i]" (keyup)="onValue($event, i)"/></div>
+        </div>
+    </div>
+</div>

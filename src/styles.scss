@@ -1,6 +1,90 @@
+@import "colors";
+@import "fonts";
+@import "buttons";
+
 html, body {
+    color: $black;
     box-sizing: border-box;
     height: 100%;
     margin: 0;
     padding: 0;
+    font-size: 14px;
+    font-weight: 300;
+    font-style: normal;
+    font-family: "Open Sans";
+}
+
+@for $i from 0 through 100 {
+    .w-#{$i} {
+        width: #{$i + "%"};
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .w-#{$i}:first-child {
+        padding-left: 0px;
+    }
+    .w-#{$i}:last-child {
+        padding-right: 0px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+    margin-bottom: 10px; 
+}
+
+input,
+textarea,
+select {
+    min-height: 35px;
+    max-height: 35px;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 0 auto;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid $gray_1;
+    color: rgba(0,0,0,.87);
+    border-radius: 1px;
+    transition: box-shadow .1s ease,border-color .1s ease;
+}
+
+textarea {
+    resize: vertical;
+    max-height: 100px;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: $sky_2;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: $sky_2;
+}
+
+.label-title {
+    padding-bottom: 2px;
+    font-weight: 400;
+}
+
+.form-inline {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.form-input {
+    flex: 1;
+}
+
+* {
+    outline: none;
+    box-sizing: border-box;
 }

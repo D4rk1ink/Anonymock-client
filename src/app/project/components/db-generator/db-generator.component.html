@@ -1,0 +1,11 @@
+<div class="generator">
+  <div class="tabs">
+    <div class="item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
+      {{ item.title }}
+    </div>
+  </div>
+  <div class="content" [ngSwitch]="menuSelector">
+    <db-generate *ngSwitchCase="'M01'"></db-generate>
+    <db-custom *ngSwitchCase="'M02'"></db-custom>
+  </div>
+</div>

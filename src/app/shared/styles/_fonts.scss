@@ -1,0 +1,20 @@
+$fonts: (
+    ("OpenSans-Light", normal, 300),
+    ("OpenSans-LightItalic", italic, 300),
+    ("OpenSans-Regular", normal, 400),
+    ("OpenSans-Italic", italic, 400),
+    ("OpenSans-SemiBold", normal, 600),
+    ("OpenSans-SemiBoldItalic", italic, 600),
+    ("OpenSans-Bold", normal, 700),
+    ("OpenSans-BoldItalic", italic, 700),
+    ("OpenSans-ExtraBold", normal, 800),
+    ("OpenSans-ExtraBoldItalic", italic, 800),
+);
+@each $font in $fonts {
+    @font-face {
+        font-family: "Open Sans";
+        font-style: nth($font, 2);
+        font-weight: nth($font, 3);
+        src: url("/assets/fonts/" + nth($font, 1) + ".ttf");
+    }
+}

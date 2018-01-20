@@ -1,3 +1,26 @@
-<p>
-  database works!
-</p>
+<div class="">
+    <h2>Generator</h2>
+</div>
+<div class="db-generator">
+    <db-generator></db-generator>
+</div>
+<div class="">
+    <h2>Database</h2>
+</div>
+<div class="database">
+    <div class="section">
+        <div class="w-25">
+            Documents : {{ row }}
+        </div>
+        <div class="w-25">
+            Size : {{ size }} MB
+        </div>
+        <div class="w-50 export">
+            <button class="btn btn-sky outline">Export</button>
+        </div>
+    </div>
+    <code-editor
+        [text]="data"
+        [mode]="'json'"
+        [readOnly]="true"></code-editor>
+</div>

@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatabaseComponent implements OnInit {
 
-  constructor() { }
+  public data: any
+  public row: number
+  public size: any
+  constructor () {
+    this.row = 0
+    this.size = 0
+  }
 
-  ngOnInit() {
+  ngOnInit () {
+    this.data = [{"data": "aa"}]
+    if (Array.isArray(this.data)) {
+      this.row = this.data.length
+      this.size = 0.5
+    }
   }
 
 }

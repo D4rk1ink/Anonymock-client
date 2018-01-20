@@ -6,12 +6,20 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { SharedModule } from '../shared/shared.module'
 
 import { KeysPipe } from './pipes/keys/keys.pipe';
+import { RangePipe } from './pipes/range/range.pipe'
+
 import { ConfigComponent } from './containers/config/config.component';
 import { MemberComponent } from './containers/member/member.component';
 import { DatabaseComponent } from './containers/database/database.component';
 import { EndpointComponent } from './containers/endpoint/endpoint.component';
 import { FolderComponent } from './containers/folder/folder.component';
-import { ResponseComponent } from './containers/response/response.component'
+import { ResponseComponent } from './containers/response/response.component';
+
+import { EntityGroupComponent } from './components/entity-group/entity-group.component';
+import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { DbGeneratorComponent } from './components/db-generator/db-generator.component';
+import { GenerateComponent } from './components/db-generator/generate/generate.component';
+import { CustomComponent } from './components/db-generator/custom/custom.component';
 
 @NgModule({
   imports: [
@@ -21,6 +29,7 @@ import { ResponseComponent } from './containers/response/response.component'
   ],
   declarations: [
     KeysPipe,
+    RangePipe,
 
     ProjectComponent,
     DashboardComponent,
@@ -29,7 +38,13 @@ import { ResponseComponent } from './containers/response/response.component'
     DatabaseComponent,
     EndpointComponent,
     FolderComponent,
-    ResponseComponent
+    ResponseComponent,
+
+    EntityGroupComponent,
+    CodeEditorComponent,
+    DbGeneratorComponent,
+    GenerateComponent,
+    CustomComponent,
   ],
   exports: [
     ProjectComponent,
@@ -39,7 +54,13 @@ import { ResponseComponent } from './containers/response/response.component'
     DatabaseComponent,
     EndpointComponent,
     FolderComponent,
-    ResponseComponent
+    ResponseComponent,
+    
+    EntityGroupComponent,
+    CodeEditorComponent,
+    DbGeneratorComponent,
+    GenerateComponent,
+    CustomComponent,
   ]
 })
 export class ProjectModule { }

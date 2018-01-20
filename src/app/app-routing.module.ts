@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 
 const routes: Routes = [
   {
-    path: 'project',
+    path: ':project-id',
     loadChildren: './project/project.module#ProjectModule'
   }
 ]

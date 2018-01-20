@@ -1,23 +1,20 @@
 <div class="wrapper">
-  <div class="section">
-    <div class="main-row active" (click)="expand()">
-      Project Name
+  <div class="section project-menu {{ (project.id == menuTarget) ? 'active' : '' }}" *ngFor="let project of projects">
+    <div class="main-row" (click)="expand(project.id)">
+      {{ project.name }}
     </div>
     <div class="expand">
-      <div class="sub-row config active">
+      <div class="sub-row config" [routerLink]="'/'+project.id+'/config'">
         Config
       </div>
-      <div class="sub-row database">
+      <div class="sub-row database" [routerLink]="'/'+project.id+'/database'">
         Database
       </div>
-      <div class="sub-row member">
+      <div class="sub-row member" [routerLink]="'/'+project.id+'/member'">
         Member
       </div>
-      <div class="sub-row folder">
-        Auth Service
-      </div>
-      <div class="sub-row folder">
-        Account Service
+      <div class="sub-row folder" *ngFor="let folder of project.folders" [routerLink]="'/'+project.id+'/folder/'+folder.id">
+        {{ folder.name }}
       </div>
     </div>
   </div>

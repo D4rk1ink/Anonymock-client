@@ -1,0 +1,71 @@
+button.btn {
+    min-height: 35px;
+    max-height: 35px;
+    background-color: $white;
+    border:0px;
+    border-radius: 1px;
+    padding: 0 10px;
+}
+// START SKY BUTTON
+button.btn.btn-sky {
+    color: $white;
+    background-color: $sky_2;
+}
+
+button.btn.btn-sky:hover {
+    background-color: $sky_0;
+}
+
+button.btn.btn-sky:active {
+    background-color: $sky_3;
+}
+
+button.btn.btn-sky.outline {
+    color: $sky_2;
+    background-color: rgba($white, 0);
+    border: 1px solid;
+    border-color: $sky_2;
+}
+
+button.btn.btn-sky.outline:hover {
+    color: $sky_0;
+    border-color: $sky_0;
+}
+
+button.btn.btn-sky.outline:active {
+    color: $sky_3;
+    border-color: $sky_3;
+}
+// END SKY BUTTON
+
+// START DANGET BUTTON
+button.btn.btn-danger {
+    color: $white;
+    background-color: $danger_2;
+}
+
+button.btn.btn-danger:hover {
+    background-color: $danger_0;
+}
+
+button.btn.btn-danger:active {
+    background-color: $danger_3;
+}
+
+button.btn.btn-danger.outline {
+    color: $danger_2;
+    background-color: rgba($white, 0);
+    border: 1px solid;
+    border-color: $danger_2;
+}
+
+button.btn.btn-danger.outline:hover {
+    color: $danger_0;
+    border-color: $danger_0;
+}
+
+button.btn.btn-danger.outline:active {
+    color: $danger_3;
+    border-color: $danger_3;
+}
+// END DANGET BUTTON

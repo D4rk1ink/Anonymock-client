@@ -1,0 +1,16 @@
+.generate {
+    .section {
+        display: flex;
+        padding-bottom: 10px;
+        .details {
+            display: flex;
+            align-items: center;
+        }
+        .options {
+            display: flex;
+            .item:not(:last-child) {
+                padding-right: 10px;
+            }
+        }
+    }
+}
