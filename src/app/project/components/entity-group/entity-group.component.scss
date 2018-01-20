@@ -9,6 +9,23 @@
         align-items: center;
         padding: 10px;
         max-height: 35px;
+        .title {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            .arrow {
+                transition: transform .5s, color .5s;
+            }
+            .arrow.active {
+                color: $sky_2;
+                transform: rotateZ(90deg)
+            }
+        }
+        .new {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
     }
     .expand {
         max-height: 0px;

@@ -1,0 +1,13 @@
+@import "colors";
+
+.btn-icon {
+    transition: color .2;
+}
+
+.btn-sky-icon:hover {
+    color: $sky_2;
+}
+
+.btn-sky-icon:active {
+    color: $sky_3;
+}
