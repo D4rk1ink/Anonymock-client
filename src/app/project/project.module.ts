@@ -20,6 +20,7 @@ import { CodeEditorComponent } from './components/code-editor/code-editor.compon
 import { DbGeneratorComponent } from './components/db-generator/db-generator.component';
 import { GenerateComponent } from './components/db-generator/generate/generate.component';
 import { CustomComponent } from './components/db-generator/custom/custom.component';
+import { MemberManagementComponent } from './components/member-management/member-management.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { CustomComponent } from './components/db-generator/custom/custom.compone
     DbGeneratorComponent,
     GenerateComponent,
     CustomComponent,
+    MemberManagementComponent,
   ],
   exports: [
     ProjectComponent,
@@ -61,6 +63,7 @@ import { CustomComponent } from './components/db-generator/custom/custom.compone
     DbGeneratorComponent,
     GenerateComponent,
     CustomComponent,
+    MemberManagementComponent
   ]
 })
 export class ProjectModule { }

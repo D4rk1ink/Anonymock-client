@@ -1,0 +1,36 @@
+<div class="add-search">
+  <div class="select-option">
+    <label class="select">
+      <select>
+        <option value="add">ADD</option>
+        <option value="search">SEARCH</option>
+      </select>
+    </label>
+  </div>
+  <div class="text-input">
+    <input type="text" name="input" class="input" />
+  </div>
+</div>
+<div class="member-management">
+  <div class="detail">
+      Member : 10
+  </div>
+  <div class="member-list">
+    <div class="member" *ngFor="let member of members">
+      <div class="position">
+        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.position === 'manager'" />
+      </div>
+      <div class="name w-30">
+        {{ member.firstname }} {{ member.lastname }}
+      </div>
+      <div class="email w-30">
+        {{ member.email }}
+      </div>
+      <div class="options">
+        <div class="remove">
+          <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.id)" >exit_to_app</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

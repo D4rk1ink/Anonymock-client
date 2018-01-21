@@ -4,6 +4,7 @@ import { ProjectComponent } from './project.component'
 import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { ConfigComponent } from './containers/config/config.component'
 import { DatabaseComponent } from './containers/database/database.component'
+import { MemberComponent } from './containers/member/member.component'
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
     {
       path: 'database',
       component: DatabaseComponent
+    },
+    {
+      path: 'member',
+      component: MemberComponent
     }]
   }
 ]

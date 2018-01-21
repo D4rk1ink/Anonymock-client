@@ -1,0 +1,71 @@
+@import "colors";
+
+.add-search {
+    display: flex;
+    padding-bottom: 10px;
+    .select-option {
+        min-width: 100px;
+        .select {
+            border-right: 0px;
+        }
+    }
+    .text-input {
+        flex: 1;
+        .input {
+            border-radius: 0px 2px 2px 0px;
+        }
+    }
+}
+
+.add-search:hover {
+    .select,
+    .input {
+        border-color: $sky_2;
+    }
+}
+
+.member-management {
+    border: 1px solid $gray_1;
+    padding: 10px 0;
+    border-radius: 2px;
+    .detail {
+        display: flex;
+        padding: 0 10px;
+        padding-bottom: 10px;
+    }
+    .member-list {
+        .member {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            .position {
+                display: flex;
+                align-items: center;
+                min-width: 30px;
+            }
+            .name {
+                cursor: pointer;
+                font-weight: 400;
+            }
+            .name:hover {
+                color: $sky_3;
+            }
+            .email {
+                
+            }
+            .options {
+                display: flex;
+                flex: 1;
+                align-items: center;
+                justify-content: flex-end;
+                .remove {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+        .member:hover {
+            background-color: rgba($sky_0, 0.1);
+        }
+    }
+}
