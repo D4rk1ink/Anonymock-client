@@ -61,6 +61,14 @@ $color-active: #d9e3ec;
     }
     .expand {
         max-height: 500px !important;
+        .sub-row {
+            display: flex;
+            align-items: center;
+            i {
+                padding-right: 10px;
+                font-size: 18px;
+            }
+        }
     }
 }
 

@@ -1,3 +1,43 @@
-<p>
-  folder works!
-</p>
+<div class="">
+    <h2>Endpoints</h2>
+  </div>
+  
+  <div class="search">
+      <div class="header">
+        SEARCH
+      </div>
+      <div class="text-input">
+        <input type="text" name="input" class="input" />
+      </div>
+  </div>
+  <div class="folders">
+      <div class="header">
+          <div class="title">
+            Folders
+          </div>
+          <div class="new" (click)="onNew()">
+              <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+          </div>
+      </div>
+      <div class="items">
+          <div class="item" *ngFor="let folder of folders">
+            <div class="id">
+              {{ folder.id }}
+            </div>
+            <div class="name">
+                {{ folder.name }}
+            </div>
+            <div class="count">
+                {{ folder.countEndpoints }}
+            </div>
+            <div class="options">
+              <div class="rename">
+                <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
+              </div>
+              <div class="open">
+                <i class="material-icons btn-icon btn-sky-icon">open</i>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>

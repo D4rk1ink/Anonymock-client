@@ -5,6 +5,7 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { ConfigComponent } from './containers/config/config.component'
 import { DatabaseComponent } from './containers/database/database.component'
 import { MemberComponent } from './containers/member/member.component'
+import { EndpointComponent } from './containers/endpoint/endpoint.component'
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
       path: 'member',
       component: MemberComponent
+    },
+    {
+      path: 'endpoint',
+      component: EndpointComponent
     }]
   }
 ]

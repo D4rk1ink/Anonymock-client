@@ -5,13 +5,19 @@
     </div>
     <div class="expand">
       <div class="sub-row config" [routerLink]="'/'+project.id+'/config'">
-        Config
+        <i class="material-icons">settings</i> Config
       </div>
       <div class="sub-row database" [routerLink]="'/'+project.id+'/database'">
-        Database
+        <i class="material-icons">storage</i> Database
       </div>
       <div class="sub-row member" [routerLink]="'/'+project.id+'/member'">
-        Member
+        <i class="material-icons">group</i> Member
+      </div>
+      <div class="sub-row member" [routerLink]="'/'+project.id+'/endpoint'">
+        <i class="material-icons">link</i> Endpoints
+      </div>
+      <div class="sub-row member" [routerLink]="'/'+project.id+'/folder'">
+        <i class="material-icons">folder</i> Folders
       </div>
       <div class="sub-row folder" *ngFor="let folder of project.folders" [routerLink]="'/'+project.id+'/folder/'+folder.id">
         {{ folder.name }}

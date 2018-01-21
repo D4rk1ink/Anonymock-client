@@ -49,18 +49,24 @@ label.select {
     padding: 10px;
     background: #fff;
     border: 1px solid $gray_1;
-    color: rgba(0,0,0,.87);
+    color: $black !important;
     border-radius: 1px;
     transition: box-shadow .1s ease,border-color .1s ease;
+    font-style: normal;
+    font-family: "Open Sans" !important;
 }
 
 select {
     width: 100%;
     max-width: 100%;
     border: 0;
-    padding: 10px;
+    padding: 8px;
     appearance: none;
     background-color: rgba($white, 0);
+    font-style: normal;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 400;
 }
 
 label.select {

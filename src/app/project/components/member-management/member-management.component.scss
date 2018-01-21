@@ -7,6 +7,10 @@
         min-width: 100px;
         .select {
             border-right: 0px;
+            background-color: $gray_0;
+        }
+        .select:hover {
+            border-color: $gray_1;
         }
     }
     .text-input {
@@ -19,14 +23,15 @@
 
 .member-management {
     border: 1px solid $gray_1;
-    padding: 10px 0;
     border-radius: 2px;
     .detail {
         display: flex;
-        padding: 0 10px;
+        padding: 10px;
         padding-bottom: 10px;
+        border-bottom: 1px solid $gray_1;
     }
     .member-list {
+        padding: 10px 0;
         .member {
             display: flex;
             align-items: center;
@@ -51,6 +56,8 @@
                 flex: 1;
                 align-items: center;
                 justify-content: flex-end;
+                opacity: 0.1;
+                transition: opacity .2s;
                 .remove {
                     display: flex;
                     align-items: center;
@@ -59,6 +66,9 @@
         }
         .member:hover {
             background-color: rgba($sky_0, 0.1);
+            .options {
+                opacity: 1;
+            }
         }
     }
 }
