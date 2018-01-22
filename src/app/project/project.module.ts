@@ -23,7 +23,8 @@ import { DbGeneratorComponent } from './components/db-generator/db-generator.com
 import { GenerateComponent } from './components/db-generator/generate/generate.component';
 import { CustomComponent } from './components/db-generator/custom/custom.component';
 import { MemberManagementComponent } from './components/member-management/member-management.component';
-import { EndpointsGroupComponent } from './components/endpoints-group/endpoints-group.component';
+import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
+import { ResponseGroupComponent } from './components/response-group/response-group.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import { EndpointsGroupComponent } from './components/endpoints-group/endpoints-
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
-    EndpointsGroupComponent,
+    EndpointGroupComponent,
+    ResponseGroupComponent,
   ],
   exports: [
     ProjectComponent,
@@ -72,7 +74,7 @@ import { EndpointsGroupComponent } from './components/endpoints-group/endpoints-
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
-    EndpointsGroupComponent
+    EndpointGroupComponent
   ]
 })
 export class ProjectModule { }

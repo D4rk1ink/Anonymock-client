@@ -25,7 +25,7 @@
           {{ endpoint.method }}
         </span>
       </div>
-      <div class="name">
+      <div class="name" (click)="onLink(endpoint.id)">
         {{ endpoint.name }}
       </div>
       <div class="options">

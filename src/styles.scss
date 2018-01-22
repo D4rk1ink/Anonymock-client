@@ -38,6 +38,12 @@ h4 {
     margin-bottom: 10px; 
 }
 
+hr {
+    border: 0;
+    border-top: 1px solid $gray_0;
+    margin: 20px 0 !important;
+}
+
 input,
 textarea,
 label.select {
@@ -127,7 +133,7 @@ select:focus {
 }
 
 .form-input {
-    flex: 1;
+    // flex: 1;
 }
 
 * {

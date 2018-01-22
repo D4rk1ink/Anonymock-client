@@ -35,6 +35,10 @@ const routes: Routes = [
       component: EndpointsComponent
     },
     {
+      path: 'endpoint/:endpoint-id',
+      component: EndpointComponent
+    },
+    {
       path: 'folder',
       component: FoldersComponent
     },
