@@ -5,6 +5,8 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { ConfigComponent } from './containers/config/config.component'
 import { DatabaseComponent } from './containers/database/database.component'
 import { MemberComponent } from './containers/member/member.component'
+import { EndpointsComponent } from './containers/endpoints/endpoints.component'
+import { FoldersComponent } from './containers/folders/folders.component'
 import { EndpointComponent } from './containers/endpoint/endpoint.component'
 import { FolderComponent } from './containers/folder/folder.component'
 
@@ -30,10 +32,14 @@ const routes: Routes = [
     },
     {
       path: 'endpoint',
-      component: EndpointComponent
+      component: EndpointsComponent
     },
     {
       path: 'folder',
+      component: FoldersComponent
+    },
+    {
+      path: 'folder/:folder-id',
       component: FolderComponent
     }]
   }

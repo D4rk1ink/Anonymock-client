@@ -11,6 +11,8 @@ import { RangePipe } from './pipes/range/range.pipe'
 import { ConfigComponent } from './containers/config/config.component';
 import { MemberComponent } from './containers/member/member.component';
 import { DatabaseComponent } from './containers/database/database.component';
+import { EndpointsComponent } from './containers/endpoints/endpoints.component';
+import { FoldersComponent } from './containers/folders/folders.component';
 import { EndpointComponent } from './containers/endpoint/endpoint.component';
 import { FolderComponent } from './containers/folder/folder.component';
 import { ResponseComponent } from './containers/response/response.component';
@@ -38,6 +40,8 @@ import { EndpointsGroupComponent } from './components/endpoints-group/endpoints-
     ConfigComponent,
     MemberComponent,
     DatabaseComponent,
+    EndpointsComponent,
+    FoldersComponent,
     EndpointComponent,
     FolderComponent,
     ResponseComponent,
@@ -56,6 +60,8 @@ import { EndpointsGroupComponent } from './components/endpoints-group/endpoints-
     ConfigComponent,
     MemberComponent,
     DatabaseComponent,
+    EndpointsComponent,
+    FoldersComponent,
     EndpointComponent,
     FolderComponent,
     ResponseComponent,
