@@ -1,7 +1,7 @@
 <div class="">
-  <h2>Folders</h2>
+  <h2>Endpoints</h2>
 </div>
-  
+
 <div class="search">
   <div class="header">
     SEARCH
@@ -10,37 +10,36 @@
     <input type="text" name="input" class="input" />
   </div>
 </div>
-<div class="folders">
+<div class="endpoints">
   <div class="header">
     <div class="title">
-      Folders
+      Endpoints
     </div>
     <div class="new" (click)="onNew()">
       <i class="material-icons btn-icon btn-sky-icon">add_box</i>
     </div>
   </div>
   <div class="items">
-    <div class="item new-folder" *ngIf="isNewFolder">
+    <div class="item" *ngFor="let endpoint of endpoints">
       <div class="id">
-        new
+        {{ endpoint.id }}
+      </div>
+      <div class="method">
+        <span class="toggle-method toggle-{{ endpoint.method | lowercase }}">
+          {{ endpoint.method }}
+        </span>
       </div>
       <div class="name">
-        <div class="input">
-          <form (ngSubmit)="onSubmitNewFolder()">
-            <input type="text" name="name" class="input-name" placeholder="New Folder"/>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="item" *ngFor="let folder of folders">
-      <div class="id">
-        {{ folder.id }}
-      </div>
-      <div class="name">
-        {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
+        {{ endpoint.name }}
       </div>
       <div class="options">
-        <div class="rename">
+        <div class="copy">
+          <i class="material-icons btn-icon btn-sky-icon">content_copy</i>
+        </div>
+        <div class="share">
+          <i class="material-icons btn-icon btn-sky-icon">share</i>
+        </div>
+        <div class="edit">
           <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
         </div>
       </div>
