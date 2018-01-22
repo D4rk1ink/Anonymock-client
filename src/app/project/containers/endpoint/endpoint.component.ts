@@ -42,4 +42,8 @@ export class EndpointComponent implements OnInit {
   ngOnInit () {
   }
 
+  onNew () {
+    
+  }
+
 }
