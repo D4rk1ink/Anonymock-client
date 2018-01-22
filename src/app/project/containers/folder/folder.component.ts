@@ -7,9 +7,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FolderComponent implements OnInit {
 
-  constructor() { }
+  public folders: any[]
+  public isNewFolder: boolean
 
-  ngOnInit() {
+  constructor () {
+    this.folders = [
+      {
+        id: 'xHgbfVl',
+        name: 'Account',
+        countEndpoints: 5
+      },
+      {
+        id: 'jHpjvSc',
+        name: 'Promotion',
+        countEndpoints: 10
+      },
+      {
+        id: 'CdcGhlw',
+        name: 'Payment',
+        countEndpoints: 7
+      },
+      {
+        id: 'nBjGdrL',
+        name: 'Order',
+        countEndpoints: 22
+      },
+    ]
+  }
+
+  ngOnInit () {
+  }
+
+  onNew () {
+    this.isNewFolder = true
+  }
+
+  onSubmitNewFolder () {
+    this.isNewFolder = false
   }
 
 }
