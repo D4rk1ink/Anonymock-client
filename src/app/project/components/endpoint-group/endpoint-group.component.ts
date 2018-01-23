@@ -24,4 +24,8 @@ export class EndpointGroupComponent implements OnInit {
     this.router.navigateByUrl(`/${projectId}/endpoint/${id}`)
   }
 
+  onNew () {
+    
+  }
+
 }
