@@ -5,7 +5,10 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { SharedModule } from '../shared/shared.module'
 
-import { KeysPipe } from './pipes/keys/keys.pipe';
+import { StoreModule } from '@ngrx/store'
+import { projectReducers } from './reducers'
+
+import { KeysPipe } from './pipes/keys/keys.pipe'
 import { RangePipe } from './pipes/range/range.pipe'
 
 import { ConfigComponent } from './containers/config/config.component';
@@ -15,6 +18,7 @@ import { EndpointsComponent } from './containers/endpoints/endpoints.component';
 import { FoldersComponent } from './containers/folders/folders.component';
 import { EndpointComponent } from './containers/endpoint/endpoint.component';
 import { FolderComponent } from './containers/folder/folder.component';
+import { ResponsesComponent } from './containers/responses/responses.component';
 import { ResponseComponent } from './containers/response/response.component';
 
 import { EntityGroupComponent } from './components/entity-group/entity-group.component';
@@ -25,10 +29,17 @@ import { CustomComponent } from './components/db-generator/custom/custom.compone
 import { MemberManagementComponent } from './components/member-management/member-management.component';
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
 import { ResponseGroupComponent } from './components/response-group/response-group.component';
+import { RequestGroupComponent } from './components/request-group/request-group.component';
+import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component';
+import { ItemComponent } from './components/key-value-group/item/item.component';
+import { HeaderComponent } from './components/request-group/header/header.component';
+import { BodyComponent } from './components/request-group/body/body.component';
+import { QueryStringComponent } from './components/request-group/query-string/query-string.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    StoreModule.forRoot(projectReducers),
     SharedModule,
     ProjectRoutingModule
   ],
@@ -45,6 +56,7 @@ import { ResponseGroupComponent } from './components/response-group/response-gro
     FoldersComponent,
     EndpointComponent,
     FolderComponent,
+    ResponsesComponent,
     ResponseComponent,
 
     EntityGroupComponent,
@@ -55,6 +67,12 @@ import { ResponseGroupComponent } from './components/response-group/response-gro
     MemberManagementComponent,
     EndpointGroupComponent,
     ResponseGroupComponent,
+    RequestGroupComponent,
+    KeyValueGroupComponent,
+    ItemComponent,
+    HeaderComponent,
+    BodyComponent,
+    QueryStringComponent,
   ],
   exports: [
     ProjectComponent,
@@ -66,6 +84,7 @@ import { ResponseGroupComponent } from './components/response-group/response-gro
     FoldersComponent,
     EndpointComponent,
     FolderComponent,
+    ResponsesComponent,
     ResponseComponent,
     
     EntityGroupComponent,
@@ -74,7 +93,14 @@ import { ResponseGroupComponent } from './components/response-group/response-gro
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
-    EndpointGroupComponent
+    EndpointGroupComponent,
+    ResponseGroupComponent,
+    RequestGroupComponent,
+    KeyValueGroupComponent,
+    ItemComponent,
+    HeaderComponent,
+    BodyComponent,
+    QueryStringComponent,
   ]
 })
 export class ProjectModule { }
