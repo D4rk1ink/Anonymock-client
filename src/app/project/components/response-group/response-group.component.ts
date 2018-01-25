@@ -33,4 +33,7 @@ export class ResponseGroupComponent implements OnInit {
   ngOnInit () {
   }
 
+  onNew () {
+  }
+
 }

@@ -20,7 +20,7 @@
       <!-- <div class="id">
         {{ response.id }}
       </div> -->
-      <div class="name" (click)="onLink(response.id)">
+      <div class="name" [routerLink]="'./'+response.id">
         {{ response.name }}
       </div>
       <div class="options">
