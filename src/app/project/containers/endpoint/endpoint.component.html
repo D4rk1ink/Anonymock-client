@@ -1,30 +1,27 @@
-<section class="section">
-    <div class="form-inline">
-        <div class="w-90 form-input">
-            <input type="text" name="name" [ngModel]="name" class="" placeholder="Name" />
-        </div>
-        <div class="w-10 form-input">
-            <input type="checkbox" name="status" class="" />
-        </div>
+<div class="form-inline">
+    <div class="w-90 form-input">
+        <input type="text" name="name" [ngModel]="name" class="" placeholder="Name" />
     </div>
-</section>
-<section class="section">
-    <div class="form-inline">
-        <div class="w-10 form-input">
-            <label class="select">
-                <select>
-                    <option value="get">GET</option>
-                    <option value="post">POST</option>
-                    <option value="put">PUT</option>
-                    <option value="patch">PATCH</option>
-                    <option value="delete">DELETE</option>
-                </select>
-            </label>
-        </div>
-        <div class="w-90 form-input">
-            <input type="text" name="path" [ngModel]="path" class="" placeholder="Path" />
-        </div>
+    <div class="w-10 form-input">
+        <input type="checkbox" name="status" class="" />
     </div>
-</section>
+</div>
+<div class="form-inline">
+    <div class="w-10 form-input">
+        <label class="select">
+            <select>
+                <option value="get">GET</option>
+                <option value="post">POST</option>
+                <option value="put">PUT</option>
+                <option value="patch">PATCH</option>
+                <option value="delete">DELETE</option>
+            </select>
+        </label>
+    </div>
+    <div class="w-90 form-input">
+        <input type="text" name="path" [ngModel]="path" class="" placeholder="Path" (ngModelChange)="onPathChange($event)" />
+    </div>
+</div>
+
 <hr>
-<response-group></response-group>
+<router-outlet></router-outlet>
