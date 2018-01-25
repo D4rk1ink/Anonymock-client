@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="tabs">
+    <div class="item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
+      {{ item.title }}
+    </div>
+  </div>
+  <div class="content" [ngSwitch]="menuSelector">
+    <request-header *ngSwitchCase="'M01'"></request-header>
+    <request-body *ngSwitchCase="'M02'"></request-body>
+    <request-query-string *ngSwitchCase="'M03'"></request-query-string>
+  </div>
+</div>
