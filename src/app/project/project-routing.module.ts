@@ -9,6 +9,8 @@ import { EndpointsComponent } from './containers/endpoints/endpoints.component'
 import { FoldersComponent } from './containers/folders/folders.component'
 import { EndpointComponent } from './containers/endpoint/endpoint.component'
 import { FolderComponent } from './containers/folder/folder.component'
+import { ResponsesComponent } from './containers/responses/responses.component'
+import { ResponseComponent } from './containers/response/response.component'
 
 const routes: Routes = [
   {
@@ -35,8 +37,18 @@ const routes: Routes = [
       component: EndpointsComponent
     },
     {
-      path: 'endpoint/:endpoint-id',
-      component: EndpointComponent
+      path: 'endpoint',
+      component: EndpointComponent,
+      children: [
+        {
+          path: ':endpoint-id',
+          component: ResponsesComponent
+        },
+        {
+          path: ':endpoint-id/:response-id',
+          component: ResponseComponent
+        }
+      ]
     },
     {
       path: 'folder',
