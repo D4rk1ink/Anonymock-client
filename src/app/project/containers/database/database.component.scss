@@ -1,12 +1,9 @@
 @import "colors";
 
-.db-generator {
-    margin-bottom: 20px;
-}
 .database {
     padding: 10px;
     border: 1px solid $gray_1;
-    .section {
+    .detail {
         display: flex;
         align-items: center;
         padding-bottom: 10px;

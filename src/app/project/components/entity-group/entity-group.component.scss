@@ -34,16 +34,17 @@
         .item {
             display: flex;
             border-top: 1px solid $gray_1;
-            .key {
-                padding: 0px;
-                border-right: 1px solid $gray_1;
-            }
-            .value {
-                padding: 0px;
-            }
-            input {
-                border: 0px;
-            }
+            padding: 10px;
+            // .key {
+            //     padding: 0px;
+            //     border-right: 1px solid $gray_1;
+            // }
+            // .value {
+            //     padding: 0px;
+            // }
+            // input {
+            //     border: 0px;
+            // }
         }
     }
     .expand.active {

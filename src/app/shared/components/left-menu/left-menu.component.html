@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="section project-menu {{ (project.id == menuTarget) ? 'active' : '' }}" *ngFor="let project of projects">
+  <div class="project-menu {{ (project.id == menuTarget) ? 'active' : '' }}" *ngFor="let project of projects">
     <div class="main-row" (click)="expand(project.id)">
       {{ project.name }}
     </div>

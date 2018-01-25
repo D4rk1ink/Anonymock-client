@@ -9,7 +9,7 @@ $color-active: #d9e3ec;
     // z-index: -2;
 }
 // menu unactive
-.section.project-menu {
+.project-menu {
     color: #8192a7;
     font-size: 12px;
     .main-row {
@@ -45,7 +45,7 @@ $color-active: #d9e3ec;
     }
 }
 // menu active
-.section.project-menu.active {
+.project-menu.active {
     .main-row {
         color: $color-active;
         background-color: #14222c;
