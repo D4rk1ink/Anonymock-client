@@ -6,7 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-
+  
+  @Input('index') index: number
+  @Input('entity') entity: any
   @Output('saveTemp') saveTemp: EventEmitter<any>
   public key: string
   public value: string
@@ -19,14 +21,15 @@ export class ItemComponent implements OnInit {
   }
 
   onKey (e) {
-    const key = e.target.value
-    this.key = key
+    this.entity.key = e.target.value
+    // this.key = key
+    this.saveTemp.emit({ index: this.index, key: this.entity.key, value: this.entity.value })
   }
 
   onValue (e) {
-    const value = e.target.value
-    this.value = value
-    this.saveTemp.emit({ key: this.key, value: this.value })
+    this.entity.value = e.target.value
+    // this.value = value
+    this.saveTemp.emit({ index: this.index, key: this.entity.key, value: this.entity.value })
   }
 
 }

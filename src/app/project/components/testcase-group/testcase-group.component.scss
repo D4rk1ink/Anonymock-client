@@ -1,28 +1,6 @@
 @import "colors";
 
-.search {
-    display: flex;
-    padding-bottom: 10px;
-    .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 100px;
-        border: 1px solid $gray_1;
-        border-right: 0;
-        border-radius: 2px 0px 0px 2px;
-        font-weight: 400;
-        background-color: $gray_0;
-    }
-    .text-input {
-        flex: 1;
-        .input {
-            border-radius: 0px 2px 2px 0px;
-        }
-    }
-}
-
-.folders {
+.responses {
     border: 1px solid $gray_1;
     border-radius: 2px;
     background-color: $white;
@@ -36,8 +14,27 @@
         .title {
             display: flex;
             align-items: center;
+        }
+        .environments {
+            display: flex;
+            align-items: center;
             flex: 1;
-            
+            padding-left: 10px;
+            color: $sky_2;
+            .environment {
+
+            }
+            .environment.active {
+                font-weight: 400;
+            }
+            .dev {
+                border-right: 1px solid $gray_1;
+                padding-right: 10px; 
+                margin-right: 10px;
+            }
+            .test {
+
+            }
         }
         .new {
             display: flex;
@@ -47,14 +44,6 @@
     }
     .items {
         padding: 10px 0;
-        .new-folder {
-            input.input-name {
-                border: 0;
-                padding-left: 0;
-                background-color: rgba($white, 0);
-                font-size: 14px;
-            }
-        }
         .item {
             padding: 10px;
             display: flex;
@@ -69,34 +58,29 @@
                 padding-left: 10px;
                 font-weight: 400;
                 flex: 1;
-                .count {
-                    padding-left: 10px;
-                    color: $gray_2;
-                }
             }
             .options {
                 width: 100px;
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                opacity: 0.1;
-                transition: opacity .2s;
-                .rename,
-                .open {
+                font-size: 19px;
+                .default {
                     padding: 0 5px;
                     display: flex;
                     align-items: center;
+                    color: $gray_0;
                     i {
                         font-size: 21px;
                     }
+                }
+                .default.active {
+                    color: $green_2;
                 }
             }
         }
         .item:hover {
             background-color: rgba($sky_0, 0.1);
-            .options {
-                opacity: 1;
-            }
         }
     }
 }

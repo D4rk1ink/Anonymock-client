@@ -28,8 +28,9 @@ import { GenerateComponent } from './components/db-generator/generate/generate.c
 import { CustomComponent } from './components/db-generator/custom/custom.component';
 import { MemberManagementComponent } from './components/member-management/member-management.component';
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
-import { ResponseGroupComponent } from './components/response-group/response-group.component';
+import { TestcaseGroupComponent } from './components/testcase-group/testcase-group.component';
 import { RequestGroupComponent } from './components/request-group/request-group.component';
+import { ResponseGroupComponent } from './components/response-group/response-group.component';
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component';
 import { ItemComponent } from './components/key-value-group/item/item.component';
 import { HeaderComponent } from './components/request-group/header/header.component';
@@ -66,8 +67,9 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     CustomComponent,
     MemberManagementComponent,
     EndpointGroupComponent,
-    ResponseGroupComponent,
+    TestcaseGroupComponent,
     RequestGroupComponent,
+    ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
     HeaderComponent,
@@ -94,8 +96,9 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     CustomComponent,
     MemberManagementComponent,
     EndpointGroupComponent,
-    ResponseGroupComponent,
+    TestcaseGroupComponent,
     RequestGroupComponent,
+    ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
     HeaderComponent,

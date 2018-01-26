@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store'
+import * as endpointAction from '../../actions/endpoint.action'
+import * as responseAction from '../../actions/response.action'
+import * as fromProject from '../../reducers'
 
 @Component({
   selector: 'app-responses',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResponsesComponent implements OnInit {
 
-  constructor() { }
+  public responses: any[]
+
+  constructor(
+    private store: Store<any>
+  ) { }
 
   ngOnInit() {
+    this.store.select(fromProject.getEndpointResponses)
+      .subscribe(responses => {
+        this.responses = responses
+      })
   }
 
 }

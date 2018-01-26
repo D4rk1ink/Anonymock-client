@@ -21,7 +21,11 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     if (this.text) {
-      this.text = JSON.stringify(this.text)
+      if (typeof this.text === "object") {
+        this.text = JSON.stringify(this.text)
+      } else {
+        this.text = this.text
+      }
     }
   }
 

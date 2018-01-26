@@ -24,7 +24,8 @@
 
 .endpoints {
     border: 1px solid $gray_1;
-    border-radius: 1px;
+    border-radius: 2px;
+    background-color: $white;
     .header {
         cursor: pointer;
         display: flex;

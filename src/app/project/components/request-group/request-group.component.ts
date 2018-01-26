@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./request-group.component.scss']
 })
 export class RequestGroupComponent implements OnInit {
-
+  
+  public headerData: any
+  public bodyData: any
+  public queryStringData: any
   public menuSelector: string
   public menu: any[] = [
     { id: 'M01', title: 'Header' },
@@ -24,6 +27,18 @@ export class RequestGroupComponent implements OnInit {
 
   onSelectMenu (id) {
     this.menuSelector = id
+  }
+
+  saveHeader (data) {
+    this.headerData = data
+  }
+
+  saveBody (data) {
+    this.bodyData = data
+  }
+
+  saveQueryString (data) {
+    this.queryStringData = data
   }
 
 }

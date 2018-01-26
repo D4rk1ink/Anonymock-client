@@ -1,33 +1,21 @@
-<div class="responses">
-  <div class="header">
-    <div class="title">
-      Responses
-    </div>
-    <div class="environments">
-      <div class="environment dev" [class.active]="environment === 'dev'">
-        Dev
-      </div>
-      <div class="environment test" [class.active]="environment === 'test'">
-        Test
+<div class="wrapper">
+  <div class="tabs-header">
+    <div class="tabs">
+      <div class="item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
+        {{ item.title }}
       </div>
     </div>
-    <div class="new" (click)="onNew()">
-      <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+    <div class="options">
+      <div class="delay">
+        Delay : <input type="text" name="delay"> ms
+      </div>
+      <div class="status">
+        Status : <input type="text" name="delay" maxlength="3">
+      </div>
     </div>
   </div>
-  <div class="items">
-    <div class="item" *ngFor="let response of responses">
-      <!-- <div class="id">
-        {{ response.id }}
-      </div> -->
-      <div class="name" [routerLink]="'./'+response.id">
-        {{ response.name }}
-      </div>
-      <div class="options">
-        <div class="default" [class.active]="response.isDefault">
-          <i class="material-icons btn-icon btn-sky-icon">star</i>
-        </div>
-      </div>
-    </div>
+  <div class="content" [ngSwitch]="menuSelector">
+    <request-header *ngSwitchCase="'M01'" [data]="headerData" (save)="saveHeader($event)"></request-header>
+    <request-body *ngSwitchCase="'M02'" [data]="bodyData" (save)="saveBody($event)"></request-body>
   </div>
 </div>

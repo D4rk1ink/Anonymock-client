@@ -10,19 +10,39 @@ import * as fromProject from '../../reducers'
 })
 export class EndpointComponent implements OnInit {
 
-  public name: string
-  public path: string
+  public endpoint: any
 
   constructor (
     private store: Store<any>
   ) {
-    this.name = 'Check Promotion'
-    this.path = '/check-promotion/{user-id}'
+    // Call service get endpoint
+    this.endpoint = {
+      name: 'Check Promotion',
+      path: '/check-promotion/{userId}',
+      responses: [
+        {
+          id: 'Xu6ooc2seeG',
+          name: 'When user id is 001',
+          isDefault: false
+        },
+        {
+          id: 'Zeeb3shiequ',
+          name: 'When user id is 002',
+          isDefault: true
+        },
+        {
+          id: 'chisie1oHai',
+          name: 'When user id is 003',
+          isDefault: false
+        }
+      ]
+    }
+    this.store.dispatch(new endpointAction.NameAction(this.endpoint.name))
+    this.store.dispatch(new endpointAction.PathAction(this.endpoint.path))
+    this.store.dispatch(new endpointAction.ResponsesAction(this.endpoint.responses))
   }
 
   ngOnInit () {
-    this.store.dispatch(new endpointAction.PathAction(this.path))
-    this.store.select(fromProject.getEndpointPath).subscribe(a => console.log(a))
   }
 
   onPathChange (path) {

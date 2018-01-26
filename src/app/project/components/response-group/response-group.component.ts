@@ -7,33 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResponseGroupComponent implements OnInit {
 
-  public environment: string
-  public responses: any[]
+  public headerData: any
+  public bodyData: any
+  public menuSelector: string
+  public menu: any[] = [
+    { id: 'M01', title: 'Header' },
+    { id: 'M02', title: 'Body' },
+  ]
 
   constructor () {
-    this.responses = [
-      {
-        id: 'Xu6ooc2seeG',
-        name: 'When user id is 001',
-        isDefault: false
-      },
-      {
-        id: 'Zeeb3shiequ',
-        name: 'When user id is 002',
-        isDefault: true
-      },
-      {
-        id: 'chisie1oHai',
-        name: 'When user id is 003',
-        isDefault: false
-      },
-    ]
+    this.menuSelector = this.menu[0].id
   }
 
   ngOnInit () {
+
   }
 
-  onNew () {
+  onSelectMenu (id) {
+    this.menuSelector = id
+  }
+
+  saveHeader (data) {
+    this.headerData = data
+  }
+
+  saveBody (data) {
+    this.bodyData = data
   }
 
 }

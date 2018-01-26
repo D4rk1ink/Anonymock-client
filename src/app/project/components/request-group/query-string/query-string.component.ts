@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'request-query-string',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueryStringComponent implements OnInit {
 
-  constructor() { }
+  @Input('data') data: any
+  @Output('save') save: EventEmitter<any>
 
-  ngOnInit() {
+  constructor () {
+    this.save = new EventEmitter<any>()
+  }
+
+  ngOnInit () {
+  }
+
+  saveData (data) {
+    this.save.emit(data)
   }
 
 }

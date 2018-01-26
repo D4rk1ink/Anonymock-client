@@ -8,8 +8,9 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 export class EntityGroupComponent implements OnInit, OnChanges {
 
   @Input('title') title: string
-  @Input('entities') entities: any[]
+  @Input('entities') entities: any
   @Input('auto') auto: boolean
+  @Input('tempAuto') tempAuto: any
   public isExpand: boolean
   public temp: any
   public keys: any[]
@@ -17,18 +18,25 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   public keyFocus: string
   public valueFocus: string
   constructor () {
-    this.temp = {}
+    if (!this.auto) {
+      this.temp = {}
+    }
     this.keys = ['']
     this.values = ['']
   }
 
   ngOnChanges () {
-    if (this.entities) {
-      this.keys = []
-      this.values = []
-      for (const key of this.entities) {
-        this.keys.push(key)
-        this.values.push(this.temp[key] || '')
+    if (this.auto) {
+      if (this.tempAuto && this.entities) {
+        if (!this.temp) {
+          this.temp = this.tempAuto
+        }
+        this.keys = []
+        this.values = []
+        for (const key of Object.keys(this.entities)) {
+          this.keys.push(key)
+          this.values.push(this.temp[key] || '')
+        }
       }
     }
   }

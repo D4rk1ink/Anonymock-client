@@ -1,15 +1,22 @@
 <section class="section">
+  <input type="text" name="name" [ngModel]="response.name" placeholder="Response name"/>
+</section>
+<section class="section">
   <entity-group
     [title]="'Params'"
     [entities]="params"
-    [auto]="true"></entity-group>
+    [auto]="true"
+    [tempAuto]="response.params"></entity-group>
 </section>
-<section class="section">
+<!-- <section class="section">
   <entity-group
     [title]="'Environments'"
     [entities]="envs"
     [auto]="true"></entity-group>
-</section>
-<section>
+</section> -->
+<section class="section">
   <request-group></request-group>
+</section>
+<section class="section">
+  <response-group></response-group>
 </section>
