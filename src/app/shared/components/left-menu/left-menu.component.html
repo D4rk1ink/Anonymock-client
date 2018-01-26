@@ -19,8 +19,8 @@
       <div class="sub-row member" [routerLink]="'/'+project.id+'/folder'">
         <i class="material-icons">folder</i> Folders
       </div>
-      <div class="sub-row folder" *ngFor="let folder of project.folders" [routerLink]="'/'+project.id+'/folder/'+folder.id">
-        {{ folder.name }}
+      <div class="sub-row member" [routerLink]="'/'+project.id+'/logs'">
+        <i class="material-icons">history</i> Logs
       </div>
     </div>
   </div>
