@@ -1,0 +1,30 @@
+<div class="search">
+  <div class="header">
+    SEARCH
+  </div>
+  <div class="text-input">
+    <input type="text" name="input" class="input" />
+  </div>
+</div>
+<div class="logs">
+  <div class="header">
+    <div class="title">
+      Logs
+    </div>
+  </div>
+  <div class="items">
+    <div class="item" *ngFor="let log of logs">
+      <!-- <div class="id">
+        {{ log.id }}
+      </div> -->
+      <div class="method">
+        <span class="toggle-method toggle-{{ log.method | lowercase }}">
+          {{ log.method }}
+        </span>
+      </div>
+      <div class="name" [routerLink]="'./'+log.id">
+        {{ log.path }}
+      </div>
+    </div>
+  </div>
+</div>

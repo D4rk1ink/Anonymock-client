@@ -11,6 +11,7 @@ import * as fromProject from '../../reducers'
 export class EndpointComponent implements OnInit {
 
   public endpoint: any
+  public folders: any[]
 
   constructor (
     private store: Store<any>
@@ -28,15 +29,42 @@ export class EndpointComponent implements OnInit {
         {
           id: 'Zeeb3shiequ',
           name: 'When user id is 002',
-          isDefault: true
+          isDefault: false
         },
         {
-          id: 'chisie1oHai',
+          id: 'EhiSie1oHai',
           name: 'When user id is 003',
           isDefault: false
+        },
+        {
+          id: 'cGqvi23pJcd',
+          name: 'Default',
+          isDefault: true
         }
       ]
     }
+    this.folders = [
+      {
+        id: 'xHgbfVl',
+        name: 'Account',
+        countEndpoints: 5
+      },
+      {
+        id: 'jHpjvSc',
+        name: 'Promotion',
+        countEndpoints: 10
+      },
+      {
+        id: 'CdcGhlw',
+        name: 'Payment',
+        countEndpoints: 7
+      },
+      {
+        id: 'nBjGdrL',
+        name: 'Order',
+        countEndpoints: 22
+      },
+    ]
     this.store.dispatch(new endpointAction.NameAction(this.endpoint.name))
     this.store.dispatch(new endpointAction.PathAction(this.endpoint.path))
     this.store.dispatch(new endpointAction.ResponsesAction(this.endpoint.responses))

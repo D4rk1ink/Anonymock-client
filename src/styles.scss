@@ -17,6 +17,10 @@ html, body {
     background-color: rgba($gray_0, 0.3);
 }
 
+body {
+    overflow-y: scroll;
+}
+
 @for $i from 0 through 100 {
     .w-#{$i} {
         width: #{$i + "%"};

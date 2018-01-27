@@ -20,6 +20,8 @@ import { EndpointComponent } from './containers/endpoint/endpoint.component';
 import { FolderComponent } from './containers/folder/folder.component';
 import { ResponsesComponent } from './containers/responses/responses.component';
 import { ResponseComponent } from './containers/response/response.component';
+import { LogsComponent } from './containers/logs/logs.component';
+import { LogComponent } from './containers/log/log.component';
 
 import { EntityGroupComponent } from './components/entity-group/entity-group.component';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
@@ -28,6 +30,7 @@ import { GenerateComponent } from './components/db-generator/generate/generate.c
 import { CustomComponent } from './components/db-generator/custom/custom.component';
 import { MemberManagementComponent } from './components/member-management/member-management.component';
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
+import { LogGroupComponent } from './components/log-group/log-group.component';
 import { TestcaseGroupComponent } from './components/testcase-group/testcase-group.component';
 import { RequestGroupComponent } from './components/request-group/request-group.component';
 import { ResponseGroupComponent } from './components/response-group/response-group.component';
@@ -59,6 +62,8 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     FolderComponent,
     ResponsesComponent,
     ResponseComponent,
+    LogsComponent,
+    LogComponent,
 
     EntityGroupComponent,
     CodeEditorComponent,
@@ -67,6 +72,7 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     CustomComponent,
     MemberManagementComponent,
     EndpointGroupComponent,
+    LogGroupComponent,
     TestcaseGroupComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
@@ -88,6 +94,8 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     FolderComponent,
     ResponsesComponent,
     ResponseComponent,
+    LogsComponent,
+    LogComponent,
     
     EntityGroupComponent,
     CodeEditorComponent,
@@ -96,6 +104,7 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     CustomComponent,
     MemberManagementComponent,
     EndpointGroupComponent,
+    LogGroupComponent,
     TestcaseGroupComponent,
     RequestGroupComponent,
     ResponseGroupComponent,

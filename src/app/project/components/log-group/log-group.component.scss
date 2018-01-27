@@ -1,0 +1,95 @@
+@import "colors";
+
+.search {
+    display: flex;
+    padding-bottom: 10px;
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 100px;
+        border: 1px solid $gray_1;
+        border-right: 0;
+        border-radius: 2px 0px 0px 2px;
+        font-weight: 400;
+        background-color: $gray_0;
+    }
+    .text-input {
+        flex: 1;
+        .input {
+            border-radius: 0px 2px 2px 0px;
+        }
+    }
+}
+
+.logs {
+    border: 1px solid $gray_1;
+    border-radius: 2px;
+    background-color: $white;
+    .header {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        max-height: 40px;
+        border-bottom: 1px solid $gray_1;
+        .title {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            
+        }
+    }
+    .items {
+        padding: 10px 0;
+        .item {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            .id {
+                color: $sky_2;
+                width: 80px;
+                font-size: 12px;
+                cursor: pointer;
+            }
+            .method {
+                width: 80px;
+                display: flex;
+                justify-content: center;
+                .toggle-method {
+                    padding: 2px 8px;
+                    border-radius: 6px;
+                    color: $white;
+                    font-size: 10px;
+                    font-weight: 400;
+                }
+                .toggle-get {
+                    background-color: $get_color;
+                }
+                .toggle-post {
+                    background-color: $post_color;
+                }
+                .toggle-put {
+                    background-color: $put_color;
+                }
+                .toggle-patch {
+                    background-color: $patch_color;
+                }
+                .toggle-delete {
+                    background-color: $delete_color;
+                }
+            }
+            .name {
+                padding-left: 10px;
+                font-weight: 400;
+                flex: 1;
+            }
+        }
+        .item:hover {
+            background-color: rgba($sky_0, 0.1);
+            .options {
+                opacity: 1;
+            }
+        }
+    }
+}

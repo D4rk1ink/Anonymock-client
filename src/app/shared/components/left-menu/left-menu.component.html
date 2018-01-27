@@ -1,5 +1,25 @@
 <div class="wrapper">
-  <div class="project-menu {{ (project.id == menuTarget) ? 'active' : '' }}" *ngFor="let project of projects">
+  <div class="profile">
+    <div class="img-profile">
+      <img src="" class="" />
+    </div>
+    <div class="name-profile">
+      Passakorn Rattanaprapan
+    </div>
+  </div>
+  <div class="for-admin">
+    <div class="member-menu" [class.active]="'member-management' === menuTarget">
+      <div class="main-row" (click)="expand('member-management')">
+        Member Management
+      </div>
+    </div>
+    <div class="create-project-menu" [class.active]="'create-project' === menuTarget">
+      <div class="main-row" (click)="expand('create-project')">
+        Create Project
+      </div>
+    </div>
+  </div>
+  <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
     <div class="main-row" (click)="expand(project.id)">
       {{ project.name }}
     </div>
@@ -19,7 +39,7 @@
       <div class="sub-row member" [routerLink]="'/'+project.id+'/folder'">
         <i class="material-icons">folder</i> Folders
       </div>
-      <div class="sub-row member" [routerLink]="'/'+project.id+'/logs'">
+      <div class="sub-row member" [routerLink]="'/'+project.id+'/log'">
         <i class="material-icons">history</i> Logs
       </div>
     </div>

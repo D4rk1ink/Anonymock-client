@@ -1,5 +1,5 @@
-$color-active: #d9e3ec;
-
+@import "colors";
+$border: #253545;
 .wrapper {
     height: 100%;
     width: 200px;
@@ -8,19 +8,56 @@ $color-active: #d9e3ec;
     // position: absolute;
     // z-index: -2;
 }
+.profile {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: $gray_1;
+    font-weight: 600;
+    border-bottom: 1px solid $border;
+    .img-profile {
+        width: 80px;
+        height: 80px;
+        max-width: 80px;
+        max-height: 80px;
+        border-radius: 360px;
+        background-color: $white;
+        margin: 0 auto;
+    }
+    .name-profile {
+        padding: 10px 0;
+        text-align: center;
+    }
+}
+.for-admin {
+    color: $gray_2;
+    font-size: 12px;
+    .member-menu,
+    .create-project-menu {
+        .main-row {
+            cursor: pointer;
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $border;
+        }
+        .main-row:hover {
+            color: $gray_0;
+        }
+    }
+}
 // menu unactive
 .project-menu {
-    color: #8192a7;
+    color: $gray_2;
     font-size: 12px;
     .main-row {
         cursor: pointer;
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom: 1px solid #253545;
+        border-bottom: 1px solid $border;
     }
     .main-row:hover {
-        color: $color-active;
+        color: $gray_0;
     }
     .expand {
         max-height: 0px;
@@ -28,26 +65,31 @@ $color-active: #d9e3ec;
         transition:  height, max-height .5s;
         .sub-row {
             cursor: pointer;
-            border-bottom: 1px solid #253545;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $border;
             background-color: #202f3e;
             padding-left: 20px;
             padding-top: 10px;
             padding-bottom: 10px;
             transition: background-color color .2s;
+            i {
+                padding-right: 10px;
+                font-size: 18px;
+            }
         }
-        .sub-row.active {
-            color: $color-active;
-        }
+        .sub-row.active,
         .sub-row:hover {
-            color: $color-active;
+            color: $gray_0;
             background-color: #202a39;
         }
     }
 }
-// menu active
+.member-menu.active,
+.create-project-menu.active,
 .project-menu.active {
     .main-row {
-        color: $color-active;
+        color: $gray_0;
         background-color: #14222c;
         position: relative;
     }
@@ -61,14 +103,6 @@ $color-active: #d9e3ec;
     }
     .expand {
         max-height: 500px !important;
-        .sub-row {
-            display: flex;
-            align-items: center;
-            i {
-                padding-right: 10px;
-                font-size: 18px;
-            }
-        }
     }
 }
 
