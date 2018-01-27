@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LogGroupComponent implements OnInit {
 
   @Input('logs') logs: any[]
+  public logTarget: string
 
-  constructor() { }
+  constructor () { }
 
-  ngOnInit() {
+  ngOnInit () {
+  }
+
+  onExpand (id) {
+    this.logTarget = id
   }
 
 }

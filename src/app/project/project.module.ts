@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project-routing.module';
-import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { SharedModule } from '../shared/shared.module'
 
 import { StoreModule } from '@ngrx/store'
@@ -11,6 +10,7 @@ import { projectReducers } from './reducers'
 import { KeysPipe } from './pipes/keys/keys.pipe'
 import { RangePipe } from './pipes/range/range.pipe'
 
+import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { ConfigComponent } from './containers/config/config.component';
 import { MemberComponent } from './containers/member/member.component';
 import { DatabaseComponent } from './containers/database/database.component';
@@ -31,6 +31,8 @@ import { CustomComponent } from './components/db-generator/custom/custom.compone
 import { MemberManagementComponent } from './components/member-management/member-management.component';
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
 import { LogGroupComponent } from './components/log-group/log-group.component';
+import { LogResponseComponent } from './components/log-response/log-response.component';
+import { LogRequestComponent } from './components/log-request/log-request.component';
 import { TestcaseGroupComponent } from './components/testcase-group/testcase-group.component';
 import { RequestGroupComponent } from './components/request-group/request-group.component';
 import { ResponseGroupComponent } from './components/response-group/response-group.component';
@@ -73,6 +75,8 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     MemberManagementComponent,
     EndpointGroupComponent,
     LogGroupComponent,
+    LogResponseComponent,
+    LogRequestComponent,
     TestcaseGroupComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
@@ -105,6 +109,8 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     MemberManagementComponent,
     EndpointGroupComponent,
     LogGroupComponent,
+    LogResponseComponent,
+    LogRequestComponent,
     TestcaseGroupComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
