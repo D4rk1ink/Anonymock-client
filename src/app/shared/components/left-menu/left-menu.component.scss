@@ -1,5 +1,7 @@
 @import "colors";
+
 $border: #253545;
+
 .wrapper {
     height: 100%;
     width: 200px;
@@ -31,8 +33,7 @@ $border: #253545;
 .for-admin {
     color: $gray_2;
     font-size: 12px;
-    .member-menu,
-    .create-project-menu {
+    .member-menu {
         .main-row {
             cursor: pointer;
             padding-left: 10px;
@@ -44,6 +45,14 @@ $border: #253545;
             color: $gray_0;
         }
     }
+}
+.project-bar {
+    color: $gray_2;
+    background-color: #101c24;
+    padding: 5px 0; 
+    padding-left: 10px;
+    font-weight: 600;
+    border-bottom: 1px solid $border;
 }
 // menu unactive
 .project-menu {
@@ -90,7 +99,7 @@ $border: #253545;
 .project-menu.active {
     .main-row {
         color: $gray_0;
-        background-color: #14222c;
+        background-color: #1a2b36;
         position: relative;
     }
     .main-row:before {

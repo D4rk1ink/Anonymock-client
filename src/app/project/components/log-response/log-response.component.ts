@@ -20,4 +20,8 @@ export class LogResponseComponent implements OnInit {
   ngOnInit () {
   }
 
+  onSelectMenu (id) {
+    this.menuSelector = id
+  }
+
 }

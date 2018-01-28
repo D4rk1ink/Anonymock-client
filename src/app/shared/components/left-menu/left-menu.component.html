@@ -13,11 +13,9 @@
         Member Management
       </div>
     </div>
-    <div class="create-project-menu" [class.active]="'create-project' === menuTarget">
-      <div class="main-row" (click)="expand('create-project')">
-        Create Project
-      </div>
-    </div>
+  </div>
+  <div class="project-bar">
+    Project
   </div>
   <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
     <div class="main-row" (click)="expand(project.id)">

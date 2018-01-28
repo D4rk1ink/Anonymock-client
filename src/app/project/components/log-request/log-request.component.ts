@@ -21,4 +21,8 @@ export class LogRequestComponent implements OnInit {
   ngOnInit () {
   }
 
+  onSelectMenu (id) {
+    this.menuSelector = id
+  }
+
 }
