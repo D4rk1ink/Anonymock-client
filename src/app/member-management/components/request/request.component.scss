@@ -45,10 +45,12 @@
             cursor: pointer;
         }
         .approve {
+            color: $green_2;
             padding-right: 10px;
             border-right: 1px solid $gray_1;
         }
         .reject {
+            color: $danger_2;
             padding-left: 10px;
         }
     }
