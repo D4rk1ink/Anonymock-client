@@ -3,22 +3,35 @@
     <div class="img-profile">
       <img src="" class="" />
     </div>
-    <div class="name-profile">
+    <div class="name-profile" [routerLink]="'/my-account'" (click)="onTarget('my-account')">
       Passakorn Rattanaprapan
     </div>
   </div>
+  <div class="admin-bar">
+    <div class="name">Admin</div>
+  </div>
   <div class="for-admin">
-    <div class="member-menu" [class.active]="'member-management' === menuTarget" [routerLink]="'./member-management'">
-      <div class="main-row" (click)="expand('member-management')">
+    <div class="member-menu" [class.active]="'member-management' === menuTarget" [routerLink]="'/member-management'">
+      <div class="main-row" (click)="onTarget('member-management')">
         Member Management
       </div>
     </div>
   </div>
   <div class="project-bar">
-    Project
+    <div class="name">Project</div>
+    <div class="create" (click)="onNewProject()">
+      <i class="material-icons">add</i>
+    </div>
+  </div>
+  <div class="project-menu new-project-row" *ngIf="isNewProject">
+    <div class="main-row">
+      <form (ngSubmit)="onSubmitNewProject()">
+        <input type="text" name="project-name" class="project-name-input" placeholder="New project" (blur)="onNewProject()"/>
+      </form>
+    </div>
   </div>
   <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
-    <div class="main-row" (click)="expand(project.id)">
+    <div class="main-row" (click)="onTarget(project.id)">
       {{ project.name }}
     </div>
     <div class="expand">

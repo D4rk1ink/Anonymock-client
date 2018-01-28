@@ -28,6 +28,7 @@ $border: #253545;
     .name-profile {
         padding: 10px 0;
         text-align: center;
+        cursor: pointer;
     }
 }
 .for-admin {
@@ -46,6 +47,7 @@ $border: #253545;
         }
     }
 }
+.admin-bar,
 .project-bar {
     color: $gray_2;
     background-color: #101c24;
@@ -53,8 +55,36 @@ $border: #253545;
     padding-left: 10px;
     font-weight: 600;
     border-bottom: 1px solid $border;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 }
-// menu unactive
+.project-bar {
+    padding-right: 10px;
+    .create {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    i {
+        font-weight: 600;
+        font-size: 18px;
+    }
+}
+.new-project-row {
+    max-height: 39px;
+    overflow: hidden;
+    input {
+        color: $gray_2 !important;
+        border: 0;
+        padding: 0;
+        height: 100%;
+        min-height: 100%;
+        background-color: rgba($white, 0);
+        caret-color: $gray_2;
+    }
+}
+.new-project-row,
 .project-menu {
     color: $gray_2;
     font-size: 12px;

@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./left-menu.component.scss']
 })
 export class LeftMenuComponent implements OnInit {
-  public menuTarget
+
+  public isNewProject: boolean
+  public menuTarget: string
   public projects = [
     {
       id: 'xDdef',
@@ -57,8 +59,16 @@ export class LeftMenuComponent implements OnInit {
   ngOnInit () {
   }
 
-  expand (id: string) {
+  onTarget (id: string) {
     this.menuTarget = id
+  }
+
+  onNewProject () {
+    this.isNewProject = !this.isNewProject
+  }
+
+  onSubmitNewProject () {
+
   }
 
 }
