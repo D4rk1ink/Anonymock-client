@@ -68,6 +68,10 @@ const routes: Routes = [
       {
         path: 'log/:log-id',
         component: LogComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'endpoint'
       }
     ]
   }
