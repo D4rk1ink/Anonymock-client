@@ -1,0 +1,48 @@
+<div class="card-wrapper w-50">
+  <section class="">
+    <div class="title">
+        SIGN UP
+    </div>
+  </section>
+  <section class="content">
+      <div class="form-inline">
+          <div class="w-100 form-input">
+              <div class="">
+                  <input type="text" name="firstname" placeholder="Firstname" />
+              </div>
+          </div>
+          <div class="w-100 form-input">
+              <div class="">
+                  <input type="text" name="lastname" placeholder="Lastname" />
+              </div>
+          </div>
+      </div>
+      <div class="form-inline">
+          <div class="w-100 form-input">
+              <div class="">
+                  <input type="text" name="emil" placeholder="Email" />
+              </div>
+          </div>
+      </div>
+      <div class="form-inline">
+          <div class="w-100 form-input">
+              <div class="">
+                  <input type="text" name="password" placeholder="Password" />
+              </div>
+          </div>
+          <div class="w-100 form-input">
+              <div class="">
+                  <input type="text" name="confirm-password" placeholder="Confirm Password" />
+              </div>
+          </div>
+      </div>
+  </section>
+  <section class="footer">
+    <div class="form-inline">
+      <button class="btn btn-sky btn-login w-100" (click)="onSubmit()">SIGN UP</button>
+    </div>
+    <div class="form-inline to-sign-in">
+      <label [routerLink]="'../sign-in'">(Sign in)</label>
+    </div>
+  </section>
+</div>

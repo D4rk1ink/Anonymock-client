@@ -1,0 +1,44 @@
+@import "colors";
+
+.card-wrapper {
+    margin: 0 auto;
+    min-width: 100px;
+    border: 1px solid $gray_1;
+    border-radius: 2px;
+    background-color: $white;
+    .title {
+        color: $gray-4;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        padding: 20px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .content {
+        padding: 20px;
+        border-top: 1px solid $gray_0;
+        border-bottom: 1px solid $gray_0;
+    }
+    .footer {
+        padding: 20px;
+        .remember {
+            display: flex;
+            align-items: center;
+            .checkbox {
+                margin-right: 10px;
+            }
+        }
+        .to-sign-in {
+            color: $gray_2;
+            padding-top: 10px;
+            justify-content: center;
+            label {
+                cursor: pointer;
+            }
+        }
+        .to-sign-in:hover {
+            color: $gray_3;
+        }
+    }
+}
