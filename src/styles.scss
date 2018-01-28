@@ -3,6 +3,7 @@
 @import "material_icons";
 @import "buttons";
 @import "icons";
+@import "input";
 
 html, body {
     color: $black;
@@ -49,90 +50,6 @@ hr {
     margin: 20px 0 !important;
 }
 
-input,
-textarea,
-label.select {
-    min-height: 35px;
-    max-height: 35px;
-    width: 100%;
-    max-width: 100%;
-    flex: 1 0 auto;
-    padding: 10px;
-    background: #fff;
-    border: 1px solid $gray_1;
-    color: $black !important;
-    border-radius: 2px;
-    transition: box-shadow .1s ease,border-color .1s ease;
-    font-style: normal;
-    font-family: "Open Sans" !important;
-    margin: 0px;
-}
-
-input[type="checkbox"] {
-    margin: 0px;
-}
-
-select {
-    width: 100%;
-    max-width: 100%;
-    border: 0;
-    padding: 8px;
-    appearance: none;
-    color: $black;
-    background-color: rgba($white, 0);
-    font-style: normal;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: 400;
-}
-
-label.select {
-    width: 100%;
-    display: flex;
-    padding: 0;
-    align-items: center;
-    position: relative;
-}
-
-label.select:after {
-    content: "\e313";
-    font-family: "Material Icons";
-    font-size: 14;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    display: inline-block;
-    line-height: 1;
-    pointer-events: none;
-    box-sizing: border-box;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-}
-
-textarea {
-    resize: vertical;
-    max-height: 100px;
-}
-
-input:hover,
-textarea:hover,
-select:hover,
-label.select:hover {
-    border-color: $sky_2;
-}
-
-label.select:hover:after {
-    color: $sky_2;    
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    outline: none;
-    border-color: $sky_2;
-}
-
 .section {
     margin-bottom: 20px;
 }
@@ -143,6 +60,13 @@ select:focus {
     font-weight: 400;
 }
 
+.title-center {
+    text-align: center;
+    padding-bottom: 10px;
+    color: $gray_2;
+    font-weight: 600;
+}
+
 .form-inline {
     margin-bottom: 10px;
     display: flex;
@@ -150,6 +74,12 @@ select:focus {
 
 .form-input {
     // flex: 1;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 * {
