@@ -55,9 +55,18 @@ hr {
 }
 
 
-.label-title {
+label.label-title {
     padding-bottom: 2px;
     font-weight: 400;
+}
+
+label.link {
+    cursor: pointer;
+    color: $sky_1;
+}
+
+label.link:hover {
+    color: $sky_2;
 }
 
 .title-center {

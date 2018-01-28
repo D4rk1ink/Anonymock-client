@@ -1,11 +1,20 @@
+@import "colors";
+
 .wrapper {
     display: flex;
     min-height: 100%;
 }
-.content {
-    margin: 0 auto;
-    padding: 50px;
-    width: 100%;
-    max-width: 900px;
-    max-width: 1100px;
+.right {
+    flex: 1;
+    .top-bar {
+        height: 60px;
+        background-color: $sky_2;
+    }
+    .content {
+        margin: 0 auto;
+        padding: 50px;
+        width: 100%;
+        max-width: 900px;
+        max-width: 1100px;
+    }
 }

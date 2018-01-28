@@ -4,6 +4,9 @@ import { MyAccountComponent } from './my-account.component';
 import { MyAccountRoutingModule } from './my-account-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { ProfileComponent } from './containers/profile/profile.component';
+import { ChangePasswordComponent } from './containers/change-password/change-password.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -11,10 +14,14 @@ import { SharedModule } from '../shared/shared.module';
     MyAccountRoutingModule
   ],
   declarations: [
-    MyAccountComponent
+    MyAccountComponent,
+    ProfileComponent,
+    ChangePasswordComponent
   ],
   exports: [
-    MyAccountComponent
+    MyAccountComponent,
+    ProfileComponent,
+    ChangePasswordComponent
   ]
 })
 export class MyAccountModule { }

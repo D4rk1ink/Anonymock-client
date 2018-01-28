@@ -7,6 +7,8 @@ $border: #253545;
     width: 200px;
     min-width: 200px;
     background-color: #1d2b36;
+    display: flex;
+    flex-direction: column;
     // position: absolute;
     // z-index: -2;
 }
@@ -144,6 +146,27 @@ $border: #253545;
         max-height: 500px !important;
     }
 }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    .logout {
+        height: 38px;
+        color: $gray_2;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid $border;
+        cursor: pointer;
+    }
+    .logout:hover {
+        color: $gray_0;
+    }
+}
+
 
 .pointer {
     cursor: pointer;
