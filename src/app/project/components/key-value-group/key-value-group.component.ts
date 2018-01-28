@@ -57,4 +57,11 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
     }
   }
 
+  onDelete (index) {
+    this.entities.splice(index, 1)
+    if (this.entities.length === 0) {
+      this.entities.push({ key: '', value: '' })
+    }
+  }
+
 }
