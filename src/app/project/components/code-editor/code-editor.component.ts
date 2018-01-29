@@ -23,6 +23,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
     if (this.text) {
       if (typeof this.text === "object") {
         this.text = JSON.stringify(this.text)
+        this.pretty()
       } else {
         this.text = this.text
       }
@@ -44,5 +45,15 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
   onChange (text) {
     this.change.emit(text)
+  }
+
+  pretty() {
+    try {
+      this.text = this.text.replace(/(^"|"$)/gi, "");
+      // this.text = this.text.replace(/\\"/gi, "\"");
+      this.text = JSON.stringify(JSON.parse(this.text), null, 4);
+    } catch(err) {
+      this.editor.setText(this.text);
+    }
   }
 }

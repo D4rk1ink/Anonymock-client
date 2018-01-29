@@ -27,7 +27,7 @@
           {{ log.path }}
         </div>
         <div class="date">
-          {{ log.date }}
+          {{ log.date | date }} {{ log.date | date:'shortTime' }}
         </div>
       </div>
       <div class="expand">

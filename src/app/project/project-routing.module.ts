@@ -40,15 +40,15 @@ const routes: Routes = [
         component: EndpointsComponent
       },
       {
-        path: 'endpoint',
+        path: 'endpoint/:endpoint-id',
         component: EndpointComponent,
         children: [
           {
-            path: ':endpoint-id',
+            path: '',
             component: ResponsesComponent
           },
           {
-            path: ':endpoint-id/:response-id',
+            path: ':response-id',
             component: ResponseComponent
           }
         ]

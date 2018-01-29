@@ -27,14 +27,14 @@ export class LogsComponent implements OnInit {
       },
       {
         id: 'nFge4Hf6g7kDsvR',
-        name: 'Verify Account',
+        name: 'Verify Promotion',
         method: 'PUT',
         path: '/verify-promotion',
         date: 1110121500
       },
       {
         id: 'D6H7jfg8kvbf1df',
-        name: 'Verify Account',
+        name: 'Checkout',
         method: 'PATCH',
         path: '/checkout',
         date: 1110121500

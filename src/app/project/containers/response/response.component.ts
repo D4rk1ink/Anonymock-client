@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import * as endpointAction from '../../actions/endpoint.action'
 import * as responseAction from '../../actions/response.action'
 import * as fromProject from '../../reducers'
+
+import { projects } from 'app/mock/projects'
 
 @Component({
   selector: 'app-response',
@@ -16,22 +19,34 @@ export class ResponseComponent implements OnInit {
   public envs: string[]
 
   constructor(
-    private store: Store<any>
+    private store: Store<any>,
+    private route: ActivatedRoute
   ) {
     // Call service get response
-    this.response = {
-      name: 'When user id is 001',
-      params: {
-        userId: '001'
-      },
-      header: {
-        'x-language': 'th',
-        'cookie': 'asdasOPAHGp09SHDVioHAODUCh'
-      },
-      body: {},
-      queryString: {}
-    }
-    this.store.dispatch(new responseAction.NameAction(this.response.name))
+    this.store.select(fromProject.getProjectId)
+      .subscribe(id => {
+        const project = projects.find(project => project.id === id)
+        this.store.select(fromProject.getEndpointId)
+          .subscribe(endpointId => {
+            this.route.params.subscribe(param => {
+              const endpoint = project.endpoints.find(endpoint => endpoint.id === endpointId)
+              const response = endpoint.responses.find(response => response.id === param['response-id'])
+              this.response = {
+                name: response.name,
+                params: {
+                  'user-id': '001'
+                },
+                header: {
+                  'x-language': 'th',
+                  'cookie': 'asdasOPAHGp09SHDVioHAODUCh'
+                },
+                body: {},
+                queryString: {}
+              }
+              this.store.dispatch(new responseAction.NameAction(this.response.name))
+            })
+          })
+      })
   }
 
   ngOnInit() {

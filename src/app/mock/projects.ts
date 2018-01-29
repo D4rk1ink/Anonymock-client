@@ -56,31 +56,78 @@ export const projects = [
                 id: 'fG52Rbrh8',
                 method: 'GET',
                 name: 'Verify account',
-                path: '/verify-account/{user-id}'
+                path: '/verify-account/{user-id}',
+                responses: [
+                    {
+                        id: 'Xu6ooc2seeG',
+                        name: 'When user id is 001',
+                        isDefault: false
+                    },
+                    {
+                        id: 'Zeeb3shiequ',
+                        name: 'When user id is 002',
+                        isDefault: false
+                    },
+                    {
+                        id: 'EhiSie1oHai',
+                        name: 'When user id is 003',
+                        isDefault: false
+                    },
+                    {
+                        id: 'cGqvi23pJcd',
+                        name: 'Default',
+                        isDefault: true
+                    }
+                ]
             },
             {
                 id: 'H90Lhf9Dv',
                 method: 'POST',
                 name: 'Upgrade promotion',
-                path: '/upgrade-promotion/{user-id}/{promotion-id}'
+                path: '/upgrade-promotion/{user-id}/{promotion-id}',
+                responses: [
+                    {
+                        id: 'Xu6ooc2seeG',
+                        name: 'When user id is 001 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'Zeeb3shiequ',
+                        name: 'When user id is 002 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'EhiSie1oHai',
+                        name: 'When user id is 003 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'cGqvi23pJcd',
+                        name: 'Default',
+                        isDefault: true
+                    }
+                ]
             },
             {
                 id: 'ngH95Fjds',
                 method: 'PUT',
                 name: 'Verify promotion',
-                path: '/verify-promotion'
+                path: '/verify-promotion',
+                responses: []
             },
             {
                 id: 'j8hlsHov2',
                 method: 'PATCH',
                 name: 'Cancel promotion',
-                path: '/cancel-promotion'
+                path: '/cancel-promotion',
+                responses: []
             },
             {
                 id: 'l7Hinv93a',
                 method: 'DELETE',
                 name: 'Checkout',
-                path: '/checkout'
+                path: '/checkout',
+                responses: []
             },
         ]
     },
@@ -140,31 +187,78 @@ export const projects = [
                 id: 'fG52Rbrh8',
                 method: 'GET',
                 name: 'Verify account',
-                path: '/verify-account/{user-id}'
+                path: '/verify-account/{user-id}',
+                responses: [
+                    {
+                        id: 'Xu6ooc2seeG',
+                        name: 'When user id is 001',
+                        isDefault: false
+                    },
+                    {
+                        id: 'Zeeb3shiequ',
+                        name: 'When user id is 002',
+                        isDefault: false
+                    },
+                    {
+                        id: 'EhiSie1oHai',
+                        name: 'When user id is 003',
+                        isDefault: false
+                    },
+                    {
+                        id: 'cGqvi23pJcd',
+                        name: 'Default',
+                        isDefault: true
+                    }
+                ]
             },
             {
                 id: 'H90Lhf9Dv',
                 method: 'POST',
                 name: 'Upgrade promotion',
-                path: '/upgrade-promotion/{user-id}/{promotion-id}'
+                path: '/upgrade-promotion/{user-id}/{promotion-id}',
+                responses: [
+                    {
+                        id: 'Xu6ooc2seeG',
+                        name: 'When user id is 001 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'Zeeb3shiequ',
+                        name: 'When user id is 002 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'EhiSie1oHai',
+                        name: 'When user id is 003 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'cGqvi23pJcd',
+                        name: 'Default',
+                        isDefault: true
+                    }
+                ]
             },
             {
                 id: 'ngH95Fjds',
                 method: 'PUT',
                 name: 'Verify promotion',
-                path: '/verify-promotion'
+                path: '/verify-promotion',
+                responses: []
             },
             {
                 id: 'j8hlsHov2',
                 method: 'PATCH',
                 name: 'Cancel promotion',
-                path: '/cancel-promotion'
+                path: '/cancel-promotion',
+                responses: []
             },
             {
                 id: 'l7Hinv93a',
                 method: 'DELETE',
                 name: 'Checkout',
-                path: '/checkout'
+                path: '/checkout',
+                responses: []
             },
         ]
     },
@@ -227,31 +321,78 @@ export const projects = [
                 id: 'fG52Rbrh8',
                 method: 'GET',
                 name: 'Verify account',
-                path: '/verify-account/{user-id}'
+                path: '/verify-account/{user-id}',
+                responses: [
+                    {
+                        id: 'Xu6ooc2seeG',
+                        name: 'When user id is 001',
+                        isDefault: false
+                    },
+                    {
+                        id: 'Zeeb3shiequ',
+                        name: 'When user id is 002',
+                        isDefault: false
+                    },
+                    {
+                        id: 'EhiSie1oHai',
+                        name: 'When user id is 003',
+                        isDefault: false
+                    },
+                    {
+                        id: 'cGqvi23pJcd',
+                        name: 'Default',
+                        isDefault: true
+                    }
+                ]
             },
             {
                 id: 'H90Lhf9Dv',
                 method: 'POST',
                 name: 'Upgrade promotion',
-                path: '/upgrade-promotion/{user-id}/{promotion-id}'
+                path: '/upgrade-promotion/{user-id}/{promotion-id}',
+                responses: [
+                    {
+                        id: 'Xu6ooc2seeG',
+                        name: 'When user id is 001 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'Zeeb3shiequ',
+                        name: 'When user id is 002 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'EhiSie1oHai',
+                        name: 'When user id is 003 and promotion id 1',
+                        isDefault: false
+                    },
+                    {
+                        id: 'cGqvi23pJcd',
+                        name: 'Default',
+                        isDefault: true
+                    }
+                ]
             },
             {
                 id: 'ngH95Fjds',
                 method: 'PUT',
                 name: 'Verify promotion',
-                path: '/verify-promotion'
+                path: '/verify-promotion',
+                responses: []
             },
             {
                 id: 'j8hlsHov2',
                 method: 'PATCH',
                 name: 'Cancel promotion',
-                path: '/cancel-promotion'
+                path: '/cancel-promotion',
+                responses: []
             },
             {
                 id: 'l7Hinv93a',
                 method: 'DELETE',
                 name: 'Checkout',
-                path: '/checkout'
+                path: '/checkout',
+                responses: []
             },
         ]
     }
