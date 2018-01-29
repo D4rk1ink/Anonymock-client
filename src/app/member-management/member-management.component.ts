@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { members } from 'app/mock/members'
 
 @Component({
   selector: 'app-member-management',
@@ -17,54 +18,8 @@ export class MemberManagementComponent implements OnInit {
   constructor () {
     this.menuSelector = this.menu[0].id
     this.members = {
-      all: [
-        {
-          id: '51234564321534896',
-          firstname: 'Passakorn',
-          lastname: 'Rattanaprapan',
-          email: 'passakorn_0@gmail.com',
-          isAdmin: true,
-          deactivated: false
-        },
-        {
-          id: '52456481288224588',
-          firstname: 'Passakorn',
-          lastname: 'Rattanaprapan',
-          email: 'passakorn_1@gmail.com',
-          isAdmin: false,
-          deactivated: false
-        },
-        {
-          id: '21452348631257851',
-          firstname: 'Passakorn',
-          lastname: 'Rattanaprapan',
-          email: 'passakorn_2@gmail.com',
-          isAdmin: false,
-          deactivated: false
-        },
-        {
-          id: '84124523651224414',
-          firstname: 'Passakorn',
-          lastname: 'Rattanaprapan',
-          email: 'passakorn_3@gmail.com',
-          isAdmin: false,
-          deactivated: true
-        }
-      ],
-      request: [
-        {
-          id: '51234564321534896',
-          firstname: 'Passakorn',
-          lastname: 'Rattanaprapan',
-          email: 'passakorn_0@gmail.com',
-        },
-        {
-          id: '52456481288224588',
-          firstname: 'Passakorn',
-          lastname: 'Rattanaprapan',
-          email: 'passakorn_1@gmail.com',
-        }
-      ]
+      all: members.filter(member => member.approve),
+      request: members.filter(member => !member.approve)
     }
   }
 
