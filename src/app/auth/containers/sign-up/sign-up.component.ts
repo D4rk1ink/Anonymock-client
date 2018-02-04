@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from 'app/auth/services/auth.service'
 
 @Component({
   selector: 'app-sign-up',
@@ -7,12 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor () { }
+  public firstname: string
+  public lastname: string
+  public username: string
+  public email: string
+  public password: string
+  public confirmPassword: string
+
+  constructor (
+    private authService: AuthService
+  ) { }
 
   ngOnInit () {
   }
 
   onSubmit () {
+    if (this.password == this.confirmPassword) {
+      const payload = {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        username: this.username,
+        email: this.email,
+        password: this.password
+      }
+      this.authService.signup(payload)
+        .subscribe(res => {
+          if (!res.error) {
+            console.log('Successfully')
+          } else {
+            console.log(res.error)
+          }
+        })
+    }
   }
 
 }

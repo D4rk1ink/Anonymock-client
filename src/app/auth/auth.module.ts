@@ -6,6 +6,8 @@ import { SignUpComponent } from './containers/sign-up/sign-up.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
+import { AuthService } from 'app/auth/services/auth.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,6 +15,14 @@ import { SharedModule } from '../shared/shared.module';
     AuthRoutingModule
   ],
   declarations: [
+    AuthComponent,
+    SignInComponent,
+    SignUpComponent
+  ],
+  providers: [
+    AuthService
+  ],
+  exports: [
     AuthComponent,
     SignInComponent,
     SignUpComponent
