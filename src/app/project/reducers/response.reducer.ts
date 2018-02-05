@@ -23,6 +23,8 @@ export function reducer (state = initialState, action: responseAction.Actions): 
                 ...state,
                 name: action.payload
             }
+        default: 
+            return state
     }
 }
 
