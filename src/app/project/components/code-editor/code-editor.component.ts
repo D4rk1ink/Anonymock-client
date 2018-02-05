@@ -50,7 +50,6 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   pretty() {
     try {
       this.text = this.text.replace(/(^"|"$)/gi, "");
-      // this.text = this.text.replace(/\\"/gi, "\"");
       this.text = JSON.stringify(JSON.parse(this.text), null, 4);
     } catch(err) {
       this.editor.setText(this.text);
