@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Store } from '@ngrx/store'
+import { MemberService } from '../../services/member.service'
+import * as membersAction from '../../actions/members.action'
+import * as fromMembers from '../../reducers'
 
 @Component({
   selector: 'request',
@@ -7,11 +11,56 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RequestComponent implements OnInit {
   
-  @Input('members') members: any[]
+  public all: any[]
+  public request: any[]
 
-  constructor() { }
+  constructor(
+    private store: Store<any>,
+    private memberService: MemberService
+  ) {
+    this.store.select(fromMembers.getMembers)
+      .subscribe(members => {
+        this.all = members
+        this.request = members.filter(member => !member.isApproved)
+      })
+  }
 
   ngOnInit() {
+  }
+
+  onApprove (id) {
+    const payload = {
+      id: id,
+      approve: true
+    }
+    this.memberService.approve(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.all = this.all.map(user => {
+            if (user.id === id) {
+              user.isApproved = true
+            }
+            return user
+          })
+          this.store.dispatch(new membersAction.MembersAction(this.all))
+        }
+      })
+  }
+
+  onReject (id) {
+    const payload = {
+      id: id,
+      approve: false
+    }
+    this.memberService.approve(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.all = this.all.filter(user => {
+            return user.id !== id
+          })
+          this.store.dispatch(new membersAction.MembersAction(this.all))
+        }
+      })
   }
 
 }
