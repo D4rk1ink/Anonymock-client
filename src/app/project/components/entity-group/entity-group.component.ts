@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'entity-group',
@@ -11,6 +11,8 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   @Input('entities') entities: any
   @Input('auto') auto: boolean
   @Input('tempAuto') tempAuto: any
+  @Output('out') out: EventEmitter<any>
+  public init: boolean
   public isExpand: boolean
   public temp: any
   public keys: any[]
@@ -18,26 +20,28 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   public keyFocus: string
   public valueFocus: string
   constructor () {
-    if (!this.auto) {
-      this.temp = {}
-    }
+    this.init = true
+    this.out = new EventEmitter<any>()
+    this.temp = {}
     this.keys = ['']
     this.values = ['']
   }
 
   ngOnChanges () {
-    if (this.auto) {
-      if (this.tempAuto && this.entities) {
-        if (!this.temp) {
-          this.temp = this.tempAuto
-        }
-        this.keys = []
-        this.values = []
-        for (const key of Object.keys(this.entities)) {
-          this.keys.push(key)
-          this.values.push(this.temp[key] || '')
-        }
+    if (this.init && this.entities) {
+      if (this.entities instanceof String) {
+        this.entities = JSON.parse(this.entities.toString())
       }
+      this.temp = this.entities
+      this.keys = []
+      this.values = []
+      for (const key of Object.keys(this.entities)) {
+        this.keys.push(key)
+        this.values.push(this.temp[key] || '')
+      }
+      this.init = false
+    } else {
+      
     }
   }
 
@@ -53,6 +57,7 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   onKeyBlur (e, i) {
     const key = e.target.value
     this.temp[key] = this.values[i]
+    this.onOut()
   }
 
   onKey (e, i) {
@@ -63,10 +68,15 @@ export class EntityGroupComponent implements OnInit, OnChanges {
     }
   }
 
-  onValue (e, i) {
+  onValueBlur (e, i) {
     const value = e.target.value
     this.values[i] = value
     this.temp[this.keys[i]] = value
+    this.onOut()
+  }
+
+  onValue (e, i) {
+    
   }
 
   onExpand () {
@@ -80,6 +90,14 @@ export class EntityGroupComponent implements OnInit, OnChanges {
       this.keys.push('')
       this.values.push('')
     }
+  }
+
+  onOut () {
+    const entities = {}
+    this.keys.forEach((key, i) => {
+      entities[key] = this.values[i]
+    })
+    this.out.emit(entities)
   }
 
 }
