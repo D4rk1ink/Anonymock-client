@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: './member-management/member-management.module#MemberManagementModule'
       },
       {
-        path: ':project-id',
+        path: 'project',
         loadChildren: './project/project.module#ProjectModule'
       },
       {
