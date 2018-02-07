@@ -12,7 +12,7 @@ import * as fromMembers from '../../reducers'
 export class RequestComponent implements OnInit {
   
   public all: any[]
-  public request: any[]
+  public requests: any[]
 
   constructor(
     private store: Store<any>,
@@ -21,7 +21,7 @@ export class RequestComponent implements OnInit {
     this.store.select(fromMembers.getMembers)
       .subscribe(members => {
         this.all = members
-        this.request = members.filter(member => !member.isApproved)
+        this.requests = members.filter(member => !member.isApproved)
       })
   }
 

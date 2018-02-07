@@ -1,0 +1,37 @@
+@import "colors";
+
+.text-input {
+    flex: 1;
+    position: relative;
+    .input {
+        border-radius: 0px 2px 2px 0px;
+    }
+    .autocomplete {
+        position: absolute;
+        width: 100%;
+        margin-top: 5px;
+        border: 1px solid $gray_1;
+        border-radius: 2px;
+        background-color: $white;
+        z-index: 1;
+        .item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .name {
+                padding: 10px;
+                font-weight: 400;
+            }
+            .option {
+                padding-right: 10px;
+                .is-member {
+                    border: 1px solid $green_1;
+                }
+            }
+        }
+        .item:hover {
+            background-color: rgba($sky_0, 0.1);
+        }
+    }
+}

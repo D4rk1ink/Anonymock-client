@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { members } from 'app/mock/members'
+import { Subscription } from 'rxjs/Rx';
+import { Store } from '@ngrx/store'
+import { MemberService } from 'app/project/services/member.service'
+import * as projectAction from 'app/project/actions/project.action'
+import * as fromProject from 'app/project/reducers'
+import * as fromProjectReducer from 'app/project/reducers/project.reducer'
 
 @Component({
   selector: 'member-management',
@@ -8,14 +13,34 @@ import { members } from 'app/mock/members'
 })
 export class MemberManagementComponent implements OnInit {
 
+  public projectId: string
   public members: any[]
+  public users: any[]
+  public search: string
+  public selectOption: string
 
-  constructor () {
-    this.members = [
-      members[0],
-      members[1],
-      members[2],
-    ]
+  public searchSub: Subscription
+
+  constructor (
+    private store: Store<any>,
+    private memberService: MemberService
+  ) {
+    this.selectOption = 'search'
+    this.members = []
+    this.users = []
+    this.store.select(fromProject.getProjectId)
+      .subscribe(vid => {
+        this.projectId = vid
+        this.memberService.searchMember({
+          vid: vid,
+          search: ''
+        })
+          .subscribe(res => {
+            if (!res.error) {
+              this.members = res.data
+            }
+          })
+      })
   }
 
   ngOnInit () {
@@ -23,6 +48,69 @@ export class MemberManagementComponent implements OnInit {
 
   onExit (id) {
     console.log(id)
+  }
+
+  onAdd (user) {
+    if (!user.isMember) {
+      const payload = {
+        vid: this.projectId,
+        user: user.id
+      }
+      this.memberService.addMember(payload)
+        .subscribe(res => {
+          if (!res.error) {
+            this.members = [res.data, ...this.members]
+          }
+        })
+    }
+  }
+
+  onInput (text) {
+    this.search = text
+    if (this.selectOption === 'add') { 
+      this.searchUser()
+    } else if (this.selectOption === 'search') {
+      this.searchMember()
+    }
+  }
+
+  onSelect () {
+    this.search = ''
+    this.users = []
+    if (this.selectOption === 'search') {
+      this.searchMember()
+    }
+  }
+
+  getSearchPayload () {
+    return {
+      vid: this.projectId,
+      search: this.search
+    }
+  }
+
+  searchUser () {
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
+    this.searchSub = this.memberService.searchUser(this.getSearchPayload())
+      .subscribe(res => {
+        if (!res.error) {
+          this.users = res.data
+        }
+      })
+  }
+
+  searchMember () {
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
+    this.searchSub = this.memberService.searchMember(this.getSearchPayload())
+      .subscribe(res => {
+        if (!res.error) {
+          this.members = res.data
+        }
+      })
   }
 
 }

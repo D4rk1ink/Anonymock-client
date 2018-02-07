@@ -1,10 +1,10 @@
 <div class="member-list">
-  <div class="member" *ngFor="let member of members">
-    <div class="name w-30">{{ member.firstname }} {{ member.lastname }}</div>
-    <div class="email w-40">{{ member.email }}</div>
+  <div class="member" *ngFor="let request of requests">
+    <div class="name w-30">{{ request.firstname }} {{ request.lastname }}</div>
+    <div class="email w-40">{{ request.email }}</div>
     <div class="options">
-      <div class="approve" (click)="onApprove(member.id)">Approve</div>
-      <div class="reject" (click)="onReject(member.id)">Reject</div>
+      <div class="approve" (click)="onApprove(request.id)">Approve</div>
+      <div class="reject" (click)="onReject(request.id)">Reject</div>
     </div>
   </div>
 </div>
