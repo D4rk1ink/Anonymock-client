@@ -41,6 +41,11 @@ import { ItemComponent } from './components/key-value-group/item/item.component'
 import { HeaderComponent } from './components/request-group/header/header.component';
 import { BodyComponent } from './components/request-group/body/body.component';
 import { QueryStringComponent } from './components/request-group/query-string/query-string.component';
+import { InputAddMemberComponent } from './components/input-add-member/input-add-member.component';
+
+import { ProjectService } from './services/project.service';
+import { DatabaseService } from './services/database.service';
+import { MemberService } from './services/member.service';
 
 @NgModule({
   imports: [
@@ -85,6 +90,7 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     HeaderComponent,
     BodyComponent,
     QueryStringComponent,
+    InputAddMemberComponent,
   ],
   exports: [
     ProjectComponent,
@@ -119,6 +125,12 @@ import { QueryStringComponent } from './components/request-group/query-string/qu
     HeaderComponent,
     BodyComponent,
     QueryStringComponent,
+    InputAddMemberComponent,
+  ],
+  providers: [
+    ProjectService,
+    DatabaseService,
+    MemberService,
   ]
 })
 export class ProjectModule { }

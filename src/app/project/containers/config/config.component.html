@@ -8,7 +8,7 @@
                 ID
             </div>
             <div class="">
-                <input type="text" name="id" [ngModel]="project.id" />
+                <input type="text" name="vid" [ngModel]="project.vid" [readonly]="true" />
             </div>
         </div>
         <div class="w-50 form-input">
@@ -16,7 +16,7 @@
                 Name
             </div>
             <div class="">
-                <input type="text" name="id" [ngModel]="project.name" placeholder="Name" />
+                <input type="text" name="id" [(ngModel)]="project.name" placeholder="Name" />
             </div>
         </div>
         <div class="w-25 form-input">
@@ -25,9 +25,9 @@
             </div>
             <div class="">
                 <label class="select">
-                    <select name="status">
-                        <option value="1">Active</option>
-                        <option value="1">Unactive</option>
+                    <select name="status" [(ngModel)]="project.status">
+                        <option value="true">Active</option>
+                        <option value="false">Unactive</option>
                     </select>
                 </label>
             </div>
@@ -39,7 +39,7 @@
                 Description
             </div>
             <div class="">
-                <textarea placeholder="Descript..."></textarea>
+                <textarea placeholder="Descript..." [(ngModel)]="project.description"></textarea>
             </div>
         </div>
     </div>
@@ -49,17 +49,17 @@
                 Repository
             </div>
             <div class="">
-                <input type="text" name="repository" />
+                <input type="text" name="repository" [(ngModel)]="project.repository" />
             </div>
         </div>
     </div>
 </section>
 <section class="section">
-    <entity-group [title]="'Environments'"></entity-group>
+    <entity-group [title]="'Environments'" [entities]="project.environment" (out)="onEnvironment($event)"></entity-group>
 </section>
 <section class="section form-inline between">
     <div class="">
-        <button class="btn btn-sky">Save</button>
+        <button class="btn btn-sky" (click)="onUpdate()">Save</button>
     </div>
     <div class="">
         <button class="btn btn-danger">Delete</button>

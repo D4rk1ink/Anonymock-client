@@ -16,7 +16,7 @@ import { LogComponent } from './containers/log/log.component'
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':project-id',
     component: ProjectComponent,
     children: [
       {
