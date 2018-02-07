@@ -69,12 +69,4 @@ export class ResponseComponent implements OnInit {
     }
   }
 
-  // envsFilter (path) {
-  //   const envsPattern = /\{\$env\.([A-Za-z0-9|\.]+)\}/g
-  //   const match = path.match(envsPattern) || []
-  //   this.envs = match
-  //     .map(param => new RegExp(envsPattern).exec(param).slice(1).pop())
-  //     .filter((param, i, arr) => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
-  // }
-
 }
