@@ -13,17 +13,6 @@
       <input type="text" name="input" class="input" [(ngModel)]="search" (keyup)="onInput($event.target.value)" />
     </ng-template>
   </div>
-  <!-- <div class="text-input">
-    <input type="text" name="input" class="input" [(ngModel)]="search" (keyup)="onInput($event.target.value)" />
-    <div class="autocomplete" *ngIf="selectOption === 'add' && users.length > 0">
-      <div class="item" *ngFor="let user of users" (click)="onAdd(user)">
-        <div class="name">{{ user.firstname }} {{ user.lastname }}</div>
-        <div class="option">
-          <div class="is-member" *ngIf="user.isMember">Member</div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </div>
 <div class="member-management">
   <div class="detail">
