@@ -1,12 +1,14 @@
 import { createSelector } from 'reselect'
 import { ActionReducer, ActionReducerMap, combineReducers } from '@ngrx/store'
 import * as fromProject from './project.reducer'
+import * as fromDatabase from './database.reducer'
 import * as fromFolder from './folder.reducer'
 import * as fromEndpoint from './endpoint.reducer'
 import * as fromResponse from './response.reducer'
 
 export interface ProjectState {
     project: fromProject.State,
+    database: fromDatabase.State,
     folder: fromFolder.State,
     endpoint: fromEndpoint.State,
     response: fromResponse.State
@@ -14,22 +16,23 @@ export interface ProjectState {
 
 export const projectReducers: ActionReducerMap<ProjectState> = {
     project: fromProject.reducer,
+    database: fromDatabase.reducer,
     folder: fromFolder.reducer,
     endpoint: fromEndpoint.reducer,
     response: fromResponse.reducer
 }
 
-// export const developmentReducer: ActionReducer<ProjectState> = combineReducers(projectReducers)
-
-// export function projectReducer(state: any, action: any) {
-//     return developmentReducer(state, action)
-// }
-
-
 export const getProjectState = (state: ProjectState) => state.project
 export const getProject = createSelector(getProjectState, fromProject.getAll)
 export const getProjectId = createSelector(getProjectState, fromProject.getId)
 export const getProjectName = createSelector(getProjectState, fromProject.getName)
+
+export const getDatabaseState = (state: ProjectState) => state.database
+export const getDatabase = createSelector(getDatabaseState, fromDatabase.getAll)
+export const getDatabaseData = createSelector(getDatabaseState, fromDatabase.getData)
+export const getDatabaseSchema = createSelector(getDatabaseState, fromDatabase.getSchema)
+export const getDatabaseGenerate = createSelector(getDatabaseState, fromDatabase.getGenerate)
+export const getDatabaseCustom = createSelector(getDatabaseState, fromDatabase.getCustom)
 
 export const getFolderState = (state: ProjectState) => state.folder
 export const getFolder = createSelector(getFolderState, fromFolder.getAll)
