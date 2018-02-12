@@ -25,6 +25,8 @@ import { LogComponent } from './containers/log/log.component';
 
 import { EntityGroupComponent } from './components/entity-group/entity-group.component';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { DbSchemaComponent } from './components/db-schema/db-schema.component';
+import { DbDataComponent } from './components/db-data/db-data.component';
 import { DbGeneratorComponent } from './components/db-generator/db-generator.component';
 import { GenerateComponent } from './components/db-generator/generate/generate.component';
 import { CustomComponent } from './components/db-generator/custom/custom.component';
@@ -74,6 +76,8 @@ import { MemberService } from './services/member.service';
 
     EntityGroupComponent,
     CodeEditorComponent,
+    DbSchemaComponent,
+    DbDataComponent,
     DbGeneratorComponent,
     GenerateComponent,
     CustomComponent,
@@ -109,6 +113,8 @@ import { MemberService } from './services/member.service';
     
     EntityGroupComponent,
     CodeEditorComponent,
+    DbSchemaComponent,
+    DbDataComponent,
     DbGeneratorComponent,
     GenerateComponent,
     CustomComponent,
