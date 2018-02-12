@@ -4,25 +4,25 @@
 <section class="section">
     <div class="form-inline">
         <div class="w-25 form-input">
-            <div class="label-title">
+            <label class="label-title">
                 ID
-            </div>
+            </label>
             <div class="">
                 <input type="text" name="vid" [ngModel]="project.vid" [readonly]="true" />
             </div>
         </div>
         <div class="w-50 form-input">
-            <div class="label-title">
+            <label class="label-title">
                 Name
-            </div>
+            </label>
             <div class="">
                 <input type="text" name="id" [(ngModel)]="project.name" placeholder="Name" />
             </div>
         </div>
         <div class="w-25 form-input">
-            <div class="label-title">
+            <label class="label-title">
                 Status
-            </div>
+            </label>
             <div class="">
                 <label class="select">
                     <select name="status" [(ngModel)]="project.status">
@@ -35,9 +35,9 @@
     </div>
     <div class="form-inline">
         <div class="w-100 form-input">
-            <div class="label-title">
+            <label class="label-title">
                 Description
-            </div>
+            </label>
             <div class="">
                 <textarea placeholder="Descript..." [(ngModel)]="project.description"></textarea>
             </div>
@@ -45,9 +45,9 @@
     </div>
     <div class="form-inline">
         <div class="w-100 form-input">
-            <div class="label-title">
+            <label class="label-title">
                 Repository
-            </div>
+            </label>
             <div class="">
                 <input type="text" name="repository" [(ngModel)]="project.repository" />
             </div>

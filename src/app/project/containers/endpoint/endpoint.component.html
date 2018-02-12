@@ -1,16 +1,16 @@
 <div class="form-inline">
     <div class="w-100 form-input">
-        <div class="label-title">
+        <label class="label-title">
             Name
-        </div>
+        </label>
         <input type="text" name="name" [ngModel]="endpoint.name" class="" placeholder="Name" />
     </div>
 </div>
 <div class="form-inline">
     <div class="w-10 form-input">
-        <div class="label-title">
+        <label class="label-title">
             Method
-        </div>
+        </label>
         <label class="select">
             <select>
                 <option value="get">GET</option>
@@ -22,15 +22,15 @@
         </label>
     </div>
     <div class="w-70 form-input">
-        <div class="label-title">
+        <label class="label-title">
             Path
-        </div>
+        </label>
         <input type="text" name="path" [ngModel]="endpoint.path" class="" placeholder="Path" (ngModelChange)="onPathChange($event)" />
     </div>
     <div class="w-20 form-input">
-        <div class="label-title">
+        <label class="label-title">
             Folder
-        </div>
+        </label>
         <label class="select">
             <select>
                 <option *ngFor="let folder of folders" [value]="folder.id">{{ folder.name }}</option>
