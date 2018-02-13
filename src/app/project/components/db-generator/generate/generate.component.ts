@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as schema from 'app/project/utils/verify-schema.util'
+import * as databaseAction from 'app/project/actions/database.action'
+import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'db-generate',
@@ -7,9 +11,65 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenerateComponent implements OnInit {
 
-  constructor() { }
+  @Output('submit') submit: EventEmitter<any>
+  public model: string
+  public count: number
+  public schema: string
+  public invalid: any
 
-  ngOnInit() {
+  constructor (
+    private store: Store<any>
+  ) {
+    this.submit = new EventEmitter<any>()
+    this.count = 0
+    this.invalid = {
+      isError: false,
+      message: ''
+    }
+    this.store.select(fromProject.getDatabase)
+      .subscribe(db => {
+        this.model = db.generate
+        this.schema = db.schema
+        try {
+          schema.isSchema(this.schema)
+          try {
+            schema.verifyGenerate(this.model, this.schema)
+            this.invalid.isError = false
+            this.invalid.message = ''
+          } catch (err) {
+            this.invalid.isError = true
+            this.invalid.message = err.message
+          }
+        } catch (err) {
+          this.invalid.isError = true
+        }
+      })
+  }
+
+  ngOnInit () {
+  }
+
+  onSubmit () {
+    if (!this.invalid.isError) {
+      const payload = {
+        schema: JSON.parse(this.schema),
+        data: JSON.parse(this.model),
+        count: this.count
+      }
+      this.submit.emit(payload)
+    }
+  }
+
+  onDataChange (text) {
+    this.store.dispatch(new databaseAction.GenerateAction(text))
+  }
+
+  onCountKeyPress (event) {
+    if (Number.isInteger(+event.key)) {
+      this.count = parseInt(event.target.value + event.key)
+    } else {
+      event.preventDefault()
+    }
   }
 
 }

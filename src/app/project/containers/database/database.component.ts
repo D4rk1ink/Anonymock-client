@@ -22,7 +22,7 @@ export class DatabaseComponent implements OnInit {
       .subscribe(id => {
         if (!id) return
         this.projectId = id
-        this.databaseService.get({ vid: id })
+        this.databaseService.get({ project: id })
           .subscribe(res => {
             if (!res.error) {
               const data = json.pretty(res.data.data)
