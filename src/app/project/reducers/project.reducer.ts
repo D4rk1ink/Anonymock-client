@@ -2,7 +2,7 @@ import { Action, ActionReducer } from '@ngrx/store'
 import * as projectAction from '../actions/project.action'
 
 export interface State {
-    vid: string
+    id: string
     name: string
     status: boolean,
     description: string,
@@ -11,7 +11,7 @@ export interface State {
 }
 
 const initialState: State = {
-    vid: null,
+    id: null,
     name: null,
     status: true,
     description: null,
@@ -26,7 +26,7 @@ export function reducer (state = initialState, action: projectAction.Actions): S
         case projectAction.ID: 
             return {
                 ...state,
-                vid: action.payload
+                id: action.payload
             }
         case projectAction.NAME: 
             return {
@@ -58,6 +58,6 @@ export function reducer (state = initialState, action: projectAction.Actions): S
     }
 }
 
-export const getId = (state: State) => state.vid
+export const getId = (state: State) => state.id
 export const getName = (state: State) => state.name
 export const getAll = (state: State) => state
