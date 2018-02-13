@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store'
 
 export const ID = '[Folder] Id'
 export const NAME = '[Folder] Name'
-export const ENDPOINTS = '[Endpoint] Endpoints'
+export const ENDPOINTS = '[Folder] Endpoints'
 
 export class IdAction implements Action {
     readonly type = ID

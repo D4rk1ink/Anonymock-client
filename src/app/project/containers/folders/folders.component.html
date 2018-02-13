@@ -2,7 +2,7 @@
   <h2>Folders</h2>
 </div>
 
-<search-input></search-input>
+<search-input (out)="onSearch($event)"></search-input>
 <div class="folders">
   <div class="header">
     <div class="title">
@@ -19,8 +19,8 @@
       </div>
       <div class="name">
         <div class="input">
-          <form (ngSubmit)="onSubmitNewFolder()">
-            <input type="text" name="name" class="input-name" placeholder="New Folder"/>
+          <form #form="ngForm" (ngSubmit)="onSubmitNewFolder(form.value)">
+            <input type="text" name="name" class="input-name" placeholder="New Folder" ngModel/>
           </form>
         </div>
       </div>

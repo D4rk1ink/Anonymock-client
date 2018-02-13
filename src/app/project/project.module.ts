@@ -48,6 +48,7 @@ import { InputAddMemberComponent } from './components/input-add-member/input-add
 import { ProjectService } from './services/project.service';
 import { DatabaseService } from './services/database.service';
 import { MemberService } from './services/member.service';
+import { FolderService } from './services/folder.service';
 
 @NgModule({
   imports: [
@@ -137,6 +138,7 @@ import { MemberService } from './services/member.service';
     ProjectService,
     DatabaseService,
     MemberService,
+    FolderService
   ]
 })
 export class ProjectModule { }
