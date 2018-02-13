@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="content" [ngSwitch]="menuSelector">
-    <db-generate *ngSwitchCase="'M01'"></db-generate>
-    <db-custom *ngSwitchCase="'M02'"></db-custom>
+    <db-generate *ngSwitchCase="'M01'" (submit)="onGenerate($event)"></db-generate>
+    <db-custom *ngSwitchCase="'M02'" (submit)="onImport($event)"></db-custom>
   </div>
 </div>

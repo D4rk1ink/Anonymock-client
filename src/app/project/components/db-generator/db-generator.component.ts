@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { DatabaseService } from 'app/project/services/database.service'
+import * as databaseAction from 'app/project/actions/database.action'
+import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'db-generator',
@@ -7,14 +11,22 @@ import { Component, OnInit } from '@angular/core'
 })
 export class DbGeneratorComponent implements OnInit {
 
+  public projectId: string
   public menuSelector: string
   public menu: any[] = [
     { id: 'M01', title: 'Generate' },
     { id: 'M02', title: 'Custom' }
   ]
 
-  constructor () {
+  constructor (
+    private store: Store<any>,
+    private databaseService: DatabaseService
+  ) {
     this.menuSelector = this.menu[0].id
+    this.store.select(fromProject.getProjectId)
+      .subscribe(id => {
+        this.projectId = id
+      })
   }
 
   ngOnInit () {
@@ -23,6 +35,28 @@ export class DbGeneratorComponent implements OnInit {
 
   onSelectMenu (id) {
     this.menuSelector = id
+  }
+
+  onGenerate (payload) {
+    payload.vid = this.projectId
+    this.databaseService.generate(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          const database = res.data
+          this.store.dispatch(new databaseAction.DataAction(database.data))
+        }
+      })
+  }
+
+  onImport (payload) {
+    payload.vid = this.projectId
+    this.databaseService.import(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          const database = res.data
+          this.store.dispatch(new databaseAction.DataAction(database.data))
+        }
+      })
   }
 
 }
