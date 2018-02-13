@@ -21,7 +21,7 @@ export class ConfigComponent implements OnInit {
     this.store.select(fromProject.getProject)
       .subscribe(project => {
         this.project = {
-          vid: project.vid,
+          id: project.id,
           name: project.name,
           status: project.status,
           description: project.description,
