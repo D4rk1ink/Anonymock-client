@@ -1,16 +1,1 @@
 @import "colors";
-
-.database {
-    padding: 10px;
-    border: 1px solid $gray_1;
-    background-color: $white;
-    .detail {
-        display: flex;
-        align-items: center;
-        padding-bottom: 10px;
-        .export {
-            display: flex;
-            justify-content: flex-end;
-        }
-    }
-}

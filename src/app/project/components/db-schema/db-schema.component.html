@@ -1,0 +1,14 @@
+<div class="schema">
+  <div class="header">
+      Schema
+  </div>
+  <div class="content">
+      <div class="detail">
+        <label>{{ invalid.message }}</label>
+      </div>
+      <code-editor
+          [text]="schema"
+          [mode]="'json'"
+          (change)="onSchemaChange($event)"></code-editor>
+  </div>
+</div>
