@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { AceEditorComponent } from 'ng2-ace-editor'
 
 @Component({
   selector: 'code-editor',
@@ -11,7 +12,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   @Input('mode') mode: string
   @Input('readOnly') readOnly: boolean
   @Output('change') change: EventEmitter<any>
-  @ViewChild('editor') editor
+  @ViewChild('editor') editor: AceEditorComponent
 
   public options: any
   
@@ -35,9 +36,11 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
     this.editor.getEditor().setOptions({
       enableBasicAutocompletion: true,
+      useWorker: false,
       maxLines: 15,
       minLines: 3
     })
+    this.editor.getEditor().$blockScrolling = Infinity
   }
 
   ngOnInit () {
