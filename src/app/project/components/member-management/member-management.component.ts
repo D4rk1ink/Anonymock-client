@@ -29,10 +29,10 @@ export class MemberManagementComponent implements OnInit {
     this.members = []
     this.users = []
     this.store.select(fromProject.getProjectId)
-      .subscribe(vid => {
-        this.projectId = vid
+      .subscribe(id => {
+        this.projectId = id
         this.memberService.searchMember({
-          vid: vid,
+          project: id,
           search: ''
         })
           .subscribe(res => {
@@ -53,7 +53,7 @@ export class MemberManagementComponent implements OnInit {
   onAdd (user) {
     if (!user.isMember) {
       const payload = {
-        vid: this.projectId,
+        project: this.projectId,
         user: user.id
       }
       this.memberService.addMember(payload)
@@ -84,7 +84,7 @@ export class MemberManagementComponent implements OnInit {
 
   getSearchPayload () {
     return {
-      vid: this.projectId,
+      project: this.projectId,
       search: this.search
     }
   }
