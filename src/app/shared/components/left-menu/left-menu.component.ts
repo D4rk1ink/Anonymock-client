@@ -39,8 +39,8 @@ export class LeftMenuComponent implements OnInit {
   ngOnInit () {
   }
 
-  onExpandProject (vid) {
-    this.menuTarget = vid
+  onExpandProject (id) {
+    this.menuTarget = id
   }
 
   onNewProject () {
