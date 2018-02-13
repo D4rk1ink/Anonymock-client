@@ -10,8 +10,8 @@ export class ProjectService {
     private http: HttpClient
   ) { }
 
-  get (vid = ''): Observable<any> {
-    const url = constants.BASE_API + '/project/' + vid
+  get (id = ''): Observable<any> {
+    const url = constants.BASE_API + '/project/' + id
     return this.http.get(url)
   }
 
