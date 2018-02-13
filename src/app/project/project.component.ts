@@ -19,12 +19,12 @@ export class ProjectComponent implements OnInit {
     private projectService: ProjectService
   ) {
     this.route.params.subscribe(param => {
-      const vid = param['project-id']
-      this.projectService.get(vid)
+      const projectId = param['project-id']
+      this.projectService.get(projectId)
         .subscribe(res => {
           if (!res.error) {
             const project = {
-              vid: res.data.vid,
+              id: res.data.id,
               name: res.data.name,
               status: res.data.status,
               description: res.data.description,
