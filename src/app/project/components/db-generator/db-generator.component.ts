@@ -38,7 +38,7 @@ export class DbGeneratorComponent implements OnInit {
   }
 
   onGenerate (payload) {
-    payload.vid = this.projectId
+    payload.project = this.projectId
     this.databaseService.generate(payload)
       .subscribe(res => {
         if (!res.error) {
@@ -49,7 +49,7 @@ export class DbGeneratorComponent implements OnInit {
   }
 
   onImport (payload) {
-    payload.vid = this.projectId
+    payload.project = this.projectId
     this.databaseService.import(payload)
       .subscribe(res => {
         if (!res.error) {
