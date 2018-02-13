@@ -3,6 +3,6 @@
     SEARCH
   </div>
   <div class="text-input">
-    <input type="text" name="input" class="input" />
+    <input type="text" name="input" class="input" (keyup)="onChange($event.target.value)"/>
   </div>
 </div>
