@@ -1,0 +1,17 @@
+<div class="database">
+  <div class="detail">
+      <div class="w-25">
+          Documents : {{ row }}
+      </div>
+      <div class="w-25">
+          Size : {{ size }} MB
+      </div>
+      <div class="w-50 export">
+          <button class="btn btn-sky outline">Export</button>
+      </div>
+  </div>
+  <code-editor
+      [text]="data"
+      [mode]="'json'"
+      [readOnly]="true"></code-editor>
+</div>
