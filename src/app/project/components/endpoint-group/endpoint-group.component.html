@@ -1,4 +1,3 @@
-<search-input></search-input>
 <div class="endpoints">
   <div class="header">
     <div class="title">
@@ -14,8 +13,8 @@
         {{ endpoint.id }}
       </div>
       <div class="method">
-        <span class="toggle-method toggle-{{ endpoint.method | lowercase }}">
-          {{ endpoint.method }}
+        <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
+          {{ endpoint.method.name }}
         </span>
       </div>
       <div class="name" (click)="onLink(endpoint.id)">
@@ -33,5 +32,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="pagging">
+    <div class="" (click)="onPage(-1)">Prev</div>
+    <div class="" (click)="onPage(+1)">Next</div>
   </div>
 </div>
