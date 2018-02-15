@@ -9,9 +9,9 @@ export interface State {
 }
 
 const initialState: State = {
-    id: null,
-    name: null,
-    path: null,
+    id: '',
+    name: '',
+    path: '',
     responses: []
 }
 

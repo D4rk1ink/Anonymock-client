@@ -19,8 +19,7 @@ export class EndpointsComponent implements OnInit {
   ) {
     this.store.select(fromProject.getProjectId)
       .subscribe(id => {
-        const project = projects.find(project => project.id === id)
-        this.endpoints = project.endpoints
+        
       })
 
   }

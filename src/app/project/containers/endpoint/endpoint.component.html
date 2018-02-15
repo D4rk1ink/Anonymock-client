@@ -13,11 +13,7 @@
         </label>
         <label class="select">
             <select>
-                <option value="get">GET</option>
-                <option value="post">POST</option>
-                <option value="put">PUT</option>
-                <option value="patch">PATCH</option>
-                <option value="delete">DELETE</option>
+                <option *ngFor="let method of methods" [value]="method.id">{{ method.name }}</option>
             </select>
         </label>
     </div>
@@ -41,7 +37,7 @@
 
 <hr>
 <section class="section">
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
 </section>
 <section class="section form-inline between">
     <div class="">
