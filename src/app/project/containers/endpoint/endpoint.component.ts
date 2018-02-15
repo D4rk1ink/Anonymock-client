@@ -35,10 +35,11 @@ export class EndpointComponent implements OnInit {
         this.endpoint = endpoint
       })
     this.route.params.subscribe(params => {
-      this.endpointService.getById(params['endpoint-id'])
+      const endpointId = params['endpoint-id']
+      this.store.dispatch(new endpointAction.IdAction(this.endpoint.id))
+      this.endpointService.getById(endpointId)
         .subscribe(res => {
           if (!res.error) {
-            this.store.dispatch(new endpointAction.IdAction(this.endpoint.id))
             this.store.dispatch(new endpointAction.NameAction(this.endpoint.name))
             this.store.dispatch(new endpointAction.PathAction(this.endpoint.path))
           }
