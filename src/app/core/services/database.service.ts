@@ -13,3 +13,11 @@ export const saveUser = (token: Object) => {
 export const getUser = (): Object => {
     return JSON.parse(localStorage.getItem('user'))
 }
+
+export const saveProject = (projectId) => {
+    localStorage.setItem('project', projectId)
+}
+
+export const getProject = (): string => {
+    return localStorage.getItem('project')
+}
