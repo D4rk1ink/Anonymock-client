@@ -11,6 +11,11 @@ export class ResponseService {
     private http: HttpClient
   ) { }
 
+  create (payload): Observable<any> {
+    const url = constants.BASE_API + '/project/response'
+    return this.http.post(url, payload)
+  }
+
   getById (id): Observable<any> {
     const url = constants.BASE_API + '/project/response/' + id
     return this.http.get(url)
