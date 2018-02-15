@@ -49,6 +49,9 @@ import { ProjectService } from './services/project.service';
 import { DatabaseService } from './services/database.service';
 import { MemberService } from './services/member.service';
 import { FolderService } from './services/folder.service';
+import { EndpointService } from './services/endpoint.service';
+import { ResponseService } from './services/response.service';
+import { MethodService } from './services/method.service';
 
 @NgModule({
   imports: [
@@ -138,7 +141,10 @@ import { FolderService } from './services/folder.service';
     ProjectService,
     DatabaseService,
     MemberService,
-    FolderService
+    FolderService,
+    EndpointService,
+    ResponseService,
+    MethodService
   ]
 })
 export class ProjectModule { }
