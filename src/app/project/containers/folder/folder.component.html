@@ -1,4 +1,5 @@
 <div class="">
-    <h2>Folder: {{ folder.name }}</h2>
+    <h2>Folder: {{ name }}</h2>
 </div>
-<endpoint-group [endpoints]="folder.endpoints"></endpoint-group>
+<search-input (out)="onSearch($event)"></search-input>
+<endpoint-group [folderId]="folderId"></endpoint-group>

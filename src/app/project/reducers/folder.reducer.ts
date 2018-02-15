@@ -37,5 +37,5 @@ export function reducer (state = initialState, action: folderAction.Actions): St
 
 export const getId = (state: State) => state.id
 export const getName = (state: State) => state.name
-export const getEndpoint = (state: State) => state.endpoints
+export const getEndpoints = (state: State) => state.endpoints
 export const getAll = (state: State) => state

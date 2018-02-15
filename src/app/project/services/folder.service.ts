@@ -16,14 +16,14 @@ export class FolderService {
     return this.http.post(url, payload)
   }
 
-  search (payload): Observable<any> {
-    const url = constants.BASE_API + '/project/search/folder'
-    return this.http.post(url, payload)
+  getById (id): Observable<any> {
+    const url = constants.BASE_API + '/project/folder/' + id
+    return this.http.get(url)
   }
 
-  searchMember (payload): Observable<any> {
-    const url = constants.BASE_API + '/project/search/member'
-    return this.http.post(url, payload)
+  search (payload): Observable<any> {
+    const url = constants.BASE_API + '/project/search/folder'
+    return this.http.get(url, { params: payload })
   }
 
 }

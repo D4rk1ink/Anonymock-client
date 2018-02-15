@@ -17,7 +17,9 @@ export class FoldersComponent implements OnInit {
   public projectId: string
 
   public folders: any[]
+  public searchFolder: string
   public page: number
+  public limitPage: number
   public isNewFolder: boolean
 
   public searchSub: Subscription
@@ -27,22 +29,13 @@ export class FoldersComponent implements OnInit {
     private folderService: FolderService
   ) {
     this.folders = []
+    this.searchFolder = ''
     this.page = 1
     this.store.select(fromProject.getProjectId)
       .subscribe(id => {
         if (!id) return
         this.projectId = id
-        const payload = {
-          project: id,
-          search: '',
-          page: this.page
-        }
-        this.folderService.search(payload)
-          .subscribe(res => {
-            if (!res.error) {
-              this.folders = res.data
-            }
-          })
+        this.search()
       })
   }
 
@@ -54,21 +47,8 @@ export class FoldersComponent implements OnInit {
   }
   
   onSearch (text) {
-    if (this.searchSub) {
-      this.searchSub.unsubscribe()
-    }
-    const payload = {
-      project: this.projectId,
-      search: text,
-      page: this.page
-    }
-    this.searchSub = this.folderService.search(payload)
-      .subscribe(res => {
-        if (!res.error) {
-          this.folders = res.data
-        }
-      })
-
+    this.searchFolder = text
+    this.search()
   }
 
   onSubmitNewFolder (values) {
@@ -81,6 +61,24 @@ export class FoldersComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           this.folders = [res.data, ...this.folders]
+        }
+      })
+  }
+
+  search () {
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
+    const payload = {
+      project: this.projectId,
+      search: this.searchFolder,
+      page: this.page
+    }
+    this.searchSub = this.folderService.search(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.folders = res.data.folders
+          this.limitPage = res.data.limitPage
         }
       })
   }
