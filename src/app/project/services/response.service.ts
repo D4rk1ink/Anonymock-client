@@ -21,10 +21,7 @@ export class ResponseService {
     return this.http.get(url)
   }
 
-  search (payload = null): Observable<any> {
-    if (payload === null) {
-      payload = { search: '' }
-    }
+  search (payload): Observable<any> {
     const url = constants.BASE_API + '/project/search/response'
     return this.http.get(url, { params: payload })
   }
