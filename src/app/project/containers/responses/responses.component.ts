@@ -20,6 +20,7 @@ export class ResponsesComponent implements OnInit {
     private store: Store<any>,
     private responseService: ResponseService
   ) {
+    this.environment = 'dev'
     this.store.select(fromProject.getEndpointId)
       .subscribe(endpointId => {
         this.endpointId = endpointId
@@ -34,6 +35,7 @@ export class ResponsesComponent implements OnInit {
   onNew () {
     const payload = {
       endpoint: this.endpointId,
+      environment: this.environment
     }
     this.responseService.create(payload)
       .subscribe(res => {
@@ -51,7 +53,8 @@ export class ResponsesComponent implements OnInit {
   search () {
     const payload = {
       endpoint: this.endpointId,
-      search: ''
+      search: '',
+      environment: this.environment
     }
     this.responseService.search(payload)
       .subscribe(res => {

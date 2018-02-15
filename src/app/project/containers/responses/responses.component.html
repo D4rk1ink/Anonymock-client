@@ -17,9 +17,9 @@
     </div>
     <div class="items">
         <div class="item" *ngFor="let response of responses">
-        <!-- <div class="id">
-            {{ response.id }}
-        </div> -->
+        <div class="status-code">
+            {{ response.response.statusCode }}
+        </div>
         <div class="name" [routerLink]="'./'+response.id">
             {{ response.name }}
         </div>
