@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ProjectService } from 'app/project/services/project.service';
+import * as coreDatabase from 'app/core/services/database.service'
 import * as projectAction from 'app/project/actions/project.action'
 import * as fromProject from 'app/project/reducers'
 // import { projects } from 'app/mock/projects'
@@ -20,6 +21,7 @@ export class ProjectComponent implements OnInit {
   ) {
     this.route.params.subscribe(param => {
       const projectId = param['project-id']
+      coreDatabase.saveProject(projectId)
       this.projectService.get(projectId)
         .subscribe(res => {
           if (!res.error) {
