@@ -50,7 +50,7 @@ import { DatabaseService } from './services/database.service';
 import { MemberService } from './services/member.service';
 import { FolderService } from './services/folder.service';
 import { EndpointService } from './services/endpoint.service';
-import { ResponseService } from './services/response.service';
+// import { ResponseService } from './services/response.service';
 import { MethodService } from './services/method.service';
 
 @NgModule({
@@ -143,7 +143,7 @@ import { MethodService } from './services/method.service';
     MemberService,
     FolderService,
     EndpointService,
-    ResponseService,
+    // ResponseService,
     MethodService
   ]
 })
