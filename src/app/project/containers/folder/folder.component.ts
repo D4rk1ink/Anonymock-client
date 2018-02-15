@@ -29,8 +29,8 @@ export class FolderComponent implements OnInit {
     private endpointService: EndpointService,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe(param => {
-      this.folderId = param['folder-id']
+    this.route.params.subscribe(params => {
+      this.folderId = params['folder-id']
       this.folderService.getById(this.folderId)
         .subscribe(res => {
           if (!res.error) {
