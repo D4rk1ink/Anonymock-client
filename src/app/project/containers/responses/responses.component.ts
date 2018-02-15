@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store'
-import * as endpointAction from '../../actions/endpoint.action'
-import * as responseAction from '../../actions/response.action'
-import * as fromProject from '../../reducers'
+import { ResponseService } from 'app/project/services/response.service';
+import * as endpointAction from 'app/project/actions/endpoint.action'
+import * as responseAction from 'app/project/actions/response.action'
+import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'app-responses',
@@ -11,16 +12,52 @@ import * as fromProject from '../../reducers'
 })
 export class ResponsesComponent implements OnInit {
 
+  public endpointId: string
   public responses: any[]
-
+  public environment: string
+  
   constructor(
-    private store: Store<any>
-  ) { }
+    private store: Store<any>,
+    private responseService: ResponseService
+  ) {
+    this.store.select(fromProject.getEndpointId)
+      .subscribe(endpointId => {
+        this.endpointId = endpointId
+        this.search()
+      })
+  }
 
   ngOnInit() {
-    this.store.select(fromProject.getEndpointResponses)
-      .subscribe(responses => {
-        this.responses = responses
+    
+  }
+
+  onNew () {
+    const payload = {
+      endpoint: this.endpointId,
+    }
+    this.responseService.create(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.responses = [res.data, ...this.responses]
+        }
+      })
+  }
+
+  onChangeEnvironment (environment) {
+    this.environment = environment
+    this.search()
+  }
+
+  search () {
+    const payload = {
+      endpoint: this.endpointId,
+      search: ''
+    }
+    this.responseService.search(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.responses = res.data
+        }
       })
   }
 
