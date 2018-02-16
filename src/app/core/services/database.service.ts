@@ -21,3 +21,8 @@ export const saveProject = (projectId) => {
 export const getProject = (): string => {
     return localStorage.getItem('project')
 }
+
+export const clearAll = () => {
+    localStorage.clear()
+}
+
