@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { ResponseService } from 'app/project/services/response.service';
 import * as endpointAction from '../../actions/endpoint.action'
 import * as responseAction from '../../actions/response.action'
 import * as fromProject from '../../reducers'
@@ -20,41 +21,32 @@ export class ResponseComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
+    private responseService: ResponseService,
     private route: ActivatedRoute
   ) {
-    // Call service get response
-    this.store.select(fromProject.getProjectId)
-      .subscribe(id => {
-        const project = projects.find(project => project.id === id)
-        this.store.select(fromProject.getEndpointId)
-          .subscribe(endpointId => {
-            this.route.params.subscribe(param => {
-              const endpoint = project.endpoints.find(endpoint => endpoint.id === endpointId)
-              const response = endpoint.responses.find(response => response.id === param['response-id'])
-              this.response = {
-                name: response.name,
-                params: {
-                  'user-id': '001'
-                },
-                header: {
-                  'x-language': 'th',
-                  'cookie': 'asdasOPAHGp09SHDVioHAODUCh'
-                },
-                body: {},
-                queryString: {}
-              }
-              this.store.dispatch(new responseAction.NameAction(this.response.name))
-            })
-          })
-      })
-  }
-
-  ngOnInit() {
     this.store.select(fromProject.getEndpointPath)
       .subscribe(path => {
         this.paramsFilter(path || '')
-        // this.envsFilter(path || '')
       })
+    this.store.select(fromProject.getResponse)
+      .subscribe(response => {
+        this.response = response
+      })
+    // Call service get response
+    this.route.params.subscribe(params => {
+      const responseId = params['response-id']
+      this.responseService.getById(responseId)
+        .subscribe(res => {
+          if (!res.error) {
+            this.response = res.data
+            this.params = this.response.condition.params
+          }
+        })
+    })
+  }
+
+  ngOnInit() {
+    
   }
 
   paramsFilter (path) {
