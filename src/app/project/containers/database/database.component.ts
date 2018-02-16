@@ -26,7 +26,7 @@ export class DatabaseComponent implements OnInit {
           .subscribe(res => {
             if (!res.error) {
               const data = json.pretty(res.data.data)
-              const schema = res.data.schema
+              const schema = json.pretty(res.data.schema)
               const generate = json.pretty(res.data.generate)
               const database = {
                 data: data,
