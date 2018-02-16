@@ -16,6 +16,11 @@ export class ResponseService {
     return this.http.post(url, payload)
   }
 
+  update (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/response/' + id
+    return this.http.patch(url, payload)
+  }
+
   getById (id): Observable<any> {
     const url = constants.BASE_API + '/project/response/' + id
     return this.http.get(url)

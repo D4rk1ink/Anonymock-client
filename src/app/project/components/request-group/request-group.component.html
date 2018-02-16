@@ -5,8 +5,8 @@
     </div>
   </div>
   <div class="content" [ngSwitch]="menuSelector">
-    <request-header *ngSwitchCase="'M01'" [data]="headerData" (save)="saveHeader($event)"></request-header>
-    <request-body *ngSwitchCase="'M02'" [data]="bodyData" (save)="saveBody($event)"></request-body>
-    <request-query-string *ngSwitchCase="'M03'" [data]="queryStringData" (save)="saveQueryString($event)"></request-query-string>
+    <request-header *ngSwitchCase="'M01'" [data]="condition.headers" [temp]="temps.headers" (save)="saveHeader($event)"></request-header>
+    <request-body *ngSwitchCase="'M02'" [data]="condition.body" (save)="saveBody($event)"></request-body>
+    <request-query-string *ngSwitchCase="'M03'" [data]="condition.queryString" [temp]="temps.queryString" (save)="saveQueryString($event)"></request-query-string>
   </div>
 </div>

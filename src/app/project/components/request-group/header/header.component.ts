@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input('data') data: any
+  @Input('temp') temp: any
   @Output('save') save: EventEmitter<any>
 
   constructor () {

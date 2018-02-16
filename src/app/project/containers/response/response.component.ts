@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service';
-import * as endpointAction from '../../actions/endpoint.action'
-import * as responseAction from '../../actions/response.action'
-import * as fromProject from '../../reducers'
-
-import { projects } from 'app/mock/projects'
+import * as json from 'app/project/utils/json.util'
+import * as responseAction from 'app/project/actions/response.action'
+import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'app-response',
@@ -15,22 +13,23 @@ import { projects } from 'app/mock/projects'
 })
 export class ResponseComponent implements OnInit {
 
+  public path: string
   public response: any
-  public params: any
-  public envs: string[]
 
   constructor(
     private store: Store<any>,
     private responseService: ResponseService,
     private route: ActivatedRoute
   ) {
-    this.store.select(fromProject.getEndpointPath)
-      .subscribe(path => {
-        this.paramsFilter(path || '')
-      })
     this.store.select(fromProject.getResponse)
       .subscribe(response => {
         this.response = response
+        this.paramsFilter(this.path || '')
+      })
+    this.store.select(fromProject.getEndpointPath)
+      .subscribe(path => {
+        this.path = path
+        this.paramsFilter(this.path || '')
       })
     // Call service get response
     this.route.params.subscribe(params => {
@@ -38,15 +37,19 @@ export class ResponseComponent implements OnInit {
       this.responseService.getById(responseId)
         .subscribe(res => {
           if (!res.error) {
-            this.response = res.data
-            this.params = this.response.condition.params
+            res.data.condition.headers = json.toArray(res.data.condition.headers)
+            res.data.condition.queryString = json.toArray(res.data.condition.queryString)
+            res.data.response.headers = json.toArray(res.data.response.headers)
+            this.store.dispatch(new responseAction.IdAction(res.data.id))
+            this.store.dispatch(new responseAction.NameAction(res.data.name))
+            this.store.dispatch(new responseAction.ConditionAction(res.data.condition))
+            this.store.dispatch(new responseAction.ResponseAction(res.data.response))
           }
         })
     })
   }
 
   ngOnInit() {
-    
   }
 
   paramsFilter (path) {
@@ -55,10 +58,27 @@ export class ResponseComponent implements OnInit {
     const keys = match
       .map(key => new RegExp(paramPattern).exec(key).slice(1).pop())
       .filter((param, i, arr) => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
-    this.params = {}
+    const temp = this.response.condition.params
+    this.response.condition.params = {}
     for (const key of keys) {
-      this.params[key] = undefined
+      this.response.condition.params[key] = temp[key] || undefined
     }
+  }
+
+  onSubmit () {
+    const payload = {
+      name: this.response.name,
+      condition: {
+        ...this.response.condition,
+        headers: json.toJSON(this.response.condition.headers),
+        queryString: json.toJSON(this.response.condition.queryString)
+      },
+      response: {
+        ...this.response.response,
+        headers: json.toJSON(this.response.response.queryString)
+      }
+    }
+    this.responseService
   }
 
 }

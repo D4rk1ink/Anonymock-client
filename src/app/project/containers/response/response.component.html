@@ -7,7 +7,7 @@
 <section class="section">
   <entity-group
     [title]="'Params'"
-    [entities]="params"
+    [entities]="response.condition.params"
     [auto]="true"></entity-group>
 </section>
 <!-- <section class="section">
@@ -24,4 +24,12 @@
 </div>
 <section class="section">
   <response-group></response-group>
+</section>
+<section class="section form-inline between">
+  <div class="">
+      <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+  </div>
+  <div class="">
+      <button class="btn btn-danger">Delete</button>
+  </div>
 </section>

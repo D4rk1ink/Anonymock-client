@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store'
+import * as responseAction from 'app/project/actions/response.action'
+import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'request-group',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestGroupComponent implements OnInit {
   
-  public headerData: any
-  public bodyData: any
-  public queryStringData: any
+  public condition: {
+    params: any,
+    headers: any,
+    body: any,
+    queryString: any
+  }
+
+  public temps: {
+    headers: any,
+    queryString: any
+  }
+
   public menuSelector: string
   public menu: any[] = [
     { id: 'M01', title: 'Header' },
@@ -17,12 +29,21 @@ export class RequestGroupComponent implements OnInit {
     { id: 'M03', title: 'Query String' },
   ]
 
-  constructor () {
+  constructor (
+    private store: Store<any>
+  ) {
+    this.temps = {
+      headers: {},
+      queryString: {}
+    }
     this.menuSelector = this.menu[0].id
+    this.store.select(fromProject.getResponseCondition)
+      .subscribe(condition => {
+        this.condition = condition
+      })
   }
 
   ngOnInit () {
-
   }
 
   onSelectMenu (id) {
@@ -30,15 +51,23 @@ export class RequestGroupComponent implements OnInit {
   }
 
   saveHeader (data) {
-    this.headerData = data
+    this.condition.headers = data.entities
+    this.temps.headers = data.temp
+    this.dispatch()
   }
 
   saveBody (data) {
-    this.bodyData = data
+    this.condition.body = data
+    this.dispatch()
   }
 
   saveQueryString (data) {
-    this.queryStringData = data
+    this.condition.queryString = data
+    this.temps.queryString = data.temp
+    this.dispatch()
   }
 
+  dispatch () {
+    this.store.dispatch(new responseAction.ConditionAction(this.condition))
+  }
 }
