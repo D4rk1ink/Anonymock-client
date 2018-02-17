@@ -53,6 +53,10 @@ export class EndpointComponent implements OnInit {
   ngOnInit () {
   }
 
+  onNameChange (name) {
+    this.store.dispatch(new endpointAction.NameAction(name))
+  }
+
   onPathChange (path) {
     this.store.dispatch(new endpointAction.PathAction(path))
   }
