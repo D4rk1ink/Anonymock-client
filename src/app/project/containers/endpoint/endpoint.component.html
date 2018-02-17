@@ -12,7 +12,7 @@
             Method
         </label>
         <label class="select">
-            <select>
+            <select [ngModel]="endpoint.method.id" (ngModelChange)="onMethodChange($event)">
                 <option *ngFor="let method of methods" [value]="method.id">{{ method.name }}</option>
             </select>
         </label>
@@ -28,7 +28,7 @@
             Folder
         </label>
         <label class="select">
-            <select>
+            <select [ngModel]="endpoint.folder.id" (ngModelChange)="onFolderChange($event)">
                 <option *ngFor="let folder of folders" [value]="folder.id">{{ folder.name }}</option>
             </select>
         </label>
@@ -37,7 +37,7 @@
 
 <hr>
 <section class="section">
-    <!-- <router-outlet></router-outlet> -->
+    <router-outlet></router-outlet>
 </section>
 <section class="section form-inline between">
     <div class="">

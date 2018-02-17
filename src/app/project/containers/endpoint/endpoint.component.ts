@@ -35,12 +35,15 @@ export class EndpointComponent implements OnInit {
         this.endpoint = endpoint
       })
     this.route.params.subscribe(params => {
-      this.endpointService.getById(params['endpoint-id'])
+      const endpointId = params['endpoint-id']
+      this.store.dispatch(new endpointAction.IdAction(endpointId))
+      this.endpointService.getById(endpointId)
         .subscribe(res => {
           if (!res.error) {
-            this.store.dispatch(new endpointAction.IdAction(this.endpoint.id))
-            this.store.dispatch(new endpointAction.NameAction(this.endpoint.name))
-            this.store.dispatch(new endpointAction.PathAction(this.endpoint.path))
+            this.store.dispatch(new endpointAction.NameAction(res.data.name))
+            this.store.dispatch(new endpointAction.PathAction(res.data.path))
+            this.store.dispatch(new endpointAction.MethodAction(res.data.method))
+            this.store.dispatch(new endpointAction.FolderAction(res.data.folder))
           }
         })
     })
@@ -52,6 +55,14 @@ export class EndpointComponent implements OnInit {
 
   onPathChange (path) {
     this.store.dispatch(new endpointAction.PathAction(path))
+  }
+
+  onMethodChange (method) {
+    this.store.dispatch(new endpointAction.MethodAction({ id: method }))
+  }
+
+  onFolderChange (folder) {
+    this.store.dispatch(new endpointAction.FolderAction({ id: folder }))
   }
 
   getFolders () {
