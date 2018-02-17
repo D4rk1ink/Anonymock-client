@@ -16,6 +16,11 @@ export class EndpointService {
     return this.http.post(url, payload)
   }
 
+  update (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/endpoint/' + id
+    return this.http.patch(url, payload)
+  }
+
   getById (id): Observable<any> {
     const url = constants.BASE_API + '/project/endpoint/' + id
     return this.http.get(url)
