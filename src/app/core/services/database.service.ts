@@ -10,7 +10,7 @@ export const saveUser = (token: Object) => {
     localStorage.setItem('user', JSON.stringify(token))
 }
 
-export const getUser = (): Object => {
+export const getUser = (): any => {
     return JSON.parse(localStorage.getItem('user'))
 }
 
