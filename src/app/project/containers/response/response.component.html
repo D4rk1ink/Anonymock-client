@@ -1,5 +1,5 @@
 <section class="section">
-  <input type="text" name="name" [ngModel]="response.name" placeholder="Response name"/>
+  <input type="text" name="name" [(ngModel)]="response.name" placeholder="Response name"/>
 </section>
 <div class="title-center">
   REQUEST
@@ -8,14 +8,9 @@
   <entity-group
     [title]="'Params'"
     [entities]="params"
-    [auto]="true"></entity-group>
+    [auto]="true"
+    (out)="saveParam($event)"></entity-group>
 </section>
-<!-- <section class="section">
-  <entity-group
-    [title]="'Environments'"
-    [entities]="envs"
-    [auto]="true"></entity-group>
-</section> -->
 <section class="section">
   <request-group></request-group>
 </section>
@@ -24,4 +19,12 @@
 </div>
 <section class="section">
   <response-group></response-group>
+</section>
+<section class="section form-inline between">
+  <div class="">
+      <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+  </div>
+  <div class="">
+      <button class="btn btn-danger">Delete</button>
+  </div>
 </section>

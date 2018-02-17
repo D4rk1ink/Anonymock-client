@@ -63,3 +63,5 @@ export const getResponseState = (state: ProjectState) => state.response
 export const getResponse = createSelector(getResponseState, fromResponse.getAll)
 export const getResponseId = createSelector(getResponseState, fromResponse.getId)
 export const getResponseName = createSelector(getResponseState, fromResponse.getName)
+export const getResponseCondition = createSelector(getResponseState, fromResponse.getCondition)
+export const getResponseResponse = createSelector(getResponseState, fromResponse.getResponse)

@@ -24,13 +24,15 @@ export class ItemComponent implements OnInit {
 
   onKey (e) {
     this.entity.key = e.target.value
-    // this.key = key
-    this.saveTemp.emit({ index: this.index, key: this.entity.key, value: this.entity.value })
+    this.saveTemp.emit({
+      index: this.index,
+      key: this.entity.key,
+      value: this.entity.value
+    })
   }
 
   onValue (e) {
     this.entity.value = e.target.value
-    // this.value = value
     this.saveTemp.emit({ index: this.index, key: this.entity.key, value: this.entity.value })
   }
 

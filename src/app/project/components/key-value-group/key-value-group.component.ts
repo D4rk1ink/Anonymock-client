@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
+import * as json from 'app/project/utils/json.util'
 
 @Component({
   selector: 'key-value-group',
@@ -8,9 +9,9 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angu
 export class KeyValueGroupComponent implements OnInit, OnChanges {
 
   @Input('data') data: any
+  @Input('temp') temp: any
   @Output('save') save: EventEmitter<any>
   public entities: any[]
-  public temp: any
 
   constructor() {
     this.save = new EventEmitter<any>()
@@ -25,8 +26,9 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     if (this.data) {
-      this.entities = this.data.entities
-      this.temp = this.data.temp
+      this.entities = Object.assign([], this.data)
+      this.temp = Object.assign({}, this.temp, json.toJSON(this.data))
+      this.addEmptyEntity()
     }
   }
 
@@ -37,12 +39,12 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
     this.entities[data.index].key = data.key
     this.entities[data.index].value = data.value
     if (data.key !== '' && data.value === '') {
-      this.entities[data.index].value = this.temp[data.key]
+      this.entities[data.index].value = this.temp[data.key] || ''
     }
-    this.temp[data.key] = data.value
+    this.temp[data.key] = this.entities[data.index].value
     this.addEmptyEntity()
     this.save.emit({
-      entities: this.entities,
+      entities: Object.assign([], this.entities.filter(json => json.key !== '')),
       temp: this.temp
     })
   }

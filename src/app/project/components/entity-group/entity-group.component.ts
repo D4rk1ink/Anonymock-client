@@ -28,11 +28,14 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges () {
-    if (this.init && this.entities) {
+    if (this.entities) {
       if (this.entities instanceof String) {
         this.entities = JSON.parse(this.entities.toString())
       }
-      this.temp = this.entities
+      this.temp = {
+        ...this.temp,
+        ...this.entities
+      }
       this.keys = []
       this.values = []
       for (const key of Object.keys(this.entities)) {

@@ -9,3 +9,22 @@ export const pretty = (text) => {
         throw new Error()
     }
 }
+
+export const toArray = (json) => {
+    const entities = []
+    for (const key in json) {
+        entities.push({
+            key: key,
+            value: json[key] || ''
+        })
+    }
+    return entities
+}
+
+export const toJSON = (array) => {
+    const json = {}
+    for (const arr of array) {
+        json[arr.key] = arr.value
+    }
+    return json
+}
