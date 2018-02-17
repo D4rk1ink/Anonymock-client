@@ -4,13 +4,17 @@ import * as endpointAction from '../actions/endpoint.action'
 export interface State {
     id: string
     name: string
-    path: string,
+    method: any
+    folder: any
+    path: string
     responses: any[]
 }
 
 const initialState: State = {
     id: '',
     name: '',
+    method: {},
+    folder: {},
     path: '',
     responses: []
 }
@@ -32,6 +36,16 @@ export function reducer (state = initialState, action: endpointAction.Actions): 
                 ...state,
                 path: action.payload
             }
+        case endpointAction.METHOD:
+            return {
+                ...state,
+                method: action.payload
+            }
+        case endpointAction.FOLDER:
+            return {
+                ...state,
+                folder: action.payload
+            }
         case endpointAction.RESPONSES: 
             return {
                 ...state,
@@ -45,5 +59,7 @@ export function reducer (state = initialState, action: endpointAction.Actions): 
 export const getId = (state: State) => state.id
 export const getName = (state: State) => state.name
 export const getPath = (state: State) => state.path
+export const getMethod = (state: State) => state.method
+export const getFolder = (state: State) => state.folder
 export const getResponses = (state: State) => state.responses
 export const getAll = (state: State) => state

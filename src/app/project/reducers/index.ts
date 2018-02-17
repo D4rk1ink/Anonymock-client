@@ -48,6 +48,8 @@ export const getEndpoint = createSelector(getEndpointState, fromEndpoint.getAll)
 export const getEndpointId = createSelector(getEndpointState, fromEndpoint.getId)
 export const getEndpointName = createSelector(getEndpointState, fromEndpoint.getName)
 export const getEndpointPath = createSelector(getEndpointState, fromEndpoint.getPath)
+export const getEndpointMethod = createSelector(getEndpointState, fromEndpoint.getMethod)
+export const getEndpointFolder = createSelector(getEndpointState, fromEndpoint.getFolder)
 export const getEndpointResponses = createSelector(getEndpointState, fromEndpoint.getResponses)
 
 export const getEndpointsState = (state: ProjectState) => state.endpoints

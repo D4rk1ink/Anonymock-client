@@ -3,6 +3,8 @@ import { Action } from '@ngrx/store'
 export const ID = '[Endpoint] Id'
 export const NAME = '[Endpoint] Name'
 export const PATH = '[Endpoint] Path'
+export const METHOD = '[Endpoint] Method'
+export const FOLDER = '[Endpoint] Folder'
 export const RESPONSES = '[Endpoint] Responses'
 
 export class IdAction implements Action {
@@ -23,6 +25,18 @@ export class PathAction implements Action {
     constructor (public payload) { }
 }
 
+export class MethodAction implements Action {
+    readonly type = METHOD
+
+    constructor (public payload) { }
+}
+
+export class FolderAction implements Action {
+    readonly type = FOLDER
+
+    constructor (public payload) { }
+}
+
 export class ResponsesAction implements Action {
     readonly type = RESPONSES
 
@@ -33,4 +47,6 @@ export type Actions
 = IdAction
 | NameAction
 | PathAction
+| MethodAction
+| FolderAction
 | ResponsesAction
