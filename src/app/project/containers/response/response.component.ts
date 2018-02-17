@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service';
+import { EndpointService } from 'app/project/services/endpoint.service';
 import * as json from 'app/project/utils/json.util'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -13,6 +14,7 @@ import * as fromProject from 'app/project/reducers'
 })
 export class ResponseComponent implements OnInit {
 
+  public endpoint: any
   public path: string
   public response: any
   public params: any
@@ -20,6 +22,7 @@ export class ResponseComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private responseService: ResponseService,
+    private endpointService: EndpointService,
     private route: ActivatedRoute
   ) {
     this.params = {}
@@ -27,6 +30,10 @@ export class ResponseComponent implements OnInit {
       .subscribe(response => {
         this.response = response
         this.paramsFilter(this.path || '')
+      })
+    this.store.select(fromProject.getEndpoint)
+      .subscribe(endpoint => {
+        this.endpoint = endpoint
       })
     this.store.select(fromProject.getEndpointPath)
       .subscribe(path => {
@@ -72,7 +79,14 @@ export class ResponseComponent implements OnInit {
   }
 
   onSubmit () {
-    const payload = {
+    // update endpoint
+    const endpointPayload = {
+      name: this.endpoint.name,
+      path: this.endpoint.path,
+      method: this.endpoint.method.id,
+      folder: this.endpoint.folder.id,
+    }
+    const responsePayload = {
       name: this.response.name,
       condition: {
         ...this.response.condition,
@@ -84,12 +98,17 @@ export class ResponseComponent implements OnInit {
         headers: json.toJSON(this.response.response.headers)
       }
     }
-    this.responseService.update(this.response.id, payload)
+    this.endpointService.update(this.endpoint.id, endpointPayload)
       .subscribe(res => {
         if (!res.error) {
-          console.log(res.data)
+          // update response  
+          this.responseService.update(this.response.id, responsePayload)
+            .subscribe(res => {
+              if (!res.error) {
+                console.log(res.data)
+              }
+            })
         }
       })
   }
-
 }
