@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
+import * as json from 'app/project/utils/json.util'
 
 @Component({
   selector: 'key-value-group',
@@ -26,6 +27,7 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   ngOnChanges () {
     if (this.data) {
       this.entities = Object.assign([], this.data)
+      this.temp = Object.assign({}, this.temp, json.toJSON(this.data))
       this.addEmptyEntity()
     }
   }

@@ -1,5 +1,5 @@
 <section class="section">
-  <input type="text" name="name" [ngModel]="response.name" placeholder="Response name"/>
+  <input type="text" name="name" [(ngModel)]="response.name" placeholder="Response name"/>
 </section>
 <div class="title-center">
   REQUEST
@@ -7,15 +7,10 @@
 <section class="section">
   <entity-group
     [title]="'Params'"
-    [entities]="response.condition.params"
-    [auto]="true"></entity-group>
+    [entities]="params"
+    [auto]="true"
+    (out)="saveParam($event)"></entity-group>
 </section>
-<!-- <section class="section">
-  <entity-group
-    [title]="'Environments'"
-    [entities]="envs"
-    [auto]="true"></entity-group>
-</section> -->
 <section class="section">
   <request-group></request-group>
 </section>

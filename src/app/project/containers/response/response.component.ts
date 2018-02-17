@@ -15,12 +15,14 @@ export class ResponseComponent implements OnInit {
 
   public path: string
   public response: any
+  public params: any
 
   constructor(
     private store: Store<any>,
     private responseService: ResponseService,
     private route: ActivatedRoute
   ) {
+    this.params = {}
     this.store.select(fromProject.getResponse)
       .subscribe(response => {
         this.response = response
@@ -52,16 +54,20 @@ export class ResponseComponent implements OnInit {
   ngOnInit() {
   }
 
+  saveParam (params) {
+    this.response.condition.params = params
+    this.store.dispatch(new responseAction.ConditionAction(this.response.condition))
+  }
+
   paramsFilter (path) {
     const paramPattern = /\{([A-Za-z0-9\-]+)\}/g
     const match = path.match(paramPattern) || []
     const keys = match
       .map(key => new RegExp(paramPattern).exec(key).slice(1).pop())
       .filter((param, i, arr) => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
-    const temp = this.response.condition.params
-    this.response.condition.params = {}
+    this.params = {}
     for (const key of keys) {
-      this.response.condition.params[key] = temp[key] || undefined
+      this.params[key] = this.response.condition.params[key] || ''
     }
   }
 
@@ -75,10 +81,15 @@ export class ResponseComponent implements OnInit {
       },
       response: {
         ...this.response.response,
-        headers: json.toJSON(this.response.response.queryString)
+        headers: json.toJSON(this.response.response.headers)
       }
     }
-    this.responseService
+    this.responseService.update(this.response.id, payload)
+      .subscribe(res => {
+        if (!res.error) {
+          console.log(res.data)
+        }
+      })
   }
 
 }

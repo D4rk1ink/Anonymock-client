@@ -62,7 +62,7 @@ export class RequestGroupComponent implements OnInit {
   }
 
   saveQueryString (data) {
-    this.condition.queryString = data
+    this.condition.queryString = data.entities
     this.temps.queryString = data.temp
     this.dispatch()
   }
