@@ -42,6 +42,8 @@ export class EndpointComponent implements OnInit {
           if (!res.error) {
             this.store.dispatch(new endpointAction.NameAction(res.data.name))
             this.store.dispatch(new endpointAction.PathAction(res.data.path))
+            this.store.dispatch(new endpointAction.MethodAction(res.data.method))
+            this.store.dispatch(new endpointAction.FolderAction(res.data.folder))
           }
         })
     })
@@ -53,6 +55,14 @@ export class EndpointComponent implements OnInit {
 
   onPathChange (path) {
     this.store.dispatch(new endpointAction.PathAction(path))
+  }
+
+  onMethodChange (method) {
+    this.store.dispatch(new endpointAction.MethodAction({ id: method }))
+  }
+
+  onFolderChange (folder) {
+    this.store.dispatch(new endpointAction.FolderAction({ id: folder }))
   }
 
   getFolders () {
