@@ -32,10 +32,9 @@ export class MembersComponent implements OnInit {
   onAdmin (id, isAdmin) {
     if (this.isYourself(id)) return
     const payload = {
-      id: id,
       isAdmin: isAdmin
     }
-    this.memberService.admin(payload)
+    this.memberService.admin(id, payload)
       .subscribe(res => {
         if (!res.error) {
           this.all = this.all.map(user => {
@@ -52,10 +51,9 @@ export class MembersComponent implements OnInit {
   onDeactivate (id, deactivated) {
     if (this.isYourself(id)) return
     const payload = {
-      id: id,
       deactivated: deactivated
     }
-    this.memberService.deactivate(payload)
+    this.memberService.deactivate(id, payload)
       .subscribe(res => {
         if (!res.error) {
           this.all = this.all.map(user => {
