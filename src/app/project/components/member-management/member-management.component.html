@@ -1,14 +1,17 @@
 <div class="add-search">
   <div class="select-option">
     <label class="select">
-      <select>
+      <select [(ngModel)]="selectOption" (ngModelChange)="onSelect()">
         <option value="add">ADD</option>
         <option value="search">SEARCH</option>
       </select>
     </label>
   </div>
   <div class="text-input">
-    <input type="text" name="input" class="input" />
+    <input-add-member *ngIf="selectOption === 'add';else input_search" [users]="users" (keyinput)="onInput($event)" (add)="onAdd($event)"></input-add-member>
+    <ng-template #input_search>
+      <input type="text" name="input" class="input" [(ngModel)]="search" (keyup)="onInput($event.target.value)" />
+    </ng-template>
   </div>
 </div>
 <div class="member-management">
@@ -18,17 +21,20 @@
   <div class="member-list">
     <div class="member" *ngFor="let member of members">
       <div class="position">
-        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.position === 'manager'" />
+        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isManager;else normal_member" />
+        <ng-template #normal_member>
+            <div class="circle"></div>
+        </ng-template>
       </div>
       <div class="name w-30">
-        {{ member.firstname }} {{ member.lastname }}
+        {{ member.user.firstname }} {{ member.user.lastname }}
       </div>
       <div class="email w-30">
-        {{ member.email }}
+        {{ member.user.email }}
       </div>
       <div class="options">
         <div class="remove">
-          <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.id)" >exit_to_app</i>
+          <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.user.id)" >exit_to_app</i>
         </div>
       </div>
     </div>

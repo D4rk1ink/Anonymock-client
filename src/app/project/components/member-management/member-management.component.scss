@@ -14,7 +14,7 @@
         }
     }
     .text-input {
-        flex: 1;
+        width: 100%;
         .input {
             border-radius: 0px 2px 2px 0px;
         }
@@ -24,6 +24,7 @@
 .member-management {
     border: 1px solid $gray_1;
     border-radius: 2px;
+    background-color: $white;
     .detail {
         display: flex;
         padding: 10px;
@@ -37,9 +38,22 @@
             align-items: center;
             padding: 10px;
             .position {
+                width: 30px;
                 display: flex;
                 align-items: center;
-                min-width: 30px;
+                justify-content: center;
+                .circle {
+                    border: 1px solid $sky_2;
+                    border-radius: 360px;
+                    width: 20px;
+                    height: 20px;
+                    opacity: 0.1;
+                    transition: opacity .2s;
+                    cursor: pointer;
+                }
+                .circle:hover {
+                    opacity: .5;
+                }
             }
             .name {
                 cursor: pointer;
@@ -49,7 +63,7 @@
                 color: $sky_3;
             }
             .email {
-                
+                color: $gray_4;
             }
             .options {
                 display: flex;

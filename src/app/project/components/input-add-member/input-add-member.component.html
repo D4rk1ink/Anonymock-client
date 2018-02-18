@@ -1,0 +1,11 @@
+<div class="text-input">
+  <input type="text" name="input" class="input" (keyup)="onInput($event.target.value)" />
+  <div class="autocomplete" *ngIf="isAutocomplete && users.length > 0">
+    <div class="item" *ngFor="let user of users" (click)="onAdd(user)">
+      <div class="name">{{ user.firstname }} {{ user.lastname }}</div>
+      <div class="option">
+        <div class="is-member" *ngIf="user.isMember">Member</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="">
+    <h2>My Account</h2>
+</div>
+<div class="wrapper">
+    <section class="section">
+        <div class="form-inline">
+            <div class="w-50 form-input">
+                <label class="label-title">
+                    Firstname
+                </label>
+                <div class="">
+                    <input type="text" name="firstname" placeholder="Firstname" />
+                </div>
+            </div>
+            <div class="w-50 form-input">
+                <label class="label-title">
+                    Lastname
+                </label>
+                <div class="">
+                    <input type="text" name="lastname" placeholder="Lastname" />
+                </div>
+            </div>
+        </div>
+        <div class="form-inline">
+            <div class="w-100 form-input">
+                <label class="label-title">
+                    Email
+                </label>
+                <div class="">
+                    <input type="text" name="email" placeholder="Email" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section form-inline between">
+        <div class="">
+            <button class="btn btn-sky">Save</button>
+        </div>
+        <div class="">
+            <label class="link" [routerLink]="'./change-password'">Change password</label>
+        </div>
+    </section>
+</div>

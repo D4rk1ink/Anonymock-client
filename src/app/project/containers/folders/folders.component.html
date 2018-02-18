@@ -1,15 +1,8 @@
 <div class="">
   <h2>Folders</h2>
 </div>
-  
-<div class="search">
-  <div class="header">
-    SEARCH
-  </div>
-  <div class="text-input">
-    <input type="text" name="input" class="input" />
-  </div>
-</div>
+
+<search-input (out)="onSearch($event)"></search-input>
 <div class="folders">
   <div class="header">
     <div class="title">
@@ -26,8 +19,8 @@
       </div>
       <div class="name">
         <div class="input">
-          <form (ngSubmit)="onSubmitNewFolder()">
-            <input type="text" name="name" class="input-name" placeholder="New Folder"/>
+          <form #form="ngForm" (ngSubmit)="onSubmitNewFolder(form.value)">
+            <input type="text" name="name" class="input-name" placeholder="New Folder" ngModel/>
           </form>
         </div>
       </div>
@@ -36,7 +29,7 @@
       <div class="id">
         {{ folder.id }}
       </div>
-      <div class="name" [routerLink]="'./'+ folder.id">
+      <div class="name" [routerLink]="'./'+folder.id">
         {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
       </div>
       <div class="options">

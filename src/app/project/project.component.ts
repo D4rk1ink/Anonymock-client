@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { ProjectService } from 'app/project/services/project.service';
+import * as coreDatabase from 'app/core/services/database.service'
+import * as projectAction from 'app/project/actions/project.action'
+import * as fromProject from 'app/project/reducers'
+// import { projects } from 'app/mock/projects'
 
 @Component({
   selector: 'app-project',
@@ -9,11 +15,27 @@ import { ActivatedRoute } from '@angular/router'
 export class ProjectComponent implements OnInit {
 
   constructor (
-    private route: ActivatedRoute
+    private store: Store<any>,
+    private route: ActivatedRoute,
+    private projectService: ProjectService
   ) {
     this.route.params.subscribe(param => {
-      console.log(param)
-      // set project id to store
+      const projectId = param['project-id']
+      coreDatabase.saveProject(projectId)
+      this.projectService.get(projectId)
+        .subscribe(res => {
+          if (!res.error) {
+            const project = {
+              id: res.data.id,
+              name: res.data.name,
+              status: res.data.status,
+              description: res.data.description,
+              repository: res.data.repository,
+              environment: res.data.environment
+            }
+            this.store.dispatch(new projectAction.ProjectAction(project))
+          }
+        })
     })
   }
 

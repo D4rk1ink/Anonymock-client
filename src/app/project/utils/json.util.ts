@@ -1,0 +1,30 @@
+export const pretty = (text) => {
+    try {
+        if (typeof text === 'object') {
+            text = JSON.stringify(text)
+        }
+        text = JSON.stringify(JSON.parse(text), null, 4);
+        return text
+    } catch (err) {
+        throw new Error()
+    }
+}
+
+export const toArray = (json) => {
+    const entities = []
+    for (const key in json) {
+        entities.push({
+            key: key,
+            value: json[key] || ''
+        })
+    }
+    return entities
+}
+
+export const toJSON = (array) => {
+    const json = {}
+    for (const arr of array) {
+        json[arr.key] = arr.value
+    }
+    return json
+}

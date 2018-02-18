@@ -1,0 +1,54 @@
+@import "colors";
+
+.wrapper {
+    border: 1px solid $gray_1;
+    border-radius: 2px;
+    background-color: $white;
+}
+.tabs-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .tabs {
+        display: flex;
+        .item {
+            cursor: pointer;
+            padding: 10px;
+            border-right: 1px solid $gray_1;
+        }
+        .item.active {
+            background-color: $gray_0;
+            font-weight: 400;
+        }
+    }
+    .options {
+        display: flex;
+        .delay,
+        .status {
+            display: flex;
+            align-items: center;
+        }
+        input {
+            border: 1px solid rgba($white, 0);
+            max-height: 25px;
+            min-height: 25px;
+        }
+        .delay {
+            padding-right: 10px;
+            border-right: 1px solid $gray_1;
+            input {
+                text-align: right;
+                width: 60px;
+            }
+        }
+        .status {
+            padding-left: 10px;
+            input {
+                width: 50px;
+            }
+        }
+    }
+}
+.content {
+    border-top: 1px solid $gray_1;
+}

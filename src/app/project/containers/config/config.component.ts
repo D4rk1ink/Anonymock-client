@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store'
+import { ProjectService } from 'app/project/services/project.service'
+import * as projectAction from 'app/project/actions/project.action'
+import * as fromProject from 'app/project/reducers'
+import * as fromProjectReducer from 'app/project/reducers/project.reducer'
 
 @Component({
   selector: 'app-config',
@@ -6,58 +11,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./config.component.scss']
 })
 export class ConfigComponent implements OnInit {
-  public path: string
-  
-  public param: any
-  public tempParam: any
 
-  public env: any
-  public tempEnv: any
+  public project: fromProjectReducer.State
 
-  constructor() { }
+  constructor (
+    private store: Store<any>,
+    private projectService: ProjectService
+  ) {
+    this.store.select(fromProject.getProject)
+      .subscribe(project => {
+        this.project = {
+          id: project.id,
+          name: project.name,
+          status: project.status,
+          description: project.description,
+          repository: project.repository,
+          environment: {
+            name: 'asd'
+          }
+        }
+      })
+  }
 
   ngOnInit () {
-    this.tempParam = {}
-    this.tempEnv = {}
   }
 
-  onPathChange (path: string) {
-    this.paramsFilter(path)
-    this.envsFilter(path) 
+  onEnvironment (entities) {
+    this.project.environment = entities
   }
 
-  paramsFilter (path) {
-    this.param = {}
-    const paramsRegExp = /\{\$param\.([A-Za-z0-9|\.]*)\}/g
-    const keys = this.keysFilter(paramsRegExp, path)
-    for (const key of keys) {
-      this.param[key] = this.tempParam[key] || ''
-    }
-  }
-
-  envsFilter (path) {
-    this.env = {}
-    const envsRegExp = /\{\$env\.([A-Za-z0-9|\.]+)\}/g
-    const keys = this.keysFilter(envsRegExp, path)
-    for (const key of keys) {
-      this.env[key] = this.tempEnv[key] || ''
-    }
-  }
-
-  keysFilter (pattern, path) {
-    const match = path.match(pattern) || []
-    const keys = match
-      .map(param => new RegExp(pattern).exec(param).slice(1).pop())
-      .filter(param => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param))
-    return keys
-  }
-
-  onParamValueChange (key: string, value: string) {
-    this.tempParam[key] = value
-  }
-
-  onEnvValueChange (key: string, value: string) {
-    this.tempEnv[key] = value
+  onUpdate () {
+    console.log(this.project)
   }
 
 }

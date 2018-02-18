@@ -9,39 +9,71 @@ import { EndpointsComponent } from './containers/endpoints/endpoints.component'
 import { FoldersComponent } from './containers/folders/folders.component'
 import { EndpointComponent } from './containers/endpoint/endpoint.component'
 import { FolderComponent } from './containers/folder/folder.component'
+import { ResponsesComponent } from './containers/responses/responses.component'
+import { ResponseComponent } from './containers/response/response.component'
+import { LogsComponent } from './containers/logs/logs.component'
+import { LogComponent } from './containers/log/log.component'
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':project-id',
     component: ProjectComponent,
-    children: [{
-      path: 'dashboard',
-      component: DashboardComponent
-    },
-    {
-      path: 'config',
-      component: ConfigComponent
-    },
-    {
-      path: 'database',
-      component: DatabaseComponent
-    },
-    {
-      path: 'member',
-      component: MemberComponent
-    },
-    {
-      path: 'endpoint',
-      component: EndpointsComponent
-    },
-    {
-      path: 'folder',
-      component: FoldersComponent
-    },
-    {
-      path: 'folder/:folder-id',
-      component: FolderComponent
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'config',
+        component: ConfigComponent
+      },
+      {
+        path: 'database',
+        component: DatabaseComponent
+      },
+      {
+        path: 'member',
+        component: MemberComponent
+      },
+      {
+        path: 'endpoint',
+        component: EndpointsComponent
+      },
+      {
+        path: 'endpoint/:endpoint-id',
+        component: EndpointComponent,
+        children: [
+          {
+            path: '',
+            component: ResponsesComponent
+          },
+          {
+            path: ':response-id',
+            component: ResponseComponent
+          }
+        ]
+      },
+      {
+        path: 'folder',
+        component: FoldersComponent
+      },
+      {
+        path: 'folder/:folder-id',
+        component: FolderComponent
+      },
+      {
+        path: 'log',
+        component: LogsComponent
+      },
+      {
+        path: 'log/:log-id',
+        component: LogComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'endpoint'
+      }
+    ]
   }
 ]
 

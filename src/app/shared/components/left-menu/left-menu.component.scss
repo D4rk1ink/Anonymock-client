@@ -1,26 +1,104 @@
-$color-active: #d9e3ec;
+@import "colors";
+
+$border: #253545;
 
 .wrapper {
     height: 100%;
     width: 200px;
     min-width: 200px;
     background-color: #1d2b36;
+    display: flex;
+    flex-direction: column;
     // position: absolute;
     // z-index: -2;
 }
-// menu unactive
-.section.project-menu {
-    color: #8192a7;
+.profile {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: $gray_1;
+    font-weight: 600;
+    border-bottom: 1px solid $border;
+    .img-profile {
+        width: 80px;
+        height: 80px;
+        max-width: 80px;
+        max-height: 80px;
+        border-radius: 360px;
+        background-color: $white;
+        margin: 0 auto;
+    }
+    .name-profile {
+        padding: 10px 0;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+.for-admin {
+    color: $gray_2;
+    font-size: 12px;
+    .member-menu {
+        .main-row {
+            cursor: pointer;
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $border;
+        }
+        .main-row:hover {
+            color: $gray_0;
+        }
+    }
+}
+.admin-bar,
+.project-bar {
+    color: $gray_2;
+    background-color: #101c24;
+    padding: 5px 0; 
+    padding-left: 10px;
+    font-weight: 600;
+    border-bottom: 1px solid $border;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+.project-bar {
+    padding-right: 10px;
+    .create {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    i {
+        font-weight: 600;
+        font-size: 18px;
+    }
+}
+.new-project-row {
+    max-height: 39px;
+    overflow: hidden;
+    input {
+        color: $gray_2 !important;
+        border: 0;
+        padding: 0;
+        height: 100%;
+        min-height: 100%;
+        background-color: rgba($white, 0);
+        caret-color: $gray_2;
+    }
+}
+.new-project-row,
+.project-menu {
+    color: $gray_2;
     font-size: 12px;
     .main-row {
         cursor: pointer;
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom: 1px solid #253545;
+        border-bottom: 1px solid $border;
     }
     .main-row:hover {
-        color: $color-active;
+        color: $gray_0;
     }
     .expand {
         max-height: 0px;
@@ -28,27 +106,32 @@ $color-active: #d9e3ec;
         transition:  height, max-height .5s;
         .sub-row {
             cursor: pointer;
-            border-bottom: 1px solid #253545;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $border;
             background-color: #202f3e;
             padding-left: 20px;
             padding-top: 10px;
             padding-bottom: 10px;
             transition: background-color color .2s;
+            i {
+                padding-right: 10px;
+                font-size: 18px;
+            }
         }
-        .sub-row.active {
-            color: $color-active;
-        }
+        .sub-row.active,
         .sub-row:hover {
-            color: $color-active;
+            color: $gray_0;
             background-color: #202a39;
         }
     }
 }
-// menu active
-.section.project-menu.active {
+.member-menu.active,
+.create-project-menu.active,
+.project-menu.active {
     .main-row {
-        color: $color-active;
-        background-color: #14222c;
+        color: $gray_0;
+        background-color: #1a2b36;
         position: relative;
     }
     .main-row:before {
@@ -61,16 +144,29 @@ $color-active: #d9e3ec;
     }
     .expand {
         max-height: 500px !important;
-        .sub-row {
-            display: flex;
-            align-items: center;
-            i {
-                padding-right: 10px;
-                font-size: 18px;
-            }
-        }
     }
 }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    .logout {
+        height: 38px;
+        color: $gray_2;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid $border;
+        cursor: pointer;
+    }
+    .logout:hover {
+        color: $gray_0;
+    }
+}
+
 
 .pointer {
     cursor: pointer;

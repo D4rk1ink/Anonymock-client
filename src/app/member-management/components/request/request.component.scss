@@ -1,0 +1,61 @@
+@import "colors";
+
+.member-list {
+    padding: 10px 0;
+}
+.member {
+    display: flex;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    .admin {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .circle {
+            border: 1px solid $sky_2;
+            border-radius: 360px;
+            width: 20px;
+            height: 20px;
+            opacity: 0.1;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+        .circle:hover {
+            opacity: .5;
+        }
+    }
+    .name {
+        cursor: pointer;
+        font-weight: 400;
+    }
+    .name:hover {
+        color: $sky_3;
+    }
+    .email {
+        color: $gray_4;
+    }
+    .options {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        .approve,
+        .reject {
+            cursor: pointer;
+        }
+        .approve {
+            color: $green_2;
+            padding-right: 10px;
+            border-right: 1px solid $gray_1;
+        }
+        .reject {
+            color: $danger_2;
+            padding-left: 10px;
+        }
+    }
+}
+
+.member:hover {
+    background-color: rgba($sky_0, 0.1);
+}

@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Rx';
+import { ActivatedRoute } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { FolderService } from 'app/project/services/folder.service'
+import { EndpointService } from 'app/project/services/endpoint.service'
+import * as endpointsAction from 'app/project/actions/endpoints.action'
+import * as fromProject from 'app/project/reducers'
+
+import { projects } from 'app/mock/projects'
 
 @Component({
   selector: 'app-folder',
@@ -7,44 +16,63 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FolderComponent implements OnInit {
 
-  public folder: any
+  public folderId: string
+  public name: string
+  public searchEndpoints: string
+  public page: number
 
-  constructor () {
-    this.folder = {
-      id: 'xHgbfVl',
-      name: 'Account',
-      countEndpoints: 5,
-      endpoints: [
-        {
-          id: 'fG52Rbrh8',
-          method: 'GET',
-          name: 'Verify account'
-        },
-        {
-          id: 'H90Lhf9Dv',
-          method: 'POST',
-          name: 'Upgrade promotion'
-        },
-        {
-          id: 'ngH95Fjds',
-          method: 'PUT',
-          name: 'Verify promotion'
-        },
-        {
-          id: 'j8hlsHov2',
-          method: 'PATCH',
-          name: 'Cancel promotion'
-        },
-        {
-          id: 'l7Hinv93a',
-          method: 'DELETE',
-          name: 'Checkout'
-        },
-      ] 
-    }
+  public searchSub: Subscription
+
+  constructor (
+    private store: Store<any>,
+    private folderService: FolderService,
+    private endpointService: EndpointService,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.folderId = params['folder-id']
+      this.folderService.getById(this.folderId)
+        .subscribe(res => {
+          if (!res.error) {
+            this.name = res.data.name
+          }
+        })
+    })
+    this.store.select(fromProject.getEndpoints)
+      .subscribe(endpoints => {
+        const nqSearchEndpoints = this.searchEndpoints !== endpoints.search
+        const nqPage = this.page !== endpoints.page
+        if (nqSearchEndpoints || nqPage) {
+          this.searchEndpoints = endpoints.search
+          this.page = endpoints.page
+          this.search()
+        }
+      })
   }
 
   ngOnInit () {
+  }
+
+  onSearch (text) {
+    this.store.dispatch(new endpointsAction.SearchAction(text))
+  }
+
+  search () {
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
+    const payload = {
+      folder: this.folderId,
+      search: this.searchEndpoints,
+      page: this.page
+    }
+    this.searchSub = this.endpointService.search(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.store.dispatch(new endpointsAction.ItemsAction(res.data.endpoints))
+          this.store.dispatch(new endpointsAction.LimitPageAction(res.data.limitPage))
+        }
+      })
   }
 
 }

@@ -1,83 +1,67 @@
 <div class="">
     <h2>Config</h2>
 </div>
-<section class="section form-inline">
-    <div class="w-25 form-input">
-        <div class="label-title">
-            ID
-        </div>
-        <div class="">
-            <input type="text" name="id" />
-        </div>
-    </div>
-    <div class="w-50 form-input">
-        <div class="label-title">
-            Name
-        </div>
-        <div class="">
-            <input type="text" name="id" />
-        </div>
-    </div>
-    <div class="w-25 form-input">
-        <div class="label-title">
-            Status
-        </div>
-        <div class="">
-            <label class="select">
-                <select name="status">
-                    <option value="1">Active</option>
-                    <option value="1">Unactive</option>
-                </select>
-            </label>
-        </div>
-    </div>
-</section>
-<section class="section form-inline">
-    <div class="form-input">
-        <div class="label-title">
-            Description
-        </div>
-        <div class="">
-            <textarea placeholder="Descript..."></textarea>
-        </div>
-    </div>
-</section>
-<section class="section form-inline">
-    <div class="form-input">
-        <div class="label-title">
-            Repository
-        </div>
-        <div class="">
-            <input type="text" name="repository" />
-        </div>
-    </div>
-</section>
-<div class="">
-    <h2>Environment Variables</h2>
-</div>
-<!-- <input type="text" [ngModel]="path" (ngModelChange)="onPathChange($event)"/>
-<hr>
-<table>
-    <tr *ngFor="let key of param | keys">
-        <td>{{ key }}</td>
-        <td><input type="text" [ngModel]="param[key]" (ngModelChange)="onParamValueChange(key, $event)" /></td>
-    </tr>
-</table>
-<hr>
-<table>
-    <tr *ngFor="let key of env | keys">
-        <td>{{ key }}</td>
-        <td><input type="text" [ngModel]="env[key]" (ngModelChange)="onEnvValueChange(key, $event)" /></td>
-    </tr>
-</table> -->
 <section class="section">
-    <entity-group [title]="'Environments'"></entity-group>
+    <div class="form-inline">
+        <div class="w-25 form-input">
+            <label class="label-title">
+                ID
+            </label>
+            <div class="">
+                <input type="text" name="id" [ngModel]="project.id" [readonly]="true" />
+            </div>
+        </div>
+        <div class="w-50 form-input">
+            <label class="label-title">
+                Name
+            </label>
+            <div class="">
+                <input type="text" name="name" [(ngModel)]="project.name" placeholder="Name" />
+            </div>
+        </div>
+        <div class="w-25 form-input">
+            <label class="label-title">
+                Status
+            </label>
+            <div class="">
+                <label class="select">
+                    <select name="status" [(ngModel)]="project.status">
+                        <option value="true">Active</option>
+                        <option value="false">Unactive</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="w-100 form-input">
+            <label class="label-title">
+                Description
+            </label>
+            <div class="">
+                <textarea placeholder="Descript..." [(ngModel)]="project.description"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="w-100 form-input">
+            <label class="label-title">
+                Repository
+            </label>
+            <div class="">
+                <input type="text" name="repository" [(ngModel)]="project.repository" />
+            </div>
+        </div>
+    </div>
 </section>
-<section class="section form-inline delete-project">
+<section class="section">
+    <entity-group [title]="'Environments'" [entities]="project.environment" (out)="onEnvironment($event)"></entity-group>
+</section>
+<section class="section form-inline between">
     <div class="">
-        Delete this project
+        <button class="btn btn-sky" (click)="onUpdate()">Save</button>
     </div>
     <div class="">
-        <button class="btn btn-danger">Delete Project</button>
+        <button class="btn btn-danger">Delete</button>
     </div>
 </section>

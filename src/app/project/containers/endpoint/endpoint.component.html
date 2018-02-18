@@ -1,0 +1,43 @@
+<div class="form-inline">
+    <div class="w-100 form-input">
+        <label class="label-title">
+            Name
+        </label>
+        <input type="text" name="name" [ngModel]="endpoint.name" class="" placeholder="Name" (ngModelChange)="onNameChange($event)" />
+    </div>
+</div>
+<div class="form-inline">
+    <div class="w-10 form-input">
+        <label class="label-title">
+            Method
+        </label>
+        <label class="select">
+            <select [ngModel]="endpoint.method.id" (ngModelChange)="onMethodChange($event)">
+                <option *ngFor="let method of methods" [value]="method.id">{{ method.name }}</option>
+            </select>
+        </label>
+    </div>
+    <div class="w-70 form-input">
+        <label class="label-title">
+            Path
+        </label>
+        <input type="text" name="path" [ngModel]="endpoint.path" class="" placeholder="Path" (ngModelChange)="onPathChange($event)" />
+    </div>
+    <div class="w-20 form-input">
+        <label class="label-title">
+            Folder
+        </label>
+        <label class="select">
+            <select [ngModel]="endpoint.folder.id" (ngModelChange)="onFolderChange($event)">
+                <option *ngFor="let folder of folders" [value]="folder.id">{{ folder.name }}</option>
+            </select>
+        </label>
+    </div>
+</div>
+
+<hr>
+<section class="section">
+    <router-outlet></router-outlet>
+</section>
+
+    

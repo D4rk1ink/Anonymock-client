@@ -1,27 +1,63 @@
 <div class="wrapper">
-  <div class="section project-menu {{ (project.id == menuTarget) ? 'active' : '' }}" *ngFor="let project of projects">
-    <div class="main-row" (click)="expand(project.id)">
+  <div class="profile">
+    <div class="img-profile">
+      <img [src]="user.picture" class="" />
+    </div>
+    <div class="name-profile" [routerLink]="'/my-account'">
+      {{ user.firstname }} {{ user.lastname }}
+    </div>
+  </div>
+  <div class="admin-bar">
+    <div class="name">Admin</div>
+  </div>
+  <div class="for-admin">
+    <div class="member-menu" [class.active]="'member-management' === menuTarget" [routerLink]="'/member-management'">
+      <div class="main-row">
+        Member Management
+      </div>
+    </div>
+  </div>
+  <div class="project-bar">
+    <div class="name">Project</div>
+    <div class="create" (click)="onNewProject()">
+      <i class="material-icons">add</i>
+    </div>
+  </div>
+  <div class="project-menu new-project-row" *ngIf="isNewProject">
+    <div class="main-row">
+      <form #form="ngForm" (ngSubmit)="onSubmitNewProject(form.value)">
+        <input type="text" name="name" class="project-name-input" placeholder="New project" (blur)="onBlurNewProject()" ngModel/>
+      </form>
+    </div>
+  </div>
+  <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
+    <div class="main-row" (click)="onExpandProject(project.id)">
       {{ project.name }}
     </div>
     <div class="expand">
-      <div class="sub-row config" [routerLink]="'/'+project.id+'/config'">
+      <div class="sub-row config" [routerLink]="'/project/'+project.id+'/config'">
         <i class="material-icons">settings</i> Config
       </div>
-      <div class="sub-row database" [routerLink]="'/'+project.id+'/database'">
+      <div class="sub-row database" [routerLink]="'/project/'+project.id+'/database'">
         <i class="material-icons">storage</i> Database
       </div>
-      <div class="sub-row member" [routerLink]="'/'+project.id+'/member'">
+      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/member'">
         <i class="material-icons">group</i> Member
       </div>
-      <div class="sub-row member" [routerLink]="'/'+project.id+'/endpoint'">
+      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/endpoint'">
         <i class="material-icons">link</i> Endpoints
       </div>
-      <div class="sub-row member" [routerLink]="'/'+project.id+'/folder'">
+      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/folder'">
         <i class="material-icons">folder</i> Folders
       </div>
-      <div class="sub-row folder" *ngFor="let folder of project.folders" [routerLink]="'/'+project.id+'/folder/'+folder.id">
-        {{ folder.name }}
+      <div class="sub-row member" [routerLink]="'project/'+project.id+'/log'">
+        <i class="material-icons">history</i> Logs
       </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="logout" [routerLink]="'/auth/sign-in'">
+      LOGOUT
     </div>
   </div>
 </div>

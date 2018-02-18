@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { AceEditorComponent } from 'ng2-ace-editor'
 
 @Component({
   selector: 'code-editor',
@@ -11,7 +12,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   @Input('mode') mode: string
   @Input('readOnly') readOnly: boolean
   @Output('change') change: EventEmitter<any>
-  @ViewChild('editor') editor
+  @ViewChild('editor') editor: AceEditorComponent
 
   public options: any
   
@@ -21,7 +22,12 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     if (this.text) {
-      this.text = JSON.stringify(this.text)
+      if (typeof this.text === "object") {
+        this.text = JSON.stringify(this.text)
+        this.pretty()
+      } else {
+        this.text = this.text
+      }
     }
   }
 
@@ -30,9 +36,11 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
     this.editor.getEditor().setOptions({
       enableBasicAutocompletion: true,
+      useWorker: false,
       maxLines: 15,
       minLines: 3
     })
+    this.editor.getEditor().$blockScrolling = Infinity
   }
 
   ngOnInit () {
@@ -40,5 +48,14 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
   onChange (text) {
     this.change.emit(text)
+  }
+
+  pretty() {
+    try {
+      this.text = this.text.replace(/(^"|"$)/gi, "");
+      this.text = JSON.stringify(JSON.parse(this.text), null, 4);
+    } catch(err) {
+      this.editor.setText(this.text);
+    }
   }
 }

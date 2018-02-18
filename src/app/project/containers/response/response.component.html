@@ -1,3 +1,30 @@
-<p>
-  response works!
-</p>
+<section class="section">
+  <input type="text" name="name" [(ngModel)]="response.name" placeholder="Response name"/>
+</section>
+<div class="title-center">
+  REQUEST
+</div>
+<section class="section">
+  <entity-group
+    [title]="'Params'"
+    [entities]="params"
+    [auto]="true"
+    (out)="saveParam($event)"></entity-group>
+</section>
+<section class="section">
+  <request-group></request-group>
+</section>
+<div class="title-center">
+  RESPONSE
+</div>
+<section class="section">
+  <response-group></response-group>
+</section>
+<section class="section form-inline between">
+  <div class="">
+      <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+  </div>
+  <div class="">
+      <button class="btn btn-danger">Delete</button>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+@import "colors";
+
+.schema {
+    border: 1px solid $gray_1;
+    background-color: $white;
+    .header {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        max-height: 40px;
+        border-bottom: 1px solid $gray_1;
+    }
+    .content {
+        padding: 10px;
+        .detail {
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+    }
+}
