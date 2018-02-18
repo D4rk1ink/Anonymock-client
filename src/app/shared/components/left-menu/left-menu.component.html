@@ -1,10 +1,10 @@
 <div class="wrapper">
   <div class="profile">
     <div class="img-profile">
-      <img src="" class="" />
+      <img [src]="user.picture" class="" />
     </div>
     <div class="name-profile" [routerLink]="'/my-account'">
-      Passakorn Rattanaprapan
+      {{ user.firstname }} {{ user.lastname }}
     </div>
   </div>
   <div class="admin-bar">

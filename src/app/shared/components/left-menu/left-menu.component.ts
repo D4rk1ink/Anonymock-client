@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
+import { Store } from '@ngrx/store';
 import { projects } from 'app/mock/projects'
 import { ProjectService } from 'app/project/services/project.service'
+import * as fromCore from 'app/core/reducers';
 
 @Component({
   selector: 'left-menu',
@@ -10,22 +12,32 @@ import { ProjectService } from 'app/project/services/project.service'
 })
 export class LeftMenuComponent implements OnInit {
 
+  public user: any
   public isNewProject: boolean
   public menuTarget: string
   public expandProject: string
   public projects: any[]
 
   constructor (
+    private store: Store<any>,
     private router: Router,
     private projectService: ProjectService
   ) {
+    this.store.select(fromCore.getUser)
+      .subscribe(user => {
+        this.user = user
+      })
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         const url = val.url
-        this.menuTarget = new RegExp('/([^\S][^/]+)').exec(url)[1]
-        if (this.menuTarget === 'project') {
-          this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(url)[1]
+        const targets = new RegExp('/([^\S][^/]+)').exec(url)
+        if (targets.length > 0) {
+          this.menuTarget = targets[1]
+          if (this.menuTarget === 'project') {
+            this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(url)[1]
+          }
         }
+        
       }
     })
     this.projectService.get()
