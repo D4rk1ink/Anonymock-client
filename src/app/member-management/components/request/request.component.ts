@@ -30,10 +30,9 @@ export class RequestComponent implements OnInit {
 
   onApprove (id) {
     const payload = {
-      id: id,
       approve: true
     }
-    this.memberService.approve(payload)
+    this.memberService.approve(id, payload)
       .subscribe(res => {
         if (!res.error) {
           this.all = this.all.map(user => {
@@ -49,10 +48,9 @@ export class RequestComponent implements OnInit {
 
   onReject (id) {
     const payload = {
-      id: id,
       approve: false
     }
-    this.memberService.approve(payload)
+    this.memberService.approve(id, payload)
       .subscribe(res => {
         if (!res.error) {
           this.all = this.all.filter(user => {

@@ -18,18 +18,18 @@ export class MemberService {
     return this.http.get(url, { params: payload })
   }
 
-  approve (payload): Observable<any> {
-    const url = constants.BASE_API + '/user/approve'
+  approve (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/user/' + id + '/approve'
     return this.http.patch(url, payload)
   }
 
-  admin (payload): Observable<any> {
-    const url = constants.BASE_API + '/user/admin'
+  admin (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/user/' + id + '/admin'
     return this.http.patch(url, payload)
   }
 
-  deactivate (payload): Observable<any> {
-    const url = constants.BASE_API + '/user/deactivate'
+  deactivate (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/user/' + id + '/deactivate'
     return this.http.patch(url, payload)
   }
 
