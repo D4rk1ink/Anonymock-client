@@ -9,7 +9,7 @@
                     Firstname
                 </label>
                 <div class="">
-                    <input type="text" name="firstname" placeholder="Firstname" />
+                    <input type="text" name="firstname" [(ngModel)]="user.firstname" placeholder="Firstname" />
                 </div>
             </div>
             <div class="w-50 form-input">
@@ -17,7 +17,7 @@
                     Lastname
                 </label>
                 <div class="">
-                    <input type="text" name="lastname" placeholder="Lastname" />
+                    <input type="text" name="lastname" [(ngModel)]="user.lastname" placeholder="Lastname" />
                 </div>
             </div>
         </div>
@@ -27,14 +27,14 @@
                     Email
                 </label>
                 <div class="">
-                    <input type="text" name="email" placeholder="Email" />
+                    <input type="text" name="email" [(ngModel)]="user.email" placeholder="Email" />
                 </div>
             </div>
         </div>
     </section>
     <section class="section form-inline between">
         <div class="">
-            <button class="btn btn-sky">Save</button>
+            <button class="btn btn-sky" (click)="onSubmit()">Save</button>
         </div>
         <div class="">
             <label class="link" [routerLink]="'./change-password'">Change password</label>
