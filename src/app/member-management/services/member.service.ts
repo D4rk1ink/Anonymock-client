@@ -10,9 +10,12 @@ export class MemberService {
     private http: HttpClient
   ) { }
 
-  getMembers (): Observable<any> {
+  search (payload = null): Observable<any> {
+    if (payload === null) {
+      payload = { search: '' }
+    }
     const url = constants.BASE_API + '/user'
-    return this.http.get(url)
+    return this.http.get(url, { params: payload })
   }
 
   approve (payload): Observable<any> {

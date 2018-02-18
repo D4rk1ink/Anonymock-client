@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store'
-import { MemberService } from '../../services/member.service'
-import * as membersAction from '../../actions/members.action'
-import * as fromMembers from '../../reducers'
+import { MemberService } from 'app/member-management/services/member.service'
+import * as database from 'app/core/services/database.service'
+import * as membersAction from 'app/member-management/actions/members.action'
+import * as fromMembers from 'app/member-management/reducers'
 
 @Component({
   selector: 'members',
@@ -29,6 +30,7 @@ export class MembersComponent implements OnInit {
   }
 
   onAdmin (id, isAdmin) {
+    if (this.isYourself(id)) return
     const payload = {
       id: id,
       isAdmin: isAdmin
@@ -48,6 +50,7 @@ export class MembersComponent implements OnInit {
   }
 
   onDeactivate (id, deactivated) {
+    if (this.isYourself(id)) return
     const payload = {
       id: id,
       deactivated: deactivated
@@ -64,6 +67,10 @@ export class MembersComponent implements OnInit {
           this.store.dispatch(new membersAction.MembersAction(this.all))
         }
       })
+  }
+
+  isYourself (id) {
+    return database.getUser().id === id
   }
 
 }
