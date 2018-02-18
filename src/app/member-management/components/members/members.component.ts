@@ -30,7 +30,7 @@ export class MembersComponent implements OnInit {
   }
 
   onAdmin (id, isAdmin) {
-    if (this.isYourself(id)) return
+    if (this.isMyself(id)) return
     const payload = {
       isAdmin: isAdmin
     }
@@ -49,7 +49,7 @@ export class MembersComponent implements OnInit {
   }
 
   onDeactivate (id, deactivated) {
-    if (this.isYourself(id)) return
+    if (this.isMyself(id)) return
     const payload = {
       deactivated: deactivated
     }
@@ -67,7 +67,7 @@ export class MembersComponent implements OnInit {
       })
   }
 
-  isYourself (id) {
+  isMyself (id) {
     return database.getUser().id === id
   }
 
