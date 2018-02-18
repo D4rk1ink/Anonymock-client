@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'app/my-account/services/user.service';
+import * as database from 'app/core/services/database.service'
 
 @Component({
   selector: 'profile',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  public user: any
+
+  constructor(
+    private userService: UserService
+  ) {
+    const user = database.getUser()
+    this.userService.getById(user.id)
+      .subscribe(user => {
+        this.user = user
+      })
+  }
 
   ngOnInit() {
   }
