@@ -33,13 +33,7 @@ export class LeftMenuComponent implements OnInit {
       })
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        const targets = new RegExp('/([^\S][^/]+)').exec(val.url)
-        if (targets) {
-          this.menuTarget = targets[1]
-          if (this.menuTarget === 'project') {
-            this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(val.url)[1]
-          }
-        }
+        this.setMenuTarget(val.url)
       }
     })
     this.userService.getById(user.id)
@@ -68,8 +62,19 @@ export class LeftMenuComponent implements OnInit {
   ngOnInit () {
   }
 
+  setMenuTarget (url) {
+    const targets = new RegExp('/?([^\S][^/]+)').exec(url)
+    if (targets) {
+      this.menuTarget = targets[1]
+      if (this.menuTarget === 'project') {
+        this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(url)[1]
+      }
+    }
+  }
+
   onExpandProject (id) {
     this.menuTarget = id
+    // this.router.navigateByUrl(`/project/${id}/folder`)
   }
 
   onNewProject () {

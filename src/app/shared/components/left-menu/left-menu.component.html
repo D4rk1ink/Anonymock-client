@@ -7,13 +7,15 @@
       {{ user.firstname }} {{ user.lastname }}
     </div>
   </div>
-  <div class="admin-bar">
-    <div class="name">Admin</div>
-  </div>
-  <div class="for-admin">
-    <div class="member-menu" [class.active]="'member-management' === menuTarget" [routerLink]="'/member-management'">
-      <div class="main-row">
-        Member Management
+  <div class="" *ngIf="user.isAdmin">
+    <div class="admin-bar">
+      <div class="name">Admin</div>
+    </div>
+    <div class="for-admin">
+      <div class="member-menu" [class.active]="'member-management' === menuTarget" [routerLink]="'/member-management'" (click)="setMenuTarget('member-management')">
+        <div class="main-row">
+          Member Management
+        </div>
       </div>
     </div>
   </div>
