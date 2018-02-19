@@ -7,7 +7,7 @@
 <section class="section">
   <entity-group
     [title]="'Params'"
-    [entities]="params"
+    [entities]="response.condition.params"
     [auto]="true"
     (out)="saveParam($event)"></entity-group>
 </section>

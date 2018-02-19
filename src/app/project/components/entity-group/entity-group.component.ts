@@ -12,7 +12,7 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   @Input('auto') auto: boolean
   @Input('tempAuto') tempAuto: any
   @Output('out') out: EventEmitter<any>
-  public init: boolean
+  public dataLength: number
   public isExpand: boolean
   public temp: any
   public keys: any[]
@@ -20,8 +20,8 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   public keyFocus: string
   public valueFocus: string
   constructor () {
-    this.init = true
     this.out = new EventEmitter<any>()
+    this.dataLength = 0
     this.temp = {}
     this.keys = ['']
     this.values = ['']
@@ -32,9 +32,15 @@ export class EntityGroupComponent implements OnInit, OnChanges {
       if (this.entities instanceof String) {
         this.entities = JSON.parse(this.entities.toString())
       }
+      const entitiesTemp = {}
+      for (const key in this.entities) {
+        if (this.entities[key] !== undefined) {
+          entitiesTemp[key] = this.entities[key]
+        }
+      }
       this.temp = {
         ...this.temp,
-        ...this.entities
+        ...entitiesTemp
       }
       this.keys = []
       this.values = []
@@ -42,7 +48,10 @@ export class EntityGroupComponent implements OnInit, OnChanges {
         this.keys.push(key)
         this.values.push(this.temp[key] || '')
       }
-      this.init = false
+      if (this.auto && this.dataLength !== this.keys.length) {
+        this.onOut()
+      }
+      this.dataLength = this.keys.length
     } else {
       
     }
