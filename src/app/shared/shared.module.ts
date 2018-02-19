@@ -12,6 +12,7 @@ import { SearchInputComponent } from './components/search-input/search-input.com
 import { BoxTabsComponent } from './components/box-tabs/box-tabs.component';
 
 import { ProjectService } from 'app/project/services/project.service';
+import { UserService } from 'app/my-account/services/user.service';
 
 @NgModule({
   imports: [
@@ -44,7 +45,13 @@ import { ProjectService } from 'app/project/services/project.service';
     BoxTabsComponent,
   ],
   providers: [
-    ProjectService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    },
+    ProjectService,
+    UserService
   ]
 })
 export class SharedModule { }

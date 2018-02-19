@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
 import { Store } from '@ngrx/store';
-import { projects } from 'app/mock/projects'
 import { ProjectService } from 'app/project/services/project.service'
+import { UserService } from 'app/my-account/services/user.service'
+import * as userAction from 'app/core/actions/user.action';
 import * as fromCore from 'app/core/reducers';
+import * as database from 'app/core/services/database.service';
 
 @Component({
   selector: 'left-menu',
@@ -21,25 +23,40 @@ export class LeftMenuComponent implements OnInit {
   constructor (
     private store: Store<any>,
     private router: Router,
+    private userService: UserService,
     private projectService: ProjectService
   ) {
+    const user = database.getUser()
     this.store.select(fromCore.getUser)
       .subscribe(user => {
         this.user = user
       })
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        const url = val.url
-        const targets = new RegExp('/([^\S][^/]+)').exec(url)
+        const targets = new RegExp('/([^\S][^/]+)').exec(val.url)
         if (targets) {
           this.menuTarget = targets[1]
           if (this.menuTarget === 'project') {
-            this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(url)[1]
+            this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(val.url)[1]
           }
         }
-        
       }
     })
+    this.userService.getById(user.id)
+      .subscribe(res => {
+        if (!res.error) {
+          const user = {
+            id: res.data.id,
+            firstname: res.data.firstname,
+            lastname: res.data.lastname,
+            email: res.data.email,
+            picture: res.data.picture,
+            isAdmin: res.data.isAdmin
+          }
+          database.saveUser(user)
+          this.store.dispatch(new userAction.UserAction(user))
+        }
+      })
     this.projectService.get()
       .subscribe(res => {
         if (!res.error) {
