@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { ProjectService } from 'app/project/services/project.service'
 import { UserService } from 'app/my-account/services/user.service'
 import * as userAction from 'app/core/actions/user.action';
+import * as projectsAction from 'app/core/actions/projects.action';
 import * as fromCore from 'app/core/reducers';
 import * as database from 'app/core/services/database.service';
 
@@ -27,6 +28,10 @@ export class LeftMenuComponent implements OnInit {
     private projectService: ProjectService
   ) {
     const user = database.getUser()
+    this.store.select(fromCore.getProjectsItems)
+      .subscribe(projects => {
+        this.projects = projects
+      })
     this.store.select(fromCore.getUser)
       .subscribe(user => {
         this.user = user
@@ -54,7 +59,7 @@ export class LeftMenuComponent implements OnInit {
     this.projectService.get()
       .subscribe(res => {
         if (!res.error) {
-          this.projects = res.data
+          this.store.dispatch(new projectsAction.ItemsAction(res.data))
         }
       })
   }
