@@ -48,7 +48,7 @@ export class ConfigComponent implements OnInit {
     // console.log('as')
     // this.store.dispatch(new projectsAction.ItemsAction([]))
     // this.store.dispatch(new userAction.FirstnameAction('asd'))
-    this.projectService.update(this.project.id, this.projectService)
+    this.projectService.update(this.project.id, this.project)
       .subscribe(res => {
         if (!res.error) {
           this.projects = this.projects.map(project => {
