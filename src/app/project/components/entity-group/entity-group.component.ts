@@ -48,6 +48,9 @@ export class EntityGroupComponent implements OnInit, OnChanges {
         this.keys.push(key)
         this.values.push(this.temp[key] || '')
       }
+      if (!this.auto) {
+        this.onNew()
+      }
       if (this.auto && this.dataLength !== this.keys.length) {
         this.onOut()
       }
@@ -98,7 +101,17 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   }
 
   onNew () {
-    if (this.keys.every(key => key !== '')) {
+    let canNew = false
+    if (this.keys.length === 0) {
+      canNew = true
+    } else {
+      this.keys.forEach((key, i) => {
+        if (key !== '' || this.values[i] !== '') {
+          canNew = true
+        }
+      })
+    }
+    if (canNew) {
       this.keys.push('')
       this.values.push('')
     }
@@ -107,8 +120,11 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   onOut () {
     const entities = {}
     this.keys.forEach((key, i) => {
-      entities[key] = this.values[i]
+      if (key !== '' || this.values[i] !== '') {
+        entities[key] = this.values[i]
+      }
     })
+
     this.out.emit(entities)
   }
 
