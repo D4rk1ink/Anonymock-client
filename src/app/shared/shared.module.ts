@@ -22,8 +22,7 @@ import { UserService } from 'app/my-account/services/user.service';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AceEditorModule,
-    CoreModule
+    AceEditorModule
   ],
   declarations: [
     MainLayoutComponent,
@@ -38,7 +37,6 @@ import { UserService } from 'app/my-account/services/user.service';
     ReactiveFormsModule,
     HttpClientModule,
     AceEditorModule,
-    CoreModule,
 
     MainLayoutComponent,
     LeftMenuComponent,
