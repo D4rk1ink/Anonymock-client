@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { ProjectService } from 'app/project/services/project.service'
-import * as projectAction from 'app/project/actions/project.action'
+import * as projectsAction from 'app/core/actions/projects.action'
+import * as fromCore from 'app/core/reducers'
 import * as fromProject from 'app/project/reducers'
-import * as fromProjectReducer from 'app/project/reducers/project.reducer'
 
 @Component({
   selector: 'app-config',
@@ -12,12 +12,18 @@ import * as fromProjectReducer from 'app/project/reducers/project.reducer'
 })
 export class ConfigComponent implements OnInit {
 
-  public project: fromProjectReducer.State
+  public projects: any[]
+  public project: any
 
   constructor (
     private store: Store<any>,
     private projectService: ProjectService
   ) {
+    // this.store.select(fromCore.getProjectsItems)
+    //   .subscribe(projects => {
+    //     console.log(projects)
+    //     this.projects = projects
+    //   })
     this.store.select(fromProject.getProject)
       .subscribe(project => {
         this.project = {
@@ -26,9 +32,7 @@ export class ConfigComponent implements OnInit {
           status: project.status,
           description: project.description,
           repository: project.repository,
-          environment: {
-            name: 'asd'
-          }
+          environments: project.environments
         }
       })
   }
@@ -37,11 +41,26 @@ export class ConfigComponent implements OnInit {
   }
 
   onEnvironment (entities) {
-    this.project.environment = entities
+    this.project.environments = entities
   }
 
   onUpdate () {
-    console.log(this.project)
+    // console.log('as')
+    // this.store.dispatch(new projectsAction.ItemsAction([]))
+    // this.store.dispatch(new userAction.FirstnameAction('asd'))
+    this.projectService.update(this.project.id, this.projectService)
+      .subscribe(res => {
+        if (!res.error) {
+          this.projects = this.projects.map(project => {
+            if (project.id === res.data.id) {
+              project.name = res.data.name
+              project.status = res.data.status
+            }
+            return project
+          })
+          this.store.dispatch(new projectsAction.ItemsAction(this.projects))
+        }
+      })
   }
 
 }

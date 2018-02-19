@@ -6,7 +6,7 @@ export const NAME = '[Project] Name'
 export const STATUS = '[Project] Status'
 export const DESCRIPTION = '[Project] Description'
 export const REPOSITORY = '[Project] Repository'
-export const ENVIRONMENT = '[Project] Environment'
+export const ENVIRONMENTS = '[Project] Environments'
 
 export class ProjectAction implements Action {
     readonly type = PROJECT
@@ -44,8 +44,8 @@ export class RepositoryAction implements Action {
     constructor (public payload) { }
 }
 
-export class EnvironmentAction implements Action {
-    readonly type = ENVIRONMENT
+export class EnvironmentsAction implements Action {
+    readonly type = ENVIRONMENTS
 
     constructor (public payload) { }
 }
@@ -57,4 +57,4 @@ export type Actions
 | StatusAction
 | DescriptionAction
 | RepositoryAction
-| EnvironmentAction
+| EnvironmentsAction

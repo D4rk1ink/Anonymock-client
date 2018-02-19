@@ -19,4 +19,9 @@ export class ProjectService {
     const url = constants.BASE_API + '/project'
     return this.http.post(url, payload)
   }
+
+  update (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/' + id
+    return this.http.patch(url, payload)
+  }
 }

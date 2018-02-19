@@ -7,7 +7,7 @@ export interface State {
     status: boolean,
     description: string,
     repository: string,
-    environment: any
+    environments: any
 }
 
 const initialState: State = {
@@ -16,7 +16,7 @@ const initialState: State = {
     status: true,
     description: null,
     repository: null,
-    environment: null
+    environments: null
 }
 
 export function reducer (state = initialState, action: projectAction.Actions): State {
@@ -48,10 +48,10 @@ export function reducer (state = initialState, action: projectAction.Actions): S
                 ...state,
                 repository: action.payload
             }
-        case projectAction.ENVIRONMENT: 
+        case projectAction.ENVIRONMENTS: 
             return {
                 ...state,
-                environment: action.payload
+                environments: action.payload
             }
         default:
             return state
