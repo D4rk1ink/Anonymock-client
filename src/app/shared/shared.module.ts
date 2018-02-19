@@ -13,6 +13,7 @@ import { BoxTabsComponent } from './components/box-tabs/box-tabs.component';
 
 import { InterceptorService } from 'app/core/services/interceptor.service'
 import { ProjectService } from 'app/project/services/project.service';
+import { UserService } from 'app/my-account/services/user.service';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { ProjectService } from 'app/project/services/project.service';
       useClass: InterceptorService,
       multi: true
     },
-    ProjectService
+    ProjectService,
+    UserService
   ]
 })
 export class SharedModule {
