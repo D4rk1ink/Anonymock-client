@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, ModuleWithProviders } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -10,6 +10,7 @@ import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { BoxTabsComponent } from './components/box-tabs/box-tabs.component';
 
+import { InterceptorService } from 'app/core/services/interceptor.service'
 import { ProjectService } from 'app/project/services/project.service';
 
 @NgModule({
@@ -41,7 +42,18 @@ import { ProjectService } from 'app/project/services/project.service';
     BoxTabsComponent,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    },
     ProjectService
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule
+    }
+  }
+}

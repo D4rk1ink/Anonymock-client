@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
@@ -12,17 +12,19 @@ import { InterceptorService } from './services/interceptor.service'
     CommonModule,
     HttpClientModule,
     StoreModule.forRoot(coreReducers),
-  ],
-  declarations: [],
-  exports: [
-    HttpClientModule
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    }
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: InterceptorService,
+          multi: true
+        }
+      ]
+    }
+  }
+}
