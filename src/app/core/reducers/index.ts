@@ -17,3 +17,4 @@ export const getUserFirstname = createSelector(getUserState, fromUser.getFirstna
 export const getUserLastname = createSelector(getUserState, fromUser.getLastname)
 export const getUserEmail = createSelector(getUserState, fromUser.getEmail)
 export const getUserPicture = createSelector(getUserState, fromUser.getPicture)
+export const getUserIsAdmin = createSelector(getUserState, fromUser.getIsAdmin)

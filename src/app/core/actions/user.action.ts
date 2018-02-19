@@ -6,6 +6,7 @@ export const FIRSTNAME = '[User] Firstname'
 export const LASTNAME = '[User] Lastname'
 export const EMAIL = '[User] Email'
 export const PICTURE = '[User] Picture'
+export const ISADMIN = '[User] IsAdmin'
 
 export class UserAction implements Action {
     readonly type = USER
@@ -43,6 +44,12 @@ export class PictureAction implements Action {
     constructor (public payload) { }
 }
 
+export class IsAdminAction implements Action {
+    readonly type = ISADMIN
+
+    constructor (public payload) { }
+}
+
 export type Actions
 = UserAction
 | IdAction
@@ -50,3 +57,4 @@ export type Actions
 | LastnameAction
 | EmailAction
 | PictureAction
+| IsAdminAction

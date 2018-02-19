@@ -7,6 +7,7 @@ export interface State {
     lastname: string
     email: string
     picture: string
+    isAdmin: boolean
 }
 
 const initialState: State = {
@@ -14,7 +15,8 @@ const initialState: State = {
     firstname: '',
     lastname: '',
     email: '',
-    picture: ''
+    picture: '',
+    isAdmin: false
 }
 
 export function reducer (state = initialState, action: userAction.Actions): State {
@@ -46,6 +48,11 @@ export function reducer (state = initialState, action: userAction.Actions): Stat
                 ...state,
                 picture: action.payload
             }
+        case userAction.ISADMIN: 
+            return {
+                ...state,
+                isAdmin: action.payload
+            }
         default: 
             return state
     }
@@ -56,4 +63,5 @@ export const getFirstname = (state: State) => state.firstname
 export const getLastname = (state: State) => state.lastname
 export const getEmail = (state: State) => state.email
 export const getPicture = (state: State) => state.picture
+export const getIsAdmin = (state: State) => state.isAdmin
 export const getAll = (state: State) => state
