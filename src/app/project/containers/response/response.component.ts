@@ -72,9 +72,10 @@ export class ResponseComponent implements OnInit {
     const keys = match
       .map(key => new RegExp(paramPattern).exec(key).slice(1).pop())
       .filter((param, i, arr) => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
-    this.params = {}
+    const temp = { ...this.response.condition.params }
+    this.response.condition.params = {}
     for (const key of keys) {
-      this.params[key] = this.response.condition.params[key] || ''
+      this.response.condition.params[key] = temp[key] || undefined
     }
   }
 
