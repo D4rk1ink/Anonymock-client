@@ -11,11 +11,11 @@ export interface State {
 }
 
 const initialState: State = {
-    id: '',
+    id: null,
     name: '',
     method: {},
     folder: {},
-    path: '',
+    path: null,
     responses: []
 }
 

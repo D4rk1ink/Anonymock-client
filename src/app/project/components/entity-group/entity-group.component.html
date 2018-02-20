@@ -5,6 +5,6 @@
         </div>
     </div>
     <div class="expand" [class.active]="isExpand">
-        <key-value-group [data]="entities" [temp]="temp" (save)="saveData($event)"></key-value-group>
+        <key-value-group [autoKey]="autoKey" [data]="entities" [temp]="temp" (save)="saveData($event)"></key-value-group>
     </div>
 </div>

@@ -5,11 +5,11 @@
   REQUEST
 </div>
 <section class="section">
-  <!-- <entity-group
+  <entity-group
     [title]="'Params'"
     [entities]="response.condition.params"
-    [auto]="true"
-    (out)="saveParam($event)"></entity-group> -->
+    [autoKey]="true"
+    (save)="saveParam($event)"></entity-group>
 </section>
 <section class="section">
   <request-group></request-group>

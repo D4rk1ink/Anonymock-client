@@ -9,6 +9,7 @@ export class ItemComponent implements OnInit {
   
   @Input('index') index: number
   @Input('entity') entity: any
+  @Input('disableDelete') disableDelete: any
   @Output('blur') blur: EventEmitter<any>
   @Output('keyInput') keyInput: EventEmitter<any>
   @Output('delete') delete: EventEmitter<any>

@@ -8,8 +8,9 @@ import * as json from 'app/project/utils/json.util'
 })
 export class KeyValueGroupComponent implements OnInit, OnChanges {
 
-  @Input('data') data: any
+  @Input('data') data: any[]
   @Input('temp') temp: any
+  @Input('autoKey') autoKey: boolean
   @Output('save') save: EventEmitter<any>
   public entities: any[]
 
@@ -27,7 +28,15 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   ngOnChanges () {
     if (this.data) {
       this.entities = Object.assign([], this.data)
-      this.temp = Object.assign({}, this.temp, json.toJSON(this.data))
+      this.temp = Object.assign({}, this.temp, json.toJSON(this.data.filter(datum => datum.value !== undefined)))
+      if (this.autoKey) {
+        this.entities = this.entities.map(entity => {
+          if (entity.value === undefined) {
+            entity.value = this.temp[entity.key]
+          }
+          return entity
+        })
+      }
       this.addEmptyEntity()
     }
   }
@@ -50,6 +59,7 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   }
 
   addEmptyEntity () {
+    if (this.autoKey) return
     const notEmpty = this.entities.every(entity => {
       return entity.key !== '' || entity.value !== ''
     })

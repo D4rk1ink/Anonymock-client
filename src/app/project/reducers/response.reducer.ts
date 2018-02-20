@@ -5,7 +5,7 @@ export interface State {
     id: string
     name: string
     condition: {
-        params: any,
+        params: any[],
         headers: any[],
         body: any,
         queryString: any[]
@@ -22,7 +22,7 @@ const initialState: State = {
     id: null,
     name: null,
     condition: {
-        params: {},
+        params: [],
         headers: [],
         body: {},
         queryString: []

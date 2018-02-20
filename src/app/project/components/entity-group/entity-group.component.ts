@@ -10,6 +10,7 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   @Input('title') title: string
   @Input('entities') entities: any
   @Input('temp') temp: any
+  @Input('autoKey') autoKey: boolean
   @Output('save') save: EventEmitter<any>
 
   public isExpand: boolean

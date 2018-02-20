@@ -17,7 +17,6 @@ export class ResponseComponent implements OnInit {
   public endpoint: any
   public path: string
   public response: any
-  public params: any
 
   constructor(
     private store: Store<any>,
@@ -25,11 +24,10 @@ export class ResponseComponent implements OnInit {
     private endpointService: EndpointService,
     private route: ActivatedRoute
   ) {
-    this.params = {}
     this.store.select(fromProject.getResponse)
       .subscribe(response => {
         this.response = response
-        this.paramsFilter(this.path || '')
+        this.paramsFilter(this.path)
       })
     this.store.select(fromProject.getEndpoint)
       .subscribe(endpoint => {
@@ -38,7 +36,7 @@ export class ResponseComponent implements OnInit {
     this.store.select(fromProject.getEndpointPath)
       .subscribe(path => {
         this.path = path
-        this.paramsFilter(this.path || '')
+        this.paramsFilter(this.path)
       })
     // Call service get response
     this.route.params.subscribe(params => {
@@ -46,6 +44,7 @@ export class ResponseComponent implements OnInit {
       this.responseService.getById(responseId)
         .subscribe(res => {
           if (!res.error) {
+            res.data.condition.params = json.toArray(res.data.condition.params)
             res.data.condition.headers = json.toArray(res.data.condition.headers)
             res.data.condition.queryString = json.toArray(res.data.condition.queryString)
             res.data.response.headers = json.toArray(res.data.response.headers)
@@ -67,15 +66,21 @@ export class ResponseComponent implements OnInit {
   }
 
   paramsFilter (path) {
+    if (!path || !this.response) return
     const paramPattern = /\{([A-Za-z0-9\-]+)\}/g
     const match = path.match(paramPattern) || []
     const keys = match
       .map(key => new RegExp(paramPattern).exec(key).slice(1).pop())
       .filter((param, i, arr) => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
-    const temp = { ...this.response.condition.params }
-    this.response.condition.params = {}
+    const temp = [...this.response.condition.params]
+    this.response.condition.params = []
     for (const key of keys) {
-      this.response.condition.params[key] = temp[key] || undefined
+      const param = temp.find(param => param.key === key)
+      if (param) {
+        this.response.condition.params.push(param)
+      } else {
+        this.response.condition.params.push({ key: key, value: undefined })
+      }
     }
   }
 
@@ -91,6 +96,7 @@ export class ResponseComponent implements OnInit {
       name: this.response.name,
       condition: {
         ...this.response.condition,
+        params: json.toJSON(this.response.condition.params),
         headers: json.toJSON(this.response.condition.headers),
         queryString: json.toJSON(this.response.condition.queryString)
       },

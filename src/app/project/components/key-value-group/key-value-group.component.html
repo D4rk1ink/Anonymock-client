@@ -4,5 +4,6 @@
         [entity]="entity"
         (keyInput)="onKeyInput($event)"
         (blur)="onBlur($event)"
-        (delete)="onDelete(i)"></key-value-item>
+        (delete)="onDelete(i)"
+        [disableDelete]="autoKey"></key-value-item>
 </div>
