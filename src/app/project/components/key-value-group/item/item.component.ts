@@ -34,7 +34,7 @@ export class ItemComponent implements OnInit {
     })
   }
 
-  onKeyBlur () {
+  onKeyBlur (e) {
     this.blur.emit({
       index: this.index,
       key: this.entity.key,
@@ -51,7 +51,7 @@ export class ItemComponent implements OnInit {
     })
   }
 
-  onValueBlur () {
+  onValueBlur (e) {
     this.blur.emit({
       index: this.index,
       key: this.entity.key,
