@@ -2,6 +2,7 @@
     <key-value-item 
         [index]="i"
         [entity]="entity"
-        (saveTemp)="saveTemp($event)"
+        (keyInput)="onKeyInput($event)"
+        (blur)="onBlur($event)"
         (delete)="onDelete(i)"></key-value-item>
 </div>

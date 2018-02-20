@@ -7,16 +7,16 @@ export interface State {
     status: boolean,
     description: string,
     repository: string,
-    environments: any
+    environments: any[]
 }
 
 const initialState: State = {
     id: null,
-    name: null,
+    name: '',
     status: true,
-    description: null,
-    repository: null,
-    environments: null
+    description: '',
+    repository: '',
+    environments: []
 }
 
 export function reducer (state = initialState, action: projectAction.Actions): State {

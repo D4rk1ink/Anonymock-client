@@ -9,13 +9,15 @@ export class ItemComponent implements OnInit {
   
   @Input('index') index: number
   @Input('entity') entity: any
-  @Output('saveTemp') saveTemp: EventEmitter<any>
+  @Output('blur') blur: EventEmitter<any>
+  @Output('keyInput') keyInput: EventEmitter<any>
   @Output('delete') delete: EventEmitter<any>
   public key: string
   public value: string
 
   constructor() {
-    this.saveTemp = new EventEmitter<any>()
+    this.keyInput = new EventEmitter<any>()
+    this.blur = new EventEmitter<any>()
     this.delete = new EventEmitter<any>()
   }
 
@@ -24,7 +26,15 @@ export class ItemComponent implements OnInit {
 
   onKey (e) {
     this.entity.key = e.target.value
-    this.saveTemp.emit({
+    this.keyInput.emit({
+      index: this.index,
+      key: this.entity.key,
+      value: this.entity.value
+    })
+  }
+
+  onKeyBlur () {
+    this.blur.emit({
       index: this.index,
       key: this.entity.key,
       value: this.entity.value
@@ -33,7 +43,19 @@ export class ItemComponent implements OnInit {
 
   onValue (e) {
     this.entity.value = e.target.value
-    this.saveTemp.emit({ index: this.index, key: this.entity.key, value: this.entity.value })
+    this.keyInput.emit({
+      index: this.index,
+      key: this.entity.key,
+      value: this.entity.value
+    })
+  }
+
+  onValueBlur () {
+    this.blur.emit({
+      index: this.index,
+      key: this.entity.key,
+      value: this.entity.value
+    })
   }
 
   onDelete () {

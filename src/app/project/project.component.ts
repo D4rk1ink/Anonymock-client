@@ -5,6 +5,7 @@ import { ProjectService } from 'app/project/services/project.service';
 import * as coreDatabase from 'app/core/services/database.service'
 import * as projectAction from 'app/project/actions/project.action'
 import * as fromProject from 'app/project/reducers'
+import * as json from 'app/project/utils/json.util';
 
 @Component({
   selector: 'app-project',
@@ -30,7 +31,7 @@ export class ProjectComponent implements OnInit {
               status: res.data.status,
               description: res.data.description,
               repository: res.data.repository,
-              environments: res.data.environments
+              environments: json.toArray(res.data.environments)
             }
             this.store.dispatch(new projectAction.ProjectAction(project))
           }

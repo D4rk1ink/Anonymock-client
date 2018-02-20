@@ -27,6 +27,7 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   ngOnChanges () {
     if (this.data) {
       this.entities = Object.assign([], this.data)
+      console.log(this.entities)
       this.temp = Object.assign({}, this.temp, json.toJSON(this.data))
       this.addEmptyEntity()
     }
@@ -35,18 +36,18 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  saveTemp (data) {
+  onKeyInput (data) {
     this.entities[data.index].key = data.key
     this.entities[data.index].value = data.value
     if (data.key !== '' && data.value === '') {
       this.entities[data.index].value = this.temp[data.key] || ''
     }
-    this.temp[data.key] = this.entities[data.index].value
     this.addEmptyEntity()
-    this.save.emit({
-      entities: Object.assign([], this.entities.filter(json => json.key !== '')),
-      temp: this.temp
-    })
+  }
+
+  onBlur (data) {
+    this.temp[data.key] = this.entities[data.index].value 
+    this.saveData()
   }
 
   addEmptyEntity () {
@@ -64,6 +65,14 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
     if (this.entities.length === 0) {
       this.entities.push({ key: '', value: '' })
     }
+    this.saveData()
+  }
+
+  saveData () {
+    this.save.emit({
+      entities: Object.assign([], this.entities.filter(json => json.key !== '')),
+      temp: this.temp
+    })
   }
 
 }

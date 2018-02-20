@@ -1,9 +1,9 @@
 <div class="item">
   <div class="key w-25">
-    <input type="text" name="key" [ngModel]="entity.key" (keyup)="onKey($event)" />
+    <input type="text" name="key" [ngModel]="entity.key" (keyup)="onKey($event)" (blur)="onKeyBlur($event)" />
   </div>
   <div class="value w-75">
-    <input type="text" name="value" [ngModel]="entity.value" (keyup)="onValue($event)" />
+    <input type="text" name="value" [ngModel]="entity.value" (keyup)="onValue($event)" (blur)="onValueBlur($event)" />
   </div>
   <div class="options">
     <i class="material-icons btn-icon btn-danger-icon" (click)="onDelete()">delete_forever</i>
