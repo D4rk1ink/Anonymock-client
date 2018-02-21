@@ -21,9 +21,9 @@
   <div class="member-list">
     <div class="member" *ngFor="let member of members">
       <div class="position">
-        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isManager;else normal_member" />
+        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isManager;else normal_member" (click)="onManager(member.user, !member.isManager)"/>
         <ng-template #normal_member>
-            <div class="circle"></div>
+            <div class="circle" (click)="onManager(member.user, !member.isManager)"></div>
         </ng-template>
       </div>
       <div class="name w-30">
@@ -34,7 +34,7 @@
       </div>
       <div class="options">
         <div class="remove">
-          <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.user.id)" >exit_to_app</i>
+          <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.user.id)" (click)="onExit(member.user)">exit_to_app</i>
         </div>
       </div>
     </div>

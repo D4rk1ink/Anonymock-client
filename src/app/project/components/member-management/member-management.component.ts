@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import { MemberService } from 'app/project/services/member.service'
-import * as projectAction from 'app/project/actions/project.action'
 import * as fromProject from 'app/project/reducers'
-import * as fromProjectReducer from 'app/project/reducers/project.reducer'
+import * as database from 'app/core/services/database.service';
 
 @Component({
   selector: 'member-management',
@@ -46,8 +45,40 @@ export class MemberManagementComponent implements OnInit {
   ngOnInit () {
   }
 
-  onExit (id) {
-    console.log(id)
+  onExit (user) {
+    if (!this.isMyself(user.id)) {
+      const payload = {
+        project: this.projectId,
+        user: user.id
+      }
+      this.memberService.exit(payload)
+        .subscribe(res => {
+          if (!res.error) {
+            this.members = this.members.filter(member => member.user.id !== user.id)
+          }
+        })
+    }
+  }
+
+  onManager (user, isManager) {
+    if (!this.isMyself(user.id)) {
+      const payload = {
+        project: this.projectId,
+        user: user.id,
+        isManager: isManager
+      }
+      this.memberService.manager(payload)
+        .subscribe(res => {
+          if (!res.error) {
+            this.members = this.members.map(member => {
+              if (member.user.id === user.id) {
+                member.isManager = res.data.isManager
+              }
+              return member
+            })
+          }
+        })
+    }
   }
 
   onAdd (user) {
@@ -111,6 +142,10 @@ export class MemberManagementComponent implements OnInit {
           this.members = res.data
         }
       })
+  }
+
+  isMyself (id) {
+    return database.getUser().id === id
   }
 
 }
