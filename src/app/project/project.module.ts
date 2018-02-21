@@ -56,7 +56,12 @@ import { MethodService } from './services/method.service';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forRoot(projectReducers),
+    StoreModule.forFeature('project', projectReducers.project),
+    StoreModule.forFeature('database', projectReducers.database),
+    StoreModule.forFeature('folder', projectReducers.folder),
+    StoreModule.forFeature('endpoint', projectReducers.endpoint),
+    StoreModule.forFeature('endpoints', projectReducers.endpoints),
+    StoreModule.forFeature('response', projectReducers.response),
     SharedModule,
     ProjectRoutingModule
   ],

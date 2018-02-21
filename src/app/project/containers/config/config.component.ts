@@ -20,11 +20,10 @@ export class ConfigComponent implements OnInit {
     private store: Store<any>,
     private projectService: ProjectService
   ) {
-    // this.store.select(fromCore.getProjectsItems)
-    //   .subscribe(projects => {
-    //     console.log(projects)
-    //     this.projects = projects
-    //   })
+    this.store.select(fromCore.getProjectsItems)
+      .subscribe(projects => {
+        this.projects = projects
+      })
     this.store.select(fromProject.getProject)
       .subscribe(project => {
         this.project = {
@@ -46,26 +45,23 @@ export class ConfigComponent implements OnInit {
   }
 
   onUpdate () {
-    // this.store.dispatch(new projectsAction.ItemsAction([]))
-    // this.store.dispatch(new userAction.FirstnameAction('asd'))
     const payload = {
       ...this.project,
       environments: json.toJSON(this.project.environments)
     }
-    console.log(payload)
-    // this.projectService.update(this.project.id, payload)
-    //   .subscribe(res => {
-    //     if (!res.error) {
-    //       this.projects = this.projects.map(project => {
-    //         if (project.id === res.data.id) {
-    //           project.name = res.data.name
-    //           project.status = res.data.status
-    //         }
-    //         return project
-    //       })
-    //       this.store.dispatch(new projectsAction.ItemsAction(this.projects))
-    //     }
-    //   })
+    this.projectService.update(this.project.id, payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.projects = this.projects.map(project => {
+            if (project.id === res.data.id) {
+              project.name = res.data.name
+              project.status = res.data.status
+            }
+            return project
+          })
+          this.store.dispatch(new projectsAction.ItemsAction(this.projects))
+        }
+      })
   }
 
 }
