@@ -44,6 +44,10 @@ export class EndpointsComponent implements OnInit {
   ngOnInit () {
   }
 
+  onSearch (text) {
+    this.store.dispatch(new endpointsAction.SearchAction(text))
+  }
+
   search () {
     if (this.searchSub) {
       this.searchSub.unsubscribe()
