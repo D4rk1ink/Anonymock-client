@@ -21,6 +21,7 @@ export class ProjectComponent implements OnInit {
   ) {
     this.route.params.subscribe(param => {
       const projectId = param['project-id']
+      this.store.dispatch(new projectAction.IdAction(projectId))
       coreDatabase.saveProject(projectId)
       this.projectService.get(projectId)
         .subscribe(res => {
