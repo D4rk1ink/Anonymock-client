@@ -24,4 +24,9 @@ export class ProjectService {
     const url = constants.BASE_API + '/project/' + id
     return this.http.patch(url, payload)
   }
+
+  delete (id): Observable<any> {
+    const url = constants.BASE_API + '/project/' + id
+    return this.http.delete(url)
+  }
 }
