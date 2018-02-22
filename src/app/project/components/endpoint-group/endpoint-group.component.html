@@ -3,7 +3,7 @@
     <div class="title">
       Endpoints
     </div>
-    <div class="new" (click)="onNew()">
+    <div class="new" *ngIf="canNew" (click)="onNew()">
       <i class="material-icons btn-icon btn-sky-icon">add_box</i>
     </div>
   </div>
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="pagging">
-    <div class="" (click)="onPage(-1)">Prev</div>
-    <div class="" (click)="onPage(+1)">Next</div>
+    <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>
+    <div class=""><label *ngIf="page < limitPage" (click)="onPage(+1)">Next</label></div>
   </div>
 </div>

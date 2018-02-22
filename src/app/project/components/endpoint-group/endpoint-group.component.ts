@@ -14,9 +14,11 @@ import * as fromProject from 'app/project/reducers'
 export class EndpointGroupComponent implements OnInit {
 
   @Input('folderId') folderId: string
+  @Input('canNew') canNew: boolean
 
   public endpoints: any[]
   public page: number
+  public limitPage: number
 
   constructor (
     private store: Store<any>,
@@ -25,9 +27,10 @@ export class EndpointGroupComponent implements OnInit {
   ) {
     this.page = 1
     this.setPage()
-    this.store.select(fromProject.getEndpointsItems)
+    this.store.select(fromProject.getEndpoints)
       .subscribe(endpoints => {
-        this.endpoints = endpoints
+        this.endpoints = endpoints.items
+        this.limitPage = endpoints.limitPage
       })
   }
 
@@ -41,15 +44,26 @@ export class EndpointGroupComponent implements OnInit {
   onNew () {
     this.endpointService.create({ folder: this.folderId })
       .subscribe(res => {
-        if (this.endpoints.length >= 10) {
-          this.endpoints = this.endpoints.slice(0, this.endpoints.length - 1)
+        if (this.page > 1) {
+          this.page = 1
+          this.setPage()
+        } else {
+          if (this.endpoints.length >= 10) {
+            this.endpoints = this.endpoints.slice(0, this.endpoints.length - 1)
+            this.store.dispatch(new endpointsAction.LimitPageAction(this.limitPage + 1))
+          }
+          this.endpoints = [res.data, ...this.endpoints]
+          this.store.dispatch(new endpointsAction.ItemsAction(this.endpoints))
         }
-        this.endpoints = [res.data, ...this.endpoints]
       })
   }
 
   onPage (val) {
-
+    const temp = this.page + val
+    if (temp >= 1 || temp <= this.limitPage) {
+      this.page = temp
+      this.setPage()
+    }
   }
 
   setPage () {
