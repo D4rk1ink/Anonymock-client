@@ -2,7 +2,8 @@
     <key-value-item 
         [index]="i"
         [entity]="entity"
-        (keyInput)="onKeyInput($event)"
+        (inputKey)="onInputKey($event)"
+        (inputValue)="onInputValue($event)"
         (blur)="onBlur($event)"
         (delete)="onDelete(i)"
         [disableDelete]="autoKey"></key-value-item>

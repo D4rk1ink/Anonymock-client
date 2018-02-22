@@ -21,10 +21,16 @@ export const toArray = (json) => {
     return entities
 }
 
-export const toJSON = (array) => {
-    const json = {}
-    for (const arr of array) {
-        json[arr.key] = arr.value
+export const toJSON = (data) => {
+    if (typeof data === 'string') {
+        return JSON.parse(data)
+    } else {
+        const json = {}
+        for (const arr of data) {
+            if (arr.key.trim() !== '') {
+                json[arr.key] = arr.value
+            }
+        }
+        return json
     }
-    return json
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service';
@@ -12,7 +12,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './response.component.html',
   styleUrls: ['./response.component.scss']
 })
-export class ResponseComponent implements OnInit {
+export class ResponseComponent implements OnInit, OnDestroy {
 
   public endpoint: any
   public path: string
@@ -48,10 +48,11 @@ export class ResponseComponent implements OnInit {
             res.data.condition.headers = json.toArray(res.data.condition.headers)
             res.data.condition.queryString = json.toArray(res.data.condition.queryString)
             res.data.response.headers = json.toArray(res.data.response.headers)
-            this.store.dispatch(new responseAction.IdAction(res.data.id))
-            this.store.dispatch(new responseAction.NameAction(res.data.name))
-            this.store.dispatch(new responseAction.ConditionAction(res.data.condition))
-            this.store.dispatch(new responseAction.ResponseAction(res.data.response))
+            this.store.dispatch(new responseAction.AllAction(res.data))
+            // this.store.dispatch(new responseAction.IdAction(res.data.id))
+            // this.store.dispatch(new responseAction.NameAction(res.data.name))
+            // this.store.dispatch(new responseAction.ConditionAction(res.data.condition))
+            // this.store.dispatch(new responseAction.ResponseAction(res.data.response))
           }
         })
     })
@@ -67,11 +68,11 @@ export class ResponseComponent implements OnInit {
 
   paramsFilter (path) {
     if (!path || !this.response) return
-    const paramPattern = /\{([A-Za-z0-9\-]+)\}/g
+    const paramPattern = /{{\s*([A-Za-z0-9\-]+)\s*}}/g
     const match = path.match(paramPattern) || []
     const keys = match
-      .map(key => new RegExp(paramPattern).exec(key).slice(1).pop())
-      .filter((param, i, arr) => param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
+      .map(token => (new RegExp(paramPattern).exec(token) || [null, '']).slice(1).pop())
+      .filter((param, i, arr) => param && param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
     const temp = [...this.response.condition.params]
     this.response.condition.params = []
     for (const key of keys) {
@@ -97,11 +98,13 @@ export class ResponseComponent implements OnInit {
       condition: {
         ...this.response.condition,
         params: json.toJSON(this.response.condition.params),
+        body: json.toJSON(this.response.condition.body),
         headers: json.toJSON(this.response.condition.headers),
         queryString: json.toJSON(this.response.condition.queryString)
       },
       response: {
         ...this.response.response,
+        body: json.toJSON(this.response.response.body),
         headers: json.toJSON(this.response.response.headers)
       }
     }
@@ -117,5 +120,9 @@ export class ResponseComponent implements OnInit {
             })
         }
       })
+  }
+
+  ngOnDestroy () {
+    this.store.dispatch(new responseAction.ClearAction())
   }
 }

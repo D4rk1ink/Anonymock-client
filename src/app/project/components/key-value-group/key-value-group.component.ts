@@ -16,12 +16,7 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
 
   constructor() {
     this.save = new EventEmitter<any>()
-    this.entities = [
-      {
-        key: '',
-        value: ''
-      }
-    ]
+    this.entities = []
     this.temp = {}
   }
 
@@ -44,12 +39,18 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  onKeyInput (data) {
+  onInputKey (data) {
     this.entities[data.index].key = data.key
     this.entities[data.index].value = data.value
     if (data.key !== '' && data.value === '') {
       this.entities[data.index].value = this.temp[data.key] || ''
     }
+    this.addEmptyEntity()
+  }
+
+  onInputValue (data) {
+    this.entities[data.index].key = data.key
+    this.entities[data.index].value = data.value
     this.addEmptyEntity()
   }
 
@@ -71,10 +72,10 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
 
   onDelete (index) {
     this.entities.splice(index, 1)
+    this.saveData()
     if (this.entities.length === 0) {
       this.entities.push({ key: '', value: '' })
     }
-    this.saveData()
   }
 
   saveData () {

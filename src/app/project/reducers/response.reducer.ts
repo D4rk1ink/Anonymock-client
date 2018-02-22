@@ -37,6 +37,8 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: responseAction.Actions): State {
     switch (action.type) {
+        case responseAction.ALL: 
+            return action.payload
         case responseAction.ID: 
             return {
                 ...state,
@@ -57,6 +59,8 @@ export function reducer (state = initialState, action: responseAction.Actions): 
                 ...state,
                 response: action.payload
             }
+        case responseAction.CLEAR: 
+            return initialState
         default: 
             return state
     }

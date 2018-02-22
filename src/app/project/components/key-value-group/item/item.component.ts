@@ -11,13 +11,15 @@ export class ItemComponent implements OnInit {
   @Input('entity') entity: any
   @Input('disableDelete') disableDelete: any
   @Output('blur') blur: EventEmitter<any>
-  @Output('keyInput') keyInput: EventEmitter<any>
+  @Output('inputKey') inputKey: EventEmitter<any>
+  @Output('inputValue') inputValue: EventEmitter<any>
   @Output('delete') delete: EventEmitter<any>
   public key: string
   public value: string
 
   constructor() {
-    this.keyInput = new EventEmitter<any>()
+    this.inputKey = new EventEmitter<any>()
+    this.inputValue = new EventEmitter<any>()
     this.blur = new EventEmitter<any>()
     this.delete = new EventEmitter<any>()
   }
@@ -27,7 +29,7 @@ export class ItemComponent implements OnInit {
 
   onKey (e) {
     this.entity.key = e.target.value
-    this.keyInput.emit({
+    this.inputValue.emit({
       index: this.index,
       key: this.entity.key,
       value: this.entity.value
@@ -44,7 +46,7 @@ export class ItemComponent implements OnInit {
 
   onValue (e) {
     this.entity.value = e.target.value
-    this.keyInput.emit({
+    this.inputValue.emit({
       index: this.index,
       key: this.entity.key,
       value: this.entity.value
