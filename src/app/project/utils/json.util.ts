@@ -24,7 +24,7 @@ export const toArray = (json) => {
 export const toJSON = (data) => {
     if (typeof data === 'string') {
         return JSON.parse(data)
-    } else {
+    } else if (Array.isArray(data)) {
         const json = {}
         for (const arr of data) {
             if (arr.key.trim() !== '') {
@@ -33,4 +33,5 @@ export const toJSON = (data) => {
         }
         return json
     }
+    return data
 }
