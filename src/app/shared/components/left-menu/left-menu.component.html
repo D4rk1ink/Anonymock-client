@@ -25,7 +25,7 @@
       <i class="material-icons">add</i>
     </div>
   </div>
-  <div class="project-menu new-project-row" *ngIf="isNewProject">
+  <div class="project-menu new-project-row" [class.none]="!isNewProject">
     <div class="main-row">
       <form #form="ngForm" (ngSubmit)="onSubmitNewProject(form.value)">
         <input type="text" name="name" class="project-name-input" placeholder="New project" (blur)="onBlurNewProject()" ngModel/>

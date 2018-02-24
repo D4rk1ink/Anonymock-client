@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
 import { Store } from '@ngrx/store';
 import { ProjectService } from 'app/project/services/project.service'
@@ -25,7 +25,8 @@ export class LeftMenuComponent implements OnInit {
     private store: Store<any>,
     private router: Router,
     private userService: UserService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private el: ElementRef
   ) {
     const user = database.getUser()
     this.store.select(fromCore.getProjectsItems)
@@ -79,11 +80,17 @@ export class LeftMenuComponent implements OnInit {
 
   onExpandProject (id) {
     this.menuTarget = id
-    // this.router.navigateByUrl(`/project/${id}/folder`)
   }
 
   onNewProject () {
     this.isNewProject = !this.isNewProject
+    if (this.isNewProject) {
+      const autofocus = this.el.nativeElement.querySelector('.project-name-input')
+      if (autofocus) {
+        autofocus.value = ''
+        setTimeout(() => autofocus.focus(), 0)
+      }
+    }
   }
 
   onBlurNewProject () {
