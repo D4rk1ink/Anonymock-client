@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import { FolderService } from 'app/project/services/folder.service'
-import * as projectAction from 'app/project/actions/project.action'
 import * as fromProject from 'app/project/reducers'
 
 import { projects } from 'app/mock/projects'
@@ -21,12 +20,14 @@ export class FoldersComponent implements OnInit {
   public page: number
   public limitPage: number
   public isNewFolder: boolean
+  public isRename: string
 
   public searchSub: Subscription
 
   constructor (
     private store: Store<any>,
-    private folderService: FolderService
+    private folderService: FolderService,
+    private el: ElementRef
   ) {
     this.folders = []
     this.searchFolder = ''
@@ -44,6 +45,32 @@ export class FoldersComponent implements OnInit {
 
   onNew () {
     this.isNewFolder = true
+    if (this.isNewFolder) {
+      const autofocus = this.el.nativeElement.querySelector('.input-name')
+      if (autofocus) {
+        autofocus.value = ''
+        setTimeout(() => autofocus.focus(), 0)
+      }
+    }
+  }
+
+  onRename (folder) {
+    this.isRename = folder.id
+    if (this.isRename) {
+      const autofocus = this.el.nativeElement.querySelector(`.input-rename-${folder.id}`)
+      if (autofocus) {
+        autofocus.value = folder.name
+        setTimeout(() => autofocus.focus(), 0)
+      }
+    }
+  }
+
+  onNewBlur () {
+    this.isNewFolder = false
+  }
+
+  onRenameBlur () {
+    this.isRename = null
   }
   
   onSearch (text) {
@@ -52,7 +79,6 @@ export class FoldersComponent implements OnInit {
   }
 
   onSubmitNewFolder (values) {
-    this.isNewFolder = false
     const payload = {
       project: this.projectId,
       name: values.name
@@ -62,6 +88,25 @@ export class FoldersComponent implements OnInit {
         if (!res.error) {
           this.folders = [res.data, ...this.folders]
         }
+        this.onNewBlur()
+      })
+  }
+
+  onSubmitRename (id, values) {
+    const payload = {
+      name: values.rename
+    }
+    this.folderService.update(id, payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.folders = this.folders.map(folder => {
+            if (folder.id === res.data.id) {
+              folder.name = res.data.name
+            }
+            return folder
+          })
+        }
+        this.onRenameBlur()
       })
   }
 
