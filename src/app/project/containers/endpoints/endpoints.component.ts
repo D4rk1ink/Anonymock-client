@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import { EndpointService } from 'app/project/services/endpoint.service'
@@ -12,7 +12,7 @@ import { projects } from 'app/mock/projects'
   templateUrl: './endpoints.component.html',
   styleUrls: ['./endpoints.component.scss']
 })
-export class EndpointsComponent implements OnInit {
+export class EndpointsComponent implements OnInit, OnDestroy {
 
   public projectId: string
   public endpoints: any[]
@@ -64,6 +64,10 @@ export class EndpointsComponent implements OnInit {
           this.store.dispatch(new endpointsAction.LimitPageAction(res.data.limitPage))
         }
       })
+  }
+
+  ngOnDestroy () {
+    this.store.dispatch(new endpointsAction.ClearAction())
   }
 
 }
