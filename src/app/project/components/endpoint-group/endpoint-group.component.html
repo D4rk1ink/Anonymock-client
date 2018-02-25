@@ -22,18 +22,18 @@
       </div>
       <div class="options">
         <div class="copy">
-          <i class="material-icons btn-icon btn-sky-icon">content_copy</i>
+          <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
         </div>
         <div class="share">
-          <i class="material-icons btn-icon btn-sky-icon">share</i>
+          <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
         </div>
-        <div class="edit">
+        <!-- <div class="edit">
           <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
-  <div class="pagging">
+  <div class="pagging" *ngIf="limitPage > 1">
     <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>
     <div class=""><label *ngIf="page < limitPage" (click)="onPage(+1)">Next</label></div>
   </div>

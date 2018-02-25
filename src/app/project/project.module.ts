@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ClipboardModule } from 'ngx-clipboard';
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { SharedModule } from '../shared/shared.module'
@@ -62,6 +63,7 @@ import { MethodService } from './services/method.service';
     StoreModule.forFeature('endpoint', projectReducers.endpoint),
     StoreModule.forFeature('endpoints', projectReducers.endpoints),
     StoreModule.forFeature('response', projectReducers.response),
+    ClipboardModule,
     SharedModule,
     ProjectRoutingModule
   ],
