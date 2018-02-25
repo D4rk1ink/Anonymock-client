@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <div class="pagging">
+  <div class="pagging" *ngIf="limitPage > 1">
     <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>
     <div class=""><label *ngIf="page < limitPage" (click)="onPage(+1)">Next</label></div>
   </div>
