@@ -57,7 +57,7 @@
 <section class="section">
     <entity-group [title]="'Environments'" [entities]="project.environments" (save)="onEnvironment($event)"></entity-group>
 </section>
-<section class="section form-inline between">
+<section class="section form-inline between" *ngIf="project.isManager">
     <div class="">
         <button class="btn btn-sky" (click)="onUpdate()">Save</button>
     </div>

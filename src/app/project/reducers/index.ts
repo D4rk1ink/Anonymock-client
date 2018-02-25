@@ -39,6 +39,7 @@ export const getProjectState = createFeatureSelector<fromProject.State>('project
 export const getProject = createSelector(getProjectState, fromProject.getAll)
 export const getProjectId = createSelector(getProjectState, fromProject.getId)
 export const getProjectName = createSelector(getProjectState, fromProject.getName)
+export const getProjectIsManager = createSelector(getProjectState, fromProject.getIsManager)
 
 // export const getDatabaseState = (state: ProjectState) => state.database
 export const getDatabaseState = createFeatureSelector<fromDatabase.State>('database')

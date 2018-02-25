@@ -4,10 +4,11 @@ import * as projectAction from '../actions/project.action'
 export interface State {
     id: string
     name: string
-    status: boolean,
-    description: string,
-    repository: string,
+    status: boolean
+    description: string
+    repository: string
     environments: any[]
+    isManager: boolean
 }
 
 const initialState: State = {
@@ -16,7 +17,8 @@ const initialState: State = {
     status: true,
     description: '',
     repository: '',
-    environments: []
+    environments: [],
+    isManager: false
 }
 
 export function reducer (state = initialState, action: projectAction.Actions): State {
@@ -53,6 +55,11 @@ export function reducer (state = initialState, action: projectAction.Actions): S
                 ...state,
                 environments: action.payload
             }
+        case projectAction.ISMANAGER: 
+            return {
+                ...state,
+                isManager: action.payload
+            }
         default:
             return state
     }
@@ -60,4 +67,5 @@ export function reducer (state = initialState, action: projectAction.Actions): S
 
 export const getId = (state: State) => state.id
 export const getName = (state: State) => state.name
+export const getIsManager = (state: State) => state.isManager
 export const getAll = (state: State) => state

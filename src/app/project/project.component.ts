@@ -32,7 +32,8 @@ export class ProjectComponent implements OnInit {
               status: res.data.status,
               description: res.data.description,
               repository: res.data.repository,
-              environments: json.toArray(res.data.environments)
+              environments: json.toArray(res.data.environments),
+              isManager: res.data.isManager,
             }
             this.store.dispatch(new projectAction.ProjectAction(project))
           }
