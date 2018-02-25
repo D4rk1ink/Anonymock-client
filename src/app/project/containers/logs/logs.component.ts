@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store'
+import { LogService } from 'app/project/services/log.service'
+import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'app-logs',
@@ -7,42 +10,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogsComponent implements OnInit {
 
-  public logs: any
+  public projectId: string
 
-  constructor () {
-    this.logs = [
-      {
-        id: 'h8jFkidV82Flvsd',
-        name: 'Verify Account',
-        method: 'GET',
-        path: '/verify-account/001',
-        date: 1110121500
-      },
-      {
-        id: 'l0JhfiFslmvCei6',
-        name: 'Verify Account',
-        method: 'GET',
-        path: '/verify-account/002',
-        date: 1110121500
-      },
-      {
-        id: 'nFge4Hf6g7kDsvR',
-        name: 'Verify Promotion',
-        method: 'PUT',
-        path: '/verify-promotion',
-        date: 1110121500
-      },
-      {
-        id: 'D6H7jfg8kvbf1df',
-        name: 'Checkout',
-        method: 'PATCH',
-        path: '/checkout',
-        date: 1110121500
-      }
-    ]
+  public logs: any[]
+  public searchLog: string
+  public page: number
+  public limitPage: number
+  public logTarget: string
+
+  constructor (
+    private store: Store<any>,
+    private logService: LogService
+  ) {
+    this.logs = []
+    this.searchLog = ''
+    this.page = 1
+    this.store.select(fromProject.getProjectId)
+      .subscribe(id => {
+        if (!id) return
+        this.projectId = id
+        this.search()
+      })
   }
 
-  ngOnInit() {
+  ngOnInit () {
+  }
+
+  onSearch (text) {
+    this.searchLog = text
+    this.search()
+  }
+
+  search () {
+    const payload = {
+      project: this.projectId,
+      search: this.searchLog,
+      page: this.page
+    }
+    this.logService.search(payload)
+      .subscribe(res => {
+        if (!res.error) {
+          this.logs = res.data.logs
+          this.limitPage = res.data.limitPage
+        }
+      })
+  }
+
+  onExpand (id) {
+    this.logTarget = id
+  }
+
+  onPage (val) {
+    const temp = this.page + val
+    if (temp >= 1 || temp <= this.limitPage) {
+      this.page = temp
+      this.search()
+    }
   }
 
 }

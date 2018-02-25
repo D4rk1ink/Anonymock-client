@@ -52,6 +52,7 @@ import { MemberService } from './services/member.service';
 import { FolderService } from './services/folder.service';
 import { EndpointService } from './services/endpoint.service';
 import { ResponseService } from './services/response.service';
+import { LogService } from './services/log.service';
 import { MethodService } from './services/method.service';
 
 @NgModule({
@@ -151,6 +152,7 @@ import { MethodService } from './services/method.service';
     FolderService,
     EndpointService,
     ResponseService,
+    LogService,
     MethodService
   ]
 })

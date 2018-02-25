@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'log-request',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./log-request.component.scss']
 })
 export class LogRequestComponent implements OnInit {
+
+  @Input('data') data: any[]
 
   public menuSelector: string
   public menu: any[] = [

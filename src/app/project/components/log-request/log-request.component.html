@@ -7,19 +7,19 @@
   <div class="content" [ngSwitch]="menuSelector">
     <div *ngSwitchCase="'M01'">
       <code-editor
-        [text]="'{}'"
+        [text]="data.headers"
         [mode]="'json'"
         [readOnly]="true"></code-editor>
     </div>
     <div *ngSwitchCase="'M02'">
         <code-editor
-          [text]="'{}'"
+          [text]="data.body"
           [mode]="'json'"
           [readOnly]="true"></code-editor>
     </div>
     <div *ngSwitchCase="'M03'">
         <code-editor
-          [text]="'{}'"
+          [text]="data.client"
           [mode]="'json'"
           [readOnly]="true"></code-editor>
     </div>
