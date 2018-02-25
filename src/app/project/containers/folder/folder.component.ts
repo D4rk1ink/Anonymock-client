@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
@@ -14,7 +14,7 @@ import { projects } from 'app/mock/projects'
   templateUrl: './folder.component.html',
   styleUrls: ['./folder.component.scss']
 })
-export class FolderComponent implements OnInit {
+export class FolderComponent implements OnInit, OnDestroy {
 
   public folderId: string
   public name: string
@@ -73,6 +73,10 @@ export class FolderComponent implements OnInit {
           this.store.dispatch(new endpointsAction.LimitPageAction(res.data.limitPage))
         }
       })
+  }
+
+  ngOnDestroy () {
+    this.store.dispatch(new endpointsAction.ClearAction())
   }
 
 }

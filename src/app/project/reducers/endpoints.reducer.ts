@@ -37,6 +37,8 @@ export function reducer (state = initialState, action: endpointsAction.Actions):
                 ...state,
                 items: action.payload
             }
+        case endpointsAction.CLEAR: 
+            return initialState
         default: 
             return state
     }

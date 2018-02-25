@@ -5,6 +5,7 @@ export const SEARCH = '[Endpoints] Search'
 export const PAGE = '[Endpoints] Page'
 export const LIMITPAGE = '[Endpoints] LimitPage'
 export const ITEMS = '[Endpoints] Items'
+export const CLEAR = '[Endpoints] Clear'
 
 export class SearchAction implements Action {
     readonly type = SEARCH
@@ -30,8 +31,15 @@ export class ItemsAction implements Action {
     constructor (public payload) { }
 }
 
+export class ClearAction implements Action {
+    readonly type = CLEAR
+
+    constructor () { }
+}
+
 export type Actions
 = SearchAction
 | PageAction
 | LimitPageAction
 | ItemsAction
+| ClearAction
