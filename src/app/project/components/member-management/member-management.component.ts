@@ -12,6 +12,7 @@ import * as database from 'app/core/services/database.service';
 })
 export class MemberManagementComponent implements OnInit {
 
+  public isManager: boolean
   public projectId: string
   public members: any[]
   public users: any[]
@@ -27,18 +28,12 @@ export class MemberManagementComponent implements OnInit {
     this.selectOption = 'search'
     this.members = []
     this.users = []
-    this.store.select(fromProject.getProjectId)
-      .subscribe(id => {
-        this.projectId = id
-        this.memberService.searchMember({
-          project: id,
-          search: ''
-        })
-          .subscribe(res => {
-            if (!res.error) {
-              this.members = res.data
-            }
-          })
+    this.search = ''
+    this.store.select(fromProject.getProject)
+      .subscribe(project => {
+        this.projectId = project.id
+        this.isManager = project.isManager
+        this.searchMember()
       })
   }
 
@@ -46,7 +41,7 @@ export class MemberManagementComponent implements OnInit {
   }
 
   onExit (user) {
-    if (!this.isMyself(user.id)) {
+    if (this.isManager && !this.isMyself(user.id)) {
       const payload = {
         project: this.projectId,
         user: user.id
@@ -61,7 +56,7 @@ export class MemberManagementComponent implements OnInit {
   }
 
   onManager (user, isManager) {
-    if (!this.isMyself(user.id)) {
+    if (this.isManager && !this.isMyself(user.id)) {
       const payload = {
         project: this.projectId,
         user: user.id,
@@ -82,7 +77,7 @@ export class MemberManagementComponent implements OnInit {
   }
 
   onAdd (user) {
-    if (!user.isMember) {
+    if (this.isManager && !user.isMember) {
       const payload = {
         project: this.projectId,
         user: user.id
