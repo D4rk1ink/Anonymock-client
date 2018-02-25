@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { AuthService } from 'app/auth/services/auth.service'
+import * as database from 'app/core/services/database.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,9 @@ export class SignUpComponent implements OnInit {
 
   constructor (
     private authService: AuthService
-  ) { }
+  ) {
+    database.clearAll()
+  }
 
   ngOnInit () {
   }

@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store'
 import { coreReducers } from './reducers'
 
 import { InterceptorService } from './services/interceptor.service'
+import { AuthGuardService } from './services/auth-guard.service'
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ export class CoreModule {
           provide: HTTP_INTERCEPTORS,
           useClass: InterceptorService,
           multi: true
-        }
+        },
+        AuthGuardService
       ]
     }
   }

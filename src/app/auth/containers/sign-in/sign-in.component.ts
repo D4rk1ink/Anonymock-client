@@ -16,7 +16,9 @@ export class SignInComponent implements OnInit {
   constructor (
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) {
+    database.clearAll()
+  }
 
   ngOnInit () {
   }
@@ -26,9 +28,11 @@ export class SignInComponent implements OnInit {
       username: this.username,
       password: this.password
     }
+    console.log(payload)
     this.authService.signin(payload)
-      .subscribe(res => {
-        if (!res.error) {
+    .subscribe(res => {
+      console.log(res)
+      if (!res.error) {
           database.saveToken(res.data.token)
           database.saveUser(res.data.user)
           this.router.navigateByUrl('/my-account')
