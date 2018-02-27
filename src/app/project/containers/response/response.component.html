@@ -1,30 +1,32 @@
-<section class="section">
-  <input type="text" name="name" [(ngModel)]="response.name" placeholder="Response name"/>
-</section>
-<div class="title-center">
-  REQUEST
-</div>
-<section class="section">
-  <entity-group
-    [title]="'Params'"
-    [entities]="response.condition.params"
-    [autoKey]="true"
-    (save)="saveParam($event)"></entity-group>
-</section>
-<section class="section">
-  <request-group></request-group>
-</section>
-<div class="title-center">
-  RESPONSE
-</div>
-<section class="section">
-  <response-group></response-group>
-</section>
-<section class="section form-inline content-between">
-  <div class="">
-      <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+<div class="wrapper">
+  <section class="section">
+    <input type="text" name="name" [(ngModel)]="response.name" placeholder="Response name"/>
+  </section>
+  <div class="title-center">
+    REQUEST
   </div>
-  <div class="">
-      <button class="btn btn-danger">Delete</button>
+  <section class="section params" *ngIf="response.condition.params.length > 0">
+    <entity-group
+      [title]="'Params'"
+      [entities]="response.condition.params"
+      [autoKey]="true"
+      (save)="saveParam($event)"></entity-group>
+  </section>
+  <section class="section">
+    <request-group></request-group>
+  </section>
+  <div class="title-center">
+    RESPONSE
   </div>
-</section>
+  <section class="section">
+    <response-group></response-group>
+  </section>
+  <section class="section form-inline content-between">
+    <div class="">
+        <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+    </div>
+    <div class="">
+        <button class="btn btn-danger">Delete</button>
+    </div>
+  </section>
+</div>

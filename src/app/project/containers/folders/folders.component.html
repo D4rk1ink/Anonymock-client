@@ -1,9 +1,4 @@
-<div class="">
-  <h2>Folders</h2>
-</div>
-
-<!-- <search-input (out)="onSearch($event)"></search-input> -->
-<div class="c-wrapper">
+<div class="c-wrapper slide-to-right">
   <div class="c-header">
     <h4>Folders</h4>
     <div class="options">
@@ -26,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="c-list-item folder" *ngFor="let folder of folders">
+    <div class="c-list-item folder" *ngFor="let folder of folders; let i = index">
       <div class="id">
         {{ folder.id }}
       </div>

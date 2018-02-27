@@ -1,15 +1,6 @@
 @import "colors";
 
-.entity-group {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .header {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        max-height: 40px;
+    .c-header {
         .title {
             display: flex;
             align-items: center;
@@ -29,7 +20,5 @@
         transition:  height .5s, max-height .5s;
     }
     .expand.active {
-        border-top: 1px solid $gray_1;
         max-height: 500px !important;
     }
-}

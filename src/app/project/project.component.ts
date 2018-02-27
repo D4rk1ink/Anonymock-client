@@ -14,6 +14,8 @@ import * as json from 'app/project/utils/json.util';
 })
 export class ProjectComponent implements OnInit {
 
+  public isLoading: boolean
+
   constructor (
     private store: Store<any>,
     private route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class ProjectComponent implements OnInit {
       const projectId = param['project-id']
       this.store.dispatch(new projectAction.IdAction(projectId))
       coreDatabase.saveProject(projectId)
+      this.isLoading = true
       this.projectService.get(projectId)
         .subscribe(res => {
           if (!res.error) {
@@ -36,6 +39,7 @@ export class ProjectComponent implements OnInit {
               isManager: res.data.isManager,
             }
             this.store.dispatch(new projectAction.ProjectAction(project))
+            this.isLoading = false
           }
         })
     })
@@ -43,5 +47,9 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit () {
     
+  }
+
+  getRouterOutletState (outlet) {
+    return outlet.activatedRouteData.state
   }
 }

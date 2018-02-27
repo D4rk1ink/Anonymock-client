@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="c-list">
-    <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints">
+    <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints; let i = index">
       <div class="id">
         {{ endpoint.id }}
       </div>
