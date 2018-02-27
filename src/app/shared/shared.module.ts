@@ -6,6 +6,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AceEditorModule } from 'ng2-ace-editor'
 import { CoreModule } from 'app/core/core.module'
 
+import {
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule
+} from '@angular/material'
+
 import { MainLayoutComponent } from './components/main-layout/main-layout.component'
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
@@ -22,7 +30,13 @@ import { UserService } from 'app/my-account/services/user.service';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AceEditorModule
+    AceEditorModule,
+    // For material
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule
   ],
   declarations: [
     MainLayoutComponent,
