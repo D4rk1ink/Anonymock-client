@@ -44,6 +44,7 @@ export class EndpointGroupComponent implements OnInit {
   onNew () {
     this.endpointService.create({ folder: this.folderId })
       .subscribe(res => {
+        res.data.isNew = true
         if (this.page > 1) {
           this.page = 1
           this.setPage()
@@ -56,6 +57,10 @@ export class EndpointGroupComponent implements OnInit {
           this.store.dispatch(new endpointsAction.ItemsAction(this.endpoints))
         }
       })
+  }
+
+  onSearch (text) {
+    this.store.dispatch(new endpointsAction.SearchAction(text))
   }
 
   onPage (val) {

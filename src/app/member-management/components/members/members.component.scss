@@ -1,11 +1,6 @@
 @import "colors";
 
-.member-list {
-    padding: 10px 0;
-}
 .member {
-    display: flex;
-    padding: 10px;
     display: flex;
     align-items: center;
     .admin {
@@ -50,8 +45,4 @@
             opacity: 1;
         }
     }
-}
-
-.member:hover {
-    background-color: rgba($sky_0, 0.1);
 }

@@ -1,0 +1,24 @@
+@import "colors";
+
+.toggle-method {
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: $white;
+    font-size: 10px;
+    font-weight: 400;
+}
+.toggle-method.toggle-get {
+    background-color: $get_color;
+}
+.toggle-method.toggle-post {
+    background-color: $post_color;
+}
+.toggle-method.toggle-put {
+    background-color: $put_color;
+}
+.toggle-method.toggle-patch {
+    background-color: $patch_color;
+}
+.toggle-method.toggle-delete {
+    background-color: $delete_color;
+}

@@ -2,15 +2,17 @@
   <h2>Member Management</h2>
 </div>
 
-<search-input (out)="onSearch($event)"></search-input>
 
-<div class="management">
-  <div class="tabs">
-    <div class="item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
+<div class="c-wrapper">
+  <div class="c-tabs">
+    <div class="item c-tab-item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
       {{ item.title }}
     </div>
+    <div class="search">
+      <search-input (out)="onSearch($event)"></search-input>
+    </div>
   </div>
-  <div class="content" [ngSwitch]="menuSelector">
+  <div class="" [ngSwitch]="menuSelector">
     <members *ngSwitchCase="'M01'"></members>
     <request *ngSwitchCase="'M02'"></request>
   </div>

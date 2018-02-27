@@ -1,14 +1,15 @@
-<div class="endpoints">
-  <div class="header">
-    <div class="title">
-      Endpoints
-    </div>
-    <div class="new" *ngIf="canNew" (click)="onNew()">
-      <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+<div class="c-wrapper">
+  <div class="c-header">
+    <h4>Endpoints</h4>
+    <div class="options">
+      <search-input (out)="onSearch($event)"></search-input>
+      <div class="new center-align" *ngIf="canNew" (click)="onNew()">
+        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+      </div>
     </div>
   </div>
-  <div class="items">
-    <div class="item" *ngFor="let endpoint of endpoints">
+  <div class="c-list">
+    <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints">
       <div class="id">
         {{ endpoint.id }}
       </div>
@@ -33,8 +34,10 @@
       </div>
     </div>
   </div>
-  <div class="pagging" *ngIf="limitPage > 1">
-    <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>
-    <div class=""><label *ngIf="page < limitPage" (click)="onPage(+1)">Next</label></div>
+  <div class="c-footer" *ngIf="limitPage > 1">
+    <div class="pagging">
+      <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>
+      <div class=""><label *ngIf="page < limitPage" (click)="onPage(+1)">Next</label></div>
+    </div>
   </div>
 </div>
