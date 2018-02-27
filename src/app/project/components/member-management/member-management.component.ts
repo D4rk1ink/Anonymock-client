@@ -17,7 +17,7 @@ export class MemberManagementComponent implements OnInit {
   public members: any[]
   public users: any[]
   public search: string
-  public selectOption: string
+  public isSearchUser: boolean
 
   public searchSub: Subscription
 
@@ -25,7 +25,6 @@ export class MemberManagementComponent implements OnInit {
     private store: Store<any>,
     private memberService: MemberService
   ) {
-    this.selectOption = 'search'
     this.members = []
     this.users = []
     this.search = ''
@@ -85,25 +84,25 @@ export class MemberManagementComponent implements OnInit {
       this.memberService.addMember(payload)
         .subscribe(res => {
           if (!res.error) {
-            this.members = [res.data, ...this.members]
+            this.users = this.users.map(_user => {
+              if (user.id === _user.id) {
+                _user.isMember = true
+              }
+              return _user
+            })
           }
         })
     }
   }
 
-  onInput (text) {
+  onSearch (text) {
     this.search = text
-    if (this.selectOption === 'add') { 
+    if (new RegExp('^add:(.*)').test(text)) {
+      this.search = new RegExp('^add:(.*)').exec(text).slice(1).pop()
+      this.isSearchUser = true
       this.searchUser()
-    } else if (this.selectOption === 'search') {
-      this.searchMember()
-    }
-  }
-
-  onSelect () {
-    this.search = ''
-    this.users = []
-    if (this.selectOption === 'search') {
+    } else {
+      this.isSearchUser = false
       this.searchMember()
     }
   }

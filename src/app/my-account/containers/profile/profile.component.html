@@ -1,8 +1,8 @@
-<div class="">
-    <h2>My Account</h2>
-</div>
-<div class="wrapper">
-    <section class="section">
+<div class="c-wrapper">
+    <div class="c-header">
+        <h4>My Account</h4>
+    </div>
+    <div class="c-body">
         <div class="form-inline">
             <div class="w-50 form-input">
                 <label class="label-title">
@@ -31,13 +31,15 @@
                 </div>
             </div>
         </div>
-    </section>
-    <section class="section form-inline between">
-        <div class="">
-            <button class="btn btn-sky" (click)="onSubmit()">Save</button>
-        </div>
-        <div class="">
-            <label class="link" [routerLink]="'./change-password'">Change password</label>
-        </div>
-    </section>
+    </div>
+    <div class="c-footer">
+        <section class="section form-inline content-between">
+            <div class="">
+                <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+            </div>
+            <div class="">
+                <label class="link" [routerLink]="'./change-password'">Change password</label>
+            </div>
+        </section>
+    </div>
 </div>

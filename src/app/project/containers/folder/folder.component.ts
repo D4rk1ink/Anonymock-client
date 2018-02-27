@@ -53,10 +53,6 @@ export class FolderComponent implements OnInit, OnDestroy {
   ngOnInit () {
   }
 
-  onSearch (text) {
-    this.store.dispatch(new endpointsAction.SearchAction(text))
-  }
-
   search () {
     if (this.searchSub) {
       this.searchSub.unsubscribe()

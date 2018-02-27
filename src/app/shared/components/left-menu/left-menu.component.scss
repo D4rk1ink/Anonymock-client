@@ -103,7 +103,7 @@ $border: #253545;
     .expand {
         max-height: 0px;
         overflow: hidden;
-        transition:  height, max-height .5s;
+        transition: height .5s, max-height .5s;
         .sub-row {
             cursor: pointer;
             display: flex;
@@ -113,7 +113,7 @@ $border: #253545;
             padding-left: 20px;
             padding-top: 10px;
             padding-bottom: 10px;
-            transition: background-color color .2s;
+            transition: background-color .2s, color .2s;
             i {
                 padding-right: 10px;
                 font-size: 18px;

@@ -1,88 +1,98 @@
 @import "colors";
 
-.add-search {
-    display: flex;
+// .add-search {
+//     display: flex;
+//     padding-bottom: 10px;
+//     .select-option {
+//         min-width: 100px;
+//         .select {
+//             border-right: 0px;
+//             background-color: $gray_0;
+//         }
+//         .select:hover {
+//             border-color: $gray_1;
+//         }
+//     }
+//     .text-input {
+//         width: 100%;
+//         .input {
+//             border-radius: 0px 2px 2px 0px;
+//         }
+//     }
+// }
+
+.c-header {
+    padding-top: 10px;
     padding-bottom: 10px;
-    .select-option {
-        min-width: 100px;
-        .select {
-            border-right: 0px;
-            background-color: $gray_0;
+    justify-content: space-between;
+    .options {
+        display: flex;
+    }
+}
+.member {
+    display: flex;
+    align-items: center;
+    .position {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .circle {
+            border: 1px solid $sky_2;
+            border-radius: 360px;
+            width: 20px;
+            height: 20px;
+            opacity: 0.1;
+            transition: opacity .2s;
+            cursor: pointer;
         }
-        .select:hover {
-            border-color: $gray_1;
+        .circle:hover {
+            opacity: .5;
         }
     }
-    .text-input {
-        width: 100%;
-        .input {
-            border-radius: 0px 2px 2px 0px;
+    .name {
+        font-weight: 400;
+    }
+    .email {
+        color: $gray_4;
+    }
+    .options {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: flex-end;
+        opacity: 0.1;
+        transition: opacity .2s;
+        .exit {
+            display: flex;
+            align-items: center;
         }
     }
 }
-
-.member-management {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .detail {
-        display: flex;
-        padding: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid $gray_1;
+.member:hover {
+    .options {
+        opacity: 1;
     }
-    .member-list {
-        padding: 10px 0;
-        .member {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            .position {
-                width: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .circle {
-                    border: 1px solid $sky_2;
-                    border-radius: 360px;
-                    width: 20px;
-                    height: 20px;
-                    opacity: 0.1;
-                    transition: opacity .2s;
-                    cursor: pointer;
-                }
-                .circle:hover {
-                    opacity: .5;
-                }
-            }
-            .name {
-                cursor: pointer;
-                font-weight: 400;
-            }
-            .name:hover {
-                color: $sky_3;
-            }
-            .email {
-                color: $gray_4;
-            }
-            .options {
-                display: flex;
-                flex: 1;
-                align-items: center;
-                justify-content: flex-end;
-                opacity: 0.1;
-                transition: opacity .2s;
-                .exit {
-                    display: flex;
-                    align-items: center;
-                }
-            }
-        }
-        .member:hover {
-            background-color: rgba($sky_0, 0.1);
-            .options {
-                opacity: 1;
-            }
-        }
+}
+
+.for-add {
+    .options {
+        opacity: 1;
+    }
+    .is-member,
+    .is-not-member {
+        padding: 2px 7px;
+        border-radius: 30px;
+        font-weight: 400;
+    }
+    .is-member {
+        color: $white;
+        background-color: $ocean_3;
+    }
+    .is-not-member {
+        color: $sky_3;
+        background-color: rgba($white, 0);
+        border: 1px solid;
+        border-color: $sky_3; 
     }
 }

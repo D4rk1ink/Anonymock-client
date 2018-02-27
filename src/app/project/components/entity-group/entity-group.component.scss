@@ -26,7 +26,7 @@
     .expand {
         max-height: 0px;
         overflow: hidden;
-        transition:  height, max-height .5s;
+        transition:  height .5s, max-height .5s;
     }
     .expand.active {
         border-top: 1px solid $gray_1;

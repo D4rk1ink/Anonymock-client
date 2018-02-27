@@ -8,13 +8,14 @@ label.select {
     flex: 1 0 auto;
     padding: 10px;
     background: #fff;
-    border: 1px solid $gray_1;
+    border: 1px solid rgba($gray_1, 0.5);
     color: $black !important;
-    border-radius: 2px;
+    border-radius: 3px;
     transition: box-shadow .1s ease,border-color .1s ease;
     font-style: normal;
     font-family: "Open Sans" !important;
     margin: 0px;
+    transition: border .5s;
 }
 
 input[type="checkbox"] {
@@ -68,7 +69,7 @@ input:hover,
 textarea:hover,
 select:hover,
 label.select:hover {
-    border-color: $sky_2;
+    // border-color: $sky_2;
 }
 
 label.select:hover:after {

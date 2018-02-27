@@ -1,5 +1,5 @@
-<div class="member-list">
-  <div class="member" *ngFor="let member of members">
+<div class="c-list">
+  <div class="c-list-item member" *ngFor="let member of members">
     <div class="admin">
       <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isAdmin;else normal_member" (click)="onAdmin(member.id, !member.isAdmin)" />
       <ng-template #normal_member>

@@ -1,8 +1,6 @@
 <div class="search">
-  <div class="header">
-    SEARCH
-  </div>
-  <div class="text-input">
-    <input type="text" name="input" class="input" (keyup)="onChange($event.target.value)"/>
+  <i class="material-icons btn-icon" (click)="onFocus()">search</i>
+  <div class="text-input" [class.active]="isFocus">
+    <input type="text" name="input" class="input" (keyup)="onChange($event.target.value)" (focus)="onFocus()" (blur)="onBlur()"/>
   </div>
 </div>

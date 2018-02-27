@@ -1,109 +1,61 @@
 @import "colors";
 
-.logs {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .header {
-        cursor: pointer;
+.c-header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    .options {
+        display: flex;
+    }
+}
+.log {
+    display: block;
+    .main-row {
+        padding: 2px 0px;
         display: flex;
         align-items: center;
-        padding: 10px;
-        max-height: 40px;
-        border-bottom: 1px solid $gray_1;
-        .title {
+        .id {
+            color: $sky_2;
+            width: 80px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .name {
+            padding-left: 10px;
+            font-weight: 400;
+        }
+        .method {
+            width: 60px;
             display: flex;
-            align-items: center;
+            justify-content: center;
+        }
+        .path {
             flex: 1;
-            
+        }
+        .date {
+            width: 150px;
         }
     }
-    .items {
-        padding: 10px 0;
-        .item {
-            .main-row {
-                padding: 10px;
-                display: flex;
-                align-items: center;
-                .id {
-                    color: $sky_2;
-                    width: 80px;
-                    font-size: 12px;
-                    cursor: pointer;
-                }
-                .name {
-                    padding-left: 10px;
-                    font-weight: 400;
-                }
-                .method {
-                    width: 80px;
-                    display: flex;
-                    justify-content: center;
-                    .toggle-method {
-                        padding: 2px 8px;
-                        border-radius: 6px;
-                        color: $white;
-                        font-size: 10px;
-                        font-weight: 400;
-                    }
-                    .toggle-get {
-                        background-color: $get_color;
-                    }
-                    .toggle-post {
-                        background-color: $post_color;
-                    }
-                    .toggle-put {
-                        background-color: $put_color;
-                    }
-                    .toggle-patch {
-                        background-color: $patch_color;
-                    }
-                    .toggle-delete {
-                        background-color: $delete_color;
-                    }
-                }
-                .path {
-                    flex: 1;
-                }
-                .date {
-                    width: 150px;
-                }
-            }
-            .main-row:hover {
-                background-color: rgba($sky_0, 0.1);
-            }
-            .expand {
-                max-height: 0px;
-                overflow: hidden;
-                transition: max-height .5s;
-                .log-request,
-                .log-response {
-                    padding: 10px;
-                }
-            }
-        }
-        // .item:hover {
-        //     background-color: rgba($sky_0, 0.1);
-        //     .options {
-        //         opacity: 1;
-        //     }
-        // }
-        .item.active {
-            .main-row {
-                border-top: 1px solid $gray_1;
-                border-bottom: 1px solid $gray_1;
-                background-color: rgba($sky_0, 0.1);
-            }
-            .expand {
-                max-height: 999px;
-                border-bottom: 1px solid $gray_1;
-            }
+    .expand {
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height .5s;
+        .log-request,
+        .log-response {
+            padding: 10px;
         }
     }
-    .pagging {
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+}
+.log.active {
+    .main-row {
+        padding-bottom: 7px;
     }
+    .expand {
+        max-height: 999px;
+    }
+}
+.pagging {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
