@@ -9,8 +9,8 @@ $border: #253545;
     background-color: #1d2b36;
     display: flex;
     flex-direction: column;
-    // position: absolute;
-    // z-index: -2;
+    position: fixed;
+    z-index: 1;
 }
 .profile {
     padding-top: 20px;
@@ -53,6 +53,7 @@ $border: #253545;
 .project-bar {
     color: $gray_2;
     background-color: #101c24;
+    min-height: 30px;
     padding: 5px 0; 
     padding-left: 10px;
     font-weight: 600;
@@ -85,6 +86,21 @@ $border: #253545;
         background-color: rgba($white, 0);
         caret-color: $gray_2;
     }
+}
+.projects-wrapper {
+    overflow-y: auto;
+}
+.projects-wrapper::-webkit-scrollbar {
+    width: 6px;
+    -webkit-appearance: none;
+}
+.projects-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(#fff, 0);
+    transition: background-color .3s;
+}
+.projects-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(22, 22, 22, 0.692);
 }
 .new-project-row,
 .project-menu {

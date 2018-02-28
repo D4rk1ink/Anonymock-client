@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { ProjectService } from 'app/project/services/project.service';
+import { ProjectService } from 'app/project/services/project.service'
+import { slideAnimation } from 'app/shared/animations/slide.animation'
 import * as coreDatabase from 'app/core/services/database.service'
 import * as projectAction from 'app/project/actions/project.action'
 import * as fromProject from 'app/project/reducers'
-import * as json from 'app/project/utils/json.util';
+import * as json from 'app/project/utils/json.util'
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  styleUrls: ['./project.component.scss'],
+  animations: [slideAnimation]
 })
 export class ProjectComponent implements OnInit {
 
@@ -49,7 +51,7 @@ export class ProjectComponent implements OnInit {
     
   }
 
-  getRouterOutletState (outlet) {
-    return outlet.activatedRouteData.state
+  getRouterOutletLevel (outlet) {
+    return outlet.activatedRouteData['level'] || 1
   }
 }

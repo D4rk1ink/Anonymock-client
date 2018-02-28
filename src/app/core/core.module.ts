@@ -20,12 +20,13 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
+        AuthGuardService,
+        InterceptorService,
         {
           provide: HTTP_INTERCEPTORS,
           useClass: InterceptorService,
           multi: true
-        },
-        AuthGuardService
+        }
       ]
     }
   }
