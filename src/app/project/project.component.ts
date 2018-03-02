@@ -28,6 +28,7 @@ export class ProjectComponent implements OnInit {
       this.store.dispatch(new projectAction.IdAction(projectId))
       coreDatabase.saveProject(projectId)
       this.isLoading = true
+      const timeBefore = new Date()
       this.projectService.get(projectId)
         .subscribe(res => {
           if (!res.error) {
@@ -41,7 +42,15 @@ export class ProjectComponent implements OnInit {
               isManager: res.data.isManager,
             }
             this.store.dispatch(new projectAction.ProjectAction(project))
-            this.isLoading = false
+            const timeAfter = new Date()
+            const diff = timeAfter.getTime() - timeBefore.getTime()
+            if (diff < 500) {
+              setTimeout(() => {
+                this.isLoading = false
+              }, 500)
+            } else {
+              this.isLoading = false
+            }
           }
         })
     })

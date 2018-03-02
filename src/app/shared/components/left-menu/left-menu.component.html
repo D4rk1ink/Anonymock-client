@@ -1,9 +1,10 @@
 <div class="wrapper">
+  <div class="banner"></div>
   <div class="profile">
     <div class="img-profile">
       <img [src]="user.picture" class="" />
     </div>
-    <div class="name-profile" [routerLink]="'/my-account'">
+    <div class="name-profile">
       {{ user.firstname }} {{ user.lastname }}
     </div>
   </div>
@@ -57,11 +58,6 @@
           <i class="material-icons">history</i> Logs
         </div>
       </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="logout" [routerLink]="'/auth/sign-in'">
-      LOGOUT
     </div>
   </div>
 </div>

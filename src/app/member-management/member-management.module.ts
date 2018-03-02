@@ -15,7 +15,7 @@ import { MemberService } from 'app/member-management/services/member.service';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forRoot(membersReducers),
+    StoreModule.forFeature('member', membersReducers.members),
     SharedModule,
     MemberManagementRoutingModule
   ],

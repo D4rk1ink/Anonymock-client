@@ -14,11 +14,13 @@
             <div class="circle" (click)="onManager(member.user, !member.isManager)"></div>
         </ng-template>
       </div>
-      <div class="name w-30">
-        {{ member.user.firstname }} {{ member.user.lastname }}
-      </div>
-      <div class="email w-30">
-        {{ member.user.email }}
+      <div class="info" (click)="modalUserPopup(member.user)">
+        <div class="name w-30">
+          {{ member.user.firstname }} {{ member.user.lastname }}
+        </div>
+        <div class="email w-30">
+          {{ member.user.email }}
+        </div>
       </div>
       <div class="options">
         <div class="exit" *ngIf="isManager">

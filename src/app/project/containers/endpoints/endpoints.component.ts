@@ -27,13 +27,18 @@ export class EndpointsComponent implements OnInit, OnDestroy {
   ) {
     this.store.select(fromProject.getProjectId)
       .subscribe(id => {
+        if (!id) return
+        const temp = this.projectId
         this.projectId = id
+        if (this.projectId !== temp) {
+          this.search()
+        }
       })
     this.store.select(fromProject.getEndpoints)
       .subscribe(endpoints => {
         const nqSearchEndpoints = this.searchEndpoints !== endpoints.search
         const nqPage = this.page !== endpoints.page
-        if (nqSearchEndpoints || nqPage) {
+        if (this.projectId && nqSearchEndpoints || nqPage) {
           this.searchEndpoints = endpoints.search
           this.page = endpoints.page
           this.search()

@@ -11,42 +11,33 @@ $border: #253545;
     flex-direction: column;
     position: fixed;
     z-index: 1;
+    box-shadow: -10px 15px 10px 15px rgba(#050505, .3);
+}
+.banner {
+    height: 50px;
+    min-height: 50px;
+    background-color: #0c161d;
 }
 .profile {
-    padding-top: 20px;
-    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    min-height: 71px;
+    padding: 10px;
     color: $gray_1;
     font-weight: 600;
     border-bottom: 1px solid $border;
     .img-profile {
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         max-width: 80px;
         max-height: 80px;
         border-radius: 360px;
         background-color: $white;
-        margin: 0 auto;
     }
     .name-profile {
-        padding: 10px 0;
+        padding-left: 10px;
         text-align: center;
         cursor: pointer;
-    }
-}
-.for-admin {
-    color: $gray_2;
-    font-size: 12px;
-    .member-menu {
-        .main-row {
-            cursor: pointer;
-            padding-left: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid $border;
-        }
-        .main-row:hover {
-            color: $gray_0;
-        }
     }
 }
 .admin-bar,
@@ -103,6 +94,7 @@ $border: #253545;
     background-color: rgba(22, 22, 22, 0.692);
 }
 .new-project-row,
+.member-menu,
 .project-menu {
     color: $gray_2;
     font-size: 12px;
@@ -162,27 +154,6 @@ $border: #253545;
         max-height: 500px !important;
     }
 }
-
-.footer {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: flex-end;
-    .logout {
-        height: 38px;
-        color: $gray_2;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-top: 1px solid $border;
-        cursor: pointer;
-    }
-    .logout:hover {
-        color: $gray_0;
-    }
-}
-
 
 .pointer {
     cursor: pointer;

@@ -8,6 +8,9 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { BoxTabsComponent } from './components/box-tabs/box-tabs.component';
+import { ProfileDropdownComponent } from './components/profile-dropdown/profile-dropdown.component';
+import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
+import { RectLoadingComponent } from './components/rect-loading/rect-loading.component';
 
 import { ProjectService } from 'app/project/services/project.service';
 import { UserService } from 'app/my-account/services/user.service';
@@ -25,6 +28,9 @@ import { UserService } from 'app/my-account/services/user.service';
     LeftMenuComponent,
     SearchInputComponent,
     BoxTabsComponent,
+    ProfileDropdownComponent,
+    ProfilePopupComponent,
+    RectLoadingComponent,
   ],
   exports: [
     CommonModule,
@@ -37,6 +43,9 @@ import { UserService } from 'app/my-account/services/user.service';
     LeftMenuComponent,
     SearchInputComponent,
     BoxTabsComponent,
+    ProfileDropdownComponent,
+    ProfilePopupComponent,
+    RectLoadingComponent,
   ]
 })
 export class SharedModule {

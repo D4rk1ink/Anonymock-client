@@ -4,8 +4,8 @@
 .c-wrapper {
     background-color: $white;
     border-radius: 3px;
-    border: 1px solid $gray_0;
-    // box-shadow: 0px 1px 1px 1px $gray_0;
+    border: 1px solid $gray_1;
+    box-shadow: 0 2px 12px 0 #dfe3eb;
     .c-header {
         display: flex;
         padding: 15px;
