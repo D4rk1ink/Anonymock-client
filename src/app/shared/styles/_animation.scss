@@ -23,6 +23,19 @@
     }
 }
 
+@keyframes itemExpand {
+    0% {
+        max-height: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        opacity: 0;
+    }
+    100% {
+        max-height: 60px;
+        opacity: 1;
+    }
+}
+
 @keyframes itemScale {
     0% {
         transform: scale(0.8);
