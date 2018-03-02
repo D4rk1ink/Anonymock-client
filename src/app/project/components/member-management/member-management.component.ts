@@ -13,6 +13,7 @@ import * as otherAction from 'app/core/actions/other.action';
 })
 export class MemberManagementComponent implements OnInit {
 
+  public isLoading: boolean
   public isManager: boolean
   public projectId: string
   public members: any[]
@@ -26,6 +27,7 @@ export class MemberManagementComponent implements OnInit {
     private store: Store<any>,
     private memberService: MemberService
   ) {
+    this.isLoading = true
     this.members = []
     this.users = []
     this.search = ''
@@ -104,6 +106,7 @@ export class MemberManagementComponent implements OnInit {
 
   onSearch (text) {
     this.search = text
+    this.isLoading = true
     if (new RegExp('^add:(.*)').test(text)) {
       this.search = new RegExp('^add:(.*)').exec(text).slice(1).pop()
       this.isSearchUser = true
@@ -129,6 +132,7 @@ export class MemberManagementComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           this.users = res.data
+          this.isLoading = false
         }
       })
   }
@@ -141,6 +145,7 @@ export class MemberManagementComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           this.members = res.data
+          this.isLoading = false
         }
       })
   }
