@@ -15,6 +15,7 @@ export class FoldersComponent implements OnInit {
 
   public projectId: string
 
+  public isLoading: boolean
   public folders: any[]
   public searchFolder: string
   public page: number
@@ -29,6 +30,7 @@ export class FoldersComponent implements OnInit {
     private folderService: FolderService,
     private el: ElementRef
   ) {
+    this.isLoading = true
     this.folders = []
     this.searchFolder = ''
     this.page = 1
@@ -119,11 +121,13 @@ export class FoldersComponent implements OnInit {
       search: this.searchFolder,
       page: this.page
     }
+    this.isLoading = true
     this.searchSub = this.folderService.search(payload)
       .subscribe(res => {
         if (!res.error) {
           this.folders = res.data.folders
           this.limitPage = res.data.limitPage
+          this.isLoading = false
         }
       })
   }
