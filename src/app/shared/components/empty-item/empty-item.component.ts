@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EmptyItemComponent implements OnInit {
 
   @Input('isLoading') isLoading: boolean
+  @Input('items') items: any[]
   @Input('icon') icon: string
   @Input('message') message: string
 

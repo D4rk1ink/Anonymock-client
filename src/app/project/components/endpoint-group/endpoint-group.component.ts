@@ -16,6 +16,7 @@ export class EndpointGroupComponent implements OnInit {
   @Input('folderId') folderId: string
   @Input('canNew') canNew: boolean
 
+  public isLoading: boolean
   public endpoints: any[]
   public page: number
   public limitPage: number
@@ -29,6 +30,7 @@ export class EndpointGroupComponent implements OnInit {
     this.setPage()
     this.store.select(fromProject.getEndpoints)
       .subscribe(endpoints => {
+        this.isLoading = endpoints.isLoading
         this.endpoints = endpoints.items
         this.limitPage = endpoints.limitPage
       })

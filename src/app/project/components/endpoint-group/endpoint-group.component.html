@@ -31,7 +31,8 @@
       </div>
     </div>
     <empty-item
-      *ngIf="endpoints.length === 0"
+      [items]="endpoints"
+      [isLoading]="isLoading"
       [icon]="'inbox'"
       [message]="'Endpoint Not Found'"></empty-item>
   </div>
