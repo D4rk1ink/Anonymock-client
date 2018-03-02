@@ -2,7 +2,7 @@
   <div class="top-color">
     <div class="img-profile">
       <input type="file" class="picture-input" #pictureInput (change)="uploadPicture($event)" />
-      <img src="" />
+      <img [src]="user.picture" />
       <div class="upload" *ngIf="!isOtherUser" (click)="selectPicture()">
           <i class="material-icons btn-icon">photo_camera</i>
       </div>

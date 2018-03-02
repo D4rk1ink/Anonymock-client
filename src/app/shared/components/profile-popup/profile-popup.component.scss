@@ -31,6 +31,9 @@
         margin: 0 auto;
         background-color: $white;
         overflow: hidden;
+        img {
+            width: 100%
+        }
         .picture-input {
             position: absolute;
             width: 0;

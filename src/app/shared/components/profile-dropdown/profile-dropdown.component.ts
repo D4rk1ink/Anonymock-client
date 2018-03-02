@@ -40,6 +40,7 @@ export class ProfileDropdownComponent implements OnInit {
   }
 
   onProfile () {
+    this.store.dispatch(new otherAction.IsOtherUserPopupAction(false))
     this.store.dispatch(new otherAction.IsProfileDropdownAction())
     this.store.dispatch(new otherAction.IsProfilePopupAction())
   }

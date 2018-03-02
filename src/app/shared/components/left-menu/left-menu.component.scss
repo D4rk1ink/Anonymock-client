@@ -33,6 +33,10 @@ $border: #253545;
         max-height: 80px;
         border-radius: 360px;
         background-color: $white;
+        overflow: hidden;
+        img {
+            width: 100%
+        }
     }
     .name-profile {
         padding-left: 10px;
@@ -148,10 +152,13 @@ $border: #253545;
         bottom: 0;
         left: 0;
         top: 0;
-        border-right: 3px solid rgb(223, 66, 72);
+        border-right: 3px solid $ocean_3;
     }
     .expand {
         max-height: 500px !important;
+        .sub-row.active {
+            color: $ocean_3;
+        }
     }
 }
 

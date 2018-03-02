@@ -39,22 +39,22 @@
         {{ project.name }}
       </div>
       <div class="expand">
-        <div class="sub-row config" [routerLink]="'/project/'+project.id+'/config'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/config'" [class.active]="subProject === 'config'">
           <i class="material-icons">settings</i> Config
         </div>
-        <div class="sub-row database" [routerLink]="'/project/'+project.id+'/database'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/database'" [class.active]="subProject === 'database'">
           <i class="material-icons">storage</i> Database
         </div>
-        <div class="sub-row member" [routerLink]="'/project/'+project.id+'/member'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/member'" [class.active]="subProject === 'member'">
           <i class="material-icons">group</i> Member
         </div>
-        <div class="sub-row member" [routerLink]="'/project/'+project.id+'/endpoint'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/endpoint'" [class.active]="subProject === 'endpoint'">
           <i class="material-icons">link</i> Endpoints
         </div>
-        <div class="sub-row member" [routerLink]="'/project/'+project.id+'/folder'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/folder'" [class.active]="subProject === 'folder'">
           <i class="material-icons">folder</i> Folders
         </div>
-        <div class="sub-row member" [routerLink]="'/project/'+project.id+'/log'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/log'" [class.active]="subProject === 'log'">
           <i class="material-icons">history</i> Logs
         </div>
       </div>

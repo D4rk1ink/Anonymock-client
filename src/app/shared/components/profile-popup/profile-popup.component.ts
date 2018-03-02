@@ -105,7 +105,7 @@ export class ProfilePopupComponent implements OnInit {
           this.userService.uploadPicture(this.user.id, payload)
             .subscribe(res => {
               if (!res.error) {
-                this.store.dispatch(new userAction.PictureAction(''))
+                this.store.dispatch(new userAction.PictureAction(`${this.user.picture}&random=${Math.random()}`))
               }
             })
         }

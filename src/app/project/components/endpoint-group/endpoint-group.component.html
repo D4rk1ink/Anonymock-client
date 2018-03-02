@@ -28,11 +28,12 @@
         <div class="share">
           <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
         </div>
-        <!-- <div class="edit">
-          <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
-        </div> -->
       </div>
     </div>
+    <empty-item
+      *ngIf="endpoints.length === 0"
+      [icon]="'inbox'"
+      [message]="'Endpoint Not Found'"></empty-item>
   </div>
   <div class="c-footer" *ngIf="limitPage > 1">
     <div class="pagging">

@@ -20,7 +20,7 @@ export function reducer (state = initialState, action: otherAction.Actions): Sta
         case otherAction.ISPROFILEDROPDOWN: 
             return {
                 ...state,
-                isProfileDropdown: !state.isProfilePopup
+                isProfileDropdown: !state.isProfileDropdown
             }
         case otherAction.ISPROFILEPOPUP: 
             return {

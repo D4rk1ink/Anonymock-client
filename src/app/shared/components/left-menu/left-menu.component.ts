@@ -16,6 +16,7 @@ export class LeftMenuComponent implements OnInit {
   public user: any
   public isNewProject: boolean
   public menuTarget: string
+  public subProject: string
   public expandProject: string
   public projects: any[]
 
@@ -54,7 +55,9 @@ export class LeftMenuComponent implements OnInit {
     if (targets) {
       this.menuTarget = targets[1]
       if (this.menuTarget === 'project') {
-        this.menuTarget = new RegExp('/project/([^\S][^/]+)').exec(url)[1]
+        const exec = new RegExp('/project/([^\S][^/]+)/([^\S][^/]+)').exec(url)
+        this.menuTarget = exec[1]
+        this.subProject = exec[2]
       }
     }
   }

@@ -1,0 +1,10 @@
+.wrapper {
+    text-align: center;
+    .icon {
+        display: flex;
+        justify-content: center;
+        i {
+            font-size: 4em !important;
+        }
+    }
+}

@@ -10,14 +10,18 @@
     width: 300px;
     padding: 10px;
     cursor: pointer;
-    .img {
+    .img-profile {
         width: 80px;
         height: 80px;
         max-width: 80px;
         max-height: 80px;
         border: 1px solid $gray_1;
         border-radius: 360px;
+        overflow: hidden;
         background-color: $white;
+        img {
+            width: 100%;
+        }
     }
     .info {
         padding-left: 20px;
