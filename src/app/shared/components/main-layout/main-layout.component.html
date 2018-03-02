@@ -4,7 +4,7 @@
         <div class="top-bar">
             <div class="profile">
                 <div class="img-profile" id="top-bar-img-profile" (click)="profileDropdown()">
-                    <img src=""/>
+                    <img [src]="user.picture"/>
                 </div>
                 <div class="profile-dropdown" *ngIf="isProfileDropdown">
                     <profile-dropdown></profile-dropdown>

@@ -99,7 +99,15 @@ export class ProfilePopupComponent implements OnInit {
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = () => {
-          const base64 = reader.result
+          const payload = {
+            picture: reader.result
+          }
+          this.userService.uploadPicture(this.user.id, payload)
+            .subscribe(res => {
+              if (!res.error) {
+                this.store.dispatch(new userAction.PictureAction(''))
+              }
+            })
         }
       }
     }

@@ -5,6 +5,7 @@ import * as userAction from 'app/core/actions/user.action';
 import * as otherAction from 'app/core/actions/other.action';
 import * as database from 'app/core/services/database.service';
 import * as fromCore from 'app/core/reducers';
+import * as constants from 'app/shared/constants';
 
 @Component({
   selector: 'main-layout',
@@ -13,6 +14,7 @@ import * as fromCore from 'app/core/reducers';
 })
 export class MainLayoutComponent implements OnInit {
 
+  public user: any
   public isProfileDropdown: boolean
   public isProfilePopup: boolean
 
@@ -20,6 +22,10 @@ export class MainLayoutComponent implements OnInit {
     private store: Store<any>,
     private userService: UserService
   ) {
+    this.store.select(fromCore.getUser)
+      .subscribe(user => {
+        this.user = user
+      })
     this.store.select(fromCore.getOther)
       .subscribe(other => {
         this.isProfileDropdown = other.isProfileDropdown
@@ -33,8 +39,8 @@ export class MainLayoutComponent implements OnInit {
             firstname: res.data.firstname,
             lastname: res.data.lastname,
             email: res.data.email,
-            picture: res.data.picture,
-            isAdmin: res.data.isAdmin
+            isAdmin: res.data.isAdmin,
+            picture: `${constants.BASE_API}/user/${res.data.id}/picture?authorization=${database.getToken()}`
           }
           database.saveUser(user)
           this.store.dispatch(new userAction.UserAction(user))
