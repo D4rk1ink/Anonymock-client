@@ -30,6 +30,8 @@ export function reducer (state = initialState, action: folderAction.Actions): St
                 ...state,
                 endpoints: action.payload
             }
+        case folderAction.CLEAR: 
+            return initialState
         default: 
             return state
     }
