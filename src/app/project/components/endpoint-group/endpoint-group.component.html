@@ -9,27 +9,29 @@
     </div>
   </div>
   <div class="c-list">
-    <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints; let i = index">
-      <div class="id">
-        {{ endpoint.id }}
-      </div>
-      <div class="method">
-        <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
-          {{ endpoint.method.name }}
-        </span>
-      </div>
-      <div class="name" (click)="onLink(endpoint.id)">
-        {{ endpoint.name }}
-      </div>
-      <div class="options">
-        <div class="copy">
-          <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints; let i = index">
+        <div class="id">
+          {{ endpoint.id }}
         </div>
-        <div class="share">
-          <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
+        <div class="method">
+          <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
+            {{ endpoint.method.name }}
+          </span>
+        </div>
+        <div class="name" (click)="onLink(endpoint.id)">
+          {{ endpoint.name }}
+        </div>
+        <div class="options">
+          <div class="copy">
+            <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
+          </div>
+          <div class="share">
+            <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
     <empty-item
       [items]="endpoints"
       [isLoading]="isLoading"
