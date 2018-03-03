@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service';
 import { EndpointService } from 'app/project/services/endpoint.service';
-import * as endpointAction from 'app/project/actions/endpoint.action'
-import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
 
 @Component({
@@ -13,6 +11,7 @@ import * as fromProject from 'app/project/reducers'
 })
 export class ResponsesComponent implements OnInit {
 
+  public isLoading: boolean
   public endpointId: string
   public endpoint: any
   public responses: any[]
@@ -62,16 +61,34 @@ export class ResponsesComponent implements OnInit {
       })
   }
 
+  setDefault (response) {
+    this.responseService.default(response.id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.responses = this.responses.map(response => {
+            if (res.data.id === response.id) {
+              response.isDefault = res.data.isDefault
+            } else {
+              response.isDefault = false
+            }
+            return response
+          })
+        }
+      })
+  }
+
   search () {
     const payload = {
       endpoint: this.endpointId,
       search: '',
       environment: this.menuSelector.title.toLowerCase()
     }
+    this.isLoading = true
     this.responseService.search(payload)
       .subscribe(res => {
         if (!res.error) {
           this.responses = res.data
+          this.isLoading = false
         }
       })
   }

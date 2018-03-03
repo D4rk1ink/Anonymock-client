@@ -49,10 +49,6 @@ export class ResponseComponent implements OnInit, OnDestroy {
             res.data.condition.queryString = json.toArray(res.data.condition.queryString)
             res.data.response.headers = json.toArray(res.data.response.headers)
             this.store.dispatch(new responseAction.AllAction(res.data))
-            // this.store.dispatch(new responseAction.IdAction(res.data.id))
-            // this.store.dispatch(new responseAction.NameAction(res.data.name))
-            // this.store.dispatch(new responseAction.ConditionAction(res.data.condition))
-            // this.store.dispatch(new responseAction.ResponseAction(res.data.response))
           }
         })
     })

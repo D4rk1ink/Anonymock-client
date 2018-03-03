@@ -31,4 +31,9 @@ export class ResponseService {
     return this.http.get(url, { params: payload })
   }
 
+  default (id): Observable<any> {
+    const url = constants.BASE_API + '/project/response/' + id + '/default'
+    return this.http.patch(url, {})
+  }
+
 }
