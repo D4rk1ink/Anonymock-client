@@ -14,10 +14,6 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'my-account',
-        loadChildren: './my-account/my-account.module#MyAccountModule'
-      },
-      {
         path: 'member-management',
         loadChildren: './member-management/member-management.module#MemberManagementModule'
       },
@@ -27,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'my-account'
+        redirectTo: ''
       }
     ]
   }

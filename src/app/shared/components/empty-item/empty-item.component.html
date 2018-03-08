@@ -1,0 +1,9 @@
+<div class="wrapper" *ngIf="!isLoading && items.length === 0">
+  <div class="icon">
+    <i class="material-icons">{{ icon }}</i>
+  </div>
+  <div class="message">
+    {{ message }}
+  </div>
+</div>
+<rect-loading *ngIf="isLoading"></rect-loading>

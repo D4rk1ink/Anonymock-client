@@ -1,0 +1,18 @@
+<div class="c-wrapper dropdown">
+  <div class="profile" (click)="onProfile()">
+    <div class="img-profile">
+      <img [src]="user.picture" />
+    </div>
+    <div class="info">
+      <div class="name">
+        {{ user.firstname }} {{ user.lastname }}
+      </div>
+      <div class="email">
+        {{ user.email }}
+      </div>
+    </div>
+  </div>
+  <div class="item center-align logout" [routerLink]="'/auth/sign-in'">
+    LOGOUT
+  </div>
+</div>

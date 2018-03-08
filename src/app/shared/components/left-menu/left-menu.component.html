@@ -1,9 +1,10 @@
 <div class="wrapper">
+  <div class="banner"></div>
   <div class="profile">
     <div class="img-profile">
       <img [src]="user.picture" class="" />
     </div>
-    <div class="name-profile" [routerLink]="'/my-account'">
+    <div class="name-profile">
       {{ user.firstname }} {{ user.lastname }}
     </div>
   </div>
@@ -32,34 +33,31 @@
       </form>
     </div>
   </div>
-  <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
-    <div class="main-row" (click)="onExpandProject(project.id)">
-      {{ project.name }}
-    </div>
-    <div class="expand">
-      <div class="sub-row config" [routerLink]="'/project/'+project.id+'/config'">
-        <i class="material-icons">settings</i> Config
+  <div class="projects-wrapper">
+    <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
+      <div class="main-row" (click)="onExpandProject(project.id)">
+        {{ project.name }}
       </div>
-      <div class="sub-row database" [routerLink]="'/project/'+project.id+'/database'">
-        <i class="material-icons">storage</i> Database
+      <div class="expand">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/config'" [class.active]="subProject === 'config'">
+          <i class="material-icons">settings</i> Config
+        </div>
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/database'" [class.active]="subProject === 'database'">
+          <i class="material-icons">storage</i> Database
+        </div>
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/member'" [class.active]="subProject === 'member'">
+          <i class="material-icons">group</i> Member
+        </div>
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/endpoint'" [class.active]="subProject === 'endpoint'">
+          <i class="material-icons">link</i> Endpoints
+        </div>
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/folder'" [class.active]="subProject === 'folder'">
+          <i class="material-icons">folder</i> Folders
+        </div>
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/log'" [class.active]="subProject === 'log'">
+          <i class="material-icons">history</i> Logs
+        </div>
       </div>
-      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/member'">
-        <i class="material-icons">group</i> Member
-      </div>
-      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/endpoint'">
-        <i class="material-icons">link</i> Endpoints
-      </div>
-      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/folder'">
-        <i class="material-icons">folder</i> Folders
-      </div>
-      <div class="sub-row member" [routerLink]="'/project/'+project.id+'/log'">
-        <i class="material-icons">history</i> Logs
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="logout" [routerLink]="'/auth/sign-in'">
-      LOGOUT
     </div>
   </div>
 </div>

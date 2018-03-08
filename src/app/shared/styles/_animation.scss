@@ -1,0 +1,52 @@
+@import "colors";
+
+[class*=slide-to-right-],
+.slide-to-right {
+    opacity: 0;
+    animation: slideToRight .5s forwards;
+}
+
+@for $i from 1 through 100 {
+    .slide-to-right-#{$i} {
+        animation-delay: ($i * 0.2) - 0.2s;
+    }
+}
+
+@keyframes slideToRight {
+    0% {
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes itemExpand {
+    0% {
+        max-height: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        opacity: 0;
+    }
+    100% {
+        max-height: 60px;
+        opacity: 1;
+    }
+}
+
+@keyframes itemScale {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    75% {
+        transform: scale(1.05);
+        opacity: .75;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

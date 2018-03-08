@@ -9,50 +9,46 @@ $border: #253545;
     background-color: #1d2b36;
     display: flex;
     flex-direction: column;
-    // position: absolute;
-    // z-index: -2;
+    position: fixed;
+    z-index: 1;
+    box-shadow: -10px 15px 10px 15px rgba(#050505, .3);
+}
+.banner {
+    height: 50px;
+    min-height: 50px;
+    background-color: #0c161d;
 }
 .profile {
-    padding-top: 20px;
-    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    min-height: 71px;
+    padding: 10px;
     color: $gray_1;
     font-weight: 600;
     border-bottom: 1px solid $border;
     .img-profile {
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         max-width: 80px;
         max-height: 80px;
         border-radius: 360px;
         background-color: $white;
-        margin: 0 auto;
+        overflow: hidden;
+        img {
+            width: 100%
+        }
     }
     .name-profile {
-        padding: 10px 0;
+        padding-left: 10px;
         text-align: center;
         cursor: pointer;
-    }
-}
-.for-admin {
-    color: $gray_2;
-    font-size: 12px;
-    .member-menu {
-        .main-row {
-            cursor: pointer;
-            padding-left: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid $border;
-        }
-        .main-row:hover {
-            color: $gray_0;
-        }
     }
 }
 .admin-bar,
 .project-bar {
     color: $gray_2;
     background-color: #101c24;
+    min-height: 30px;
     padding: 5px 0; 
     padding-left: 10px;
     font-weight: 600;
@@ -86,7 +82,23 @@ $border: #253545;
         caret-color: $gray_2;
     }
 }
+.projects-wrapper {
+    overflow-y: auto;
+}
+.projects-wrapper::-webkit-scrollbar {
+    width: 6px;
+    -webkit-appearance: none;
+}
+.projects-wrapper::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(#fff, 0);
+    transition: background-color .3s;
+}
+.projects-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(22, 22, 22, 0.692);
+}
 .new-project-row,
+.member-menu,
 .project-menu {
     color: $gray_2;
     font-size: 12px;
@@ -140,33 +152,15 @@ $border: #253545;
         bottom: 0;
         left: 0;
         top: 0;
-        border-right: 3px solid rgb(223, 66, 72);
+        border-right: 3px solid $ocean_3;
     }
     .expand {
         max-height: 500px !important;
+        .sub-row.active {
+            color: $ocean_3;
+        }
     }
 }
-
-.footer {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: flex-end;
-    .logout {
-        height: 38px;
-        color: $gray_2;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-top: 1px solid $border;
-        cursor: pointer;
-    }
-    .logout:hover {
-        color: $gray_0;
-    }
-}
-
 
 .pointer {
     cursor: pointer;

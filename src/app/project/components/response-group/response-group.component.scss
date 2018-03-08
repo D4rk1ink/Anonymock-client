@@ -1,28 +1,11 @@
 @import "colors";
 
-.wrapper {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-}
-.tabs-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .tabs {
-        display: flex;
-        .item {
-            cursor: pointer;
-            padding: 10px;
-            border-right: 1px solid $gray_1;
-        }
-        .item.active {
-            background-color: $gray_0;
-            font-weight: 400;
-        }
-    }
+.c-tabs {
     .options {
         display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
         .delay,
         .status {
             display: flex;
@@ -48,7 +31,4 @@
             }
         }
     }
-}
-.content {
-    border-top: 1px solid $gray_1;
 }

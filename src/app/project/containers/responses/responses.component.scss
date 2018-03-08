@@ -1,90 +1,60 @@
 @import "colors";
 
-.responses {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .header {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        max-height: 40px;
-        border-bottom: 1px solid $gray_1;
-        .title {
+.c-wrapper {
+    box-shadow: 0 0 0 0;
+    .c-tabs {
+        .options {
             display: flex;
-            align-items: center;
-        }
-        .environments {
-            display: flex;
-            align-items: center;
             flex: 1;
-            padding-left: 10px;
-            color: $sky_2;
-            .environment {
-
-            }
-            .environment.active {
-                font-weight: 400;
-            }
-            .dev {
-                border-right: 1px solid $gray_1;
-                padding-right: 10px; 
-                margin-right: 10px;
-            }
-            .test {
-
-            }
-        }
-        .new {
-            display: flex;
-            align-items: center;
             justify-content: flex-end;
-        }
-    }
-    .items {
-        padding: 10px 0;
-        .item {
-            padding: 10px;
-            display: flex;
             align-items: center;
-            .id {
-                color: $sky_2;
-                width: 80px;
-                font-size: 12px;
-                cursor: pointer;
-            }
-            .status-code {
-                color: $sky_2;
-                width: 80px;
-                font-size: 12px;
-                font-weight: 600;
-                text-align: center;
-            }
-            .name {
-                padding-left: 10px;
-                font-weight: 400;
-                flex: 1;
-            }
-            .options {
-                width: 100px;
+            padding-right: 15px;
+            .new {
                 display: flex;
                 align-items: center;
                 justify-content: flex-end;
-                font-size: 19px;
-                .default {
-                    padding: 0 5px;
-                    display: flex;
-                    align-items: center;
-                    color: $gray_0;
-                }
-                .default.active {
-                    color: $green_2;
-                }
             }
         }
-        .item:hover {
-            background-color: rgba($sky_0, 0.1);
+    }
+}
+.new-response {
+    animation: itemExpand .5s;
+}
+.response {
+    display: flex;
+    align-items: center;
+    .id {
+        color: $sky_2;
+        width: 80px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .status-code {
+        color: $sky_2;
+        width: 80px;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .name {
+        padding-left: 10px;
+        font-weight: 400;
+        flex: 1;
+    }
+    .options {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 19px;
+        .default {
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+            color: $gray_0;
+        }
+        .default.active {
+            color: $green_2;
         }
     }
 }

@@ -13,10 +13,7 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   @Input('autoKey') autoKey: boolean
   @Output('save') save: EventEmitter<any>
 
-  public isExpand: boolean
-  
   constructor () {
-    this.isExpand = true
     this.save = new EventEmitter<any>()
     this.temp = {}
   }
@@ -27,10 +24,6 @@ export class EntityGroupComponent implements OnInit, OnChanges {
 
   ngOnInit () {
 
-  }
-
-  onExpand () {
-    this.isExpand = !this.isExpand
   }
 
   saveData (data) {

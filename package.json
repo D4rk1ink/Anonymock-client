@@ -12,8 +12,12 @@
   },
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@angular/animations": "^5.0.0",
     "@angular/cdk": "^5.2.2",
+=======
+    "@angular/animations": "^5.2.6",
+>>>>>>> develop
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",

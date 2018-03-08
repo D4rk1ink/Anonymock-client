@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { Store } from '@ngrx/store'
 import { FolderService } from 'app/project/services/folder.service'
@@ -11,10 +11,11 @@ import { projects } from 'app/mock/projects'
   templateUrl: './folders.component.html',
   styleUrls: ['./folders.component.scss']
 })
-export class FoldersComponent implements OnInit {
+export class FoldersComponent implements OnInit, OnDestroy {
 
   public projectId: string
 
+  public isLoading: boolean
   public folders: any[]
   public searchFolder: string
   public page: number
@@ -22,17 +23,21 @@ export class FoldersComponent implements OnInit {
   public isNewFolder: boolean
   public isRename: string
 
+  public projectIdSub: Subscription
   public searchSub: Subscription
+  public createSub: Subscription
+  public renameSub: Subscription
 
   constructor (
     private store: Store<any>,
     private folderService: FolderService,
     private el: ElementRef
   ) {
+    this.isLoading = true
     this.folders = []
     this.searchFolder = ''
     this.page = 1
-    this.store.select(fromProject.getProjectId)
+    this.projectIdSub = this.store.select(fromProject.getProjectId)
       .subscribe(id => {
         if (!id) return
         this.projectId = id
@@ -83,7 +88,7 @@ export class FoldersComponent implements OnInit {
       project: this.projectId,
       name: values.name
     }
-    this.folderService.create(payload)
+    this.createSub = this.folderService.create(payload)
       .subscribe(res => {
         if (!res.error) {
           this.folders = [res.data, ...this.folders]
@@ -96,7 +101,7 @@ export class FoldersComponent implements OnInit {
     const payload = {
       name: values.rename
     }
-    this.folderService.update(id, payload)
+    this.renameSub = this.folderService.update(id, payload)
       .subscribe(res => {
         if (!res.error) {
           this.folders = this.folders.map(folder => {
@@ -119,13 +124,30 @@ export class FoldersComponent implements OnInit {
       search: this.searchFolder,
       page: this.page
     }
+    this.isLoading = true
     this.searchSub = this.folderService.search(payload)
       .subscribe(res => {
         if (!res.error) {
           this.folders = res.data.folders
           this.limitPage = res.data.limitPage
+          this.isLoading = false
         }
       })
+  }
+
+  ngOnDestroy () {
+    if (this.projectIdSub) {
+      this.projectIdSub.unsubscribe()
+    }
+    if (this.createSub) {
+      this.createSub.unsubscribe()
+    }
+    if (this.renameSub) {
+      this.renameSub.unsubscribe()
+    }
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
   }
 
 }

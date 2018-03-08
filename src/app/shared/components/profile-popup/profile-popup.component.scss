@@ -1,0 +1,114 @@
+@import "colors";
+
+:host {
+    
+}
+.wrapper {
+    background-color: $white;
+    width: 300px;
+    position: relative;
+    z-index: 999;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 #dfe3eb;
+    opacity: 0;
+    animation: itemScale .3s forwards;
+    .top-color {
+        height: 120px;
+        background-color: $ocean_3;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 70px;
+    }
+    .img-profile {
+        height: 140px;
+        width: 140px;
+        border: 1px solid $gray_1;
+        border-radius: 360px;
+        position: absolute;
+        bottom: -70px;
+        margin: 0 auto;
+        background-color: $white;
+        overflow: hidden;
+        img {
+            width: 100%
+        }
+        .picture-input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: -1;
+        }
+        .upload {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            padding: 5px;
+            background-color: rgba(#000, .7);
+            color: $white;
+            animation: opacity .2s;
+            cursor: pointer;
+        }
+        @keyframes opacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    }
+    .img-profile:hover {
+        .upload {
+            display: flex;
+        }
+    }
+    input,
+    input:focus {
+        flex: 1;
+    }
+    .info {
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 60px;
+        input {
+            border: 0;
+        }
+        .name {
+            display: flex;
+            input,
+            input:focus {
+                font-size: 18px !important;
+                font-weight: 600 !important;
+            }
+            input:first-child {
+                text-align: right;
+            }
+        }
+        .email {
+            input {
+                text-align: center;
+            }
+        }
+    }
+    .change-password {
+        padding: 20px 10px;
+        .old,
+        .new {
+            display: flex;
+        }
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
+        .change-page {
+            padding-top: 5px;
+        }
+    }
+}

@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<main [@slideAnimation]="getRouterOutletLevel(o)" *ngIf="!isLoading">
+    <router-outlet #o="outlet"></router-outlet>
+</main>
+<div class="" *ngIf="isLoading">
+    <rect-loading></rect-loading>
+</div>

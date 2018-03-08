@@ -1,26 +1,5 @@
 @import "colors";
 
-// .add-search {
-//     display: flex;
-//     padding-bottom: 10px;
-//     .select-option {
-//         min-width: 100px;
-//         .select {
-//             border-right: 0px;
-//             background-color: $gray_0;
-//         }
-//         .select:hover {
-//             border-color: $gray_1;
-//         }
-//     }
-//     .text-input {
-//         width: 100%;
-//         .input {
-//             border-radius: 0px 2px 2px 0px;
-//         }
-//     }
-// }
-
 .c-header {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -32,6 +11,8 @@
 .member {
     display: flex;
     align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
     .position {
         width: 30px;
         display: flex;
@@ -50,6 +31,11 @@
             opacity: .5;
         }
     }
+    .info {
+        display: flex;
+        flex: 1;
+        padding: 17px 10px;
+    }
     .name {
         font-weight: 400;
     }
@@ -58,7 +44,6 @@
     }
     .options {
         display: flex;
-        flex: 1;
         align-items: center;
         justify-content: flex-end;
         opacity: 0.1;
