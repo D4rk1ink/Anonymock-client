@@ -7,8 +7,9 @@
 @import "input";
 @import "components";
 @import "methods";
-
-html, body {
+@import "base";
+html,
+body {
     color: $black;
     box-sizing: border-box;
     height: 100%;

@@ -1,8 +1,6 @@
 @import "colors";
-
 .c-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 12px 10px 12px;
     justify-content: space-between;
     .options {
         display: flex;
@@ -11,9 +9,11 @@
         }
     }
 }
+
 .new-endpoint {
     animation: itemScale .5s;
 }
+
 .endpoint {
     display: flex;
     align-items: center;
@@ -50,11 +50,13 @@
         }
     }
 }
+
 .endpoint:hover {
     .options {
         opacity: 1;
     }
 }
+
 .pagging {
     display: flex;
     align-items: center;

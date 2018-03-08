@@ -1,5 +1,4 @@
 @import "colors";
-
 // .add-search {
 //     display: flex;
 //     padding-bottom: 10px;
@@ -20,15 +19,14 @@
 //         }
 //     }
 // }
-
 .c-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 10px 12px 10px 12px;
     justify-content: space-between;
     .options {
         display: flex;
     }
 }
+
 .member {
     display: flex;
     align-items: center;
@@ -69,6 +67,7 @@
         }
     }
 }
+
 .member:hover {
     .options {
         opacity: 1;
@@ -93,6 +92,6 @@
         color: $sky_3;
         background-color: rgba($white, 0);
         border: 1px solid;
-        border-color: $sky_3; 
+        border-color: $sky_3;
     }
 }

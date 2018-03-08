@@ -1,13 +1,12 @@
 @import "colors";
-
 .c-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 10px 12px 10px 12px;
     justify-content: space-between;
     .options {
         display: flex;
     }
 }
+
 .log {
     display: block;
     .main-row {
@@ -46,6 +45,7 @@
         }
     }
 }
+
 .log.active {
     .main-row {
         padding-bottom: 7px;
@@ -54,6 +54,7 @@
         max-height: 999px;
     }
 }
+
 .pagging {
     display: flex;
     align-items: center;

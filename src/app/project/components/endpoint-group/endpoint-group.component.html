@@ -4,7 +4,7 @@
     <div class="options">
       <search-input (out)="onSearch($event)"></search-input>
       <div class="new center-align" *ngIf="canNew" (click)="onNew()">
-        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+        <i class="material-icons btn-icon btn-greenmint-icon">add_box</i>
       </div>
     </div>
   </div>
@@ -23,13 +23,13 @@
       </div>
       <div class="options">
         <div class="copy">
-          <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
+          <i class="material-icons btn-icon btn-greenmint-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
         </div>
         <div class="share">
-          <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
+          <i class="material-icons btn-icon btn-greenmint-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
         </div>
         <!-- <div class="edit">
-          <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
+          <i class="material-icons btn-icon btn-greenmint-icon">mode_edit</i>
         </div> -->
       </div>
     </div>

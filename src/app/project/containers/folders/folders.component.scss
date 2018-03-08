@@ -1,8 +1,6 @@
 @import "colors";
-
 .c-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 10px 12px 10px 12px;
     justify-content: space-between;
     .options {
         display: flex;
@@ -11,6 +9,7 @@
         }
     }
 }
+
 .new-folder {
     animation: itemScale .5s;
     overflow: hidden;
@@ -33,7 +32,7 @@
         cursor: pointer;
     }
     .name,
-    > .rename {
+    >.rename {
         padding-left: 10px;
         font-weight: 400;
         font-size: 14px;
@@ -65,6 +64,7 @@
         }
     }
 }
+
 .folder:hover {
     .options {
         opacity: 1;
