@@ -10,7 +10,7 @@ import * as json from 'app/project/utils/json.util';
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
-  styleUrls: ['./config.component.scss'],
+  styleUrls: ['./config.component.scss']
 })
 export class ConfigComponent implements OnInit {
 

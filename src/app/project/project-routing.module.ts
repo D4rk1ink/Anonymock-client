@@ -21,60 +21,53 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent,
-        data: { level: 0 }
+        component: DashboardComponent
       },
       {
         path: 'config',
-        component: ConfigComponent,
-        data: { level: 1 }
+        component: ConfigComponent
       },
       {
         path: 'database',
-        component: DatabaseComponent,
-        data: { level: 2 }
+        component: DatabaseComponent
       },
       {
         path: 'member',
-        component: MemberComponent,
-        data: { level: 3 }
+        component: MemberComponent
       },
       {
         path: 'endpoint',
-        component: EndpointsComponent,
-        data: { level: 4 }
+        component: EndpointsComponent
       },
       {
         path: 'endpoint/:endpoint-id',
         component: EndpointComponent,
-        data: { level: 41 },
         children: [
           {
             path: '',
-            component: ResponsesComponent,
-            data: { level: 411 },
+            component: ResponsesComponent
           },
           {
             path: ':response-id',
-            component: ResponseComponent,
-            data: { level: 412 },
+            component: ResponseComponent
           }
         ]
       },
       {
         path: 'folder',
-        component: FoldersComponent,
-        data: { level: 5 },
+        component: FoldersComponent
       },
       {
         path: 'folder/:folder-id',
-        component: FolderComponent,
-        data: { level: 51 },
+        component: FolderComponent
       },
       {
         path: 'log',
-        component: LogsComponent,
-        data: { level: 6 },
+        component: LogsComponent
+      },
+      {
+        path: 'log/:log-id',
+        component: LogComponent
       },
       {
         path: '**',

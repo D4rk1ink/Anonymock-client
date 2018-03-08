@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service';
 import { EndpointService } from 'app/project/services/endpoint.service';
+import * as endpointAction from 'app/project/actions/endpoint.action'
+import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
 
 @Component({
@@ -11,22 +13,17 @@ import * as fromProject from 'app/project/reducers'
 })
 export class ResponsesComponent implements OnInit {
 
-  public isLoading: boolean
   public endpointId: string
   public endpoint: any
   public responses: any[]
-  public menuSelector: any
-  public menu: any[] = [
-    { id: 'M01', title: 'Dev' },
-    { id: 'M02', title: 'Test' }
-  ]
+  public environment: string
   
   constructor(
     private store: Store<any>,
     private responseService: ResponseService,
     private endpointService: EndpointService
   ) {
-    this.menuSelector = this.menu[0]
+    this.environment = 'dev'
     this.store.select(fromProject.getEndpointId)
       .subscribe(endpointId => {
         this.endpointId = endpointId
@@ -42,53 +39,34 @@ export class ResponsesComponent implements OnInit {
     
   }
 
-  onSelectMenu (menu) {
-    this.menuSelector = menu
-    this.search()
-  }
-
   onNew () {
     const payload = {
       endpoint: this.endpointId,
-      environment: this.menuSelector.title.toLowerCase()
+      environment: this.environment
     }
     this.responseService.create(payload)
       .subscribe(res => {
         if (!res.error) {
-          res.data.isNew = true
           this.responses = [res.data, ...this.responses]
         }
       })
   }
 
-  setDefault (response) {
-    this.responseService.default(response.id)
-      .subscribe(res => {
-        if (!res.error) {
-          this.responses = this.responses.map(response => {
-            if (res.data.id === response.id) {
-              response.isDefault = res.data.isDefault
-            } else {
-              response.isDefault = false
-            }
-            return response
-          })
-        }
-      })
+  onChangeEnvironment (environment) {
+    this.environment = environment
+    this.search()
   }
 
   search () {
     const payload = {
       endpoint: this.endpointId,
       search: '',
-      environment: this.menuSelector.title.toLowerCase()
+      environment: this.environment
     }
-    this.isLoading = true
     this.responseService.search(payload)
       .subscribe(res => {
         if (!res.error) {
           this.responses = res.data
-          this.isLoading = false
         }
       })
   }

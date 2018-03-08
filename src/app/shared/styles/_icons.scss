@@ -1,5 +1,4 @@
 @import "colors";
-
 img.img-icon {
     max-width: 20px;
     max-height: 20px;
@@ -12,6 +11,14 @@ img.img-icon {
 
 .btn-sky-icon:hover {
     color: $sky_2;
+}
+
+.btn-greenmint-icon:hover {
+    color: $greenmint;
+}
+
+.btn-greenmint-icon:hover {
+    color: $greenmint_1;
 }
 
 .btn-sky-icon:active {

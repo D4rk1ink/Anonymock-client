@@ -1,18 +1,11 @@
 import { Action } from '@ngrx/store'
 
-export const ISLOADING = '[Endpoint] IsLoading'
 export const ID = '[Endpoint] Id'
 export const NAME = '[Endpoint] Name'
 export const PATH = '[Endpoint] Path'
 export const METHOD = '[Endpoint] Method'
 export const FOLDER = '[Endpoint] Folder'
 export const RESPONSES = '[Endpoint] Responses'
-
-export class IsLoadingAction implements Action {
-    readonly type = ISLOADING
-
-    constructor (public payload) { }
-}
 
 export class IdAction implements Action {
     readonly type = ID
@@ -51,8 +44,7 @@ export class ResponsesAction implements Action {
 }
 
 export type Actions
-= IsLoadingAction
-| IdAction
+= IdAction
 | NameAction
 | PathAction
 | MethodAction

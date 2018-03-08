@@ -41,7 +41,7 @@
                         Description
                     </label>
                     <div class="">
-                        <textarea placeholder="Descript..." [(ngModel)]="project.description"></textarea>
+                        <textarea placeholder="Description..." [(ngModel)]="project.description"></textarea>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </section>
-        <section class="section">
+        <section class="section prxs">
             <entity-group [title]="'Environments'" [entities]="project.environments" (save)="onEnvironment($event)"></entity-group>
         </section>
     </div>
