@@ -4,39 +4,35 @@
     <div class="options">
       <search-input (out)="onSearch($event)"></search-input>
       <div class="new center-align" *ngIf="canNew" (click)="onNew()">
-        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+        <i class="material-icons btn-icon btn-greenmint-icon">add_box</i>
       </div>
     </div>
   </div>
   <div class="c-list">
-    <ng-container *ngIf="!isLoading">
-      <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints; let i = index">
-        <div class="id">
-          {{ endpoint.id }}
-        </div>
-        <div class="method">
-          <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
-            {{ endpoint.method.name }}
-          </span>
-        </div>
-        <div class="name" (click)="onLink(endpoint.id)">
-          {{ endpoint.name }}
-        </div>
-        <div class="options">
-          <div class="copy">
-            <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
-          </div>
-          <div class="share">
-            <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
-          </div>
-        </div>
+    <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints">
+      <div class="id">
+        {{ endpoint.id }}
       </div>
-    </ng-container>
-    <empty-item
-      [items]="endpoints"
-      [isLoading]="isLoading"
-      [icon]="'inbox'"
-      [message]="'Endpoint Not Found'"></empty-item>
+      <div class="method">
+        <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
+          {{ endpoint.method.name }}
+        </span>
+      </div>
+      <div class="name" (click)="onLink(endpoint.id)">
+        {{ endpoint.name }}
+      </div>
+      <div class="options">
+        <div class="copy">
+          <i class="material-icons btn-icon btn-greenmint-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
+        </div>
+        <div class="share">
+          <i class="material-icons btn-icon btn-greenmint-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
+        </div>
+        <!-- <div class="edit">
+          <i class="material-icons btn-icon btn-greenmint-icon">mode_edit</i>
+        </div> -->
+      </div>
+    </div>
   </div>
   <div class="c-footer" *ngIf="limitPage > 1">
     <div class="pagging">

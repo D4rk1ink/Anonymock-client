@@ -20,11 +20,6 @@ export class UserService {
     return this.http.patch(url, payload)
   }
 
-  uploadPicture (id, payload): Observable<any> {
-    const url = constants.BASE_API + '/user/' + id + '/picture'
-    return this.http.patch(url, payload)
-  }
-
   changePassword (id, payload): Observable<any> {
     const url = constants.BASE_API + '/user/' + id + '/change-password'
     return this.http.patch(url, payload)

@@ -1,21 +1,8 @@
 <div class="wrapper">
     <left-menu></left-menu>
     <div class="right">
-        <div class="top-bar">
-            <div class="profile">
-                <div class="img-profile" [class.active]="isProfileDropdown" id="top-bar-img-profile" (click)="profileDropdown()">
-                    <img [src]="user.picture"/>
-                </div>
-                <div class="profile-dropdown" *ngIf="isProfileDropdown">
-                    <profile-dropdown></profile-dropdown>
-                </div>
-            </div>
-        </div>
         <div class="content">
             <router-outlet></router-outlet>
         </div>
     </div>
-</div>
-<div class="profile-popup" *ngIf="isProfilePopup">
-    <profile-popup></profile-popup>
 </div>

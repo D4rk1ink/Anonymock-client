@@ -1,6 +1,6 @@
-<div class="c-wrapper">
-  <div class="c-tabs">
-    <div class="c-tab-item item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
+<div class="wrapper">
+  <div class="tabs">
+    <div class="item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
       {{ item.title }}
     </div>
   </div>

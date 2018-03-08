@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store'
 import { MemberService } from 'app/member-management/services/member.service'
 import * as database from 'app/core/services/database.service'
 import * as membersAction from 'app/member-management/actions/members.action'
-import * as otherAction from 'app/core/actions/other.action';
 import * as fromMembers from 'app/member-management/reducers'
 
 @Component({
@@ -28,12 +27,6 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit () {
-  }
-
-  modalUserPopup (user) {
-    this.store.dispatch(new otherAction.OtherUserPopupAction(user))
-    this.store.dispatch(new otherAction.IsOtherUserPopupAction(true))
-    this.store.dispatch(new otherAction.IsProfilePopupAction())
   }
 
   onAdmin (id, isAdmin) {

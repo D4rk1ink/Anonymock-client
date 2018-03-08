@@ -1,27 +1,34 @@
 @import "colors";
-
-.c-wrapper {
-    box-shadow: 0 0 0 0;
-}
-.c-header {
-    .title {
+.entity-group {
+    border: 1px solid $gray_1;
+    border-radius: 2px;
+    background-color: $white;
+    .header {
+        cursor: pointer;
         display: flex;
         align-items: center;
-        flex: 1;
-        .arrow {
-            transition: transform .5s, color .5s;
-        }
-        .arrow.active {
-            color: $sky_2;
-            transform: rotateZ(90deg)
+        padding: 10px;
+        max-height: 40px;
+        .title {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            .arrow {
+                transition: transform .5s, color .5s;
+            }
+            .arrow.active {
+                color: $greenmint;
+                transform: rotateZ(90deg)
+            }
         }
     }
-}
-.expand {
-    max-height: 0px;
-    overflow: hidden;
-    transition:  height .5s, max-height .5s;
-}
-.expand.active {
-    max-height: 500px !important;
+    .expand {
+        max-height: 0px;
+        overflow: hidden;
+        transition: height .5s, max-height .5s;
+    }
+    .expand.active {
+        border-top: 1px solid $gray_1;
+        max-height: 500px !important;
+    }
 }

@@ -1,7 +1,12 @@
-<div class="c-wrapper">
+<div class="pbxs">
+  <h2>Member Management</h2>
+</div>
+
+
+<div class=" c-wrapper">
   <div class="c-tabs">
     <div class="item c-tab-item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
-      <h4>{{ item.title }}</h4>
+      {{ item.title }}
     </div>
     <div class="search">
       <search-input (out)="onSearch($event)"></search-input>

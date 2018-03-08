@@ -1,3 +1,7 @@
+<div class="pbxs">
+  <h2>Logs</h2>
+</div>
+
 <div class="c-wrapper">
   <div class="c-header">
     <h4>Logs</h4>
@@ -6,7 +10,7 @@
       </div>
   </div>
   <div class="c-list">
-    <div class="c-list-item log" *ngFor="let log of logs; let i = index" [class.active]="log.id === logTarget" (click)="onExpand(log.id)">
+    <div class="c-list-item log" *ngFor="let log of logs" [class.active]="log.id === logTarget" (click)="onExpand(log.id)">
       <div class="main-row">
         <div class="method">
           <span class="toggle-method toggle-{{ log.method.name | lowercase }}">

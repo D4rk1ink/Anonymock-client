@@ -1,17 +1,16 @@
 @import "colors";
-
-
 .c-wrapper {
     background-color: $white;
+    // overflow: hidden;
     border-radius: 3px;
-    border: 1px solid $gray_1;
-    box-shadow: 0 2px 12px 0 #dfe3eb;
+    border: 1px solid $gray_0;
+    // box-shadow: 0px 1px 1px 1px $gray_0;
     .c-header {
         display: flex;
-        padding: 15px;
+        padding: 10px 12px 10px 12px;
         align-items: center;
         border-bottom: 1px solid $gray_0;
-        box-shadow: 0px 3px 30px -5px $gray_0;
+        // box-shadow: 0 0 10px 3px $gray_0;
     }
     .c-body {
         padding: 15px;
@@ -24,11 +23,10 @@
 
 .c-tabs {
     display: flex;
-    border-bottom: 1px solid $gray_0;
-    box-shadow: 0px 3px 30px -5px $gray_0;
+    box-shadow: 0 0 10px 3px $gray_0;
     .c-tab-item {
         cursor: pointer;
-        padding: 15px;
+        padding: 10px 12px 10px 12px;
         font-weight: 400;
         border-bottom: 3px solid;
         border-color: rgba($white, 0);
@@ -41,6 +39,7 @@
 }
 
 .c-list {
+    // overflow-y: hidden;
     .c-list-item {
         display: flex;
         padding: 15px;
@@ -51,6 +50,7 @@
         margin: 0 -5px;
         background-color: $white;
         box-shadow: 0 0 10px 0 $gray_0;
+        // border: 1px solid $gray_0;
         border-left: 3px solid rgba($ocean_3, 1);
         cursor: pointer;
     }
