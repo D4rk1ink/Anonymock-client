@@ -1,11 +1,5 @@
 @import "colors";
 
-:host {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-
 .c-header {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -18,7 +12,7 @@
     }
 }
 .new-folder {
-    animation: itemExpand .5s;
+    animation: itemScale .5s;
     overflow: hidden;
     input.input-name {
         border: 0;
@@ -73,6 +67,19 @@
 }
 .folder:hover {
     .options {
+        opacity: 1;
+    }
+}
+
+@keyframes itemScale {
+    0% {
+        max-height: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        opacity: 0;
+    }
+    100% {
+        max-height: 50px;
         opacity: 1;
     }
 }

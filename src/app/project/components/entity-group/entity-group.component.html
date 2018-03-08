@@ -1,8 +1,10 @@
-<div class="c-wrapper">
-    <div class="c-header">
-        {{ title }}
+<div class="entity-group">
+    <div class="header">
+        <div class="title" (click)="onExpand()">
+            <i class="material-icons arrow" [class.active]="isExpand">keyboard_arrow_right</i> {{ title }}
+        </div>
     </div>
-    <div class="expand active">
+    <div class="expand" [class.active]="isExpand">
         <key-value-group [autoKey]="autoKey" [data]="entities" [temp]="temp" (save)="saveData($event)"></key-value-group>
     </div>
 </div>

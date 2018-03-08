@@ -27,14 +27,13 @@ export class EndpointsComponent implements OnInit, OnDestroy {
   ) {
     this.store.select(fromProject.getProjectId)
       .subscribe(id => {
-        if (!id) return
         this.projectId = id
       })
     this.store.select(fromProject.getEndpoints)
       .subscribe(endpoints => {
         const nqSearchEndpoints = this.searchEndpoints !== endpoints.search
         const nqPage = this.page !== endpoints.page
-        if (this.projectId && nqSearchEndpoints || nqPage) {
+        if (nqSearchEndpoints || nqPage) {
           this.searchEndpoints = endpoints.search
           this.page = endpoints.page
           this.search()
@@ -54,13 +53,11 @@ export class EndpointsComponent implements OnInit, OnDestroy {
       search: this.searchEndpoints,
       page: this.page
     }
-    this.store.dispatch(new endpointsAction.IsLoadingAction(true))
     this.searchSub = this.endpointService.search(payload)
       .subscribe(res => {
         if (!res.error) {
           this.store.dispatch(new endpointsAction.ItemsAction(res.data.endpoints))
           this.store.dispatch(new endpointsAction.LimitPageAction(res.data.limitPage))
-          this.store.dispatch(new endpointsAction.IsLoadingAction(false))
         }
       })
   }

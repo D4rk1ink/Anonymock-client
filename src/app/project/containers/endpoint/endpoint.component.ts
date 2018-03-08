@@ -4,15 +4,13 @@ import { Store } from '@ngrx/store'
 import { EndpointService } from 'app/project/services/endpoint.service';
 import { MethodService } from 'app/project/services/method.service';
 import { FolderService } from 'app/project/services/folder.service';
-import { slideAnimation } from 'app/shared/animations/slide.animation'
 import * as endpointAction from 'app/project/actions/endpoint.action'
 import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'app-endpoint',
   templateUrl: './endpoint.component.html',
-  styleUrls: ['./endpoint.component.scss'],
-  animations: [slideAnimation]
+  styleUrls: ['./endpoint.component.scss']
 })
 export class EndpointComponent implements OnInit {
 
@@ -97,4 +95,5 @@ export class EndpointComponent implements OnInit {
         }
       })
   }
+
 }
