@@ -1,7 +1,5 @@
 @import "colors";
-
 $border: #253545;
-
 .wrapper {
     height: 100%;
     width: 200px;
@@ -11,13 +9,15 @@ $border: #253545;
     flex-direction: column;
     position: fixed;
     z-index: 1;
-    box-shadow: -10px 15px 10px 15px rgba(#050505, .3);
+    //  box-shadow: -10px 15px 10px 15px rgba(#050505, .3);
 }
+
 .banner {
     height: 50px;
     min-height: 50px;
-    background-color: #0c161d;
+    background-color: $ocean_2;
 }
+
 .profile {
     display: flex;
     align-items: center;
@@ -44,12 +44,13 @@ $border: #253545;
         cursor: pointer;
     }
 }
+
 .admin-bar,
 .project-bar {
     color: $gray_2;
     background-color: #101c24;
     min-height: 30px;
-    padding: 5px 0; 
+    padding: 5px 0;
     padding-left: 10px;
     font-weight: 600;
     border-bottom: 1px solid $border;
@@ -57,6 +58,7 @@ $border: #253545;
     align-content: center;
     justify-content: space-between;
 }
+
 .project-bar {
     padding-right: 10px;
     .create {
@@ -69,6 +71,7 @@ $border: #253545;
         font-size: 18px;
     }
 }
+
 .new-project-row {
     max-height: 39px;
     overflow: hidden;
@@ -82,21 +85,26 @@ $border: #253545;
         caret-color: $gray_2;
     }
 }
+
 .projects-wrapper {
     overflow-y: auto;
 }
+
 .projects-wrapper::-webkit-scrollbar {
     width: 6px;
     -webkit-appearance: none;
 }
+
 .projects-wrapper::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(#fff, 0);
     transition: background-color .3s;
 }
+
 .projects-wrapper::-webkit-scrollbar-thumb:hover {
     background-color: rgba(22, 22, 22, 0.692);
 }
+
 .new-project-row,
 .member-menu,
 .project-menu {
@@ -138,6 +146,7 @@ $border: #253545;
         }
     }
 }
+
 .member-menu.active,
 .create-project-menu.active,
 .project-menu.active {

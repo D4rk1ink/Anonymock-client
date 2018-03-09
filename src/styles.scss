@@ -7,8 +7,9 @@
 @import "input";
 @import "components";
 @import "methods";
-
-html, body {
+@import "base";
+html,
+body {
     color: $black;
     box-sizing: border-box;
     height: 100%;
@@ -30,11 +31,13 @@ body::-webkit-scrollbar {
     -webkit-appearance: none;
     transition: background-color 3s;
 }
+
 body::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: rgba(#fff, 0);
     transition: background-color 3s;
 }
+
 body::-webkit-scrollbar-thumb:hover {
     background-color: rgba(22, 22, 22, 0.692);
 }
@@ -78,11 +81,11 @@ label.label-title {
 
 label.link {
     cursor: pointer;
-    color: $sky_1;
+    color: $ocean_2;
 }
 
 label.link:hover {
-    color: $sky_2;
+    color: $ocean_3;
 }
 
 .title-center {

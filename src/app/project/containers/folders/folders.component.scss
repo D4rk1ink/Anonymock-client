@@ -1,5 +1,4 @@
 @import "colors";
-
 :host {
     width: 100%;
     height: 100%;
@@ -17,6 +16,7 @@
         }
     }
 }
+
 .new-folder {
     animation: itemExpand .5s;
     overflow: hidden;
@@ -33,13 +33,13 @@
     align-items: center;
     overflow: hidden;
     .id {
-        color: $sky_2;
+        color: $ocean_2;
         width: 80px;
         font-size: 12px;
         cursor: pointer;
     }
     .name,
-    > .rename {
+    >.rename {
         padding-left: 10px;
         font-weight: 400;
         font-size: 14px;
@@ -71,6 +71,7 @@
         }
     }
 }
+
 .folder:hover {
     .options {
         opacity: 1;

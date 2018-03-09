@@ -1,5 +1,4 @@
 @import "colors";
-
 img.img-icon {
     max-width: 20px;
     max-height: 20px;
@@ -11,11 +10,13 @@ img.img-icon {
 }
 
 .btn-sky-icon:hover {
-    color: $sky_2;
+    //color: $sky_2;
+    color: $ocean_2;
 }
 
 .btn-sky-icon:active {
-    color: $sky_3;
+    // color: $sky_3;
+    color: $ocean_3;
 }
 
 .btn-danger-icon:hover {

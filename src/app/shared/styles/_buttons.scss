@@ -2,12 +2,13 @@ button.btn {
     min-height: 35px;
     max-height: 35px;
     background-color: $white;
-    border:0px;
-    border-radius: 2px;
-    padding: 0 10px;
+    border: 0px;
+    border-radius: 6px;
+    padding: 10px 12px 10px 12px;
     margin: 0px;
     cursor: pointer;
 }
+
 // START SKY BUTTON
 button.btn.btn-sky {
     color: $white;
@@ -23,23 +24,29 @@ button.btn.btn-sky:active {
 }
 
 button.btn.btn-sky.outline {
-    color: $sky_2;
+    //color: $sky_2;
+    color: $ocean_2;
     background-color: rgba($white, 0);
     border: 1px solid;
-    border-color: $sky_2;
+    // border-color: $sky_2;
+    border-color: $ocean_2;
 }
 
 button.btn.btn-sky.outline:hover {
-    color: $sky_0;
-    border-color: $sky_0;
+    // color: $sky_0;
+    //  border-color: $sky_0;
+    color: $ocean_3;
+    border-color: $ocean_3;
 }
 
 button.btn.btn-sky.outline:active {
-    color: $sky_3;
-    border-color: $sky_3;
+    // color: $sky_3;
+    // border-color: $sky_3;
+    color: $ocean_2;
+    border-color: $ocean_2;
 }
-// END SKY BUTTON
 
+// END SKY BUTTON
 // START DANGET BUTTON
 button.btn.btn-danger {
     color: $white;
@@ -70,4 +77,5 @@ button.btn.btn-danger.outline:active {
     color: $danger_3;
     border-color: $danger_3;
 }
+
 // END DANGET BUTTON

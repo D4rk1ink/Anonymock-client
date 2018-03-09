@@ -1,8 +1,6 @@
 @import "colors";
+:host {}
 
-:host {
-    
-}
 .wrapper {
     background-color: $white;
     width: 300px;
@@ -108,7 +106,7 @@
         padding: 10px;
         text-align: center;
         .change-page {
-            padding-top: 5px;
+            padding-top: 10px;
         }
     }
 }

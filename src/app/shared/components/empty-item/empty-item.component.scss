@@ -1,5 +1,4 @@
 @import "colors";
-
 .wrapper {
     text-align: center;
     padding: 20px 0;
@@ -7,10 +6,10 @@
     .icon {
         display: flex;
         justify-content: center;
-        font-size: 3em;
+        //font-size: 3em;
     }
     .message {
         font-size: 2em;
-        font-weight: 500;
+        //font-weight: 500;
     }
 }

@@ -1,5 +1,4 @@
 @import "colors";
-
 .c-header {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -11,15 +10,17 @@
         }
     }
 }
+
 .new-endpoint {
     animation: itemExpand .5s;
 }
+
 .endpoint {
     display: flex;
     align-items: center;
     overflow: hidden;
     .id {
-        color: $sky_2;
+        color: $ocean_2;
         width: 80px;
         font-size: 12px;
         cursor: pointer;
@@ -50,11 +51,13 @@
         }
     }
 }
+
 .endpoint:hover {
     .options {
         opacity: 1;
     }
 }
+
 .pagging {
     display: flex;
     align-items: center;
