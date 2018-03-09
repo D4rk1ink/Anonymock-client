@@ -22,7 +22,7 @@
   </div>
   <div class="project-bar">
     <div class="name">Project</div>
-    <div class="create" (click)="onNewProject()">
+    <div class="create" (click)="onNewProject()" *ngIf="user.isAdmin">
       <i class="material-icons">add</i>
     </div>
   </div>
