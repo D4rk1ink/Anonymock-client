@@ -56,8 +56,10 @@ export class LeftMenuComponent implements OnInit {
       this.menuTarget = targets[1]
       if (this.menuTarget === 'project') {
         const exec = new RegExp('/project/([^\S][^/]+)/([^\S][^/]+)').exec(url)
-        this.menuTarget = exec[1]
-        this.subProject = exec[2]
+        if (exec) {
+          this.menuTarget = exec[1]
+          this.subProject = exec[2]
+        }
       }
     }
   }
