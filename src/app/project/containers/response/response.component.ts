@@ -94,13 +94,13 @@ export class ResponseComponent implements OnInit, OnDestroy {
       condition: {
         ...this.response.condition,
         params: json.toJSON(this.response.condition.params),
-        body: json.toJSON(this.response.condition.body),
+        body: this.response.condition.body,
         headers: json.toJSON(this.response.condition.headers),
         queryString: json.toJSON(this.response.condition.queryString)
       },
       response: {
         ...this.response.response,
-        body: json.toJSON(this.response.response.body),
+        body: this.response.response.body,
         headers: json.toJSON(this.response.response.headers)
       }
     }
