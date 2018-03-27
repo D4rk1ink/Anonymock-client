@@ -22,6 +22,7 @@ export class MainLayoutComponent implements OnInit {
     private store: Store<any>,
     private userService: UserService
   ) {
+    this.store.dispatch(new otherAction.ClearAction())
     this.store.select(fromCore.getUser)
       .subscribe(user => {
         this.user = user

@@ -14,7 +14,8 @@ export class ResponseGroupComponent implements OnInit {
     headers: any,
     body: any,
     delay: number,
-    statusCode: number
+    statusCode: number,
+    isFindOne: boolean
   }
 
   public temps: {

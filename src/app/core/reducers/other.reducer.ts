@@ -37,6 +37,8 @@ export function reducer (state = initialState, action: otherAction.Actions): Sta
                 ...state,
                 otherUserPopup: action.payload
             }
+        case otherAction.CLEAR:
+            return initialState
         default: 
             return state
     }

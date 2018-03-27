@@ -14,7 +14,8 @@ export interface State {
         headers: any[],
         body: any,
         delay: number,
-        statusCode: number
+        statusCode: number,
+        isFindOne: boolean
     }
 }
 
@@ -31,7 +32,8 @@ const initialState: State = {
         headers: [],
         body: {},
         delay: 10,
-        statusCode: 200
+        statusCode: 200,
+        isFindOne: false
     }
 }
 
