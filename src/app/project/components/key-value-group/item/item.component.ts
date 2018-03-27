@@ -10,6 +10,7 @@ export class ItemComponent implements OnInit {
   @Input('index') index: number
   @Input('entity') entity: any
   @Input('disableDelete') disableDelete: any
+  @Input('keyReadOnly') keyReadOnly: any
   @Output('blur') blur: EventEmitter<any>
   @Output('inputKey') inputKey: EventEmitter<any>
   @Output('inputValue') inputValue: EventEmitter<any>
