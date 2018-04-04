@@ -43,9 +43,6 @@ import { RequestGroupComponent } from './components/request-group/request-group.
 import { ResponseGroupComponent } from './components/response-group/response-group.component';
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component';
 import { ItemComponent } from './components/key-value-group/item/item.component';
-import { HeaderComponent } from './components/request-group/header/header.component';
-import { BodyComponent } from './components/request-group/body/body.component';
-import { QueryStringComponent } from './components/request-group/query-string/query-string.component';
 import { InputAddMemberComponent } from './components/input-add-member/input-add-member.component';
 
 import { ProjectService } from './services/project.service';
@@ -109,9 +106,6 @@ import { MethodService } from './services/method.service';
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
-    HeaderComponent,
-    BodyComponent,
-    QueryStringComponent,
     InputAddMemberComponent,
   ],
   exports: [
@@ -148,9 +142,6 @@ import { MethodService } from './services/method.service';
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
-    HeaderComponent,
-    BodyComponent,
-    QueryStringComponent,
     InputAddMemberComponent,
   ],
   providers: [

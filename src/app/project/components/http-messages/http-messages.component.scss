@@ -1,0 +1,39 @@
+@import "colors";
+
+.c-tabs {
+    .options {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+        .delay,
+        .status {
+            display: flex;
+            align-items: center;
+        }
+        input {
+            border: 1px solid rgba($white, 0);
+            max-height: 25px;
+            min-height: 25px;
+        }
+        .delay {
+            padding-right: 10px;
+            border-right: 1px solid $gray_1;
+            input {
+                text-align: right;
+                width: 60px;
+            }
+        }
+        .status {
+            padding-left: 10px;
+            input {
+                width: 50px;
+            }
+        }
+    }
+}
+.content {
+    .body {
+        padding: 10px;
+    }
+}

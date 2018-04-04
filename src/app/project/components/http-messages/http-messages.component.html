@@ -1,0 +1,28 @@
+<div class="c-wrapper">
+  <div class="c-tabs">
+    <div class="c-tab-item item" *ngFor="let item of tab" [class.active]="tabSelector === item.id" (click)="onSelectMenu(item.id)">
+      {{ item.title }}
+    </div>
+    <div class="options">
+      <div class="delay" *ngIf="delayInput">
+        Delay : <input type="text" name="delay" [ngModel]="delay" (keypress)="onNumberKeyPress($event)" (blur)="saveDelay($event.target.value)"> ms
+      </div>
+      <div class="status" *ngIf="statusCodeInput">
+        Status : <input type="text" name="status" maxlength="3" [ngModel]="statusCode" (keypress)="onNumberKeyPress($event)" (blur)="saveStatusCode($event.target.value)">
+      </div>
+    </div>
+  </div>
+  <div class="content" [ngSwitch]="tabSelector">
+    <ng-container *ngSwitchCase="'T01'">
+      <key-value-group [data]="header" (save)="saveHeader($event)"></key-value-group>
+    </ng-container>
+    <ng-container *ngSwitchCase="'T02'">
+      <div class="body">
+        <code-editor [text]="body" [mode]="'json'" (change)="saveBody($event)"></code-editor>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'T03'">
+      <key-value-group [data]="queryString" (save)="saveQueryString($event)"></key-value-group>
+    </ng-container>
+  </div>
+</div>
