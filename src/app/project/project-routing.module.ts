@@ -5,6 +5,7 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component'
 import { ConfigComponent } from './containers/config/config.component'
 import { DatabaseComponent } from './containers/database/database.component'
 import { MemberComponent } from './containers/member/member.component'
+import { ScraperComponent } from './containers/scraper/scraper.component'
 import { EndpointsComponent } from './containers/endpoints/endpoints.component'
 import { FoldersComponent } from './containers/folders/folders.component'
 import { EndpointComponent } from './containers/endpoint/endpoint.component'
@@ -38,6 +39,11 @@ const routes: Routes = [
         path: 'member',
         component: MemberComponent,
         data: { level: 3 }
+      },
+      {
+        path: 'scraper',
+        component: ScraperComponent,
+        data: { level: 3.5 }
       },
       {
         path: 'endpoint',

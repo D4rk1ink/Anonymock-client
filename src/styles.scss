@@ -66,6 +66,10 @@ hr {
     margin: 20px 0 !important;
 }
 
+hr.disable-margin {
+    margin: 0px !important;
+}
+
 .section:not(:last-child) {
     margin-bottom: 20px;
 }

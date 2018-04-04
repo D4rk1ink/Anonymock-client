@@ -6,6 +6,10 @@
     animation: slideToRight .5s forwards;
 }
 
+.animate-item-expand {
+    animation: itemExpand .5s;
+}
+
 @for $i from 1 through 100 {
     .slide-to-right-#{$i} {
         animation-delay: ($i * 0.2) - 0.2s;

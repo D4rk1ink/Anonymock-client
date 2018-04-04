@@ -12,6 +12,7 @@ import { ProfileDropdownComponent } from './components/profile-dropdown/profile-
 import { ProfilePopupComponent } from './components/profile-popup/profile-popup.component';
 import { RectLoadingComponent } from './components/rect-loading/rect-loading.component';
 import { EmptyItemComponent } from './components/empty-item/empty-item.component';
+import { AddItemBarComponent } from './components/add-item-bar/add-item-bar.component';
 
 import { ProjectService } from 'app/project/services/project.service';
 import { UserService } from 'app/my-account/services/user.service';
@@ -33,6 +34,7 @@ import { UserService } from 'app/my-account/services/user.service';
     ProfilePopupComponent,
     RectLoadingComponent,
     EmptyItemComponent,
+    AddItemBarComponent,
   ],
   exports: [
     CommonModule,
@@ -49,6 +51,7 @@ import { UserService } from 'app/my-account/services/user.service';
     ProfilePopupComponent,
     RectLoadingComponent,
     EmptyItemComponent,
+    AddItemBarComponent,
   ]
 })
 export class SharedModule {

@@ -1,0 +1,61 @@
+@import "colors";
+
+:host {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.endpoint {
+    display: block;
+    .main-row {
+        padding: 2px 0px;
+        display: flex;
+        align-items: center;
+        .id {
+            color: $sky_2;
+            width: 80px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .name {
+            flex: 1;
+            padding-left: 10px;
+            font-weight: 400;
+        }
+        .method {
+            width: 60px;
+            display: flex;
+            justify-content: center;
+        }
+        .path {
+            flex: 3;
+        }
+        .date {
+            width: 150px;
+        }
+    }
+    .expand {
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height .5s;
+    }
+}
+.endpoint.active {
+    .main-row {
+        padding-bottom: 15px;
+    }
+    .expand {
+        max-height: 999px;
+    }
+}
+
+.expand {
+    .requests {
+        margin-top: 15px;
+        .request {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}

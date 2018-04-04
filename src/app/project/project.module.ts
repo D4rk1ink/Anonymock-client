@@ -15,6 +15,7 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { ConfigComponent } from './containers/config/config.component';
 import { MemberComponent } from './containers/member/member.component';
 import { DatabaseComponent } from './containers/database/database.component';
+import { ScraperComponent } from './containers/scraper/scraper.component';
 import { EndpointsComponent } from './containers/endpoints/endpoints.component';
 import { FoldersComponent } from './containers/folders/folders.component';
 import { EndpointComponent } from './containers/endpoint/endpoint.component';
@@ -37,6 +38,7 @@ import { LogGroupComponent } from './components/log-group/log-group.component';
 import { LogResponseComponent } from './components/log-response/log-response.component';
 import { LogRequestComponent } from './components/log-request/log-request.component';
 import { TestcaseGroupComponent } from './components/testcase-group/testcase-group.component';
+import { HttpMessagesComponent } from './components/http-messages/http-messages.component';
 import { RequestGroupComponent } from './components/request-group/request-group.component';
 import { ResponseGroupComponent } from './components/response-group/response-group.component';
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component';
@@ -50,6 +52,7 @@ import { ProjectService } from './services/project.service';
 import { DatabaseService } from './services/database.service';
 import { MemberService } from './services/member.service';
 import { FolderService } from './services/folder.service';
+import { ScraperService } from './services/scraper.service';
 import { EndpointService } from './services/endpoint.service';
 import { ResponseService } from './services/response.service';
 import { LogService } from './services/log.service';
@@ -61,6 +64,7 @@ import { MethodService } from './services/method.service';
     StoreModule.forFeature('project', projectReducers.project),
     StoreModule.forFeature('database', projectReducers.database),
     StoreModule.forFeature('folder', projectReducers.folder),
+    StoreModule.forFeature('scraper', projectReducers.scraper),
     StoreModule.forFeature('endpoint', projectReducers.endpoint),
     StoreModule.forFeature('endpoints', projectReducers.endpoints),
     StoreModule.forFeature('response', projectReducers.response),
@@ -77,6 +81,7 @@ import { MethodService } from './services/method.service';
     ConfigComponent,
     MemberComponent,
     DatabaseComponent,
+    ScraperComponent,
     EndpointsComponent,
     FoldersComponent,
     EndpointComponent,
@@ -99,6 +104,7 @@ import { MethodService } from './services/method.service';
     LogResponseComponent,
     LogRequestComponent,
     TestcaseGroupComponent,
+    HttpMessagesComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
     KeyValueGroupComponent,
@@ -114,6 +120,7 @@ import { MethodService } from './services/method.service';
     ConfigComponent,
     MemberComponent,
     DatabaseComponent,
+    ScraperComponent,
     EndpointsComponent,
     FoldersComponent,
     EndpointComponent,
@@ -136,6 +143,7 @@ import { MethodService } from './services/method.service';
     LogResponseComponent,
     LogRequestComponent,
     TestcaseGroupComponent,
+    HttpMessagesComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
     KeyValueGroupComponent,
@@ -150,6 +158,7 @@ import { MethodService } from './services/method.service';
     DatabaseService,
     MemberService,
     FolderService,
+    ScraperService,
     EndpointService,
     ResponseService,
     LogService,

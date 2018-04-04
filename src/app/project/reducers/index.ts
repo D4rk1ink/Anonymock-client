@@ -3,6 +3,7 @@ import { ActionReducer, ActionReducerMap, createFeatureSelector } from '@ngrx/st
 import * as fromProject from './project.reducer'
 import * as fromDatabase from './database.reducer'
 import * as fromFolder from './folder.reducer'
+import * as fromScraper from './scraper.reducer'
 import * as fromEndpoint from './endpoint.reducer'
 import * as fromEndpoints from './endpoints.reducer'
 import * as fromResponse from './response.reducer'
@@ -11,6 +12,7 @@ export interface ProjectState {
     project: fromProject.State,
     database: fromDatabase.State,
     folder: fromFolder.State,
+    scraper: fromScraper.State,
     endpoint: fromEndpoint.State,
     endpoints: fromEndpoints.State,
     response: fromResponse.State
@@ -29,6 +31,7 @@ export const projectReducers = {
     project: fromProject.reducer,
     database: fromDatabase.reducer,
     folder: fromFolder.reducer,
+    scraper: fromScraper.reducer,
     endpoint: fromEndpoint.reducer,
     endpoints: fromEndpoints.reducer,
     response: fromResponse.reducer
@@ -65,6 +68,14 @@ export const getEndpointPath = createSelector(getEndpointState, fromEndpoint.get
 export const getEndpointMethod = createSelector(getEndpointState, fromEndpoint.getMethod)
 export const getEndpointFolder = createSelector(getEndpointState, fromEndpoint.getFolder)
 export const getEndpointResponses = createSelector(getEndpointState, fromEndpoint.getResponses)
+
+// export const getScraperState = (state: ProjectState) => state.scraper
+export const getScraperState = createFeatureSelector<fromScraper.State>('scraper')
+export const getScraper = createSelector(getScraperState, fromScraper.getAll)
+export const getScraperSearchEndpoint = createSelector(getScraperState, fromScraper.getSearchEndpoint)
+export const getScraperPage = createSelector(getScraperState, fromScraper.getPage)
+export const getScraperLimitPage = createSelector(getScraperState, fromScraper.getLimitPage)
+export const getScraperItems = createSelector(getScraperState, fromScraper.getItems)
 
 // export const getEndpointsState = (state: ProjectState) => state.endpoints
 export const getEndpointsState = createFeatureSelector<fromEndpoints.State>('endpoints')

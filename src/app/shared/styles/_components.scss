@@ -45,7 +45,7 @@
         display: flex;
         padding: 15px;
         border-left: 3px solid rgba($ocean_3, 0);
-        transition: border-color .5s, margin .5s;
+        transition: background-color .5s, border-color .5s, margin .5s;
     }
     .c-list-item:hover {
         margin: 0 -5px;
@@ -53,5 +53,17 @@
         box-shadow: 0 0 10px 0 $gray_0;
         border-left: 3px solid rgba($ocean_3, 1);
         cursor: pointer;
+    }
+    .c-list-item.active {
+        margin: 0 -5px;
+        background-color: $white;
+        box-shadow: 0 0 10px 0 $gray_0;
+        border-left: 3px solid rgba($ocean_3, 1);
+    }
+    .c-list-item.disable-scale {
+        margin: 0 !important;
+    }
+    .c-list-item.disable-border {
+        border: 0;
     }
 }
