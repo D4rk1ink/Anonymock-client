@@ -33,6 +33,8 @@ import { DbGeneratorComponent } from './components/db-generator/db-generator.com
 import { GenerateComponent } from './components/db-generator/generate/generate.component';
 import { CustomComponent } from './components/db-generator/custom/custom.component';
 import { MemberManagementComponent } from './components/member-management/member-management.component';
+import { ScraperRequestsComponent } from './components/scraper-requests/scraper-requests.component';
+import { ScraperRequestComponent } from './components/scraper-request/scraper-request.component';
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
 import { LogGroupComponent } from './components/log-group/log-group.component';
 import { LogResponseComponent } from './components/log-response/log-response.component';
@@ -90,7 +92,7 @@ import { MethodService } from './services/method.service';
     ResponseComponent,
     LogsComponent,
     LogComponent,
-
+    
     EntityGroupComponent,
     CodeEditorComponent,
     DbSchemaComponent,
@@ -99,6 +101,8 @@ import { MethodService } from './services/method.service';
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
+    ScraperRequestsComponent,
+    ScraperRequestComponent,
     EndpointGroupComponent,
     LogGroupComponent,
     LogResponseComponent,
@@ -138,6 +142,8 @@ import { MethodService } from './services/method.service';
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
+    ScraperRequestsComponent,
+    ScraperRequestComponent,
     EndpointGroupComponent,
     LogGroupComponent,
     LogResponseComponent,

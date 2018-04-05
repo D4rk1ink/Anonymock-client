@@ -45,7 +45,7 @@
               <div class="c-list">
                 <div class="c-list-item request disable-scale disable-border" *ngFor="let request of endpoint.requests; let i = index" (click)="onGotoRequest(request)"
                   [class.animate-item-expand]="request.isNew">
-                  <div class="name" [routerLink]="'./'+request.id">
+                  <div class="name">
                     {{ request.name }}
                   </div>
                   <div class="options">
