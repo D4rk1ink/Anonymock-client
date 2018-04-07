@@ -19,34 +19,34 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: endpointsAction.Actions): State {
     switch (action.type) {
-        case endpointsAction.ISLOADING: 
+        case endpointsAction.ISLOADING:
             return {
                 ...state,
                 isLoading: action.payload
             }
-        case endpointsAction.SEARCH: 
+        case endpointsAction.SEARCH:
             return {
                 ...state,
                 search: action.payload
             }
-        case endpointsAction.PAGE: 
+        case endpointsAction.PAGE:
             return {
                 ...state,
                 page: action.payload
             }
-        case endpointsAction.LIMITPAGE: 
+        case endpointsAction.LIMITPAGE:
             return {
                 ...state,
                 limitPage: action.payload
             }
-        case endpointsAction.ITEMS: 
+        case endpointsAction.ITEMS:
             return {
                 ...state,
                 items: action.payload
             }
-        case endpointsAction.CLEAR: 
+        case endpointsAction.CLEAR:
             return initialState
-        default: 
+        default:
             return state
     }
 }

@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AddItemBarComponent } from './add-item-bar.component';
+import { AddItemBarComponent } from './add-item-bar.component'
 
 describe('AddItemBarComponent', () => {
-  let component: AddItemBarComponent;
-  let fixture: ComponentFixture<AddItemBarComponent>;
+  let component: AddItemBarComponent
+  let fixture: ComponentFixture<AddItemBarComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AddItemBarComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddItemBarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(AddItemBarComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

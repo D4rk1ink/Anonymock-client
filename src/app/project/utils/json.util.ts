@@ -3,7 +3,7 @@ export const pretty = (text) => {
         if (typeof text === 'object') {
             text = JSON.stringify(text)
         }
-        text = JSON.stringify(JSON.parse(text), null, 4);
+        text = JSON.stringify(JSON.parse(text), null, 4)
         return text
     } catch (err) {
         throw new Error()

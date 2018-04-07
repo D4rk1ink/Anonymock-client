@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { DatabaseService } from 'app/project/services/database.service'
 import * as json from 'app/project/utils/json.util'
@@ -11,7 +11,7 @@ import * as fromProject from 'app/project/reducers'
   styleUrls: ['./database.component.scss']
 })
 export class DatabaseComponent implements OnInit {
-  
+
   public projectId: string
 
   constructor (

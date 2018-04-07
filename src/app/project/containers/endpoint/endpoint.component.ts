@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { EndpointService } from 'app/project/services/endpoint.service';
-import { MethodService } from 'app/project/services/method.service';
-import { FolderService } from 'app/project/services/folder.service';
+import { EndpointService } from 'app/project/services/endpoint.service'
+import { MethodService } from 'app/project/services/method.service'
+import { FolderService } from 'app/project/services/folder.service'
 import { slideAnimation } from 'app/shared/animations/slide.animation'
 import * as endpointAction from 'app/project/actions/endpoint.action'
 import * as fromProject from 'app/project/reducers'
@@ -88,7 +88,7 @@ export class EndpointComponent implements OnInit {
           })
       })
   }
-  
+
   getMethods () {
     this.methodService.search()
       .subscribe(res => {

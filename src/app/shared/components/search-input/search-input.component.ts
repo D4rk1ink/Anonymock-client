@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core'
 
 @Component({
   selector: 'search-input',

@@ -21,12 +21,12 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: endpointAction.Actions): State {
     switch (action.type) {
-        case endpointAction.ID: 
+        case endpointAction.ID:
             return {
                 ...state,
                 id: action.payload
             }
-        case endpointAction.NAME: 
+        case endpointAction.NAME:
             return {
                 ...state,
                 name: action.payload
@@ -46,7 +46,7 @@ export function reducer (state = initialState, action: endpointAction.Actions): 
                 ...state,
                 folder: action.payload
             }
-        case endpointAction.RESPONSES: 
+        case endpointAction.RESPONSES:
             return {
                 ...state,
                 responses: action.payload

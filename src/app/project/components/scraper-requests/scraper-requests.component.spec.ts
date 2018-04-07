@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ScraperRequestsComponent } from './scraper-requests.component';
+import { ScraperRequestsComponent } from './scraper-requests.component'
 
 describe('ScraperRequestsComponent', () => {
-  let component: ScraperRequestsComponent;
-  let fixture: ComponentFixture<ScraperRequestsComponent>;
+  let component: ScraperRequestsComponent
+  let fixture: ComponentFixture<ScraperRequestsComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ScraperRequestsComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScraperRequestsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(ScraperRequestsComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

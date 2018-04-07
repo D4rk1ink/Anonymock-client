@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { MemberService } from './services/member.service'
 import { members } from 'app/mock/members'
 import { Store } from '@ngrx/store'

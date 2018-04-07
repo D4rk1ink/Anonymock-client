@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { Store } from '@ngrx/store'
 import * as json from 'app/project/utils/json.util'
 import * as scraperAction from 'app/project/actions/scraper.action'
@@ -40,7 +40,7 @@ export class ScraperRequestComponent implements OnInit {
   }
 
   saveParam (data) {
-    
+
   }
 
   async dispatch () {
@@ -57,6 +57,6 @@ export class ScraperRequestComponent implements OnInit {
         return endpoint
       })
     this.store.dispatch(new scraperAction.ItemsAction(endpoints))
-  } 
+  }
 
 }

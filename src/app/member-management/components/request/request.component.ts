@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { MemberService } from '../../services/member.service'
 import * as membersAction from '../../actions/members.action'
@@ -10,7 +10,7 @@ import * as fromMembers from '../../reducers'
   styleUrls: ['./request.component.scss']
 })
 export class RequestComponent implements OnInit {
-  
+
   public all: any[]
   public requests: any[]
 

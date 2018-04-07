@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
-import { MethodService } from 'app/project/services/method.service';
-import { FolderService } from 'app/project/services/folder.service';
-import { ScraperService } from 'app/project/services/scraper.service';
+import { MethodService } from 'app/project/services/method.service'
+import { FolderService } from 'app/project/services/folder.service'
+import { ScraperService } from 'app/project/services/scraper.service'
+import * as foldersAction from 'app/project/actions/folders.action'
+import * as methodsAction from 'app/project/actions/methods.action'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
 
@@ -49,8 +51,8 @@ export class ScraperComponent implements OnInit {
         this.endpoints = res.items
         this.page = res.page
         this.limitPage = res.limitPage
-        const nqSearch = this.searchEndpoint !== res.search 
-        const nqPage = this.page !== res.page 
+        const nqSearch = this.searchEndpoint !== res.search
+        const nqPage = this.page !== res.page
         if (nqSearch || nqPage) {
           this.searchEndpoint = res.search
           this.page = res.page
@@ -110,7 +112,6 @@ export class ScraperComponent implements OnInit {
           this.store.dispatch(new scraperAction.BaseAPIAction(res.data.baseAPI))
         }
       })
-
   }
 
   endpointSearch () {
@@ -146,7 +147,7 @@ export class ScraperComponent implements OnInit {
         }
       })
   }
-  
+
   getMethods () {
     this.methodService.search()
       .subscribe(res => {

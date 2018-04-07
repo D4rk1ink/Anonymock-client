@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -9,7 +9,7 @@ import * as fromProject from 'app/project/reducers'
   styleUrls: ['./request-group.component.scss']
 })
 export class RequestGroupComponent implements OnInit {
-  
+
   public condition: {
     params: any,
     headers: any,

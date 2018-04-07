@@ -21,39 +21,39 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: scraperAction.Actions): State {
     switch (action.type) {
-        case scraperAction.ISLOADING: 
+        case scraperAction.ISLOADING:
             return {
                 ...state,
                 isLoading: action.payload
             }
-        case scraperAction.BASEAPI: 
+        case scraperAction.BASEAPI:
             return {
                 ...state,
                 baseAPI: action.payload
             }
-        case scraperAction.SEARCH: 
+        case scraperAction.SEARCH:
             return {
                 ...state,
                 search: action.payload
             }
-        case scraperAction.PAGE: 
+        case scraperAction.PAGE:
             return {
                 ...state,
                 page: action.payload
             }
-        case scraperAction.LIMITPAGE: 
+        case scraperAction.LIMITPAGE:
             return {
                 ...state,
                 limitPage: action.payload
             }
-        case scraperAction.ITEMS: 
+        case scraperAction.ITEMS:
             return {
                 ...state,
                 items: action.payload
             }
-        case scraperAction.CLEAR: 
+        case scraperAction.CLEAR:
             return initialState
-        default: 
+        default:
             return state
     }
 }

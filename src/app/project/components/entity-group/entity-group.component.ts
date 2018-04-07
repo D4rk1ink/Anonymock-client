@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'entity-group',
@@ -13,7 +13,7 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   @Input('autoKey') autoKey: boolean
 
   @Input('disableShadow') disableShadow: boolean
-  
+
   @Output('save') save: EventEmitter<any>
 
   constructor () {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
@@ -27,7 +27,7 @@ export class ScraperDetailComponent implements OnInit {
   onBaseAPIChange (baseAPI) {
     this.store.dispatch(new scraperAction.BaseAPIAction(baseAPI))
   }
-  
+
   onSearch (text) {
     this.store.dispatch(new scraperAction.SearchAction(text))
   }

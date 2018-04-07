@@ -17,27 +17,27 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: otherAction.Actions): State {
     switch (action.type) {
-        case otherAction.ISPROFILEDROPDOWN: 
+        case otherAction.ISPROFILEDROPDOWN:
             return {
                 ...state,
                 isProfileDropdown: !state.isProfileDropdown
             }
-        case otherAction.ISPROFILEPOPUP: 
+        case otherAction.ISPROFILEPOPUP:
             return {
                 ...state,
                 isProfilePopup: !state.isProfilePopup
             }
-        case otherAction.ISOTHERUSERPOPUP: 
+        case otherAction.ISOTHERUSERPOPUP:
             return {
                 ...state,
                 isOtherUserPopup: action.payload
             }
-        case otherAction.OTHERUSERPOPUP: 
+        case otherAction.OTHERUSERPOPUP:
             return {
                 ...state,
                 otherUserPopup: action.payload
             }
-        default: 
+        default:
             return state
     }
 }

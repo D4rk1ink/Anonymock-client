@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { ResponseService } from 'app/project/services/response.service';
-import { EndpointService } from 'app/project/services/endpoint.service';
+import { ResponseService } from 'app/project/services/response.service'
+import { EndpointService } from 'app/project/services/endpoint.service'
 import * as json from 'app/project/utils/json.util'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -107,7 +107,7 @@ export class ResponseComponent implements OnInit, OnDestroy {
     this.endpointService.update(this.endpoint.id, endpointPayload)
       .subscribe(res => {
         if (!res.error) {
-          // update response  
+          // update response
           this.responseService.update(this.response.id, responsePayload)
             .subscribe(res => {
               if (!res.error) {
