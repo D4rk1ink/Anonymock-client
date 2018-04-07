@@ -33,8 +33,12 @@ import { DbGeneratorComponent } from './components/db-generator/db-generator.com
 import { GenerateComponent } from './components/db-generator/generate/generate.component';
 import { CustomComponent } from './components/db-generator/custom/custom.component';
 import { MemberManagementComponent } from './components/member-management/member-management.component';
+import { ScraperDetailComponent } from './components/scraper-detail/scraper-detail.component';
+import { ScraperEndpointListComponent } from './components/scraper-endpoint-list/scraper-endpoint-list.component';
+import { ScraperEndpointItemComponent } from './components/scraper-endpoint-item/scraper-endpoint-item.component';
 import { ScraperRequestsComponent } from './components/scraper-requests/scraper-requests.component';
 import { ScraperRequestComponent } from './components/scraper-request/scraper-request.component';
+import { ParamGroupComponent } from './components/param-group/param-group.component';
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component';
 import { LogGroupComponent } from './components/log-group/log-group.component';
 import { LogResponseComponent } from './components/log-response/log-response.component';
@@ -45,7 +49,6 @@ import { RequestGroupComponent } from './components/request-group/request-group.
 import { ResponseGroupComponent } from './components/response-group/response-group.component';
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component';
 import { ItemComponent } from './components/key-value-group/item/item.component';
-import { InputAddMemberComponent } from './components/input-add-member/input-add-member.component';
 
 import { ProjectService } from './services/project.service';
 import { DatabaseService } from './services/database.service';
@@ -98,8 +101,12 @@ import { MethodService } from './services/method.service';
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
+    ScraperDetailComponent,
+    ScraperEndpointListComponent,
+    ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
+    ParamGroupComponent,
     EndpointGroupComponent,
     LogGroupComponent,
     LogResponseComponent,
@@ -110,7 +117,6 @@ import { MethodService } from './services/method.service';
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
-    InputAddMemberComponent,
   ],
   exports: [
     ProjectComponent,
@@ -136,8 +142,12 @@ import { MethodService } from './services/method.service';
     GenerateComponent,
     CustomComponent,
     MemberManagementComponent,
+    ScraperDetailComponent,
+    ScraperEndpointListComponent,
+    ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
+    ParamGroupComponent,
     EndpointGroupComponent,
     LogGroupComponent,
     LogResponseComponent,
@@ -148,7 +158,6 @@ import { MethodService } from './services/method.service';
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
-    InputAddMemberComponent,
   ],
   providers: [
     ProjectService,

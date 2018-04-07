@@ -72,6 +72,8 @@ export const getEndpointResponses = createSelector(getEndpointState, fromEndpoin
 // export const getScraperState = (state: ProjectState) => state.scraper
 export const getScraperState = createFeatureSelector<fromScraper.State>('scraper')
 export const getScraper = createSelector(getScraperState, fromScraper.getAll)
+export const getScraperIsLoading = createSelector(getScraperState, fromScraper.getIsLoading)
+export const getScraperBaseAPI = createSelector(getScraperState, fromScraper.getBaseAPI)
 export const getScraperSearchEndpoint = createSelector(getScraperState, fromScraper.getSearchEndpoint)
 export const getScraperPage = createSelector(getScraperState, fromScraper.getPage)
 export const getScraperLimitPage = createSelector(getScraperState, fromScraper.getLimitPage)

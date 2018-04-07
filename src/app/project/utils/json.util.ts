@@ -11,14 +11,18 @@ export const pretty = (text) => {
 }
 
 export const toArray = (json) => {
-    const entities = []
-    for (const key in json) {
-        entities.push({
-            key: key,
-            value: json[key] || ''
-        })
+    if (Array.isArray(json)) {
+        return json
+    } else {
+        const entities = []
+        for (const key in json) {
+            entities.push({
+                key: key,
+                value: json[key] || ''
+            })
+        }
+        return entities
     }
-    return entities
 }
 
 export const toJSON = (data) => {

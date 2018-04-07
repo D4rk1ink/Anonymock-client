@@ -11,6 +11,9 @@ export class EntityGroupComponent implements OnInit, OnChanges {
   @Input('entities') entities: any
   @Input('temp') temp: any
   @Input('autoKey') autoKey: boolean
+
+  @Input('disableShadow') disableShadow: boolean
+  
   @Output('save') save: EventEmitter<any>
 
   constructor () {

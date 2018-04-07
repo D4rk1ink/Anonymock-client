@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputAddMemberComponent } from './input-add-member.component';
+import { ScraperDetailComponent } from './scraper-detail.component';
 
-describe('InputAddMemberComponent', () => {
-  let component: InputAddMemberComponent;
-  let fixture: ComponentFixture<InputAddMemberComponent>;
+describe('ScraperDetailComponent', () => {
+  let component: ScraperDetailComponent;
+  let fixture: ComponentFixture<ScraperDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputAddMemberComponent ]
+      declarations: [ ScraperDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputAddMemberComponent);
+    fixture = TestBed.createComponent(ScraperDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

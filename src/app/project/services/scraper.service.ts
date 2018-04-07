@@ -10,6 +10,11 @@ export class ScraperService {
     private http: HttpClient
   ) { }
 
+  getDetail (): Observable<any> {
+    const url = constants.BASE_API + '/project/search'
+    return this.http.get(url)
+  }
+
   createEndpoint (payload): Observable<any> {
     const url = constants.BASE_API + '/project/scraper/endpoint'
     return this.http.post(url, payload)

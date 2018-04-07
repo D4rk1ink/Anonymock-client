@@ -21,6 +21,8 @@ export class HttpMessagesComponent implements OnInit {
   @Input('statusCode') statusCode: number
   @Input('delay') delay: number
 
+  @Input('disableShadow') disableShadow: boolean
+
   @Output('outputHeader') outputHeader: EventEmitter<any>
   @Output('outputBody') outputBody: EventEmitter<any>
   @Output('outputQueryString') outputQueryString: EventEmitter<any>

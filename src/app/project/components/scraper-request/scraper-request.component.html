@@ -1,3 +1,25 @@
-<p>
-  scraper-request works!
-</p>
+<div class="request">
+  <section class="section">
+    <input type="text" name="name" [(ngModel)]="request.name" placeholder="Request name" />
+  </section>
+  <section class="section">
+    <param-group
+      [path]="endpoint.path"
+      [params]="request.request.params"
+      (save)="saveParam($event)"></param-group>
+  </section>
+  <section class="section">
+      <http-messages
+        [headerTab]="true"
+        [bodyTab]="true"
+        [queryStringTab]="true"
+        [header]="request.request.headers"
+        [body]="request.request.body"
+        [queryString]="request.request.queryString"
+        [disableShadow]="true"
+        (outputHeader)="saveHeader($event)"
+        (outputBody)="saveBody($event)"
+        (outputQueryString)="saveQueryString($event)"
+      ></http-messages>
+  </section>
+</div>
