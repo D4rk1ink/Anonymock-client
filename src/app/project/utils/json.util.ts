@@ -10,6 +10,10 @@ export const pretty = (text) => {
     }
 }
 
+export const clone = (json) => {
+    return JSON.parse(JSON.stringify(json))
+}
+
 export const toArray = (json) => {
     if (Array.isArray(json)) {
         return json

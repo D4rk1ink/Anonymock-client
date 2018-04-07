@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store'
 
-export const ISLOADING = '[Endpoints] IsLoading'
-export const ITEMS = '[Endpoints] Items'
-export const CLEAR = '[Endpoints] Clear'
+export const ISLOADING = '[METHODS] IsLoading'
+export const ITEMS = '[METHODS] Items'
+export const CLEAR = '[METHODS] Clear'
 
 export class IsLoadingAction implements Action {
     readonly type = ISLOADING

@@ -7,13 +7,13 @@
       </div>
     </div>
     <div class="c-list">
-      <div class="c-list-item request disable-scale disable-border" *ngFor="let request of requests; let i = index" (click)="gotoRequest(request)"
+      <div class="c-list-item request disable-scale disable-border" *ngFor="let request of requests; let i = index"
         [class.animate-item-expand]="request.isNew">
-        <div class="name">
+        <div class="name" (click)="gotoRequest(request)">
           {{ request.name }}
         </div>
         <div class="options">
-          <div class="default" [class.active]="request.isDefault" (click)="setDefault(request)">
+          <div class="default" [class.active]="request.isDefault" (click)="setDefault(request.id)">
             <i class="material-icons btn-icon btn-sky-icon">star</i>
           </div>
         </div>

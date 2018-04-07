@@ -1,80 +1,38 @@
-<div class="c-list-item item" 
-  [class.animate-item-expand]="endpoint.isNew"
-  [class.active]="isTarget">
-  <div class="main-row">
-    <ng-container *ngIf="!isTarget;else endpointInput">
-      <div class="method">
-        <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
-          {{ endpoint.method.name }}
-        </span>
-      </div>
-      <div class="name">
-        {{ endpoint.name }}
-      </div>
-      <div class="path">
-        {{ endpoint.path }}
-      </div>
-    </ng-container>
-    <ng-template #endpointInput>
-        <div class="endpoint-input">
-          <div class="form-inline">
-              <div class="w-100 form-input">
-                  <label class="label-title">
-                      Name
-                  </label>
-                  <input type="text" name="name" [(ngModel)]="endpoint.name" class="" placeholder="Name" (ngModelChange)="onNameChange($event)" />
-              </div>
-          </div>
-          <div class="form-inline">
-              <div class="w-10 form-input">
-                  <label class="label-title">
-                      Method
-                  </label>
-                  <label class="select">
-                      <select [(ngModel)]="endpoint.method.id" (ngModelChange)="onMethodChange($event)">
-                          <option *ngFor="let method of methods" [value]="method.id">{{ method.name }}</option>
-                      </select>
-                  </label>
-              </div>
-              <div class="w-70 form-input">
-                  <label class="label-title">
-                      Path
-                  </label>
-                  <input type="text" name="path" [(ngModel)]="endpoint.path" class="" placeholder="Path" (ngModelChange)="onPathChange($event)" />
-              </div>
-              <div class="w-20 form-input">
-                  <label class="label-title">
-                      Folder
-                  </label>
-                  <label class="select">
-                      <select [ngModel]="endpoint.folder.id" (ngModelChange)="onFolderChange($event)">
-                          <option *ngFor="let folder of folders" [value]="folder.id">{{ folder.name }}</option>
-                      </select>
-                  </label>
-              </div>
-          </div>
+<div class="c-list-item item" [class.animate-item-expand]="endpoint.isNew" [class.active]="isTarget">
+    <div class="main-row">
+        <ng-container *ngIf="!isTarget;else endpointInput">
+            <div class="method">
+                <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
+                    {{ endpoint.method.name }}
+                </span>
+            </div>
+            <div class="name">
+                {{ endpoint.name }}
+            </div>
+            <div class="path">
+                {{ endpoint.path }}
+            </div>
+        </ng-container>
+        <ng-template #endpointInput>
+            <scraper-endpoint-detail [endpoint]="endpoint"></scraper-endpoint-detail>
+        </ng-template>
+    </div>
+    <hr class="disable-margin">
+    <div class="expand">
+        <!-- requestTarget is null -->
+        <scraper-requests *ngIf="!requestTarget;else conetentRequestTarget" [requests]="endpoint.requests" (create)="createRequest(endpoint.id)"
+            (goto)="goToRequest($event)"></scraper-requests>
+        <!-- requestTarget not null -->
+        <ng-template #conetentRequestTarget>
+            <scraper-request [endpoint]="endpoint" [request]="requestTarget" (back)="backToRequests()"></scraper-request>
+        </ng-template>
+    </div>
+    <div class="footer form-inline content-between">
+        <div class="">
+            <button class="btn btn-sky" (click)="onSubmit()">Save</button>
         </div>
-    </ng-template>
-  </div>
-  <hr class="disable-margin">
-  <div class="expand">
-    <!-- requestTarget is null -->
-    <scraper-requests
-      *ngIf="!requestTarget;else conetentRequestTarget"
-      [requests]="endpoint.requests"
-      (create)="createRequest(endpoint.id)"
-      (goto)="goToRequest($event)"></scraper-requests>
-    <!-- requestTarget not null -->
-    <ng-template #conetentRequestTarget>
-      <scraper-request [endpoint]="endpoint" [request]="requestTarget" (back)="backToRequests()"></scraper-request>
-    </ng-template>
-  </div>
-  <div class="footer form-inline content-between">
-    <div class="">
-        <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+        <div class="">
+            <button class="btn btn-danger">Delete</button>
+        </div>
     </div>
-    <div class="">
-        <button class="btn btn-danger">Delete</button>
-    </div>
-  </div>
 </div>

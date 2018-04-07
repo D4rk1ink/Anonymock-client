@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store'
 
-export const ISLOADING = '[Endpoints] IsLoading'
-export const SEARCH = '[Endpoints] Search'
-export const PAGE = '[Endpoints] Page'
-export const LIMITPAGE = '[Endpoints] LimitPage'
-export const ITEMS = '[Endpoints] Items'
-export const CLEAR = '[Endpoints] Clear'
+export const ISLOADING = '[FOLDERS] IsLoading'
+export const SEARCH = '[FOLDERS] Search'
+export const PAGE = '[FOLDERS] Page'
+export const LIMITPAGE = '[FOLDERS] LimitPage'
+export const ITEMS = '[FOLDERS] Items'
+export const CLEAR = '[FOLDERS] Clear'
 
 export class IsLoadingAction implements Action {
     readonly type = ISLOADING

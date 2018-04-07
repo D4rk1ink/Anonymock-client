@@ -1,0 +1,51 @@
+@import "colors";
+
+:host {
+    display: flex;
+    flex: 1;
+}
+
+.wrapper {
+    display: flex;
+}
+.endpoint-input {
+    flex: 1;
+    animation: endpointInputScale .5s forwards;
+}
+.id {
+    color: $sky_2;
+    width: 80px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.name {
+    flex: 1;
+    padding-left: 10px;
+    font-weight: 400;
+}
+.method {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+}
+.path {
+    flex: 3;
+}
+.date {
+    width: 150px;
+}
+
+@keyframes endpointInputScale {
+    0% {
+        margin: 0 10px;
+        opacity: 0;
+    }
+    75% {
+        margin: 0 -2px;
+        opacity: .75;
+    }
+    100% {
+        margin: 0;
+        opacity: 1;
+    }
+}

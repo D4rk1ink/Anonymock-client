@@ -11,13 +11,13 @@ export class ScraperService {
   ) { }
 
   getDetail (): Observable<any> {
-    const url = constants.BASE_API + '/project/search'
+    const url = constants.BASE_API + '/project/scraper'
     return this.http.get(url)
   }
 
-  createEndpoint (payload): Observable<any> {
+  createEndpoint (): Observable<any> {
     const url = constants.BASE_API + '/project/scraper/endpoint'
-    return this.http.post(url, payload)
+    return this.http.post(url, {})
   }
 
   createRequest (payload): Observable<any> {
@@ -25,9 +25,24 @@ export class ScraperService {
     return this.http.post(url, payload)
   }
 
-  update (id, payload): Observable<any> {
-    const url = constants.BASE_API + '/project/scraper/' + id
+  updateEndpoint (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper/endpoint/' + id
     return this.http.patch(url, payload)
+  }
+
+  setDefault (id): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper/request/' + id + '/default'
+    return this.http.patch(url, {})
+  }
+
+  deleteEndpoint (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper/endpoint/' + id
+    return this.http.delete(url, payload)
+  }
+
+  deleteRequest (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper/endpoint/' + id
+    return this.http.delete(url, payload)
   }
 
   search (payload): Observable<any> {

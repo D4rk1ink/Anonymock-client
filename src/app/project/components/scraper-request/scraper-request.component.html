@@ -17,7 +17,7 @@
         [body]="request.request.body"
         [queryString]="request.request.queryString"
         [disableShadow]="true"
-        (outputHeader)="saveHeader($event)"
+        (outputHeader)="saveHeaders($event)"
         (outputBody)="saveBody($event)"
         (outputQueryString)="saveQueryString($event)"
       ></http-messages>

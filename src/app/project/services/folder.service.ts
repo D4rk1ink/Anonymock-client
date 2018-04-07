@@ -27,6 +27,11 @@ export class FolderService {
   }
 
   search (payload): Observable<any> {
+    if (payload.all === true) {
+      payload = {
+        search: ''
+      }
+    }
     const url = constants.BASE_API + '/project/search/folder'
     return this.http.get(url, { params: payload })
   }

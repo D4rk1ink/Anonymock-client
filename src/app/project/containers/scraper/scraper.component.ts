@@ -16,17 +16,11 @@ import * as fromProject from 'app/project/reducers'
 })
 export class ScraperComponent implements OnInit {
 
-  public projectId: string
-
   public isLoading: boolean
-  public baseAPI: string
   public searchEndpoint: string
   public endpoints: any[]
   public page: number
   public limitPage: number
-
-  public folders: any[]
-  public methods: any[]
 
   public scraperSub: Subscription
   public projectIdSub: Subscription
@@ -39,18 +33,14 @@ export class ScraperComponent implements OnInit {
     private folderService: FolderService,
     private scraperService: ScraperService
   ) {
-    this.folders = []
-    this.methods = []
     this.getFolders()
     this.getMethods()
+    this.getDetail()
     this.scraperSub = this.store.select(fromProject.getScraper)
       .subscribe(res => {
         this.isLoading = res.isLoading
-        this.baseAPI = res.baseAPI
-        this.searchEndpoint = res.search
-        this.endpoints = res.items
-        this.page = res.page
         this.limitPage = res.limitPage
+        this.endpoints = res.items
         const nqSearch = this.searchEndpoint !== res.search
         const nqPage = this.page !== res.page
         if (nqSearch || nqPage) {
@@ -59,20 +49,13 @@ export class ScraperComponent implements OnInit {
           this.endpointSearch()
         }
       })
-    this.projectIdSub = this.store.select(fromProject.getProjectId)
-      .subscribe(id => {
-        if (!id) return
-        this.projectId = id
-        this.getDetail()
-        this.endpointSearch()
-      })
   }
 
   ngOnInit () {
   }
 
   createEndpoint () {
-    this.scraperService.createEndpoint({ project: this.projectId })
+    this.scraperService.createEndpoint()
       .subscribe(res => {
         res.data.isNew = true
         if (this.page > 1) {
@@ -119,7 +102,6 @@ export class ScraperComponent implements OnInit {
       this.searchSub.unsubscribe()
     }
     const payload = {
-      project: this.projectId,
       search: this.searchEndpoint,
       page: this.page
     }
@@ -135,15 +117,11 @@ export class ScraperComponent implements OnInit {
   }
 
   getFolders () {
-    const payload = {
-      project: this.projectId,
-      search: '',
-      all: true
-    }
-    this.folderService.search(payload)
+    this.folderService.search({ all: true })
       .subscribe(res => {
         if (!res.error) {
-          this.folders = res.data.folders
+          this.store.dispatch(new foldersAction.ItemsAction(res.data.folders))
+          this.store.dispatch(new foldersAction.IsLoadingAction(true))
         }
       })
   }
@@ -152,7 +130,8 @@ export class ScraperComponent implements OnInit {
     this.methodService.search()
       .subscribe(res => {
         if (!res.error) {
-          this.methods = res.data
+          this.store.dispatch(new methodsAction.ItemsAction(res.data))
+          this.store.dispatch(new methodsAction.IsLoadingAction(true))
         }
       })
   }

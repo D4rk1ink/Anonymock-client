@@ -1,7 +1,16 @@
+@import "colors";
+
 .requests {
     margin-top: 15px;
     .request {
         display: flex;
         justify-content: space-between;
+        .name {
+            flex: 1;
+            font-weight: 400;
+        }
+        .default.active {
+            color: $green_2;
+        }
     }
 }

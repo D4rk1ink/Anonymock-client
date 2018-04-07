@@ -13,10 +13,12 @@ export class ScraperRequestsComponent implements OnInit {
 
   @Output('create') create: EventEmitter<any>
   @Output('goto') goto: EventEmitter<any>
+  @Output('default') default: EventEmitter<any>
 
   constructor() {
     this.create = new EventEmitter<any>()
     this.goto = new EventEmitter<any>()
+    this.default = new EventEmitter<any>()
   }
 
   ngOnInit() {
@@ -28,6 +30,10 @@ export class ScraperRequestsComponent implements OnInit {
 
   gotoRequest (request) {
     this.goto.emit(request)
+  }
+
+  setDefault (requestId) {
+    this.default.emit(requestId)
   }
 
 }

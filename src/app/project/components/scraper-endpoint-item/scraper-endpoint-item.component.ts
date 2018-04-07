@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
 import { Store } from '@ngrx/store'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
@@ -15,9 +16,15 @@ export class ScraperEndpointItemComponent implements OnInit {
 
   public requestTarget: string
 
+  public methods$: Observable<any>
+  public folders$: Observable<any>
+
   constructor(
     private store: Store<any>
-  ) { }
+  ) {
+    this.methods$ = this.store.select(fromProject.getMethods)
+    this.folders$ = this.store.select(fromProject.getFolders)
+  }
 
   ngOnInit() {
   }

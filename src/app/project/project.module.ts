@@ -58,7 +58,9 @@ import { ScraperService } from './services/scraper.service'
 import { EndpointService } from './services/endpoint.service'
 import { ResponseService } from './services/response.service'
 import { LogService } from './services/log.service'
-import { MethodService } from './services/method.service'
+import { MethodService } from './services/method.service';
+import { ScraperEndpointDetailComponent } from './components/scraper-endpoint-detail/scraper-endpoint-detail.component';
+import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component'
 
 @NgModule({
   imports: [
@@ -119,6 +121,8 @@ import { MethodService } from './services/method.service'
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
+    ScraperEndpointDetailComponent,
+    ScraperEndpointComponent,
   ],
   exports: [
     ProjectComponent,
