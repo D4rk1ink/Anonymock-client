@@ -14,7 +14,7 @@ export class ParamGroupComponent implements OnInit, OnChanges {
 
   ngOnChanges (changes: SimpleChanges) {
     const path: SimpleChange = changes.path
-    if (path.previousValue !== path.currentValue) {
+    if (path && path.previousValue !== path.currentValue) {
       this.paramsFilter()
     }
   }
