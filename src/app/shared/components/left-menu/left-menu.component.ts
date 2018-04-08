@@ -1,10 +1,10 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core'
 import { Router, NavigationEnd } from '@angular/router'
-import { Store } from '@ngrx/store';
+import { Store } from '@ngrx/store'
 import { ProjectService } from 'app/project/services/project.service'
-import * as userAction from 'app/core/actions/user.action';
-import * as projectsAction from 'app/core/actions/projects.action';
-import * as fromCore from 'app/core/reducers';
+import * as userAction from 'app/core/actions/user.action'
+import * as projectsAction from 'app/core/actions/projects.action'
+import * as fromCore from 'app/core/reducers'
 
 @Component({
   selector: 'left-menu',
@@ -56,8 +56,10 @@ export class LeftMenuComponent implements OnInit {
       this.menuTarget = targets[1]
       if (this.menuTarget === 'project') {
         const exec = new RegExp('/project/([^\S][^/]+)/([^\S][^/]+)').exec(url)
-        this.menuTarget = exec[1]
-        this.subProject = exec[2]
+        if (exec) {
+          this.menuTarget = exec[1]
+          this.subProject = this.menuTarget + exec[2]
+        }
       }
     }
   }

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ProjectService } from 'app/project/services/project.service'
 import * as projectsAction from 'app/core/actions/projects.action'
 import * as fromCore from 'app/core/reducers'
 import * as fromProject from 'app/project/reducers'
-import * as json from 'app/project/utils/json.util';
+import * as json from 'app/project/utils/json.util'
 
 @Component({
   selector: 'app-config',

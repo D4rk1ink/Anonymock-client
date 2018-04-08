@@ -1,12 +1,11 @@
-<div class="c-wrapper">
-  <div class="c-tabs">
-    <div class="c-tab-item item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
-      {{ item.title }}
-    </div>
-  </div>
-  <div class="content" [ngSwitch]="menuSelector">
-    <request-header *ngSwitchCase="'M01'" [data]="condition.headers" [temp]="temps.headers" (save)="saveHeader($event)"></request-header>
-    <request-body *ngSwitchCase="'M02'" [data]="condition.body" (save)="saveBody($event)"></request-body>
-    <request-query-string *ngSwitchCase="'M03'" [data]="condition.queryString" [temp]="temps.queryString" (save)="saveQueryString($event)"></request-query-string>
-  </div>
-</div>
+<http-messages
+  [headerTab]="true"
+  [bodyTab]="true"
+  [queryStringTab]="true"
+  [header]="condition.headers"
+  [body]="condition.body"
+  [queryString]="condition.queryString"
+  (outputHeader)="saveHeader($event)"
+  (outputBody)="saveBody($event)"
+  (outputQueryString)="saveQueryString($event)"
+></http-messages>

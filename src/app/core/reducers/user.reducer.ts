@@ -21,39 +21,39 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: userAction.Actions): State {
     switch (action.type) {
-        case userAction.USER: 
+        case userAction.USER:
             return action.payload
-        case userAction.ID: 
+        case userAction.ID:
             return {
                 ...state,
                 id: action.payload
             }
-        case userAction.FIRSTNAME: 
+        case userAction.FIRSTNAME:
             return {
                 ...state,
                 firstname: action.payload
             }
-        case userAction.LASTNAME: 
+        case userAction.LASTNAME:
             return {
                 ...state,
                 lastname: action.payload
             }
-        case userAction.EMAIL: 
+        case userAction.EMAIL:
             return {
                 ...state,
                 email: action.payload
             }
-        case userAction.PICTURE: 
+        case userAction.PICTURE:
             return {
                 ...state,
                 picture: action.payload
             }
-        case userAction.ISADMIN: 
+        case userAction.ISADMIN:
             return {
                 ...state,
                 isAdmin: action.payload
             }
-        default: 
+        default:
             return state
     }
 }

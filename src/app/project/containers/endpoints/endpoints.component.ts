@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
 import { EndpointService } from 'app/project/services/endpoint.service'
 import * as endpointsAction from 'app/project/actions/endpoints.action'

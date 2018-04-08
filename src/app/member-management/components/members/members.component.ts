@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { MemberService } from 'app/member-management/services/member.service'
 import * as database from 'app/core/services/database.service'
 import * as membersAction from 'app/member-management/actions/members.action'
-import * as otherAction from 'app/core/actions/other.action';
+import * as otherAction from 'app/core/actions/other.action'
 import * as fromMembers from 'app/member-management/reducers'
 
 @Component({

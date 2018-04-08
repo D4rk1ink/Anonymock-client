@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { UserService } from 'app/my-account/services/user.service'
-import { Store } from '@ngrx/store';
-import * as userAction from 'app/core/actions/user.action';
-import * as otherAction from 'app/core/actions/other.action';
-import * as database from 'app/core/services/database.service';
-import * as fromCore from 'app/core/reducers';
-import * as constants from 'app/shared/constants';
+import { Store } from '@ngrx/store'
+import * as userAction from 'app/core/actions/user.action'
+import * as otherAction from 'app/core/actions/other.action'
+import * as database from 'app/core/services/database.service'
+import * as fromCore from 'app/core/reducers'
+import * as constants from 'app/shared/constants'
 
 @Component({
   selector: 'main-layout',
