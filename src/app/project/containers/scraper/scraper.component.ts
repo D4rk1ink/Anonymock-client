@@ -17,6 +17,7 @@ import * as fromProject from 'app/project/reducers'
 export class ScraperComponent implements OnInit {
 
   public isLoading: boolean
+  public baseAPI: string
   public searchEndpoint: string
   public endpoints: any[]
   public page: number
@@ -39,6 +40,7 @@ export class ScraperComponent implements OnInit {
     this.scraperSub = this.store.select(fromProject.getScraper)
       .subscribe(res => {
         this.isLoading = res.isLoading
+        this.baseAPI = res.baseAPI
         this.limitPage = res.limitPage
         this.endpoints = res.items
         const nqSearch = this.searchEndpoint !== res.search
@@ -138,6 +140,23 @@ export class ScraperComponent implements OnInit {
 
   setPage () {
     this.store.dispatch(new scraperAction.PageAction(this.page))
+  }
+
+  save () {
+    const scraperPayload = {
+      
+    }
+    this.scraperService.updateScraper({ baseAPI: this.baseAPI })
+      .subscribe(res => {
+        if (!res.error) {
+          alert('save')
+        }
+      })
+  }
+  
+  scrap () {
+    console.log('scrap')
+
   }
 
 }

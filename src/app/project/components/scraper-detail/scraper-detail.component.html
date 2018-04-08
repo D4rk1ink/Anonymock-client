@@ -10,7 +10,11 @@
       <label class="label-title">
         Base API
       </label>
-      <input type="text" name="name" class="" placeholder="base" />
+      <input type="text" name="name" [(ngModel)]="baseAPI" (ngModelChange)="onBaseAPIChange($event)" placeholder="base" />
     </div>
+  </div>
+  <div class="footer content-between">
+    <button class="btn btn-sky" (click)="onSave()">Save</button>
+    <button class="btn btn-sky" (click)="onScrap()">Scrap API</button>
   </div>
 </div>

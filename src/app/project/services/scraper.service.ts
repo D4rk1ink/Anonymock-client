@@ -25,6 +25,11 @@ export class ScraperService {
     return this.http.post(url, payload)
   }
 
+  updateScraper (payload): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper'
+    return this.http.patch(url, payload)
+  }
+
   updateEndpoint (id, payload): Observable<any> {
     const url = constants.BASE_API + '/project/scraper/endpoint/' + id
     return this.http.patch(url, payload)
