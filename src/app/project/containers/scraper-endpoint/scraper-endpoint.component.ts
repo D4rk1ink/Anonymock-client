@@ -91,6 +91,17 @@ export class ScraperEndpointComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           alert('Save ' + res.data.name)
+          this.endpoints = this.endpoints.map(endpoint => {
+            if (res.data.id === endpoint.id) {
+              endpoint.name = res.data.name
+              endpoint.path = res.data.path
+              endpoint.folder = res.data.folder
+              endpoint.method = res.data.method
+              endpoint.requests = res.data.requests
+            }
+            return endpoint
+          })
+          this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
         }
       })
   }
@@ -104,11 +115,28 @@ export class ScraperEndpointComponent implements OnInit {
   }
 
   deleteEndpoint (id) {
-
+    this.scraperService.deleteEndpoint(id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.endpoints = this.endpoints.filter(endpoint => endpoint.id !== id )
+          this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+        }
+      })
   }
 
   deleteRequest (id) {
-    
+    this.scraperService.deleteRequest(id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.endpoints = this.endpoints.map(endpoint => {
+            if (endpoint.id === this.endpoint.id) {
+              endpoint.requests = endpoint.requests.filter(request => request.id !== id)
+            }
+            return endpoint
+          })
+          this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+        }
+      })
   }
 
 }

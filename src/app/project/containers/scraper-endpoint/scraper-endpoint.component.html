@@ -6,7 +6,7 @@
   <div class="expand">
     <!-- requestTarget is null -->
     <scraper-requests *ngIf="!requestTarget;else conetentRequestTarget" [requests]="endpoint.requests" (create)="createRequest(endpoint.id)"
-      (goto)="goToRequest($event)" (default)="setDefault($event)"></scraper-requests>
+      (goto)="goToRequest($event)" (default)="setDefault($event)" (delete)="deleteRequest($event)"></scraper-requests>
     <!-- requestTarget not null -->
     <ng-template #conetentRequestTarget>
       <scraper-request [endpoint]="endpoint" [request]="requestTarget" (back)="backToRequests()"></scraper-request>
