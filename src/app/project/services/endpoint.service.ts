@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable, EventEmitter } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs/Observable'
 import * as constants from 'app/shared/constants'
 
 

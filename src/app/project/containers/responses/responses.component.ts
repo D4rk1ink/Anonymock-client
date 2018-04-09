@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { ResponseService } from 'app/project/services/response.service';
-import { EndpointService } from 'app/project/services/endpoint.service';
+import { ResponseService } from 'app/project/services/response.service'
+import { EndpointService } from 'app/project/services/endpoint.service'
 import * as fromProject from 'app/project/reducers'
 
 @Component({
@@ -20,7 +20,7 @@ export class ResponsesComponent implements OnInit {
     { id: 'M01', title: 'Dev' },
     { id: 'M02', title: 'Test' }
   ]
-  
+
   constructor(
     private store: Store<any>,
     private responseService: ResponseService,
@@ -39,7 +39,7 @@ export class ResponsesComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   onSelectMenu (menu) {

@@ -3,6 +3,9 @@ import { ActionReducer, ActionReducerMap, createFeatureSelector } from '@ngrx/st
 import * as fromProject from './project.reducer'
 import * as fromDatabase from './database.reducer'
 import * as fromFolder from './folder.reducer'
+import * as fromFolders from './folders.reducer'
+import * as fromMethods from './methods.reducer'
+import * as fromScraper from './scraper.reducer'
 import * as fromEndpoint from './endpoint.reducer'
 import * as fromEndpoints from './endpoints.reducer'
 import * as fromResponse from './response.reducer'
@@ -11,6 +14,9 @@ export interface ProjectState {
     project: fromProject.State,
     database: fromDatabase.State,
     folder: fromFolder.State,
+    folders: fromFolders.State,
+    methods: fromMethods.State,
+    scraper: fromScraper.State,
     endpoint: fromEndpoint.State,
     endpoints: fromEndpoints.State,
     response: fromResponse.State
@@ -29,6 +35,9 @@ export const projectReducers = {
     project: fromProject.reducer,
     database: fromDatabase.reducer,
     folder: fromFolder.reducer,
+    folders: fromFolders.reducer,
+    methods: fromMethods.reducer,
+    scraper: fromScraper.reducer,
     endpoint: fromEndpoint.reducer,
     endpoints: fromEndpoints.reducer,
     response: fromResponse.reducer
@@ -55,6 +64,31 @@ export const getFolder = createSelector(getFolderState, fromFolder.getAll)
 export const getFolderId = createSelector(getFolderState, fromFolder.getId)
 export const getFolderName = createSelector(getFolderState, fromFolder.getName)
 export const getFolderEndpoints = createSelector(getFolderState, fromFolder.getEndpoints)
+
+// export const getFolderState = (state: ProjectState) => state.folder
+export const getFoldersState = createFeatureSelector<fromFolders.State>('folders')
+export const getFolders = createSelector(getFoldersState, fromFolders.getAll)
+export const getFoldersIsLoading = createSelector(getFoldersState, fromFolders.getIsLoading)
+export const getFoldersSearch = createSelector(getFoldersState, fromFolders.getSearch)
+export const getFoldersPage = createSelector(getFoldersState, fromFolders.getPage)
+export const getFoldersLimitPage = createSelector(getFoldersState, fromFolders.getLimitPage)
+export const getFoldersItems = createSelector(getFoldersState, fromFolders.getItems)
+
+// export const getFolderState = (state: ProjectState) => state.folder
+export const getMethodsState = createFeatureSelector<fromMethods.State>('methods')
+export const getMethods = createSelector(getMethodsState, fromMethods.getAll)
+export const getMethodsIsLoading = createSelector(getMethodsState, fromMethods.getIsLoading)
+export const getMethodsItems = createSelector(getMethodsState, fromMethods.getItems)
+
+// export const getScraperState = (state: ProjectState) => state.scraper
+export const getScraperState = createFeatureSelector<fromScraper.State>('scraper')
+export const getScraper = createSelector(getScraperState, fromScraper.getAll)
+export const getScraperIsLoading = createSelector(getScraperState, fromScraper.getIsLoading)
+export const getScraperBaseAPI = createSelector(getScraperState, fromScraper.getBaseAPI)
+export const getScraperSearchEndpoint = createSelector(getScraperState, fromScraper.getSearchEndpoint)
+export const getScraperPage = createSelector(getScraperState, fromScraper.getPage)
+export const getScraperLimitPage = createSelector(getScraperState, fromScraper.getLimitPage)
+export const getScraperItems = createSelector(getScraperState, fromScraper.getItems)
 
 // export const getEndpointState = (state: ProjectState) => state.endpoint
 export const getEndpointState = createFeatureSelector<fromEndpoint.State>('endpoint')

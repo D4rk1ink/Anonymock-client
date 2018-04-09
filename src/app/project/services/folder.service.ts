@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs/Observable'
 import * as constants from 'app/shared/constants'
 
 
@@ -27,6 +27,11 @@ export class FolderService {
   }
 
   search (payload): Observable<any> {
+    if (payload.all === true) {
+      payload = {
+        search: ''
+      }
+    }
     const url = constants.BASE_API + '/project/search/folder'
     return this.http.get(url, { params: payload })
   }

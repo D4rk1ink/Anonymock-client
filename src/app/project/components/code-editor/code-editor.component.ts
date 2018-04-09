@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter } from '@angular/core'
 import { AceEditorComponent } from 'ng2-ace-editor'
 
 @Component({
@@ -15,14 +15,14 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   @ViewChild('editor') editor: AceEditorComponent
 
   public options: any
-  
+
   constructor () {
     this.change = new EventEmitter<any>()
   }
 
   ngOnChanges () {
     if (this.text) {
-      if (typeof this.text === "object") {
+      if (typeof this.text === 'object') {
         this.text = JSON.stringify(this.text)
         this.pretty()
       } else {
@@ -32,7 +32,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   }
 
   ngAfterViewInit () {
-    this.editor.setTheme("tomorrow")
+    this.editor.setTheme('tomorrow')
 
     this.editor.getEditor().setOptions({
       enableBasicAutocompletion: true,
@@ -52,10 +52,10 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
   pretty() {
     try {
-      this.text = this.text.replace(/(^"|"$)/gi, "");
-      this.text = JSON.stringify(JSON.parse(this.text), null, 4);
-    } catch(err) {
-      this.editor.setText(this.text);
+      this.text = this.text.replace(/(^"|"$)/gi, '')
+      this.text = JSON.stringify(JSON.parse(this.text), null, 4)
+    } catch (err) {
+      this.editor.setText(this.text)
     }
   }
 }

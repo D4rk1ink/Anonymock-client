@@ -1,26 +1,14 @@
-<div class="c-wrapper">
-  <div class="c-tabs">
-    <div class="c-tab-item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
-      {{ item.title }}
-    </div>
-    <div class="options">
-      <div class="find-one">
-          <div class="checkbox">
-            <input type="checkbox" [(ngModel)]="response.isFindOne">
-            <span class="checkmark"></span>
-          </div>
-          Find One
-      </div>
-      <div class="delay">
-        Delay : <input type="text" name="delay" [ngModel]="response.delay" (keypress)="onNumberKeyPress($event)" (blur)="onDelayBlur($event)"> ms
-      </div>
-      <div class="status">
-        Status : <input type="text" name="status" maxlength="3" [ngModel]="response.statusCode" (keypress)="onNumberKeyPress($event)" (blur)="onStatusCodeBlur($event)">
-      </div>
-    </div>
-  </div>
-  <div class="content" [ngSwitch]="menuSelector">
-    <request-header *ngSwitchCase="'M01'" [data]="response.headers" [temp]="temps.headers" (save)="saveHeader($event)"></request-header>
-    <request-body *ngSwitchCase="'M02'" [data]="response.body" (save)="saveBody($event)"></request-body>
-  </div>
-</div>
+<http-messages
+  [headerTab]="true"
+  [bodyTab]="true"
+  [statusCodeInput]="true"
+  [delayInput]="true"
+  [header]="response.headers"
+  [body]="response.body"
+  [delay]="response.delay"
+  [statusCode]="response.statusCode"
+  (outputHeader)="saveHeader($event)"
+  (outputBody)="saveBody($event)"
+  (outputStatusCode)="saveStatusCode($event)"
+  (outputDelay)="saveDelay($event)"
+></http-messages>

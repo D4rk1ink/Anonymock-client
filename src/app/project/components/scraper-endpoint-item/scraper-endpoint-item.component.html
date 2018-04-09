@@ -1,0 +1,38 @@
+<div class="c-list-item item" [class.animate-item-expand]="endpoint.isNew" [class.active]="isTarget">
+    <div class="main-row">
+        <ng-container *ngIf="!isTarget;else endpointInput">
+            <div class="method">
+                <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
+                    {{ endpoint.method.name }}
+                </span>
+            </div>
+            <div class="name">
+                {{ endpoint.name }}
+            </div>
+            <div class="path">
+                {{ endpoint.path }}
+            </div>
+        </ng-container>
+        <ng-template #endpointInput>
+            <scraper-endpoint-detail [endpoint]="endpoint"></scraper-endpoint-detail>
+        </ng-template>
+    </div>
+    <hr class="disable-margin">
+    <div class="expand">
+        <!-- requestTarget is null -->
+        <scraper-requests *ngIf="!requestTarget;else conetentRequestTarget" [requests]="endpoint.requests" (create)="createRequest(endpoint.id)"
+            (goto)="goToRequest($event)"></scraper-requests>
+        <!-- requestTarget not null -->
+        <ng-template #conetentRequestTarget>
+            <scraper-request [endpoint]="endpoint" [request]="requestTarget" (back)="backToRequests()"></scraper-request>
+        </ng-template>
+    </div>
+    <div class="footer form-inline content-between">
+        <div class="">
+            <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+        </div>
+        <div class="">
+            <button class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+</div>

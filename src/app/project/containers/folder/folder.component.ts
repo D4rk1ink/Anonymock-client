@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { FolderService } from 'app/project/services/folder.service'
@@ -33,7 +33,7 @@ export class FolderComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {
     this.routeSub = this.route.params.subscribe(params => {
-      this.folderId = params['folder-id'] 
+      this.folderId = params['folder-id']
     })
     this.getFolderSub = this.folderService.getById(this.folderId)
       .subscribe(res => {

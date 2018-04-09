@@ -1,0 +1,20 @@
+<div class="c-header content-between">
+  <h4>Scraper</h4>
+  <div class="options">
+    <search-input (out)="onSearch($event)"></search-input>
+  </div>
+</div>
+<div class="c-body">
+  <div class="form-inline">
+    <div class="w-100 form-input">
+      <label class="label-title">
+        Base API
+      </label>
+      <input type="text" name="name" [(ngModel)]="baseAPI" (ngModelChange)="onBaseAPIChange($event)" placeholder="base" />
+    </div>
+  </div>
+  <div class="footer content-between">
+    <button class="btn btn-sky" (click)="onSave()">Save</button>
+    <button class="btn btn-sky" (click)="onScrap()">Scrap API</button>
+  </div>
+</div>

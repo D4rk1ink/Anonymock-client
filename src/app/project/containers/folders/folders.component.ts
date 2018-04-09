@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
 import { FolderService } from 'app/project/services/folder.service'
 import * as fromProject from 'app/project/reducers'
@@ -77,7 +77,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
   onRenameBlur () {
     this.isRename = null
   }
-  
+
   onSearch (text) {
     this.searchFolder = text
     this.search()

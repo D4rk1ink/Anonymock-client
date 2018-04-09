@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as otherAction from 'app/core/actions/other.action';
-import * as fromCore from 'app/core/reducers';
+import { Component, OnInit, Input, HostListener } from '@angular/core'
+import { Store } from '@ngrx/store'
+import * as otherAction from 'app/core/actions/other.action'
+import * as fromCore from 'app/core/reducers'
 
 @Component({
   selector: 'profile-dropdown',
@@ -25,7 +25,7 @@ export class ProfileDropdownComponent implements OnInit {
 
   @HostListener('click')
   clickInside() {
-    this.wasInside = true;
+    this.wasInside = true
   }
 
   @HostListener('document:click', ['$event'])
@@ -33,7 +33,7 @@ export class ProfileDropdownComponent implements OnInit {
     if (!this.wasInside) {
       this.store.dispatch(new otherAction.IsProfileDropdownAction())
     }
-    this.wasInside = false;
+    this.wasInside = false
   }
 
   ngOnInit() {

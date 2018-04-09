@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
 import * as json from 'app/project/utils/json.util'
 import * as schema from 'app/project/utils/verify-schema.util'
 import * as databaseAction from 'app/project/actions/database.action'
@@ -36,7 +36,7 @@ export class DbSchemaComponent implements OnInit {
   }
 
   onSchemaChange (text: string) {
-    if (text === '') return ;
+    if (text === '') return
     try {
       text = text.replace(/("[^"]+"\s?:\s?)(String|Number|Boolean|Array|Object)/g, `$1"$2"`)
       this.store.dispatch(new databaseAction.SchemaAction(text))

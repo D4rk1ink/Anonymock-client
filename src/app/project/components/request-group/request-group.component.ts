@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -9,7 +9,7 @@ import * as fromProject from 'app/project/reducers'
   styleUrls: ['./request-group.component.scss']
 })
 export class RequestGroupComponent implements OnInit {
-  
+
   public condition: {
     params: any,
     headers: any,
@@ -17,26 +17,9 @@ export class RequestGroupComponent implements OnInit {
     queryString: any
   }
 
-  public temps: {
-    headers: any,
-    queryString: any
-  }
-
-  public menuSelector: string
-  public menu: any[] = [
-    { id: 'M01', title: 'Header' },
-    { id: 'M02', title: 'Body' },
-    { id: 'M03', title: 'Query String' },
-  ]
-
   constructor (
     private store: Store<any>
   ) {
-    this.temps = {
-      headers: {},
-      queryString: {}
-    }
-    this.menuSelector = this.menu[0].id
     this.store.select(fromProject.getResponseCondition)
       .subscribe(condition => {
         this.condition = condition
@@ -46,13 +29,8 @@ export class RequestGroupComponent implements OnInit {
   ngOnInit () {
   }
 
-  onSelectMenu (id) {
-    this.menuSelector = id
-  }
-
   saveHeader (data) {
-    this.condition.headers = data.entities
-    this.temps.headers = data.temp
+    this.condition.headers = data
     this.dispatch()
   }
 
@@ -62,8 +40,7 @@ export class RequestGroupComponent implements OnInit {
   }
 
   saveQueryString (data) {
-    this.condition.queryString = data.entities
-    this.temps.queryString = data.temp
+    this.condition.queryString = data
     this.dispatch()
   }
 

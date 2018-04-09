@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Store } from '@ngrx/store'
 import * as schema from 'app/project/utils/verify-schema.util'
 import * as databaseAction from 'app/project/actions/database.action'
 import * as fromProject from 'app/project/reducers'
