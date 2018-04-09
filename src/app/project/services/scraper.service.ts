@@ -40,14 +40,14 @@ export class ScraperService {
     return this.http.patch(url, {})
   }
 
-  deleteEndpoint (id, payload): Observable<any> {
+  deleteEndpoint (id): Observable<any> {
     const url = constants.BASE_API + '/project/scraper/endpoint/' + id
-    return this.http.delete(url, payload)
+    return this.http.delete(url)
   }
 
-  deleteRequest (id, payload): Observable<any> {
-    const url = constants.BASE_API + '/project/scraper/endpoint/' + id
-    return this.http.delete(url, payload)
+  deleteRequest (id): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper/request/' + id
+    return this.http.delete(url)
   }
 
   search (payload): Observable<any> {

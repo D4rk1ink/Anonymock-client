@@ -5,12 +5,23 @@
     .request {
         display: flex;
         justify-content: space-between;
+        .default.active {
+            color: $green_2;
+        }
         .name {
+            padding-left: 15px;
             flex: 1;
             font-weight: 400;
         }
-        .default.active {
-            color: $green_2;
+        .options {
+            display: flex;
+            .delete {
+                opacity: .2;
+                color: $danger_3;
+            }
+            .delete:hover {
+                opacity: 1;
+            }
         }
     }
 }

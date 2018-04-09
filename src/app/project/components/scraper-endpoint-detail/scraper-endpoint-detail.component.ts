@@ -42,11 +42,11 @@ export class ScraperEndpointDetailComponent implements OnInit {
   }
    
   onMethodChange (methodId) {
-    
+    this.dispatch()
   }
    
   onFolderChange (folderId) {
-
+    this.dispatch()
   }
 
   dispatch () {
