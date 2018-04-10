@@ -45,6 +45,7 @@ import { LogResponseComponent } from './components/log-response/log-response.com
 import { LogRequestComponent } from './components/log-request/log-request.component'
 import { TestcaseGroupComponent } from './components/testcase-group/testcase-group.component'
 import { HttpMessagesComponent } from './components/http-messages/http-messages.component'
+import { JsonUiComponent } from './components/json-ui/json-ui.component'
 import { RequestGroupComponent } from './components/request-group/request-group.component'
 import { ResponseGroupComponent } from './components/response-group/response-group.component'
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component'
@@ -60,7 +61,7 @@ import { ResponseService } from './services/response.service'
 import { LogService } from './services/log.service'
 import { MethodService } from './services/method.service';
 import { ScraperEndpointDetailComponent } from './components/scraper-endpoint-detail/scraper-endpoint-detail.component';
-import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component'
+import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component';
 
 @NgModule({
   imports: [
@@ -117,6 +118,7 @@ import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-
     LogRequestComponent,
     TestcaseGroupComponent,
     HttpMessagesComponent,
+    JsonUiComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
     KeyValueGroupComponent,
@@ -160,6 +162,7 @@ import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-
     LogRequestComponent,
     TestcaseGroupComponent,
     HttpMessagesComponent,
+    JsonUiComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
     KeyValueGroupComponent,
