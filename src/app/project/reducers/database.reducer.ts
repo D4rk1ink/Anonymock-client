@@ -17,29 +17,29 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: databaseAction.Actions): State {
     switch (action.type) {
-        case databaseAction.DATABASE: 
+        case databaseAction.DATABASE:
             return action.payload
-        case databaseAction.DATA: 
+        case databaseAction.DATA:
             return {
                 ...state,
                 data: action.payload
             }
-        case databaseAction.SCHEMA: 
+        case databaseAction.SCHEMA:
             return {
                 ...state,
                 schema: action.payload
             }
-        case databaseAction.GENERATE: 
+        case databaseAction.GENERATE:
             return {
                 ...state,
                 generate: action.payload
             }
-        case databaseAction.CUSTOM: 
+        case databaseAction.CUSTOM:
             return {
                 ...state,
                 custom: action.payload
             }
-        default: 
+        default:
             return state
     }
 }

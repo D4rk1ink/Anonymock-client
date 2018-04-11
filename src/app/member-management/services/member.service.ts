@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
 import { HttpClient } from '@angular/common/http'
 import * as constants from 'app/shared/constants'
 

@@ -14,7 +14,8 @@ export interface State {
         headers: any[],
         body: any,
         delay: number,
-        statusCode: number
+        statusCode: number,
+        isFindOne: boolean
     }
 }
 
@@ -31,37 +32,38 @@ const initialState: State = {
         headers: [],
         body: {},
         delay: 10,
-        statusCode: 200
+        statusCode: 200,
+        isFindOne: false
     }
 }
 
 export function reducer (state = initialState, action: responseAction.Actions): State {
     switch (action.type) {
-        case responseAction.ALL: 
+        case responseAction.ALL:
             return action.payload
-        case responseAction.ID: 
+        case responseAction.ID:
             return {
                 ...state,
                 id: action.payload
             }
-        case responseAction.NAME: 
+        case responseAction.NAME:
             return {
                 ...state,
                 name: action.payload
             }
-        case responseAction.CONDITION: 
+        case responseAction.CONDITION:
             return {
                 ...state,
                 condition: action.payload
             }
-        case responseAction.RESPONSE: 
+        case responseAction.RESPONSE:
             return {
                 ...state,
                 response: action.payload
             }
-        case responseAction.CLEAR: 
+        case responseAction.CLEAR:
             return initialState
-        default: 
+        default:
             return state
     }
 }

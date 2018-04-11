@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { ResponseService } from 'app/project/services/response.service';
-import { EndpointService } from 'app/project/services/endpoint.service';
+import { ResponseService } from 'app/project/services/response.service'
+import { EndpointService } from 'app/project/services/endpoint.service'
 import * as json from 'app/project/utils/json.util'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -49,10 +49,6 @@ export class ResponseComponent implements OnInit, OnDestroy {
             res.data.condition.queryString = json.toArray(res.data.condition.queryString)
             res.data.response.headers = json.toArray(res.data.response.headers)
             this.store.dispatch(new responseAction.AllAction(res.data))
-            // this.store.dispatch(new responseAction.IdAction(res.data.id))
-            // this.store.dispatch(new responseAction.NameAction(res.data.name))
-            // this.store.dispatch(new responseAction.ConditionAction(res.data.condition))
-            // this.store.dispatch(new responseAction.ResponseAction(res.data.response))
           }
         })
     })
@@ -98,20 +94,20 @@ export class ResponseComponent implements OnInit, OnDestroy {
       condition: {
         ...this.response.condition,
         params: json.toJSON(this.response.condition.params),
-        body: json.toJSON(this.response.condition.body),
+        body: this.response.condition.body,
         headers: json.toJSON(this.response.condition.headers),
         queryString: json.toJSON(this.response.condition.queryString)
       },
       response: {
         ...this.response.response,
-        body: json.toJSON(this.response.response.body),
+        body: this.response.response.body,
         headers: json.toJSON(this.response.response.headers)
       }
     }
     this.endpointService.update(this.endpoint.id, endpointPayload)
       .subscribe(res => {
         if (!res.error) {
-          // update response  
+          // update response
           this.responseService.update(this.response.id, responsePayload)
             .subscribe(res => {
               if (!res.error) {

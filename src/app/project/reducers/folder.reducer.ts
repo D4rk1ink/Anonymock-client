@@ -15,22 +15,24 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: folderAction.Actions): State {
     switch (action.type) {
-        case folderAction.ID: 
+        case folderAction.ID:
             return {
                 ...state,
                 id: action.payload
             }
-        case folderAction.NAME: 
+        case folderAction.NAME:
             return {
                 ...state,
                 name: action.payload
             }
-        case folderAction.ENDPOINTS: 
+        case folderAction.ENDPOINTS:
             return {
                 ...state,
                 endpoints: action.payload
             }
-        default: 
+        case folderAction.CLEAR:
+            return initialState
+        default:
             return state
     }
 }

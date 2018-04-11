@@ -21,22 +21,24 @@
         </div>
       </div>
     </div>
-    <div class="c-list-item folder" *ngFor="let folder of folders; let i = index">
-      <div class="id">
-        {{ folder.id }}
-      </div>
-      <div class="name" [class.none]="isRename === folder.id" [routerLink]="'./'+folder.id">
-        {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
-      </div>
-      <form #form="ngForm" (ngSubmit)="onSubmitRename(folder.id, form.value)" class="rename" [class.none]="isRename !== folder.id">
-        <input type="text" name="rename" class="input-rename-{{ folder.id }}" placeholder="{{ folder.name }}" ngModel (blur)="onRenameBlur()" />
-      </form>
-      <div class="options" [class.none]="isRename === folder.id">
-        <div class="rename">
-          <i class="material-icons btn-icon btn-sky-icon" (click)="onRename(folder)">mode_edit</i>
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item folder" *ngFor="let folder of folders; let i = index">
+        <div class="id">
+          {{ folder.id }}
+        </div>
+        <div class="name" [class.none]="isRename === folder.id" [routerLink]="'./'+folder.id">
+          {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
+        </div>
+        <form #form="ngForm" (ngSubmit)="onSubmitRename(folder.id, form.value)" class="rename" [class.none]="isRename !== folder.id">
+          <input type="text" name="rename" class="input-rename-{{ folder.id }}" placeholder="{{ folder.name }}" ngModel (blur)="onRenameBlur()" />
+        </form>
+        <div class="options" [class.none]="isRename === folder.id">
+          <div class="rename">
+            <i class="material-icons btn-icon btn-sky-icon" (click)="onRename(folder)">mode_edit</i>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
     <empty-item
       *ngIf="!isNewFolder"
       [items]="folders"

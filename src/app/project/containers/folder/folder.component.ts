@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { FolderService } from 'app/project/services/folder.service'
@@ -22,6 +22,9 @@ export class FolderComponent implements OnInit, OnDestroy {
   public page: number
 
   public searchSub: Subscription
+  public routeSub: Subscription
+  public getFolderSub: Subscription
+  public endpointsSub: Subscription
 
   constructor (
     private store: Store<any>,
@@ -29,16 +32,16 @@ export class FolderComponent implements OnInit, OnDestroy {
     private endpointService: EndpointService,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe(params => {
+    this.routeSub = this.route.params.subscribe(params => {
       this.folderId = params['folder-id']
-      this.folderService.getById(this.folderId)
-        .subscribe(res => {
-          if (!res.error) {
-            this.name = res.data.name
-          }
-        })
     })
-    this.store.select(fromProject.getEndpoints)
+    this.getFolderSub = this.folderService.getById(this.folderId)
+      .subscribe(res => {
+        if (!res.error) {
+          this.name = res.data.name
+        }
+      })
+    this.endpointsSub = this.store.select(fromProject.getEndpoints)
       .subscribe(endpoints => {
         const nqSearchEndpoints = this.searchEndpoints !== endpoints.search
         const nqPage = this.page !== endpoints.page
@@ -62,16 +65,30 @@ export class FolderComponent implements OnInit, OnDestroy {
       search: this.searchEndpoints,
       page: this.page
     }
+    this.store.dispatch(new endpointsAction.IsLoadingAction(true))
     this.searchSub = this.endpointService.search(payload)
       .subscribe(res => {
         if (!res.error) {
           this.store.dispatch(new endpointsAction.ItemsAction(res.data.endpoints))
           this.store.dispatch(new endpointsAction.LimitPageAction(res.data.limitPage))
+          this.store.dispatch(new endpointsAction.IsLoadingAction(false))
         }
       })
   }
 
   ngOnDestroy () {
+    if (this.getFolderSub) {
+      this.getFolderSub.unsubscribe()
+    }
+    if (this.endpointsSub) {
+      this.endpointsSub.unsubscribe()
+    }
+    if (this.routeSub) {
+      this.routeSub.unsubscribe()
+    }
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
     this.store.dispatch(new endpointsAction.ClearAction())
   }
 
