@@ -6,6 +6,6 @@
     <input type="text" name="value" placeholder="Value" [ngModel]="entity.value" (keyup)="onValue($event)" (blur)="onValueBlur($event)" />
   </div>
   <div class="options" *ngIf="!disableDelete">
-    <i class="material-icons btn-icon btn-danger-icon" (click)="onDelete()">delete_forever</i>
+    <i class="material-icons btn-icon delete" (click)="onDelete()">clear</i>
   </div>
 </div>
