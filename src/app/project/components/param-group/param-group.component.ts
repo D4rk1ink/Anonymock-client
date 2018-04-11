@@ -9,8 +9,11 @@ export class ParamGroupComponent implements OnInit, OnChanges {
 
   @Input('path') path: string
   @Input('params') params: any
+  @Output('save') save: EventEmitter<any>
 
-  constructor() { }
+  constructor() {
+    this.save = new EventEmitter<any>()
+  }
 
   ngOnChanges (changes: SimpleChanges) {
     const path: SimpleChange = changes.path
@@ -23,7 +26,7 @@ export class ParamGroupComponent implements OnInit, OnChanges {
   }
 
   saveParam (data) {
-    console.log(data)
+    this.save.emit(data)
   }
 
   paramsFilter () {
