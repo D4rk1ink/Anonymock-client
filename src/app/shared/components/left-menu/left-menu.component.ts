@@ -36,7 +36,7 @@ export class LeftMenuComponent implements OnInit {
       })
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
-        this.setMenuTarget(val.url)
+        this.setMenuTarget(val.urlAfterRedirects)
       }
     })
     this.projectService.get()
