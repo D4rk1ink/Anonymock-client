@@ -36,4 +36,9 @@ export class ResponseService {
     return this.http.patch(url, {})
   }
 
+  delete (id): Observable<any> {
+    const url = constants.BASE_API + '/project/response/' + id
+    return this.http.delete(url)
+  }
+
 }
