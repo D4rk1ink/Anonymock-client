@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store'
 
 export const ISLOADING = '[Scraper] IsLoading'
 export const ID = '[Scraper] Id'
+export const BASEAPI = '[Scraper] BaseAPI'
 export const SEARCH = '[Scraper] Search'
 export const PAGE = '[Scraper] Page'
 export const LIMITPAGE = '[Scraper] LimitPage'
@@ -10,6 +11,18 @@ export const CLEAR = '[Scraper] Clear'
 
 export class IsLoadingAction implements Action {
     readonly type = ISLOADING
+
+    constructor (public payload) { }
+}
+
+export class IdAction implements Action {
+    readonly type = ID
+
+    constructor (public payload) { }
+}
+
+export class BaseAPIAction implements Action {
+    readonly type = BASEAPI
 
     constructor (public payload) { }
 }
@@ -46,6 +59,8 @@ export class ClearAction implements Action {
 
 export type Actions
 = IsLoadingAction
+| IdAction
+| BaseAPIAction
 | SearchAction
 | PageAction
 | LimitPageAction

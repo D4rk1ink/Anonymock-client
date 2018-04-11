@@ -1,0 +1,27 @@
+<div class="requests">
+  <div class="c-wrapper disable-shadow">
+    <div class="c-header content-between">
+      <h4>Requests</h4>
+      <div (click)="createRequest()">
+        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+      </div>
+    </div>
+    <div class="c-list">
+      <div class="c-list-item request disable-scale disable-border" *ngFor="let request of requests; let i = index"
+        [class.animate-item-expand]="request.isNew">
+        <div class="default" [class.active]="request.isDefault" (click)="setDefault(request.id)">
+          <i class="material-icons btn-icon btn-sky-icon">star</i>
+        </div>
+        <div class="name" (click)="gotoRequest(request)">
+          {{ request.name }}
+        </div>
+        <div class="options">
+          <div class="delete" (click)="deleteRequest(request.id)">
+            <i class="material-icons btn-icon">clear</i>
+          </div>
+        </div>
+      </div>
+      <empty-item [items]="requests" [isLoading]="false" [icon]="'folder_open'" [message]="'Empty Request'"></empty-item>
+    </div>
+  </div>
+</div>

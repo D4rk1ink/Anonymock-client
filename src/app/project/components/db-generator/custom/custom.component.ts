@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Store } from '@ngrx/store'
 import { DatabaseService } from 'app/project/services/database.service'
 import * as schema from 'app/project/utils/verify-schema.util'
 import * as databaseAction from 'app/project/actions/database.action'
@@ -76,7 +76,7 @@ export class CustomComponent implements OnInit {
     }
   }
 
-  setRow (data) {   
+  setRow (data) {
     try {
       data = JSON.parse(data)
       if (Array.isArray(data)) {

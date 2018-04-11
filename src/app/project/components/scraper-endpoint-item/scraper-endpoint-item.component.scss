@@ -1,0 +1,72 @@
+@import "colors";
+
+.item {
+    display: block;
+    max-height: 53px;
+    overflow: hidden;
+    transition: max-height .5s, background-color .5s, border-color .5s, margin .5s;
+    .main-row {
+        padding: 2px 0px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        height: 23px;
+        transition: height .5s;
+        .endpoint-input {
+            flex: 1;
+            animation: endpointInputScale .5s forwards;
+        }
+        .id {
+            color: $sky_2;
+            width: 80px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .name {
+            flex: 1;
+            padding-left: 10px;
+            font-weight: 400;
+        }
+        .method {
+            width: 60px;
+            display: flex;
+            justify-content: center;
+        }
+        .path {
+            flex: 3;
+        }
+        .date {
+            width: 150px;
+        }
+    }
+    .expand {
+        margin-top: 15px;
+    }
+    .footer {
+        margin-top: 15px;
+    }
+}
+.item.active {
+    max-height: 999px;
+    .main-row {
+        height: 132px;
+    }
+    .expand {
+
+    }
+}
+
+@keyframes endpointInputScale {
+    0% {
+        margin: 0 10px;
+        opacity: 0;
+    }
+    75% {
+        margin: 0 -2px;
+        opacity: .75;
+    }
+    100% {
+        margin: 0;
+        opacity: 1;
+    }
+}

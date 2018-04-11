@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
-import { ScraperService } from 'app/project/services/scraper.service';
+import { MethodService } from 'app/project/services/method.service'
+import { FolderService } from 'app/project/services/folder.service'
+import { ScraperService } from 'app/project/services/scraper.service'
+import * as foldersAction from 'app/project/actions/folders.action'
+import * as methodsAction from 'app/project/actions/methods.action'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
 
@@ -12,38 +16,40 @@ import * as fromProject from 'app/project/reducers'
 })
 export class ScraperComponent implements OnInit {
 
-  public projectId: string
-
   public isLoading: boolean
-  public endpoints: any[]
+  public baseAPI: string
   public searchEndpoint: string
+  public endpoints: any[]
   public page: number
   public limitPage: number
-
-  public endpointTarget: string
-  public requestTarget: string
 
   public scraperSub: Subscription
   public projectIdSub: Subscription
   public searchSub: Subscription
+  public getDetailSub: Subscription
 
   constructor (
     private store: Store<any>,
+    private methodService: MethodService,
+    private folderService: FolderService,
     private scraperService: ScraperService
   ) {
+    this.getFolders()
+    this.getMethods()
+    this.getDetail()
     this.scraperSub = this.store.select(fromProject.getScraper)
       .subscribe(res => {
         this.isLoading = res.isLoading
-        this.searchEndpoint = res.search
-        this.endpoints = res.items
-        this.page = res.page
+        this.baseAPI = res.baseAPI
         this.limitPage = res.limitPage
-      })
-    this.projectIdSub = this.store.select(fromProject.getProjectId)
-      .subscribe(id => {
-        if (!id) return
-        this.projectId = id
-        this.search()
+        this.endpoints = res.items
+        const nqSearch = this.searchEndpoint !== res.search
+        const nqPage = this.page !== res.page
+        if (nqSearch || nqPage) {
+          this.searchEndpoint = res.search
+          this.page = res.page
+          this.endpointSearch()
+        }
       })
   }
 
@@ -51,7 +57,7 @@ export class ScraperComponent implements OnInit {
   }
 
   createEndpoint () {
-    this.scraperService.createEndpoint({ project: this.projectId })
+    this.scraperService.createEndpoint()
       .subscribe(res => {
         res.data.isNew = true
         if (this.page > 1) {
@@ -84,29 +90,20 @@ export class ScraperComponent implements OnInit {
       })
   }
 
-  onExpand (id) {
-    this.endpointTarget = id
+  getDetail () {
+    this.getDetailSub = this.scraperService.getDetail()
+      .subscribe(res => {
+        if (!res.error) {
+          this.store.dispatch(new scraperAction.BaseAPIAction(res.data.baseAPI))
+        }
+      })
   }
 
-  onGotoRequest (request) {
-    this.requestTarget = request
-  }
-
-  onBackFromRequest () {
-    this.requestTarget = null
-  }
-
-  onSearch (text) {
-    this.store.dispatch(new scraperAction.SearchAction(text))
-    this.search()
-  }
-
-  search () {
+  endpointSearch () {
     if (this.searchSub) {
       this.searchSub.unsubscribe()
     }
     const payload = {
-      project: this.projectId,
       search: this.searchEndpoint,
       page: this.page
     }
@@ -121,8 +118,45 @@ export class ScraperComponent implements OnInit {
       })
   }
 
+  getFolders () {
+    this.folderService.search({ all: true })
+      .subscribe(res => {
+        if (!res.error) {
+          this.store.dispatch(new foldersAction.ItemsAction(res.data.folders))
+          this.store.dispatch(new foldersAction.IsLoadingAction(true))
+        }
+      })
+  }
+
+  getMethods () {
+    this.methodService.search()
+      .subscribe(res => {
+        if (!res.error) {
+          this.store.dispatch(new methodsAction.ItemsAction(res.data))
+          this.store.dispatch(new methodsAction.IsLoadingAction(true))
+        }
+      })
+  }
+
   setPage () {
     this.store.dispatch(new scraperAction.PageAction(this.page))
+  }
+
+  save () {
+    const scraperPayload = {
+      
+    }
+    this.scraperService.updateScraper({ baseAPI: this.baseAPI })
+      .subscribe(res => {
+        if (!res.error) {
+          alert('save')
+        }
+      })
+  }
+  
+  scrap () {
+    console.log('scrap')
+
   }
 
 }

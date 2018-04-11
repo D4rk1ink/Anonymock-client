@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable, EventEmitter } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs/Observable'
 import * as constants from 'app/shared/constants'
 
 
@@ -33,6 +33,11 @@ export class EndpointService {
   search (payload): Observable<any> {
     const url = constants.BASE_API + '/project/search/endpoint'
     return this.http.get(url, { params: payload })
+  }
+
+  delete (id): Observable<any> {
+    const url = constants.BASE_API + '/project/endpoint/' + id
+    return this.http.delete(url)
   }
 
 }

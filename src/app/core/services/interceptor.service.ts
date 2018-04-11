@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http'
 import * as database from 'app/core/services/database.service'

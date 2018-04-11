@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
 import * as json from 'app/project/utils/json.util'
 import * as databaseAction from 'app/project/actions/database.action'
 import * as fromProject from 'app/project/reducers'

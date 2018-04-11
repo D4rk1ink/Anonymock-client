@@ -3,16 +3,16 @@ import { trigger, animate, transition, style, query } from '@angular/animations'
 export const slideAnimation = trigger('slideAnimation', [
     // Right to Left
     transition('4 => 41, 51 => 41, 411 => 412, 5 => 51', [
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateX(20px)',
                     opacity: 0
                 })
-            ], 
+            ],
             { optional: true }
         ),
-        query(':leave', 
+        query(':leave',
             [
                 style({
                     transform: 'translateX(0px)',
@@ -22,10 +22,10 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateX(-20px)',
                     opacity: 0
                 }))
-            ], 
+            ],
             { optional: true }
         ),
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateX(20px)',
@@ -35,22 +35,22 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateX(0px)',
                     opacity: 1
                 }))
-            ], 
+            ],
             { optional: true }
         )
     ]),
     // Left to Right
     transition('41 => 4, 41 => 51, 412 => 411, 51 => 5', [
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateX20px)',
                     opacity: 0
                 })
-            ], 
+            ],
             { optional: true }
         ),
-        query(':leave', 
+        query(':leave',
             [
                 style({
                     transform: 'translateX(0px)',
@@ -60,10 +60,10 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateX(20px)',
                     opacity: 0
                 }))
-            ], 
+            ],
             { optional: true }
         ),
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateX(-20px)',
@@ -73,22 +73,22 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateX(0px)',
                     opacity: 1
                 }))
-            ], 
+            ],
             { optional: true }
         )
     ]),
     // Bottom to Top
     transition(':increment', [
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateY(20px)',
                     opacity: 0
                 })
-            ], 
+            ],
             { optional: true }
         ),
-        query(':leave', 
+        query(':leave',
             [
                 style({
                     transform: 'translateY(0px)',
@@ -98,10 +98,10 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateY(-20px)',
                     opacity: 0
                 }))
-            ], 
+            ],
             { optional: true }
         ),
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateY(20px)',
@@ -111,22 +111,22 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateY(0px)',
                     opacity: 1
                 }))
-            ], 
+            ],
             { optional: true }
         )
     ]),
     // Top to Bottom
     transition(':decrement', [
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateY(-20px)',
                     opacity: 0
                 })
-            ], 
+            ],
             { optional: true }
         ),
-        query(':leave', 
+        query(':leave',
             [
                 style({
                     transform: 'translateY(0px)',
@@ -136,10 +136,10 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateY(20px)',
                     opacity: 0
                 }))
-            ], 
+            ],
             { optional: true }
         ),
-        query(':enter', 
+        query(':enter',
             [
                 style({
                     transform: 'translateY(-20px)',
@@ -149,7 +149,7 @@ export const slideAnimation = trigger('slideAnimation', [
                     transform: 'translateY(0px)',
                     opacity: 1
                 }))
-            ], 
+            ],
             { optional: true }
         )
     ])

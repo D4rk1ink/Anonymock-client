@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from 'app/my-account/services/user.service';
-import { Store } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core'
+import { UserService } from 'app/my-account/services/user.service'
+import { Store } from '@ngrx/store'
 import * as database from 'app/core/services/database.service'
 import * as userAction from 'app/core/actions/user.action'
 

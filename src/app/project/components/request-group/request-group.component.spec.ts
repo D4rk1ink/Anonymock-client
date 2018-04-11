@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { RequestGroupComponent } from './request-group.component';
+import { RequestGroupComponent } from './request-group.component'
 
 describe('RequestGroupComponent', () => {
-  let component: RequestGroupComponent;
-  let fixture: ComponentFixture<RequestGroupComponent>;
+  let component: RequestGroupComponent
+  let fixture: ComponentFixture<RequestGroupComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ RequestGroupComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RequestGroupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(RequestGroupComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

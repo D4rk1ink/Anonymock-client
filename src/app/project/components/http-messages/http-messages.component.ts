@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'http-messages',
@@ -22,6 +22,8 @@ export class HttpMessagesComponent implements OnInit {
   @Input('isFindOne') isFindOne: boolean
   @Input('statusCode') statusCode: number
   @Input('delay') delay: number
+
+  @Input('disableShadow') disableShadow: boolean
 
   @Output('outputHeader') outputHeader: EventEmitter<any>
   @Output('outputBody') outputBody: EventEmitter<any>

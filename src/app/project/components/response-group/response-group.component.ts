@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -14,7 +14,8 @@ export class ResponseGroupComponent implements OnInit {
     headers: any,
     body: any,
     delay: number,
-    statusCode: number
+    statusCode: number,
+    isFindOne: boolean
   }
 
   constructor (
@@ -39,6 +40,11 @@ export class ResponseGroupComponent implements OnInit {
     this.dispatch()
   }
 
+  saveIsFindOne (data) {
+    this.response.isFindOne = data
+    this.dispatch()
+  }
+
   saveDelay (data) {
     this.response.delay = data
     this.dispatch()
@@ -47,12 +53,6 @@ export class ResponseGroupComponent implements OnInit {
   saveStatusCode (data) {
     this.response.statusCode = data
     this.dispatch()
-  }
-
-  onNumberKeyPress (event) {
-    if (!Number.isInteger(+event.key)) {
-      event.preventDefault()
-    }
   }
 
   dispatch () {
