@@ -4,6 +4,13 @@
       {{ item.title }}
     </div>
     <div class="options">
+      <div class="find-one" *ngIf="isFindOneInput">
+        <div class="checkbox">
+          <input type="checkbox" [ngModel]="isFindOne" (blur)="saveIsFindOne($event.target.value)">
+          <span class="checkmark"></span>
+        </div>
+        Find One
+      </div>
       <div class="delay" *ngIf="delayInput">
         Delay : <input type="text" name="delay" [ngModel]="delay" (keypress)="onNumberKeyPress($event)" (blur)="saveDelay($event.target.value)"> ms
       </div>
