@@ -143,9 +143,6 @@ export class ScraperComponent implements OnInit {
   }
 
   save () {
-    const scraperPayload = {
-      
-    }
     this.scraperService.updateScraper({ baseAPI: this.baseAPI })
       .subscribe(res => {
         if (!res.error) {
@@ -155,8 +152,12 @@ export class ScraperComponent implements OnInit {
   }
   
   scrap () {
-    console.log('scrap')
-
+    this.scraperService.scrap()
+      .subscribe(res => {
+        if (!res.error) {
+          console.log(res.data)
+        }
+      })
   }
 
 }
