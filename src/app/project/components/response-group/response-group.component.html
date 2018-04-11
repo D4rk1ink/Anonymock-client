@@ -1,15 +1,18 @@
 <http-messages
   [headerTab]="true"
   [bodyTab]="true"
+  [isFindOneInput]="true"
   [statusCodeInput]="true"
   [delayInput]="true"
   [header]="response.headers"
   [body]="response.body"
+  [isFindOne]="response.isFindOne"
   [delay]="response.delay"
   [statusCode]="response.statusCode"
   [disableShadow]="true"
   (outputHeader)="saveHeader($event)"
   (outputBody)="saveBody($event)"
+  (outputIsFindOne)="saveIsFindOne($event)"
   (outputStatusCode)="saveStatusCode($event)"
   (outputDelay)="saveDelay($event)"
 ></http-messages>
