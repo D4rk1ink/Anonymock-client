@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
@@ -22,6 +22,7 @@ export class ResponseComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private responseService: ResponseService,
     private endpointService: EndpointService,
+    private router: Router,
     private route: ActivatedRoute
   ) {
     this.store.select(fromProject.getResponse)
@@ -56,7 +57,7 @@ export class ResponseComponent implements OnInit, OnDestroy {
     this.store.dispatch(new responseAction.ConditionAction(this.response.condition))
   }
 
-  onSubmit () {
+  save () {
     // update endpoint
     const endpointPayload = {
       name: this.endpoint.name,
@@ -89,6 +90,15 @@ export class ResponseComponent implements OnInit, OnDestroy {
                 console.log(res.data)
               }
             })
+        }
+      })
+  }
+
+  delete () {
+    this.responseService.delete(this.response.id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.router.navigate(['..'], { relativeTo: this.route })
         }
       })
   }
