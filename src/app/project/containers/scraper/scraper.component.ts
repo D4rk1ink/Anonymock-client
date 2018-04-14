@@ -8,6 +8,7 @@ import * as foldersAction from 'app/project/actions/folders.action'
 import * as methodsAction from 'app/project/actions/methods.action'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
+import * as json from 'app/project/utils/json.util'
 
 @Component({
   selector: 'app-scraper',
@@ -18,6 +19,7 @@ export class ScraperComponent implements OnInit {
 
   public isLoading: boolean
   public baseAPI: string
+  public http: any
   public searchEndpoint: string
   public endpoints: any[]
   public page: number
@@ -41,6 +43,7 @@ export class ScraperComponent implements OnInit {
       .subscribe(res => {
         this.isLoading = res.isLoading
         this.baseAPI = res.baseAPI
+        this.http = res.http
         this.limitPage = res.limitPage
         this.endpoints = res.items
         const nqSearch = this.searchEndpoint !== res.search
@@ -94,7 +97,13 @@ export class ScraperComponent implements OnInit {
     this.getDetailSub = this.scraperService.getDetail()
       .subscribe(res => {
         if (!res.error) {
-          this.store.dispatch(new scraperAction.BaseAPIAction(res.data.baseAPI))
+          const baseAPI = res.data.baseAPI
+          const http = {
+            headers: json.toArray(res.data.http.headers),
+            queryString: json.toArray(res.data.http.queryString)
+          }
+          this.store.dispatch(new scraperAction.BaseAPIAction(baseAPI))
+          this.store.dispatch(new scraperAction.HttpAction(http))
         }
       })
   }
@@ -143,7 +152,14 @@ export class ScraperComponent implements OnInit {
   }
 
   save () {
-    this.scraperService.updateScraper({ baseAPI: this.baseAPI })
+    const payload = {
+      baseAPI: this.baseAPI,
+      http: {
+        headers: json.toJSON(this.http.headers),
+        queryString: json.toJSON(this.http.queryString)
+      }
+    }
+    this.scraperService.updateScraper(payload)
       .subscribe(res => {
         if (!res.error) {
           alert('save')

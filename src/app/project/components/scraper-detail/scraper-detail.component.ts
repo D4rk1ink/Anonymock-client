@@ -14,15 +14,17 @@ export class ScraperDetailComponent implements OnInit {
   @Output('scrap') scrap: EventEmitter<any>
 
   public baseAPI: string
+  public http: any
 
   constructor(
     private store: Store<any>
   ) {
     this.save = new EventEmitter<any>()
     this.scrap = new EventEmitter<any>()
-    this.store.select(fromProject.getScraperBaseAPI)
-      .subscribe(baseAPI => {
-        this.baseAPI = baseAPI
+    this.store.select(fromProject.getScraper)
+      .subscribe(res => {
+        this.baseAPI = res.baseAPI
+        this.http = res.http
       })
   }
 
@@ -31,6 +33,16 @@ export class ScraperDetailComponent implements OnInit {
 
   onBaseAPIChange (baseAPI) {
     this.store.dispatch(new scraperAction.BaseAPIAction(baseAPI))
+  }
+
+  saveHeaders (data) {
+    this.http.headers = data
+    this.store.dispatch(new scraperAction.HttpAction(this.http))
+  }
+
+  saveQueryString (data) {
+    this.http.queryString = data
+    this.store.dispatch(new scraperAction.HttpAction(this.http))
   }
 
   onSearch (text) {
