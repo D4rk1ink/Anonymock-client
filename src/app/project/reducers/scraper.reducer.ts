@@ -4,6 +4,10 @@ import * as scraperAction from '../actions/scraper.action'
 export interface State {
     isLoading: boolean
     baseAPI: string
+    http: {
+        headers: any[],
+        queryString: any[]
+    }
     search: string
     page: number
     limitPage: number
@@ -13,6 +17,10 @@ export interface State {
 const initialState: State = {
     isLoading: true,
     baseAPI: '',
+    http: {
+        headers: [],
+        queryString: []
+    },
     search: '',
     page: 1,
     limitPage: 1,
@@ -30,6 +38,11 @@ export function reducer (state = initialState, action: scraperAction.Actions): S
             return {
                 ...state,
                 baseAPI: action.payload
+            }
+        case scraperAction.HTTP:
+            return {
+                ...state,
+                http: action.payload
             }
         case scraperAction.SEARCH:
             return {
@@ -60,6 +73,7 @@ export function reducer (state = initialState, action: scraperAction.Actions): S
 
 export const getIsLoading = (state: State) => state.isLoading
 export const getBaseAPI = (state: State) => state.baseAPI
+export const getHttp = (state: State) => state.http
 export const getSearchEndpoint = (state: State) => state.search
 export const getPage = (state: State) => state.page
 export const getLimitPage = (state: State) => state.limitPage
