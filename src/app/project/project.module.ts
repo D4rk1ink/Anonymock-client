@@ -34,12 +34,15 @@ import { GenerateComponent } from './components/db-generator/generate/generate.c
 import { CustomComponent } from './components/db-generator/custom/custom.component'
 import { MemberManagementComponent } from './components/member-management/member-management.component'
 import { ScraperDetailComponent } from './components/scraper-detail/scraper-detail.component'
+import { ScraperEndpointDetailComponent } from './components/scraper-endpoint-detail/scraper-endpoint-detail.component'
+import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component'
 import { ScraperEndpointListComponent } from './components/scraper-endpoint-list/scraper-endpoint-list.component'
 import { ScraperEndpointItemComponent } from './components/scraper-endpoint-item/scraper-endpoint-item.component'
 import { ScraperRequestsComponent } from './components/scraper-requests/scraper-requests.component'
 import { ScraperRequestComponent } from './components/scraper-request/scraper-request.component'
 import { ParamGroupComponent } from './components/param-group/param-group.component'
 import { EndpointGroupComponent } from './components/endpoint-group/endpoint-group.component'
+import { EndpointDetailComponent } from './components/endpoint-detail/endpoint-detail.component'
 import { LogGroupComponent } from './components/log-group/log-group.component'
 import { LogResponseComponent } from './components/log-response/log-response.component'
 import { LogRequestComponent } from './components/log-request/log-request.component'
@@ -59,9 +62,7 @@ import { ScraperService } from './services/scraper.service'
 import { EndpointService } from './services/endpoint.service'
 import { ResponseService } from './services/response.service'
 import { LogService } from './services/log.service'
-import { MethodService } from './services/method.service';
-import { ScraperEndpointDetailComponent } from './components/scraper-endpoint-detail/scraper-endpoint-detail.component';
-import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component';
+import { MethodService } from './services/method.service'
 
 @NgModule({
   imports: [
@@ -107,12 +108,15 @@ import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-
     CustomComponent,
     MemberManagementComponent,
     ScraperDetailComponent,
+    ScraperEndpointComponent,
+    ScraperEndpointDetailComponent,
     ScraperEndpointListComponent,
     ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
     ParamGroupComponent,
     EndpointGroupComponent,
+    EndpointDetailComponent,
     LogGroupComponent,
     LogResponseComponent,
     LogRequestComponent,
@@ -123,8 +127,6 @@ import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
-    ScraperEndpointDetailComponent,
-    ScraperEndpointComponent,
   ],
   exports: [
     ProjectComponent,
@@ -151,12 +153,15 @@ import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-
     CustomComponent,
     MemberManagementComponent,
     ScraperDetailComponent,
+    ScraperEndpointComponent,
+    ScraperEndpointDetailComponent,
     ScraperEndpointListComponent,
     ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
     ParamGroupComponent,
     EndpointGroupComponent,
+    EndpointDetailComponent,
     LogGroupComponent,
     LogResponseComponent,
     LogRequestComponent,

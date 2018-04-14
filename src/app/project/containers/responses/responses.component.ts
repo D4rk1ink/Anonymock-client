@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
+import * as database from 'app/core/services/database.service'
 import * as fromProject from 'app/project/reducers'
 
 @Component({
@@ -15,18 +17,19 @@ export class ResponsesComponent implements OnInit {
   public endpointId: string
   public endpoint: any
   public responses: any[]
-  public menuSelector: any
-  public menu: any[] = [
+  public tabSelector: any
+  public tabAll: any[] = [
     { id: 'M01', title: 'Dev' },
     { id: 'M02', title: 'Test' }
   ]
 
   constructor(
     private store: Store<any>,
+    private router: Router,
     private responseService: ResponseService,
     private endpointService: EndpointService
   ) {
-    this.menuSelector = this.menu[0]
+    this.tabSelector = this.tabAll[0]
     this.store.select(fromProject.getEndpointId)
       .subscribe(endpointId => {
         this.endpointId = endpointId
@@ -39,18 +42,17 @@ export class ResponsesComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
-  onSelectMenu (menu) {
-    this.menuSelector = menu
+  onSelectMenu (tab) {
+    this.tabSelector = tab
     this.search()
   }
 
   onNew () {
     const payload = {
       endpoint: this.endpointId,
-      environment: this.menuSelector.title.toLowerCase()
+      environment: this.tabSelector.title.toLowerCase()
     }
     this.responseService.create(payload)
       .subscribe(res => {
@@ -81,7 +83,7 @@ export class ResponsesComponent implements OnInit {
     const payload = {
       endpoint: this.endpointId,
       search: '',
-      environment: this.menuSelector.title.toLowerCase()
+      environment: this.tabSelector.title.toLowerCase()
     }
     this.isLoading = true
     this.responseService.search(payload)
@@ -93,7 +95,7 @@ export class ResponsesComponent implements OnInit {
       })
   }
 
-  onSubmit () {
+  saveEndpoint () {
     const payload = {
       name: this.endpoint.name,
       path: this.endpoint.path,
@@ -104,6 +106,24 @@ export class ResponsesComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           console.log(res.data)
+        }
+      })
+  }
+
+  deleteResponse (id) {
+    this.responseService.delete(id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.responses = this.responses.filter(response => response.id !== id)
+        }
+      })
+  }
+
+  deleteEndpoint () {  
+    this.endpointService.delete(this.endpointId)
+      .subscribe(res => {
+        if (!res.error) {
+          this.router.navigateByUrl(`/project/${database.getProject()}/folder/${this.endpoint.folder.id}`)
         }
       })
   }

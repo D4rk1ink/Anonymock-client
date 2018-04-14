@@ -11,6 +11,7 @@ export class HttpMessagesComponent implements OnInit {
   @Input('bodyTab') bodyTab: boolean
   @Input('queryStringTab') queryStringTab: boolean
 
+  @Input('isFindOneInput') isFindOneInput: boolean
   @Input('statusCodeInput') statusCodeInput: boolean
   @Input('delayInput') delayInput: boolean
 
@@ -18,6 +19,7 @@ export class HttpMessagesComponent implements OnInit {
   @Input('body') body: any
   @Input('queryString') queryString: any
 
+  @Input('isFindOne') isFindOne: boolean
   @Input('statusCode') statusCode: number
   @Input('delay') delay: number
 
@@ -27,6 +29,7 @@ export class HttpMessagesComponent implements OnInit {
   @Output('outputBody') outputBody: EventEmitter<any>
   @Output('outputQueryString') outputQueryString: EventEmitter<any>
 
+  @Output('outputIsFindOne') outputIsFindOne: EventEmitter<any>
   @Output('outputStatusCode') outputStatusCode: EventEmitter<any>
   @Output('outputDelay') outputDelay: EventEmitter<any>
 
@@ -49,6 +52,7 @@ export class HttpMessagesComponent implements OnInit {
     this.outputBody = new EventEmitter<any>()
     this.outputQueryString = new EventEmitter<any>()
 
+    this.outputIsFindOne = new EventEmitter<any>()
     this.outputStatusCode = new EventEmitter<any>()
     this.outputDelay = new EventEmitter<any>()
   }
@@ -80,6 +84,10 @@ export class HttpMessagesComponent implements OnInit {
   saveQueryString (data) {
     // this.temp.queryString = data.temp
     this.outputQueryString.emit(data.entities)
+  }
+
+  saveIsFindOne (data) {
+    this.outputIsFindOne.emit(data)
   }
 
   saveStatusCode (data) {

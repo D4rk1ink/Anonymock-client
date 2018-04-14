@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
@@ -22,21 +22,16 @@ export class ResponseComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private responseService: ResponseService,
     private endpointService: EndpointService,
+    private router: Router,
     private route: ActivatedRoute
   ) {
     this.store.select(fromProject.getResponse)
       .subscribe(response => {
         this.response = response
-        this.paramsFilter(this.path)
       })
     this.store.select(fromProject.getEndpoint)
       .subscribe(endpoint => {
         this.endpoint = endpoint
-      })
-    this.store.select(fromProject.getEndpointPath)
-      .subscribe(path => {
-        this.path = path
-        this.paramsFilter(this.path)
       })
     // Call service get response
     this.route.params.subscribe(params => {
@@ -57,31 +52,12 @@ export class ResponseComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  saveParam (params) {
+  saveParams (params) {
     this.response.condition.params = params
     this.store.dispatch(new responseAction.ConditionAction(this.response.condition))
   }
 
-  paramsFilter (path) {
-    if (!path || !this.response) return
-    const paramPattern = /{{\s*([A-Za-z0-9\-]+)\s*}}/g
-    const match = path.match(paramPattern) || []
-    const keys = match
-      .map(token => (new RegExp(paramPattern).exec(token) || [null, '']).slice(1).pop())
-      .filter((param, i, arr) => param && param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
-    const temp = [...this.response.condition.params]
-    this.response.condition.params = []
-    for (const key of keys) {
-      const param = temp.find(param => param.key === key)
-      if (param) {
-        this.response.condition.params.push(param)
-      } else {
-        this.response.condition.params.push({ key: key, value: undefined })
-      }
-    }
-  }
-
-  onSubmit () {
+  save () {
     // update endpoint
     const endpointPayload = {
       name: this.endpoint.name,
@@ -114,6 +90,15 @@ export class ResponseComponent implements OnInit, OnDestroy {
                 console.log(res.data)
               }
             })
+        }
+      })
+  }
+
+  delete () {
+    this.responseService.delete(this.response.id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.router.navigate(['..'], { relativeTo: this.route })
         }
       })
   }

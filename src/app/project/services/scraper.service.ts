@@ -10,6 +10,11 @@ export class ScraperService {
     private http: HttpClient
   ) { }
 
+  scrap (): Observable<any> {
+    const url = constants.BASE_API + '/project/scraper'
+    return this.http.post(url, {})
+  }
+
   getDetail (): Observable<any> {
     const url = constants.BASE_API + '/project/scraper'
     return this.http.get(url)

@@ -35,4 +35,9 @@ export class EndpointService {
     return this.http.get(url, { params: payload })
   }
 
+  delete (id): Observable<any> {
+    const url = constants.BASE_API + '/project/endpoint/' + id
+    return this.http.delete(url)
+  }
+
 }

@@ -1,35 +1,47 @@
-<div class="c-wrapper">
-    <div class="c-tabs">
-        <div class="item c-tab-item" *ngFor="let item of menu" [class.active]="menuSelector.id === item.id" (click)="onSelectMenu(item)">
-            {{ item.title }}
-        </div>
-        <div class="options">
-            <div class="new" (click)="onNew()">
-                <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+<section class="section">
+    <div class="c-wrapper">
+        <div class="c-tabs">
+            <div class="item c-tab-item" *ngFor="let item of tabAll" [class.active]="tabSelector.id === item.id" (click)="onSelectMenu(item)">
+                {{ item.title }}
+            </div>
+            <div class="options">
+                <div class="new" (click)="onNew()">
+                    <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="c-list">
-        <ng-container *ngIf="!isLoading">
-            <div class="c-list-item response" [class.new-response]="response.isNew" *ngFor="let response of responses">
-                <div class="status-code">
-                    {{ response.response.statusCode }}
-                </div>
-                <div class="name" [routerLink]="'./'+response.id">
-                    {{ response.name }}
-                </div>
-                <div class="options">
+        <div class="c-list">
+            <ng-container *ngIf="!isLoading">
+                <div class="c-list-item response" [class.new-response]="response.isNew" *ngFor="let response of responses">
                     <div class="default" [class.active]="response.isDefault" (click)="setDefault(response)">
                         <i class="material-icons btn-icon btn-sky-icon">star</i>
                     </div>
+                    <div class="status-code">
+                        {{ response.response.statusCode }}
+                    </div>
+                    <div class="name" [routerLink]="'./'+response.id">
+                        {{ response.name }}
+                    </div>
+                    <div class="options">
+                        <div class="delete" (click)="deleteResponse(response.id)">
+                            <i class="material-icons btn-icon">clear</i>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </ng-container>
-        <empty-item
-            [items]="responses"
-            [isLoading]="isLoading"
-            [icon]="'folder_open'"
-            [message]="'Empty Response'"></empty-item>
+            </ng-container>
+            <empty-item
+                [items]="responses"
+                [isLoading]="isLoading"
+                [icon]="'folder_open'"
+                [message]="'Empty Response'"></empty-item>
+        </div>
     </div>
-</div>
-
+</section>
+<section class="section form-inline content-between">
+    <div class="">
+        <button class="btn btn-sky" (click)="saveEndpoint()">Save</button>
+    </div>
+    <div class="">
+        <button class="btn btn-danger" (click)="deleteEndpoint()">Delete</button>
+    </div>
+</section>

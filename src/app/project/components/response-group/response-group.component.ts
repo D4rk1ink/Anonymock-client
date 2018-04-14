@@ -40,6 +40,11 @@ export class ResponseGroupComponent implements OnInit {
     this.dispatch()
   }
 
+  saveIsFindOne (data) {
+    this.response.isFindOne = data
+    this.dispatch()
+  }
+
   saveDelay (data) {
     this.response.delay = data
     this.dispatch()
@@ -48,12 +53,6 @@ export class ResponseGroupComponent implements OnInit {
   saveStatusCode (data) {
     this.response.statusCode = data
     this.dispatch()
-  }
-
-  onNumberKeyPress (event) {
-    if (!Number.isInteger(+event.key)) {
-      event.preventDefault()
-    }
   }
 
   dispatch () {
