@@ -6,13 +6,14 @@
 .top-bar {
     position: relative;
     height: 50px;
+    z-index: 500;
 }
 .top-bar-fixed {
     display: flex;
     width: 100%;
     height: inherit;
     position: fixed;
-    background-color: rgba(#1d2b36, .9);
+    background-color: #323d48;
     .banner {
         width: 200px;
         background-color: #0c161d;
