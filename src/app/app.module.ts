@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StoreModule } from '@ngrx/store'
 import { SharedModule } from './shared/shared.module'
 import { CoreModule } from './core/core.module'
@@ -21,6 +22,7 @@ import { CoreModule } from './core/core.module'
     HttpClientModule,
     CoreModule.forRoot(),
     SharedModule.forRoot(),
+    NgbModule.forRoot(),
     AppRoutingModule,
     // StoreDevtoolsModule.instrument({
     //   maxAge: 10
