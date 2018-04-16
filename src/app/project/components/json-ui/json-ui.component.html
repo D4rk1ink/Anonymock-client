@@ -1,34 +1,41 @@
 <div class="wrapper">
   <span id="hidden-key">{{ key }}</span>
-  <span id="hidden-value">{{ value }}</span>
-  <div *ngIf="isJSON(value)">
+  <span id="hidden-value">{{ value.data }}</span>
+  <div *ngIf="value.type === TYPE.JSON || value.type === TYPE.ARRAY">
     <div class="parent">
       <i class="material-icons expand-icon btn-icon" [class.expand]="isExpand" (click)="onExpand()">chevron_right</i>
       <label>
-        <input type="text" class="key" [(ngModel)]="key" (ngModelChange)="onKeyChange($event)" [ngStyle]="{ 'width.px': keyWidth }" />: {{ (value | keys).length }} keys
+        <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" />: 
+        <label class="value">{{ value.data.length }} {{ (value.type === 'json') ? 'keys' : 'items' }}</label>
       </label>
+      <div class="add-bar">
+        <label class="add-normal" (click)="addElement(TYPE.NORMAL)">
+          +
+        </label>
+        <label class="add-object" (click)="addElement(TYPE.JSON)">
+          &#x7B; &#x7D;
+        </label>
+        <label class="add-array" (click)="addElement(TYPE.ARRAY)">
+          [ ]
+        </label>
+      </div>
     </div>
-    <div class="child" [class.hidden]="!isExpand">
-      <div *ngFor="let key of (value | keys)">
-        <json-ui [key]="key" [value]="value[key]"></json-ui>
+    <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.JSON">
+      <div *ngFor="let datum of value.data; let i = index">
+        <json-ui [index]="i" [key]="datum.key" [value]="datum.value" (outputUpdate)="updateChild($event)"></json-ui>
+      </div>
+    </div>
+    <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.ARRAY">
+      <div *ngFor="let datum of value.data; let i = index">
+        <json-ui [index]="i" [key]="i" [value]="datum" (outputUpdate)="updateChild($event)"></json-ui>
       </div>
     </div>
   </div>
-  <div *ngIf="isArray(value)">
-    <div class="parent">
-      <i class="material-icons expand-icon btn-icon" [class.expand]="isExpand" (click)="onExpand()">chevron_right</i>
-      <label>
-        <input type="text" class="key" [(ngModel)]="key" (ngModelChange)="onKeyChange($event)" [ngStyle]="{ 'width.px': keyWidth }" />: {{ (value | keys).length }} keys
-      </label>
-    </div>
-    <div class="child" [class.hidden]="!isExpand">
-      <div *ngFor="let key of value; let i = index">
-        <json-ui [key]="i" [value]="key"></json-ui>
-      </div>
-    </div>
-    </div>
-  <div *ngIf="!isJSON(value) && !isArray(value)">
+  <div *ngIf="value.type === TYPE.NORMAL">
     <div class="text">
-      <input type="text" class="key" [(ngModel)]="key" (ngModelChange)="onKeyChange($event)" [ngStyle]="{ 'width.px': keyWidth }" />: <input type="text" class="value" [(ngModel)]="value" [ngStyle]="{ 'width.px': valueWidth }" />
+      <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" />:
+      <label class="value">
+        <input type="text" class="value" [(ngModel)]="value.data" [ngStyle]="{ 'width.px': valueWidth }" (blur)="onInputBlur($event)" />
+      </label>
   </div>
 </div>

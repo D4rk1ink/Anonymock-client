@@ -17,6 +17,22 @@ import * as json from 'app/project/utils/json.util'
 export class ProjectComponent implements OnInit {
 
   public isLoading: boolean
+  public init = {
+    "text": "abc",
+    "number": 1,
+    "boolean": false,
+    "object": {
+      "a": "ff"
+    },
+    "item": [
+      {
+        "a": "asd"
+      },
+      "c",
+      "f",
+      "fr"
+    ]
+  }
 
   constructor (
     private store: Store<any>,
