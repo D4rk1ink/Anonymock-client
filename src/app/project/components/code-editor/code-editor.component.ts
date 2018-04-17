@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter } from '@angular/core'
+import { Component, OnInit, OnChanges, Input, Output, ViewChild, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core'
 import { AceEditorComponent } from 'ng2-ace-editor'
 
 @Component({
@@ -14,19 +14,19 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   @Output('change') change: EventEmitter<any>
   @ViewChild('editor') editor: AceEditorComponent
 
+  public _text: string
   public options: any
 
   constructor () {
     this.change = new EventEmitter<any>()
   }
 
-  ngOnChanges () {
+  ngOnChanges (change: SimpleChanges) {
     if (this.text) {
       if (typeof this.text === 'object') {
-        this.text = JSON.stringify(this.text)
-        this.pretty()
+        this._text = this.pretty(JSON.stringify(this.text))
       } else {
-        this.text = this.text
+        this._text = this.pretty(this.text)
       }
     }
   }
@@ -47,15 +47,18 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   }
 
   onChange (text) {
+    text = text.trim()
+    if (text == '') {
+      text = "{}"
+    }
     this.change.emit(text)
   }
 
-  pretty() {
+  pretty(text) {
     try {
-      this.text = this.text.replace(/(^"|"$)/gi, '')
-      this.text = JSON.stringify(JSON.parse(this.text), null, 4)
-    } catch (err) {
-      this.editor.setText(this.text)
-    }
+      text = text.replace(/(^"|"$)/gi, '')
+      text = JSON.stringify(JSON.parse(text), null, 4)
+    } catch (err) {}
+    return text
   }
 }
