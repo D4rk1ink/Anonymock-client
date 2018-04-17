@@ -106,7 +106,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   }
 
   saveBodyFromJsonUI (data) {
-    this.outputBody.emit(JSON.stringify(data))
+    this.outputBody.emit(JSON.stringify(data, null, 4))
   }
 
   onNumberKeyPress (event) {
