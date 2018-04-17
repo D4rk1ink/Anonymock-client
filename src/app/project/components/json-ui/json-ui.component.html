@@ -5,8 +5,8 @@
     <div class="parent">
       <i class="material-icons expand-icon btn-icon" [class.expand]="isExpand" (click)="onExpand()">chevron_right</i>
       <label>
-        <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" />: 
-        <label class="value">{{ value.data.length }} {{ (value.type === 'json') ? 'keys' : 'items' }}</label>
+        <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" [readonly]="keyReadOnly || init !== null" />: 
+        <label class="value">{{ value.data.length }} {{ (value.type === TYPE.JSON) ? 'keys' : 'items' }}</label>
       </label>
       <div class="add-bar">
         <label class="add-normal" (click)="addElement(TYPE.NORMAL)">
@@ -27,13 +27,13 @@
     </div>
     <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.ARRAY">
       <div *ngFor="let datum of value.data; let i = index">
-        <json-ui [index]="i" [key]="i" [value]="datum" (outputUpdate)="updateChild($event)"></json-ui>
+        <json-ui [index]="i" [key]="i" [value]="datum" (outputUpdate)="updateChild($event)" [keyReadOnly]="true"></json-ui>
       </div>
     </div>
   </div>
   <div *ngIf="value.type === TYPE.NORMAL">
     <div class="text">
-      <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" />:
+      <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" [readonly]="keyReadOnly" />:
       <label class="value">
         <input type="text" class="value" [(ngModel)]="value.data" [ngStyle]="{ 'width.px': valueWidth }" (blur)="onInputBlur($event)" />
       </label>

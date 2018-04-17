@@ -11,7 +11,9 @@ export class JsonUiComponent implements OnInit, OnChanges {
   @Input('key') key: string = 'Objects'
   @Input('value') value: any
   @Input('index') index: number
+  @Input('keyReadOnly') keyReadOnly: boolean
   @Output('outputUpdate') outputUpdate: EventEmitter<any>
+  @Output('save') save: EventEmitter<any>
 
   public isExpand: boolean
   public keyWidth: number
@@ -26,6 +28,7 @@ export class JsonUiComponent implements OnInit, OnChanges {
     private elRef: ElementRef
   ) {
     this.outputUpdate = new EventEmitter<any>()
+    this.save = new EventEmitter<any>()
     this.isExpand = true
   }
 
@@ -41,7 +44,7 @@ export class JsonUiComponent implements OnInit, OnChanges {
   ngOnChanges (changes: SimpleChanges) {
     const init: SimpleChange = changes.init
     if (init && !init.previousValue && init.currentValue) {
-      this.value = this.coverData(this.init)
+      this.value = this.coverForComponent(this.init)
     }
     const key: SimpleChange = changes.key
     const value: SimpleChange = changes.value
@@ -50,7 +53,7 @@ export class JsonUiComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  coverData (data) {
+  coverForComponent (data) {
     const value: { type: string, data: any } = { type: this.TYPE.NORMAL, data: '' }
     if (this.isJSON(data)) {
       value.type = this.TYPE.JSON
@@ -58,20 +61,38 @@ export class JsonUiComponent implements OnInit, OnChanges {
       for (const key in data) {
         value.data.push({
           key: key,
-          value: this.coverData(data[key])
+          value: this.coverForComponent(data[key])
         })
       }
     } else if (this.isArray(data)) {
       value.type = this.TYPE.ARRAY
       value.data = []
       for (const datum of data) {
-        value.data.push(this.coverData(datum))
+        value.data.push(this.coverForComponent(datum))
       }
     } else {
       value.type = this.TYPE.NORMAL
       value.data = data
     }
     return value
+  }
+
+  coverToJSON (value) {
+    if (value.type === this.TYPE.JSON) {
+      const out = {}
+      for (const datum of value.data) {
+        out[datum.key] = this.coverToJSON(datum.value)
+      }
+      return out
+    } else if (value.type === this.TYPE.ARRAY) {
+      const out = []
+      for (const datum of value.data) {
+        out.push(this.coverToJSON(datum))
+      }
+      return out
+    } else {
+      return value.data
+    }
   }
 
   updateChild (action) {
@@ -83,7 +104,8 @@ export class JsonUiComponent implements OnInit, OnChanges {
         this.value.data = this.value.data.filter((datum, i) => action.index !== i)
     }
     if (this.init) {
-      console.log(this.value)
+      const data = this.coverToJSON(this.value)
+      this.save.emit(data)
     } else {
       this.outputUpdate.emit({
         type: action.type,
