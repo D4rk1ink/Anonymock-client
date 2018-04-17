@@ -43,11 +43,9 @@ export class JsonUiComponent implements OnInit, OnChanges {
 
   ngOnChanges (changes: SimpleChanges) {
     const init: SimpleChange = changes.init
-    if (init && !init.previousValue && init.currentValue) {
+    if (init) {
       this.value = this.coverForComponent(this.init)
     }
-    const key: SimpleChange = changes.key
-    const value: SimpleChange = changes.value
   }
 
   ngOnInit() {
