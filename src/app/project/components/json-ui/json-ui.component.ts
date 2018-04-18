@@ -172,6 +172,10 @@ export class JsonUiComponent implements OnInit, OnChanges {
     })
   }
 
+  typeOfValue (value) {
+    return typeof value
+  }
+
   setKeyWidth () {
     const hiddenKey = this.elRef.nativeElement.querySelector('#hidden-key')
     this.keyWidth = hiddenKey.offsetWidth + 13

@@ -1,11 +1,19 @@
 .wrapper {
-    margin-left: 20px;
+    margin-left: 30px;
 }
 .key {
-    color: #a5c261 !important;
+    color: #C82829 !important;
 }
 .value {
-    
+    input.string {
+        color: #718C00 !important;
+    }
+    input.number {
+        color: #F5871F !important;
+    }
+    input.boolean {
+        color: #F5871F !important;
+    }
 }
 .child {
     padding-left: 20px;
@@ -16,8 +24,9 @@
 }
 .expand-icon {
     position: absolute;
-    left: -25px;
-    top: 6px;
+    font-size: 18px;
+    left: -22px;
+    top: 4px;
 }
 .expand-icon.expand {
     transform: rotateZ(90deg);
@@ -51,7 +60,7 @@
     position: absolute;
 }
 input[type=text] {
-    // text-align: center;
+    min-height: 25px !important;
     border: 0;
     padding: 0px !important;
     background-color: transparent;
@@ -59,6 +68,6 @@ input[type=text] {
 #hidden-key,
 #hidden-value,
 input[type=text] {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
 }
