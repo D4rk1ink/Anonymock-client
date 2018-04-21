@@ -2,24 +2,42 @@ import { Action, ActionReducer } from '@ngrx/store'
 import * as membersAction from '../actions/members.action'
 
 export interface State {
-    members: any[]
+    isLoading: boolean
+    search: string
+    items: any[]
 }
 
 const initialState: State = {
-    members: [],
+    isLoading: true,
+    search: '',
+    items: [],
 }
 
 export function reducer (state = initialState, action: membersAction.Actions): State {
     switch (action.type) {
-        case membersAction.MEMBERS:
+        case membersAction.ISLOADING:
             return {
                 ...state,
-                members: action.payload
+                isLoading: action.payload
             }
+        case membersAction.SEARCH:
+            return {
+                ...state,
+                search: action.payload
+            }
+        case membersAction.ITEMS:
+            return {
+                ...state,
+                items: action.payload
+            }
+        case membersAction.CLEAR:
+            return initialState
         default:
             return state
     }
 }
 
-export const getMembers = (state: State) => state.members
 export const getAll = (state: State) => state
+export const getIsLoading = (state: State) => state.isLoading
+export const getSearch = (state: State) => state.search
+export const getItems = (state: State) => state.items
