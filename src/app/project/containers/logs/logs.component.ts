@@ -27,7 +27,6 @@ export class LogsComponent implements OnInit {
   ) {
     this.store.select(fromProject.getProjectId)
       .subscribe(id => {
-        if (!id) return
         this.projectId = id
       })
     this.store.select(fromProject.getLogs)
@@ -35,10 +34,9 @@ export class LogsComponent implements OnInit {
         this.isLoading = res.isLoading
         this.logs = res.items
         this.limitPage = res.limitPage
-        this.page = res.page
         const nqSearchEndpoints = this.searchLog !== res.search
         const nqPage = this.page !== res.page
-        if (this.projectId && nqSearchEndpoints || nqPage) {
+        if (nqSearchEndpoints || nqPage) {
           this.searchLog = res.search
           this.page = res.page
           this.search()
