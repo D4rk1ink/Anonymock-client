@@ -1,0 +1,14 @@
+<div class="wrapper" [class.none]="!isOpen">
+  <div class="box">
+    <div class="header">
+      Confirm
+    </div>
+    <div class="body">
+      {{ data?.message }}
+    </div>
+    <div class="footer flex-end">
+      <button class="btn btn-sky" (click)="emit(false)">Cancel</button>
+      <button class="btn btn-danger" (click)="emit(true)">Delete</button>
+    </div>
+  </div>
+</div>

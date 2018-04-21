@@ -120,6 +120,11 @@ label.link:hover {
     align-items: center;
 }
 
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .none {
     display: none !important;
 }

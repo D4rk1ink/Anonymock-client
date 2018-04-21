@@ -13,7 +13,9 @@ import { ProfilePopupComponent } from './components/profile-popup/profile-popup.
 import { RectLoadingComponent } from './components/rect-loading/rect-loading.component'
 import { EmptyItemComponent } from './components/empty-item/empty-item.component'
 import { AddItemBarComponent } from './components/add-item-bar/add-item-bar.component'
+import { ConfirmBoxComponent } from './components/confirm-box/confirm-box.component'
 
+import { ConfirmService } from './services/confirm.service'
 import { ProjectService } from 'app/project/services/project.service'
 import { UserService } from 'app/my-account/services/user.service'
 
@@ -35,6 +37,7 @@ import { UserService } from 'app/my-account/services/user.service'
     RectLoadingComponent,
     EmptyItemComponent,
     AddItemBarComponent,
+    ConfirmBoxComponent,
   ],
   exports: [
     CommonModule,
@@ -52,6 +55,7 @@ import { UserService } from 'app/my-account/services/user.service'
     RectLoadingComponent,
     EmptyItemComponent,
     AddItemBarComponent,
+    ConfirmBoxComponent
   ]
 })
 export class SharedModule {
@@ -59,6 +63,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
+        ConfirmService,
         ProjectService,
         UserService
       ]
