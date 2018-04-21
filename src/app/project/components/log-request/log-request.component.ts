@@ -9,22 +9,9 @@ export class LogRequestComponent implements OnInit {
 
   @Input('data') data: any[]
 
-  public menuSelector: string
-  public menu: any[] = [
-    { id: 'M01', title: 'Header' },
-    { id: 'M02', title: 'Body' },
-    { id: 'M03', title: 'Client' },
-  ]
-
-  constructor () {
-    this.menuSelector = this.menu[0].id
-  }
+  constructor () { }
 
   ngOnInit () {
-  }
-
-  onSelectMenu (id) {
-    this.menuSelector = id
   }
 
 }

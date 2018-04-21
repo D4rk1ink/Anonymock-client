@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { LogService } from 'app/project/services/log.service'
+import * as logsAction from 'app/project/actions/logs.action'
 import * as fromProject from 'app/project/reducers'
+import * as json from 'app/project/utils/json.util'
 
 @Component({
   selector: 'app-logs',
@@ -12,6 +14,7 @@ export class LogsComponent implements OnInit {
 
   public projectId: string
 
+  public isLoading: boolean
   public logs: any[]
   public searchLog: string
   public page: number
@@ -22,23 +25,32 @@ export class LogsComponent implements OnInit {
     private store: Store<any>,
     private logService: LogService
   ) {
-    this.logs = []
-    this.searchLog = ''
-    this.page = 1
     this.store.select(fromProject.getProjectId)
       .subscribe(id => {
         if (!id) return
         this.projectId = id
-        this.search()
+      })
+    this.store.select(fromProject.getLogs)
+      .subscribe(res => {
+        this.isLoading = res.isLoading
+        this.logs = res.items
+        this.limitPage = res.limitPage
+        this.page = res.page
+        const nqSearchEndpoints = this.searchLog !== res.search
+        const nqPage = this.page !== res.page
+        if (this.projectId && nqSearchEndpoints || nqPage) {
+          this.searchLog = res.search
+          this.page = res.page
+          this.search()
+        }
       })
   }
 
   ngOnInit () {
   }
 
-  onSearch (text) {
-    this.searchLog = text
-    this.search()
+  onSearch (search) {
+    this.store.dispatch(new logsAction.SearchAction(search))
   }
 
   search () {
@@ -47,11 +59,27 @@ export class LogsComponent implements OnInit {
       search: this.searchLog,
       page: this.page
     }
+    this.store.dispatch(new logsAction.IsLoadingAction(true))
     this.logService.search(payload)
       .subscribe(res => {
         if (!res.error) {
-          this.logs = res.data.logs
-          this.limitPage = res.data.limitPage
+          res.data.logs = res.data.logs.map(log => {
+            return {
+              ...log,
+              request: {
+                ...log.request,
+                headers: json.toArray(log.request.headers),
+                queryString: json.toArray(log.request.queryString)
+              },
+              response: {
+                ...log.response,
+                headers: json.toArray(log.response.headers),
+              }
+            }
+          })
+          this.store.dispatch(new logsAction.ItemsAction(res.data.logs))
+          this.store.dispatch(new logsAction.LimitPageAction(res.data.limitPage))
+          this.store.dispatch(new logsAction.IsLoadingAction(false))
         }
       })
   }
@@ -61,10 +89,9 @@ export class LogsComponent implements OnInit {
   }
 
   onPage (val) {
-    const temp = this.page + val
-    if (temp >= 1 || temp <= this.limitPage) {
-      this.page = temp
-      this.search()
+    const page = this.page + val
+    if (page >= 1 || page <= this.limitPage) {
+      this.store.dispatch(new logsAction.PageAction(page))
     }
   }
 

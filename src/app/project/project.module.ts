@@ -76,6 +76,7 @@ import { MethodService } from './services/method.service'
     StoreModule.forFeature('endpoint', projectReducers.endpoint),
     StoreModule.forFeature('endpoints', projectReducers.endpoints),
     StoreModule.forFeature('response', projectReducers.response),
+    StoreModule.forFeature('logs', projectReducers.logs),
     ClipboardModule,
     SharedModule,
     ProjectRoutingModule

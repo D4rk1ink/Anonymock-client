@@ -40,7 +40,7 @@
         transition: max-height .5s;
         .log-request,
         .log-response {
-            padding: 10px;
+            
         }
     }
 }
@@ -50,6 +50,7 @@
     }
     .expand {
         max-height: 999px;
+        margin-top: 15px;
     }
 }
 .pagging {

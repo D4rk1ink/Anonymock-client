@@ -6,29 +6,46 @@
       </div>
   </div>
   <div class="c-list">
-    <div class="c-list-item log" *ngFor="let log of logs; let i = index" [class.active]="log.id === logTarget" (click)="onExpand(log.id)">
-      <div class="main-row">
-        <div class="method">
-          <span class="toggle-method toggle-{{ log.method.name | lowercase }}">
-            {{ log.method.name }}
-          </span>
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item log" *ngFor="let log of logs; let i = index" [class.active]="log.id === logTarget" (click)="onExpand(log.id)">
+        <div class="main-row">
+          <div class="method">
+            <span class="toggle-method toggle-{{ log.method.name | lowercase }}">
+              {{ log.method.name }}
+            </span>
+          </div>
+          <div class="path">
+            {{ log.path }}
+          </div>
+          <div class="date">
+            {{ log.createdAt | date }} {{ log.createdAt | date:'shortTime' }}
+          </div>
         </div>
-        <div class="path">
-          {{ log.path }}
-        </div>
-        <div class="date">
-          {{ log.createdAt | date }} {{ log.createdAt | date:'shortTime' }}
+        <div class="expand">
+          <section class="section">
+            <div class="title-center">
+              RESPONSE
+            </div>
+            <div class="log-request">
+              <log-request [data]="log.request"></log-request>
+            </div>
+          </section>
+          <section class="section">
+            <div class="title-center">
+              RESPONSE
+            </div>
+            <div class="log-request">
+              <log-response [data]="log.response"></log-response>
+            </div>
+          </section>
         </div>
       </div>
-      <div class="expand">
-        <div class="log-request">
-          <log-request [data]="log.request"></log-request>
-        </div>
-        <div class="log-request">
-          <log-response [data]="log.response"></log-response>
-        </div>
-      </div>
-    </div>
+    </ng-container>
+    <empty-item
+      [items]="logs"
+      [isLoading]="isLoading"
+      [icon]="'inbox'"
+      [message]="'Logs Not Found'"></empty-item>
   </div>
   <div class="pagging" *ngIf="limitPage > 1">
     <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>

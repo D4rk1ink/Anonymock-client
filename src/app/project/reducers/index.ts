@@ -9,6 +9,7 @@ import * as fromScraper from './scraper.reducer'
 import * as fromEndpoint from './endpoint.reducer'
 import * as fromEndpoints from './endpoints.reducer'
 import * as fromResponse from './response.reducer'
+import * as fromLogs from './logs.reducer'
 
 export interface ProjectState {
     project: fromProject.State,
@@ -19,7 +20,8 @@ export interface ProjectState {
     scraper: fromScraper.State,
     endpoint: fromEndpoint.State,
     endpoints: fromEndpoints.State,
-    response: fromResponse.State
+    response: fromResponse.State,
+    logs: fromLogs.State
 }
 
 // export const projectReducers: ActionReducerMap<ProjectState> = {
@@ -40,7 +42,8 @@ export const projectReducers = {
     scraper: fromScraper.reducer,
     endpoint: fromEndpoint.reducer,
     endpoints: fromEndpoints.reducer,
-    response: fromResponse.reducer
+    response: fromResponse.reducer,
+    logs: fromLogs.reducer
 }
 
 // export const getProjectState = (state: ProjectState) => state.project
@@ -116,3 +119,11 @@ export const getResponseId = createSelector(getResponseState, fromResponse.getId
 export const getResponseName = createSelector(getResponseState, fromResponse.getName)
 export const getResponseCondition = createSelector(getResponseState, fromResponse.getCondition)
 export const getResponseResponse = createSelector(getResponseState, fromResponse.getResponse)
+
+// export const getLogsState = (state: ProjectState) => state.logs
+export const getLogsState = createFeatureSelector<fromLogs.State>('logs')
+export const getLogs = createSelector(getLogsState, fromLogs.getAll)
+export const getLogsSearch = createSelector(getLogsState, fromLogs.getSearch)
+export const getLogsPage = createSelector(getLogsState, fromLogs.getPage)
+export const getLogsLimitPage = createSelector(getLogsState, fromLogs.getLimitPage)
+export const getLogsItems = createSelector(getLogsState, fromLogs.getItems)
