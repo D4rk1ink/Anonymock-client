@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
+import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as json from 'app/project/utils/json.util'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -22,6 +23,7 @@ export class ResponseComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     private responseService: ResponseService,
     private endpointService: EndpointService,
+    private confirmService: ConfirmService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -95,10 +97,17 @@ export class ResponseComponent implements OnInit, OnDestroy {
   }
 
   delete () {
-    this.responseService.delete(this.response.id)
-      .subscribe(res => {
-        if (!res.error) {
-          this.router.navigate(['..'], { relativeTo: this.route })
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this response'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.responseService.delete(this.response.id)
+            .subscribe(res => {
+              if (!res.error) {
+                this.router.navigate(['..'], { relativeTo: this.route })
+              }
+            })
         }
       })
   }
