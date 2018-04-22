@@ -64,8 +64,12 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     try {
-      this.jsonUI.body = JSON.parse(this.body)
-    } catch (err) {}
+      if (typeof this.body === 'string') {
+        this.jsonUI.body = JSON.parse(this.body)
+      } else {
+        this.jsonUI.body = this.body
+      }
+    } catch (err) { }
   }
 
   ngOnInit() {
