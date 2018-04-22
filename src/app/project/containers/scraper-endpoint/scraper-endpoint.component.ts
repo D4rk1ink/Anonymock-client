@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { ScraperService } from 'app/project/services/scraper.service'
+import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
 import * as json from 'app/project/utils/json.util'
@@ -21,7 +22,8 @@ export class ScraperEndpointComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
-    private scraperService: ScraperService
+    private scraperService: ScraperService,
+    private confirmService: ConfirmService
   ) {
     this.store.select(fromProject.getScraperItems)
       .subscribe(endpoints => {
@@ -115,26 +117,40 @@ export class ScraperEndpointComponent implements OnInit {
   }
 
   deleteEndpoint (id) {
-    this.scraperService.deleteEndpoint(id)
-      .subscribe(res => {
-        if (!res.error) {
-          this.endpoints = this.endpoints.filter(endpoint => endpoint.id !== id )
-          this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this endpoint'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.scraperService.deleteEndpoint(id)
+            .subscribe(res => {
+              if (!res.error) {
+                this.endpoints = this.endpoints.filter(endpoint => endpoint.id !== id )
+                this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+              }
+            })
         }
       })
   }
 
   deleteRequest (id) {
-    this.scraperService.deleteRequest(id)
-      .subscribe(res => {
-        if (!res.error) {
-          this.endpoints = this.endpoints.map(endpoint => {
-            if (endpoint.id === this.endpoint.id) {
-              endpoint.requests = endpoint.requests.filter(request => request.id !== id)
-            }
-            return endpoint
-          })
-          this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this request'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.scraperService.deleteRequest(id)
+            .subscribe(res => {
+              if (!res.error) {
+                this.endpoints = this.endpoints.map(endpoint => {
+                  if (endpoint.id === this.endpoint.id) {
+                    endpoint.requests = endpoint.requests.filter(request => request.id !== id)
+                  }
+                  return endpoint
+                })
+                this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+              }
+            })
         }
       })
   }
