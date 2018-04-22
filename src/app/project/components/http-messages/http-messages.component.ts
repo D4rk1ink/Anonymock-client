@@ -24,6 +24,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('delay') delay: number
 
   @Input('disableShadow') disableShadow: boolean
+  @Input('readOnly') readOnly: boolean
 
   @Output('outputHeader') outputHeader: EventEmitter<any>
   @Output('outputBody') outputBody: EventEmitter<any>
