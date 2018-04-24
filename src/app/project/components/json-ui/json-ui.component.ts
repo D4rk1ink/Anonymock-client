@@ -75,17 +75,17 @@ export class JsonUiComponent implements OnInit, OnChanges {
     return value
   }
 
-  coverToJSON (value) {
+  convertToJSON (value) {
     if (value.type === this.TYPE.JSON) {
       const out = {}
       for (const datum of value.data) {
-        out[datum.key] = this.coverToJSON(datum.value)
+        out[datum.key] = this.convertToJSON(datum.value)
       }
       return out
     } else if (value.type === this.TYPE.ARRAY) {
       const out = []
       for (const datum of value.data) {
-        out.push(this.coverToJSON(datum))
+        out.push(this.convertToJSON(datum))
       }
       return out
     } else {
@@ -101,18 +101,15 @@ export class JsonUiComponent implements OnInit, OnChanges {
       case 'delete':
         this.value.data = this.value.data.filter((datum, i) => action.index !== i)
     }
+    this.sendUp()
+  }
+
+  sendUp () {
     if (this.init) {
-      const data = this.coverToJSON(this.value)
+      const data = this.convertToJSON(this.value)
       this.save.emit(data)
     } else {
-      this.outputUpdate.emit({
-        type: action.type,
-        index: this.index,
-        payload: {
-          key: this.key,
-          value: this.value
-        }
-      })
+      this.outputUpdate.emit(this.getUpdataAction())
     }
   }
 
@@ -132,9 +129,11 @@ export class JsonUiComponent implements OnInit, OnChanges {
     switch (this.value.type) {
       case this.TYPE.JSON:
         this.addToJSON(type, data)
+        this.sendUp()
         break
       case this.TYPE.ARRAY:
         this.addToArray(type, data)
+        this.sendUp()
         break
     }
   }
@@ -157,19 +156,42 @@ export class JsonUiComponent implements OnInit, OnChanges {
   }
 
   addElement (type) {
-    const data = (type === this.TYPE.NORMAL) ? '' : []
-    this.newData(type, data)
+    let canNew = true
+    if (this.value.type === this.TYPE.JSON) {
+      const hasEmptyKey = this.value.data.find(datum => datum.key === '')
+      if (hasEmptyKey) {
+        canNew = false
+      }
+    }
+    if (canNew) {
+      const data = (type === this.TYPE.NORMAL) ? '' : []
+      this.newData(type, data)
+    }
   }
 
-  onInputBlur (event) {
-    this.outputUpdate.emit({
-      type: 'update',
-      index: this.index,
-      payload: {
-        key: this.key,
-        value: this.value
-      }
-    })
+  deleteElement () {
+    this.outputUpdate.emit(this.getDeleteAction())
+  }
+
+  convertValueType (type) {
+    switch (type) {
+      case 'string':
+        this.value.data = this.value.data.toString()
+        break
+      case 'number':
+        if (!isNaN(this.value.data)) {
+          this.value.data = Number(this.value.data)
+        }
+        break
+      case 'boolean':
+        this.value.data = this.value.data === 'true' || this.value.data === 1
+        break
+    }
+    this.sendUp()
+  }
+
+  onInputBlur (event?) {
+    this.sendUp()
   }
 
   typeOfValue (value) {
@@ -184,6 +206,28 @@ export class JsonUiComponent implements OnInit, OnChanges {
   setValueWidth () {
     const hiddenValue = this.elRef.nativeElement.querySelector('#hidden-value')
     this.valueWidth = hiddenValue.offsetWidth + 13
+  }
+
+  getTypeOf () {
+    return typeof this.value.data
+  }
+
+  getUpdataAction () {
+    return {
+      type: 'update',
+      index: this.index,
+      payload: {
+        key: this.key,
+        value: this.value
+      }
+    }
+  }
+
+  getDeleteAction () {
+    return {
+      type: 'delete',
+      index: this.index,
+    }
   }
 
 }

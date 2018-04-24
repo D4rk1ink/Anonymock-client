@@ -1,26 +1,49 @@
+@import "colors";
+
 .wrapper {
     margin-left: 30px;
 }
-.key {
+#hidden-key,
+#hidden-value {
+    visibility: hidden;
+    position: absolute;
+}
+input[type=text] {
+    min-height: 20px !important;
+    border: 1px solid transparent;
+    padding: 0px !important;
+    padding-left: 3px !important; 
+    background-color: transparent;
+}
+#hidden-key,
+#hidden-value,
+input[type=text] {
+    font-size: 13px;
+    font-weight: 400;
+}
+input:hover.key,
+input:focus.key,
+input:hover.value,
+input:focus.value {
+    border: 1px solid $gray_1 !important;
+}
+input.key {
     color: #C82829 !important;
 }
-.value {
-    input.string {
-        color: #718C00 !important;
-    }
-    input.number {
-        color: #F5871F !important;
-    }
-    input.boolean {
-        color: #F5871F !important;
-    }
+input.key.is-empty {
+    min-width: 30px !important;
 }
-.child {
-    padding-left: 20px;
+input.is-empty {
+    min-width: 40px !important;
 }
-.child.hidden {
-    visibility: hidden;
-    max-height: 0px;
+input.value.string {
+    color: #718C00 !important;
+}
+input.value.number {
+    color: #F5871F !important;
+}
+input.value.boolean {
+    color: #F5871F !important;
 }
 .expand-icon {
     position: absolute;
@@ -32,42 +55,93 @@
     transform: rotateZ(90deg);
 }
 .parent {
+    display: inline-flex;
     position: relative;
+    padding-bottom: 5px;
     .add-bar {
-        display: none;
-        label {
-            margin: 0 3px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        label:hover {
-            font-weight: 600;
-        }
+        display: block;
+        margin-left: 10px;
     }
 }
 .parent:hover {
-    .add-bar {
-        display: inline;
+    .options {
+        display: flex;
     }
 }
-.parent
-.text {
-    padding-left: 5px;
+.child {
+    padding-bottom: 5px;
+    padding-left: 20px;
 }
-#hidden-key,
-#hidden-value {
+.child.hidden {
     visibility: hidden;
-    position: absolute;
+    max-height: 0px;
 }
-input[type=text] {
-    min-height: 25px !important;
-    border: 0;
-    padding: 0px !important;
-    background-color: transparent;
+.parent,
+.text {
+    display: flex;
+    position: relative;
+    padding-left: 5px;
+    .type {
+        display: inline;
+        margin-left: 5px;
+    }
+    .select-value-type:hover,
+    .type:hover ~ .select-value-type {
+        display: flex;
+    }
+    .select-value-type {
+        display: none;
+        position: absolute;
+        top: -30px;
+        padding: 8px;
+    }
 }
-#hidden-key,
-#hidden-value,
-input[type=text] {
-    font-size: 13px;
-    font-weight: 400;
+.text:hover {
+    .options {
+        display: flex;
+    }
+}
+.options {
+    display: none;
+}
+.delete {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    i {
+        color: $danger_2;
+        font-size: 12px !important;
+    }
+}
+.toggle {
+    font-size: 12px;
+    color: $white;
+    display: inline;
+    padding: 0px 4px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+.toggle:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.toggle:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.toggle.string {
+    background-color: $green_2;
+}
+.toggle.object {
+    background-color: $danger_2;
+}
+.toggle.array {
+    background-color: $purple_2;
+}
+.toggle.number {
+    background-color: $orange_2;
+}
+.toggle.boolean {
+    background-color: $sky_2;
 }

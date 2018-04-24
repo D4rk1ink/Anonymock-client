@@ -5,19 +5,24 @@
     <div class="parent">
       <i class="material-icons expand-icon btn-icon" [class.expand]="isExpand" (click)="onExpand()">chevron_right</i>
       <label>
-        <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" [readonly]="keyReadOnly || init" />: 
+        <input type="text" class="key" [class.is-empty]="key === ''" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" placeholder="key" [readonly]="keyReadOnly || init" />: 
         <label class="value">{{ value.data.length }} {{ (value.type === TYPE.JSON) ? 'keys' : 'items' }}</label>
       </label>
-      <div class="add-bar">
-        <label class="add-normal" (click)="addElement(TYPE.NORMAL)">
-          +
-        </label>
-        <label class="add-object" (click)="addElement(TYPE.JSON)">
-          &#x7B; &#x7D;
-        </label>
-        <label class="add-array" (click)="addElement(TYPE.ARRAY)">
-          [ ]
-        </label>
+      <div class="options">
+        <div class="add-bar">
+          <div class="toggle add-string string" (click)="addElement(TYPE.NORMAL)">
+            string
+          </div>
+          <div class="toggle add-object object" (click)="addElement(TYPE.JSON)">
+            object
+          </div>
+          <div class="toggle add-array array" (click)="addElement(TYPE.ARRAY)">
+            array
+          </div>
+        </div>
+        <div class="delete">
+          <i class="material-icons btn-icon" (click)="deleteElement()">clear</i>
+        </div>
       </div>
     </div>
     <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.JSON">
@@ -34,10 +39,31 @@
   <div *ngIf="value.type === TYPE.NORMAL">
     <div class="text">
       <label class="key">
-        <input type="text" class="key" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" [readonly]="keyReadOnly" />:
+        <input type="text" class="key" [class.is-empty]="key === ''" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" [readonly]="keyReadOnly" placeholder="key" />:
       </label>
       <label class="value">
-        <input type="text" class="{{ typeOfValue(value.data) }}" [(ngModel)]="value.data" [ngStyle]="{ 'width.px': valueWidth }" (blur)="onInputBlur($event)" />
+        <input type="text" class="value {{ typeOfValue(value.data) }}" [class.is-empty]="value.data === ''" [(ngModel)]="value.data" [ngStyle]="{ 'width.px': valueWidth }" (blur)="onInputBlur($event)" placeholder="value" />
       </label>
+      <div class="options">
+        <div class="type">
+          <div class="toggle {{ getTypeOf() }}">
+            {{ getTypeOf()  }}
+          </div>
+        </div>
+        <div class="select-value-type" [ngStyle]="{ 'left.px': keyWidth + valueWidth - 40 }" >
+          <div class="toggle string" (click)="convertValueType('string')">
+            string
+          </div>
+          <div class="toggle number" (click)="convertValueType('number')">
+            number
+          </div>
+          <div class="toggle boolean" (click)="convertValueType('boolean')">
+            boolean
+          </div>
+        </div>
+        <div class="delete">
+          <i class="material-icons btn-icon" (click)="deleteElement()">clear</i>
+        </div>
+      </div>
   </div>
 </div>
