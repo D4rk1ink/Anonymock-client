@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core'
 })
 export class LogRequestComponent implements OnInit {
 
-  @Input('data') data: any[]
+  @Input('data') data: any
 
   constructor () { }
 
