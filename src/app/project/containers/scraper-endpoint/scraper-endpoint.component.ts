@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { ScraperService } from 'app/project/services/scraper.service'
 import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as scraperAction from 'app/project/actions/scraper.action'
@@ -22,6 +23,7 @@ export class ScraperEndpointComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
+    private notificationService: NotificationService,
     private scraperService: ScraperService,
     private confirmService: ConfirmService
   ) {
@@ -92,7 +94,6 @@ export class ScraperEndpointComponent implements OnInit {
     this.scraperService.updateEndpoint(endpoint.id, endpointPayload)
       .subscribe(res => {
         if (!res.error) {
-          alert('Save ' + res.data.name)
           this.endpoints = this.endpoints.map(endpoint => {
             if (res.data.id === endpoint.id) {
               endpoint.name = res.data.name
@@ -104,6 +105,15 @@ export class ScraperEndpointComponent implements OnInit {
             return endpoint
           })
           this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Update endpoint successfully'
+          })
+        } else {
+          this.notificationService.notify({
+            type: 'error',
+            message: 'Update endpoint has errors'
+          })
         }
       })
   }
@@ -127,6 +137,10 @@ export class ScraperEndpointComponent implements OnInit {
               if (!res.error) {
                 this.endpoints = this.endpoints.filter(endpoint => endpoint.id !== id )
                 this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Delete endpoint successfully'
+                })
               }
             })
         }
@@ -149,6 +163,10 @@ export class ScraperEndpointComponent implements OnInit {
                   return endpoint
                 })
                 this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Delete request successfully'
+                })
               }
             })
         }
