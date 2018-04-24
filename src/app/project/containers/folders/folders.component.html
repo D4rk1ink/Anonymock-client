@@ -15,7 +15,7 @@
       </div>
       <div class="name">
         <div class="input">
-          <form #form="ngForm" (ngSubmit)="onSubmitNewFolder(form.value)">
+          <form #form="ngForm" (ngSubmit)="submitNewFolder(form.value)">
             <input type="text" name="name" class="input-name" placeholder="New Folder" ngModel (blur)="onNewBlur()" />
           </form>
         </div>
@@ -29,7 +29,7 @@
         <div class="name" [class.none]="isRename === folder.id" [routerLink]="'./'+folder.id">
           {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
         </div>
-        <form #form="ngForm" (ngSubmit)="onSubmitRename(folder.id, form.value)" class="rename" [class.none]="isRename !== folder.id">
+        <form #form="ngForm" (ngSubmit)="submitRename(folder.id, form.value)" class="rename" [class.none]="isRename !== folder.id">
           <input type="text" name="rename" class="input-rename-{{ folder.id }}" placeholder="{{ folder.name }}" ngModel (blur)="onRenameBlur()" />
         </form>
         <div class="options" [class.none]="isRename === folder.id">

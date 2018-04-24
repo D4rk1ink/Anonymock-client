@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
 import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { FolderService } from 'app/project/services/folder.service'
 import * as fromProject from 'app/project/reducers'
 
@@ -30,6 +31,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private folderService: FolderService,
     private el: ElementRef
   ) {
@@ -83,7 +85,7 @@ export class FoldersComponent implements OnInit, OnDestroy {
     this.search()
   }
 
-  onSubmitNewFolder (values) {
+  submitNewFolder (values) {
     const payload = {
       project: this.projectId,
       name: values.name
@@ -94,10 +96,14 @@ export class FoldersComponent implements OnInit, OnDestroy {
           this.folders = [res.data, ...this.folders]
         }
         this.onNewBlur()
+        this.notificationService.notify({
+          type: 'success',
+          message: 'Create folder successfully'
+        })
       })
   }
 
-  onSubmitRename (id, values) {
+  submitRename (id, values) {
     const payload = {
       name: values.rename
     }
@@ -109,6 +115,10 @@ export class FoldersComponent implements OnInit, OnDestroy {
               folder.name = res.data.name
             }
             return folder
+          })
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Change folder name successfully'
           })
         }
         this.onRenameBlur()
