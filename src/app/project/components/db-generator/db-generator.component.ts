@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { DatabaseService } from 'app/project/services/database.service'
+import { NotificationService } from 'app/shared/services/notification.service'
 import * as databaseAction from 'app/project/actions/database.action'
 import * as fromProject from 'app/project/reducers'
 
@@ -20,6 +21,7 @@ export class DbGeneratorComponent implements OnInit {
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private databaseService: DatabaseService
   ) {
     this.menuSelector = this.menu[0].id
@@ -44,6 +46,15 @@ export class DbGeneratorComponent implements OnInit {
         if (!res.error) {
           const database = res.data
           this.store.dispatch(new databaseAction.DataAction(database.data))
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Generate database successfully'
+          })
+        } else {
+          this.notificationService.notify({
+            type: 'error',
+            message: 'The generator has errors'
+          })
         }
       })
   }
@@ -55,6 +66,15 @@ export class DbGeneratorComponent implements OnInit {
         if (!res.error) {
           const database = res.data
           this.store.dispatch(new databaseAction.DataAction(database.data))
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Import database successfully'
+          })
+        } else {
+          this.notificationService.notify({
+            type: 'error',
+            message: 'Importing has errors'
+          })
         }
       })
   }
