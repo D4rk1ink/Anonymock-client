@@ -109,8 +109,19 @@ label.link:hover {
     // flex: 1;
 }
 
-.center-align {
+.justify-center {
     display: flex;
+    justify-content: center
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+.content-center {
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
