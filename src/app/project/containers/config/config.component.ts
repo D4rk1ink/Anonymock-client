@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { ProjectService } from 'app/project/services/project.service'
 import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as projectsAction from 'app/core/actions/projects.action'
@@ -20,6 +21,7 @@ export class ConfigComponent implements OnInit {
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private projectService: ProjectService,
     private confirmService: ConfirmService,
     private router: Router
@@ -57,6 +59,10 @@ export class ConfigComponent implements OnInit {
             return project
           })
           this.store.dispatch(new projectsAction.ItemsAction(this.projects))
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Update config successfully.'
+          })
         }
       })
   }
@@ -79,6 +85,10 @@ export class ConfigComponent implements OnInit {
                 } else {
                   this.router.navigateByUrl(`/my-account`)
                 }
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Delete project successfully.'
+                })
               }
             })
         }
