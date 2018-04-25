@@ -37,7 +37,6 @@ import { ScraperDetailComponent } from './components/scraper-detail/scraper-deta
 import { ScraperEndpointDetailComponent } from './components/scraper-endpoint-detail/scraper-endpoint-detail.component'
 import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component'
 import { ScraperEndpointListComponent } from './components/scraper-endpoint-list/scraper-endpoint-list.component'
-import { ScraperEndpointItemComponent } from './components/scraper-endpoint-item/scraper-endpoint-item.component'
 import { ScraperRequestsComponent } from './components/scraper-requests/scraper-requests.component'
 import { ScraperRequestComponent } from './components/scraper-request/scraper-request.component'
 import { ParamGroupComponent } from './components/param-group/param-group.component'
@@ -112,7 +111,6 @@ import { MethodService } from './services/method.service'
     ScraperEndpointComponent,
     ScraperEndpointDetailComponent,
     ScraperEndpointListComponent,
-    ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
     ParamGroupComponent,
@@ -157,7 +155,6 @@ import { MethodService } from './services/method.service'
     ScraperEndpointComponent,
     ScraperEndpointDetailComponent,
     ScraperEndpointListComponent,
-    ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
     ParamGroupComponent,

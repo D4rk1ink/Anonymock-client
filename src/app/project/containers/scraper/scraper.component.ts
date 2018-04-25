@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { MethodService } from 'app/project/services/method.service'
 import { FolderService } from 'app/project/services/folder.service'
 import { ScraperService } from 'app/project/services/scraper.service'
@@ -32,6 +33,7 @@ export class ScraperComponent implements OnInit {
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private methodService: MethodService,
     private folderService: FolderService,
     private scraperService: ScraperService
@@ -162,7 +164,10 @@ export class ScraperComponent implements OnInit {
     this.scraperService.updateScraper(payload)
       .subscribe(res => {
         if (!res.error) {
-          alert('save')
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Update scraper successfully'
+          })
         }
       })
   }
@@ -170,9 +175,10 @@ export class ScraperComponent implements OnInit {
   scrap () {
     this.scraperService.scrap()
       .subscribe(res => {
-        if (!res.error) {
-          console.log(res.data)
-        }
+        this.notificationService.notify({
+          type: 'success',
+          message: 'successfully'
+        })
       })
   }
 
