@@ -83,6 +83,9 @@ select:focus {
     border-color: $sky_2;
 }
 
+::placeholder {
+    color: $gray_1 !important;
+}
 
 //checkbox
 
