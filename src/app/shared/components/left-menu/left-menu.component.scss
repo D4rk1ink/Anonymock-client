@@ -99,10 +99,17 @@ $border: #253545;
     font-size: 12px;
     .main-row {
         cursor: pointer;
-        padding-left: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 10px;
         border-bottom: 1px solid $border;
+        .name {
+
+        }
+        .active {
+            width: 7px;
+            height: 7px;
+            border-radius: 50px;
+            background-color: $ocean_3;
+        }
     }
     .main-row:hover {
         color: $gray_0;
