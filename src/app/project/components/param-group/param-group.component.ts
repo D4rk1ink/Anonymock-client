@@ -11,15 +11,14 @@ export class ParamGroupComponent implements OnInit, OnChanges {
   @Input('params') params: any
   @Output('save') save: EventEmitter<any>
 
+  public _params: any[] = []
+
   constructor() {
     this.save = new EventEmitter<any>()
   }
 
   ngOnChanges (changes: SimpleChanges) {
-    const path: SimpleChange = changes.path
-    if (path && path.previousValue !== path.currentValue) {
-      this.paramsFilter()
-    }
+    this.paramsFilter()
   }
 
   ngOnInit() {
@@ -37,13 +36,13 @@ export class ParamGroupComponent implements OnInit, OnChanges {
       .map(token => (new RegExp(paramPattern).exec(token) || [null, '']).slice(1).pop())
       .filter((param, i, arr) => param && param !== '' && !new RegExp(/\.{2,}|\.$/g).test(param) && arr.indexOf(param) === i)
     const temp = [...this.params]
-    this.params = []
+    this._params = []
     for (const key of keys) {
       const param = temp.find(param => param.key === key)
       if (param) {
-        this.params.push(param)
+        this._params.push(param)
       } else {
-        this.params.push({ key: key, value: undefined })
+        this._params.push({ key: key, value: undefined })
       }
     }
   }
