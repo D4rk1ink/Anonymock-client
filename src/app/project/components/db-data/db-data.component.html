@@ -3,15 +3,13 @@
     <h4>Database</h4>
   </div>
   <div class="c-body">
-    <div class="detail">
-        <div class="w-25">
+    <div class="detail content-between">
+        <div class="">
             Documents : {{ row }}
         </div>
-        <div class="w-25">
-            Size : {{ size }} MB
-        </div>
-        <div class="w-50 export">
-            <button class="btn btn-sky outline">Export</button>
+        <div class="export">
+            <a #download></a>
+            <button class="btn btn-sky outline" (click)="onExport()">Export</button>
         </div>
     </div>
     <code-editor
