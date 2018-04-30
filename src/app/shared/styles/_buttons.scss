@@ -20,15 +20,15 @@ button.btn:not(:last-child) {
 // START SKY BUTTON
 button.btn.btn-sky {
     color: $white;
-    background-color: $sky_2;
+    background-color: $blue_1;
 }
 
 button.btn.btn-sky:hover {
-    background-color: $sky_0;
+    background-color: $blue_2;
 }
 
 button.btn.btn-sky:active {
-    background-color: $sky_3;
+    background-color: $blue_2;
 }
 
 button.btn.btn-sky.outline {
@@ -58,32 +58,32 @@ button.btn.btn-sky.outline:active {
 // START DANGET BUTTON
 button.btn.btn-danger {
     color: $white;
-    background-color: $danger_2;
+    background-color: $red_1;
 }
 
 button.btn.btn-danger:hover {
-    background-color: $danger_0;
+    background-color: $red_2;
 }
 
 button.btn.btn-danger:active {
-    background-color: $danger_3;
+    background-color: $red_1;
 }
 
 button.btn.btn-danger.outline {
-    color: $danger_2;
+    color: $red_1;
     background-color: rgba($white, 0);
     border: 1px solid;
-    border-color: $danger_2;
+    border-color: $red_1;
 }
 
 button.btn.btn-danger.outline:hover {
-    color: $danger_0;
-    border-color: $danger_0;
+    color: $red_2;
+    border-color: $red_2;
 }
 
 button.btn.btn-danger.outline:active {
-    color: $danger_3;
-    border-color: $danger_3;
+    color: $red_1;
+    border-color: $red_1;
 }
 
 // END DANGET BUTTON
