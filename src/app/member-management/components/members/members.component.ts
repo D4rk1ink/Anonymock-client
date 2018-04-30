@@ -15,15 +15,17 @@ export class MembersComponent implements OnInit {
 
   public all: any[]
   public members: any[]
+  public isLoading: boolean
 
   constructor (
     private store: Store<any>,
     private memberService: MemberService
   ) {
     this.store.select(fromMembers.getMembers)
-      .subscribe(members => {
-        this.all = members
-        this.members = members.filter(member => member.isApproved)
+      .subscribe(res => {
+        this.isLoading = res.isLoading
+        this.all = res.items
+        this.members = res.items.filter(member => member.isApproved)
       })
   }
 
@@ -50,7 +52,7 @@ export class MembersComponent implements OnInit {
             }
             return user
           })
-          this.store.dispatch(new membersAction.MembersAction(this.all))
+          this.store.dispatch(new membersAction.ItemsAction(this.all))
         }
       })
   }
@@ -69,7 +71,7 @@ export class MembersComponent implements OnInit {
             }
             return user
           })
-          this.store.dispatch(new membersAction.MembersAction(this.all))
+          this.store.dispatch(new membersAction.ItemsAction(this.all))
         }
       })
   }

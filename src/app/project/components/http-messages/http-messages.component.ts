@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'http-messages',
   templateUrl: './http-messages.component.html',
   styleUrls: ['./http-messages.component.scss']
 })
-export class HttpMessagesComponent implements OnInit {
+export class HttpMessagesComponent implements OnInit, OnChanges {
 
   @Input('headerTab') headerTab: boolean
   @Input('bodyTab') bodyTab: boolean
@@ -24,6 +24,7 @@ export class HttpMessagesComponent implements OnInit {
   @Input('delay') delay: number
 
   @Input('disableShadow') disableShadow: boolean
+  @Input('readOnly') readOnly: boolean
 
   @Output('outputHeader') outputHeader: EventEmitter<any>
   @Output('outputBody') outputBody: EventEmitter<any>
@@ -32,6 +33,10 @@ export class HttpMessagesComponent implements OnInit {
   @Output('outputIsFindOne') outputIsFindOne: EventEmitter<any>
   @Output('outputStatusCode') outputStatusCode: EventEmitter<any>
   @Output('outputDelay') outputDelay: EventEmitter<any>
+
+  public jsonUI = {
+    body: {}
+  }
 
   public temp: {
     headers: any,
@@ -57,6 +62,16 @@ export class HttpMessagesComponent implements OnInit {
     this.outputDelay = new EventEmitter<any>()
   }
 
+  ngOnChanges () {
+    try {
+      if (typeof this.body === 'string') {
+        this.jsonUI.body = JSON.parse(this.body)
+      } else {
+        this.jsonUI.body = this.body
+      }
+    } catch (err) { }
+  }
+
   ngOnInit() {
     if (this.headerTab) this.tab.push(this.tabAll[0])
     if (this.bodyTab) this.tab.push(this.tabAll[1])
@@ -69,20 +84,17 @@ export class HttpMessagesComponent implements OnInit {
   }
 
   saveHeader (data) {
-    // this.temp.headers = data.temp
     this.outputHeader.emit(data.entities)
   }
 
   saveBody (data) {
     if (!data) {
-      data = {}
+      data = "{}"
     }
-    // this.temp.body = data
     this.outputBody.emit(data)
   }
 
   saveQueryString (data) {
-    // this.temp.queryString = data.temp
     this.outputQueryString.emit(data.entities)
   }
 
@@ -96,6 +108,10 @@ export class HttpMessagesComponent implements OnInit {
 
   saveDelay (data) {
     this.outputDelay.emit(data)
+  }
+
+  saveBodyFromJsonUI (data) {
+    this.outputBody.emit(JSON.stringify(data, null, 4))
   }
 
   onNumberKeyPress (event) {

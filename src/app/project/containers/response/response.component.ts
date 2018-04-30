@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
+import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as json from 'app/project/utils/json.util'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
@@ -20,8 +22,10 @@ export class ResponseComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<any>,
+    private notificationService: NotificationService,
     private responseService: ResponseService,
     private endpointService: EndpointService,
+    private confirmService: ConfirmService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -70,13 +74,13 @@ export class ResponseComponent implements OnInit, OnDestroy {
       condition: {
         ...this.response.condition,
         params: json.toJSON(this.response.condition.params),
-        body: this.response.condition.body,
+        body: json.toJSON(this.response.condition.body),
         headers: json.toJSON(this.response.condition.headers),
         queryString: json.toJSON(this.response.condition.queryString)
       },
       response: {
         ...this.response.response,
-        body: this.response.response.body,
+        body: json.toJSON(this.response.response.body),
         headers: json.toJSON(this.response.response.headers)
       }
     }
@@ -87,7 +91,15 @@ export class ResponseComponent implements OnInit, OnDestroy {
           this.responseService.update(this.response.id, responsePayload)
             .subscribe(res => {
               if (!res.error) {
-                console.log(res.data)
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Update response successfully.'
+                })
+              } else {
+                this.notificationService.notify({
+                  type: 'error',
+                  message: 'Update response has errors.'
+                })
               }
             })
         }
@@ -95,10 +107,26 @@ export class ResponseComponent implements OnInit, OnDestroy {
   }
 
   delete () {
-    this.responseService.delete(this.response.id)
-      .subscribe(res => {
-        if (!res.error) {
-          this.router.navigate(['..'], { relativeTo: this.route })
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this response'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.responseService.delete(this.response.id)
+            .subscribe(res => {
+              if (!res.error) {
+                this.router.navigate(['..'], { relativeTo: this.route })
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Delete response successfully.'
+                })
+              } else {
+                this.notificationService.notify({
+                  type: 'error',
+                  message: 'Delete response has errors.'
+                })
+              }
+            })
         }
       })
   }

@@ -6,30 +6,35 @@
     <div class="options">
       <div class="find-one" *ngIf="isFindOneInput">
         <div class="checkbox">
-          <input type="checkbox" [ngModel]="isFindOne" (ngModelChange)="saveIsFindOne($event)">
+          <input type="checkbox" [ngModel]="isFindOne" (ngModelChange)="saveIsFindOne($event)" [readOnly]="readOnly">
           <span class="checkmark"></span>
         </div>
         Find One
       </div>
       <div class="delay" *ngIf="delayInput">
-        Delay : <input type="text" name="delay" [ngModel]="delay" (keypress)="onNumberKeyPress($event)" (blur)="saveDelay($event.target.value)"> ms
+        Delay : <input type="text" name="delay" [ngModel]="delay" (keypress)="onNumberKeyPress($event)" (blur)="saveDelay($event.target.value)" [readOnly]="readOnly"> ms
       </div>
       <div class="status" *ngIf="statusCodeInput">
-        Status : <input type="text" name="status" maxlength="3" [ngModel]="statusCode" (keypress)="onNumberKeyPress($event)" (blur)="saveStatusCode($event.target.value)">
+        Status : <input type="text" name="status" maxlength="3" [ngModel]="statusCode" (keypress)="onNumberKeyPress($event)" (blur)="saveStatusCode($event.target.value)" [readOnly]="readOnly">
       </div>
     </div>
   </div>
   <div class="content" [ngSwitch]="tabSelector">
     <ng-container *ngSwitchCase="'T01'">
-      <key-value-group [data]="header" (save)="saveHeader($event)"></key-value-group>
+      <key-value-group [data]="header" (save)="saveHeader($event)" [autoKey]="readOnly"></key-value-group>
     </ng-container>
     <ng-container *ngSwitchCase="'T02'">
-      <div class="body">
-        <code-editor [text]="body" [mode]="'json'" (change)="saveBody($event)"></code-editor>
+      <div class="body multi-view">
+        <div class="json-viewer scrollbar">
+          <json-ui [init]="jsonUI.body" (save)="saveBodyFromJsonUI($event)"></json-ui>
+        </div>
+        <div class="json-code scrollbar">
+          <code-editor [text]="body" [mode]="'json'" (change)="saveBody($event)" [readOnly]="readOnly"></code-editor>
+        </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'T03'">
-      <key-value-group [data]="queryString" (save)="saveQueryString($event)"></key-value-group>
+      <key-value-group [data]="queryString" (save)="saveQueryString($event)" [autoKey]="readOnly"></key-value-group>
     </ng-container>
   </div>
 </div>

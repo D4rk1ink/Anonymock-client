@@ -2,14 +2,22 @@
 .wrapper {
     text-align: center;
     padding: 20px 0;
-    color: $gray_2;
+    color: $gray_1;
     .icon {
         display: flex;
         justify-content: center;
+<<<<<<< HEAD
         //font-size: 3em;
     }
     .message {
         font-size: 2em;
         //font-weight: 500;
+=======
+        font-size: 2em;
+    }
+    .message {
+        font-size: 1.5em;
+        font-weight: 500;
+>>>>>>> develop
     }
 }

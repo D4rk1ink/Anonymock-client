@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
 import { MethodService } from 'app/project/services/method.service'
 import { FolderService } from 'app/project/services/folder.service'
@@ -22,6 +23,7 @@ export class EndpointComponent implements OnInit {
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private endpointService: EndpointService,
     private methodService: MethodService,
     private folderService: FolderService,

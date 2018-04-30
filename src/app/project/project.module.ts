@@ -37,7 +37,6 @@ import { ScraperDetailComponent } from './components/scraper-detail/scraper-deta
 import { ScraperEndpointDetailComponent } from './components/scraper-endpoint-detail/scraper-endpoint-detail.component'
 import { ScraperEndpointComponent } from './containers/scraper-endpoint/scraper-endpoint.component'
 import { ScraperEndpointListComponent } from './components/scraper-endpoint-list/scraper-endpoint-list.component'
-import { ScraperEndpointItemComponent } from './components/scraper-endpoint-item/scraper-endpoint-item.component'
 import { ScraperRequestsComponent } from './components/scraper-requests/scraper-requests.component'
 import { ScraperRequestComponent } from './components/scraper-request/scraper-request.component'
 import { ParamGroupComponent } from './components/param-group/param-group.component'
@@ -48,6 +47,7 @@ import { LogResponseComponent } from './components/log-response/log-response.com
 import { LogRequestComponent } from './components/log-request/log-request.component'
 import { TestcaseGroupComponent } from './components/testcase-group/testcase-group.component'
 import { HttpMessagesComponent } from './components/http-messages/http-messages.component'
+import { JsonUiComponent } from './components/json-ui/json-ui.component'
 import { RequestGroupComponent } from './components/request-group/request-group.component'
 import { ResponseGroupComponent } from './components/response-group/response-group.component'
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component'
@@ -75,6 +75,7 @@ import { MethodService } from './services/method.service'
     StoreModule.forFeature('endpoint', projectReducers.endpoint),
     StoreModule.forFeature('endpoints', projectReducers.endpoints),
     StoreModule.forFeature('response', projectReducers.response),
+    StoreModule.forFeature('logs', projectReducers.logs),
     ClipboardModule,
     SharedModule,
     ProjectRoutingModule
@@ -110,7 +111,6 @@ import { MethodService } from './services/method.service'
     ScraperEndpointComponent,
     ScraperEndpointDetailComponent,
     ScraperEndpointListComponent,
-    ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
     ParamGroupComponent,
@@ -121,6 +121,7 @@ import { MethodService } from './services/method.service'
     LogRequestComponent,
     TestcaseGroupComponent,
     HttpMessagesComponent,
+    JsonUiComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
     KeyValueGroupComponent,
@@ -154,7 +155,6 @@ import { MethodService } from './services/method.service'
     ScraperEndpointComponent,
     ScraperEndpointDetailComponent,
     ScraperEndpointListComponent,
-    ScraperEndpointItemComponent,
     ScraperRequestsComponent,
     ScraperRequestComponent,
     ParamGroupComponent,
@@ -165,6 +165,7 @@ import { MethodService } from './services/method.service'
     LogRequestComponent,
     TestcaseGroupComponent,
     HttpMessagesComponent,
+    JsonUiComponent,
     RequestGroupComponent,
     ResponseGroupComponent,
     KeyValueGroupComponent,

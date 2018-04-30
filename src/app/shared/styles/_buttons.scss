@@ -8,7 +8,16 @@ button.btn {
     margin: 0px;
     cursor: pointer;
 }
+<<<<<<< HEAD
 
+=======
+button.btn:not(:first-child) {
+    margin-left: 5px;
+}
+button.btn:not(:last-child) {
+    margin-right: 5px;
+}
+>>>>>>> develop
 // START SKY BUTTON
 button.btn.btn-sky {
     color: $white;

@@ -83,6 +83,13 @@ select:focus {
     border-color: $ocean_2;
 }
 
+<<<<<<< HEAD
+=======
+::placeholder {
+    color: $gray_1 !important;
+}
+
+>>>>>>> develop
 //checkbox
 .checkbox {
     // display: block;

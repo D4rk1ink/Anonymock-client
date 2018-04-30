@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
+import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as database from 'app/core/services/database.service'
 import * as fromProject from 'app/project/reducers'
 
@@ -26,8 +28,10 @@ export class ResponsesComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router,
+    private notificationService: NotificationService,
     private responseService: ResponseService,
-    private endpointService: EndpointService
+    private endpointService: EndpointService,
+    private confirmService: ConfirmService
   ) {
     this.tabSelector = this.tabAll[0]
     this.store.select(fromProject.getEndpointId)
@@ -105,25 +109,66 @@ export class ResponsesComponent implements OnInit {
     this.endpointService.update(this.endpointId, payload)
       .subscribe(res => {
         if (!res.error) {
-          console.log(res.data)
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Update endpoint successfully.'
+          })
+        } else {
+          this.notificationService.notify({
+            type: 'error',
+            message: 'Update response has errors.'
+          })
         }
       })
   }
 
   deleteResponse (id) {
-    this.responseService.delete(id)
-      .subscribe(res => {
-        if (!res.error) {
-          this.responses = this.responses.filter(response => response.id !== id)
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this endpoint'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.responseService.delete(id)
+            .subscribe(res => {
+              if (!res.error) {
+                this.responses = this.responses.filter(response => response.id !== id)
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Delete response successfully.'
+                })
+              } else {
+                this.notificationService.notify({
+                  type: 'error',
+                  message: 'Delete response has errors.'
+                })
+              }
+            })
         }
       })
+    
   }
 
   deleteEndpoint () {  
-    this.endpointService.delete(this.endpointId)
-      .subscribe(res => {
-        if (!res.error) {
-          this.router.navigateByUrl(`/project/${database.getProject()}/folder/${this.endpoint.folder.id}`)
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this endpoint'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.endpointService.delete(this.endpointId)
+            .subscribe(res => {
+              if (!res.error) {
+                this.router.navigateByUrl(`/project/${database.getProject()}/folder/${this.endpoint.folder.id}`)
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Delete endpoint successfully.'
+                })
+              } else {
+                this.notificationService.notify({
+                  type: 'error',
+                  message: 'Delete endpoint has errors.'
+                })
+              }
+            })
         }
       })
   }

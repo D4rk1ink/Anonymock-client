@@ -7,10 +7,12 @@ import { SharedModule } from '../shared/shared.module'
 import { StoreModule } from '@ngrx/store'
 import { membersReducers } from './reducers'
 
+import { ManagementComponent } from './containers/management/management.component'
+
 import { RequestComponent } from './components/request/request.component'
 import { MembersComponent } from './components/members/members.component'
 
-import { MemberService } from 'app/member-management/services/member.service'
+import { MemberService } from 'app/member-management/services/member.service';
 
 @NgModule({
   imports: [
@@ -21,11 +23,15 @@ import { MemberService } from 'app/member-management/services/member.service'
   ],
   declarations: [
     MemberManagementComponent,
+    ManagementComponent,
+
     RequestComponent,
     MembersComponent,
   ],
   exports: [
     MemberManagementComponent,
+    ManagementComponent,
+    
     RequestComponent,
     MembersComponent,
   ],

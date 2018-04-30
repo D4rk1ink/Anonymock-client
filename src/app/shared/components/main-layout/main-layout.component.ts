@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { UserService } from 'app/my-account/services/user.service'
 import { Store } from '@ngrx/store'
+import { UserService } from 'app/my-account/services/user.service'
+import { NotificationService } from 'app/shared/services/notification.service'
 import * as userAction from 'app/core/actions/user.action'
 import * as otherAction from 'app/core/actions/other.action'
 import * as database from 'app/core/services/database.service'
@@ -17,9 +18,11 @@ export class MainLayoutComponent implements OnInit {
   public user: any
   public isProfileDropdown: boolean
   public isProfilePopup: boolean
+  public notification: any[] = []
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private userService: UserService
   ) {
     this.store.dispatch(new otherAction.ClearAction())
@@ -47,6 +50,9 @@ export class MainLayoutComponent implements OnInit {
           this.store.dispatch(new userAction.UserAction(user))
         }
       })
+    this.notificationService.subscribe((notify) => {
+      this.notification.push({ ...notify, id: Math.random().toString(36).substr(2, 9)})
+    })
   }
 
   ngOnInit () {
@@ -54,6 +60,10 @@ export class MainLayoutComponent implements OnInit {
 
   profileDropdown () {
     this.store.dispatch(new otherAction.IsProfileDropdownAction())
+  }
+
+  destroyNotification (id) {
+    this.notification = this.notification.filter(notify => notify.id !== id)
   }
 
 }

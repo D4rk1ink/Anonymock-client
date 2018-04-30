@@ -16,4 +16,7 @@ export const membersReducers = {
 
 // export const getMembersState = (state: MembersState) => state.members
 export const getMembersState = createFeatureSelector<fromMembers.State>('member')
-export const getMembers = createSelector(getMembersState, fromMembers.getMembers)
+export const getMembers = createSelector(getMembersState, fromMembers.getAll)
+export const getMembersIsLoading = createSelector(getMembersState, fromMembers.getIsLoading)
+export const getMembersSearch = createSelector(getMembersState, fromMembers.getSearch)
+export const getMembersItems = createSelector(getMembersState, fromMembers.getItems)
