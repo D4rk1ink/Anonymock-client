@@ -1,16 +1,17 @@
 @import "colors";
-$border: #253545;
+$border: #3f3d3d;
 .wrapper {
     height: 100%;
     width: 200px;
     min-width: 200px;
-    background-color: #1d2b36;
+    background-color: #3b3e43;
     display: flex;
     flex-direction: column;
     position: fixed;
     z-index: 1;
     //  box-shadow: -10px 15px 10px 15px rgba(#050505, .3);
 }
+
 .profile {
     display: flex;
     align-items: center;
@@ -41,7 +42,7 @@ $border: #253545;
 .admin-bar,
 .project-bar {
     color: $gray_2;
-    background-color: #101c24;
+    background-color: #292b2e;
     min-height: 30px;
     padding: 5px 0;
     padding-left: 10px;
@@ -122,7 +123,7 @@ $border: #253545;
             display: flex;
             align-items: center;
             border-bottom: 1px solid $border;
-            background-color: #202f3e;
+            background-color: #3b3e43;
             padding-left: 20px;
             padding-top: 10px;
             padding-bottom: 10px;
@@ -135,7 +136,7 @@ $border: #253545;
         .sub-row.active,
         .sub-row:hover {
             color: $gray_0;
-            background-color: #202a39;
+            background-color: #757575;
         }
     }
 }
@@ -145,7 +146,7 @@ $border: #253545;
 .project-menu.active {
     .main-row {
         color: $gray_0;
-        background-color: #1a2b36;
+        background-color: #4f4e4e;
         position: relative;
     }
     .main-row:before {
@@ -154,12 +155,12 @@ $border: #253545;
         bottom: 0;
         left: 0;
         top: 0;
-        border-right: 3px solid $ocean_3;
+        border-right: 3px solid #EC407A;
     }
     .expand {
         max-height: 500px !important;
         .sub-row.active {
-            color: $ocean_3;
+            color: $white;
         }
     }
 }
