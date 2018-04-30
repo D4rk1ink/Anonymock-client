@@ -33,25 +33,25 @@ button.btn.btn-sky:active {
 
 button.btn.btn-sky.outline {
     //color: $sky_2;
-    color: $ocean_2;
+    color: $pink_0;
     background-color: rgba($white, 0);
     border: 1px solid;
     // border-color: $sky_2;
-    border-color: $ocean_2;
+    border-color: $pink_0;
 }
 
 button.btn.btn-sky.outline:hover {
     // color: $sky_0;
     //  border-color: $sky_0;
-    color: $ocean_3;
-    border-color: $ocean_3;
+    color: $pink_1;
+    border-color: $pink_1;
 }
 
 button.btn.btn-sky.outline:active {
     // color: $sky_3;
     // border-color: $sky_3;
-    color: $ocean_2;
-    border-color: $ocean_2;
+    color: $pink_2;
+    border-color: $pink_2;
 }
 
 // END SKY BUTTON

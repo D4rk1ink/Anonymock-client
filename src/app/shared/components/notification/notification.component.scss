@@ -1,5 +1,4 @@
 @import "colors";
-
 .wrapper {
     width: 280px;
     margin: 5px 0;
@@ -7,6 +6,7 @@
     animation-delay: 5s;
     animation-direction: reverse;
 }
+
 .box {
     display: flex;
     border-radius: 3px;
@@ -20,7 +20,7 @@
         font-weight: 800;
     }
     .header.success {
-        background-color: $ocean_3;
+        background-color: $pink_0;
     }
     .header.error {
         background-color: $danger_2;
@@ -31,6 +31,7 @@
         font-weight: 600;
     }
 }
+
 .close {
     font-size: 10px;
     opacity: .5;

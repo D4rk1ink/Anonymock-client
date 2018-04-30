@@ -73,14 +73,14 @@ label.select:hover {
 }
 
 label.select:hover:after {
-    color: $ocean_2;
+    color: $pink_2;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
     outline: none;
-    border-color: $ocean_2;
+    border-color: $pink_2;
 }
 
 ::placeholder {
