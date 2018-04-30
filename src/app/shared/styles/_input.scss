@@ -91,6 +91,7 @@ select:focus {
     width: 25px;
     height: 25px;
     cursor: pointer;
+    overflow: hidden;
     font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -105,6 +106,8 @@ select:focus {
     position: absolute;
     opacity: 0;
     cursor: pointer;
+    left: 0;
+    z-index: 1;
 }
 
 

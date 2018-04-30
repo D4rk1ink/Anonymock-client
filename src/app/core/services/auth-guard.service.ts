@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import * as database from 'app/core/services/database.service';
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
+import * as database from 'app/core/services/database.service'
 
 @Injectable()
 export class AuthGuardService {
@@ -11,10 +11,10 @@ export class AuthGuardService {
 
   canActivate(): boolean {
     if (!database.getToken()) {
-      this.router.navigateByUrl('/auth/sign-in');
-      return false;
+      this.router.navigateByUrl('/auth/sign-in')
+      return false
     }
-    return true;
+    return true
   }
 
 }

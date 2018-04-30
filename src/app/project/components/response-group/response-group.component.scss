@@ -16,7 +16,18 @@
             max-height: 25px;
             min-height: 25px;
         }
+        .find-one {
+            padding-right: 10px;
+            border-right: 1px solid $gray_1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            .checkbox {
+                margin-right: 10px;
+            }
+        }
         .delay {
+            padding-left: 10px;
             padding-right: 10px;
             border-right: 1px solid $gray_1;
             input {

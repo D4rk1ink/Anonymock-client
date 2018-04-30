@@ -11,12 +11,12 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: projectsAction.Actions): State {
     switch (action.type) {
-        case projectsAction.ITEMS: 
+        case projectsAction.ITEMS:
             return {
                 ...state,
                 items: action.payload
             }
-        default: 
+        default:
             return state
     }
 }

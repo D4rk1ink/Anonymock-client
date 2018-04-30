@@ -23,6 +23,9 @@
 .response {
     display: flex;
     align-items: center;
+    .default.active {
+        color: $green_2;
+    }
     .id {
         color: $sky_2;
         width: 80px;
@@ -42,19 +45,13 @@
         flex: 1;
     }
     .options {
-        width: 100px;
         display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        font-size: 19px;
-        .default {
-            padding: 0 5px;
-            display: flex;
-            align-items: center;
-            color: $gray_0;
+        .delete {
+            opacity: .2;
+            color: $danger_3;
         }
-        .default.active {
-            color: $green_2;
+        .delete:hover {
+            opacity: 1;
         }
     }
 }

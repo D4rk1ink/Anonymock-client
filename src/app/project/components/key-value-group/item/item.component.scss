@@ -6,5 +6,12 @@
     .options {
         display: flex;
         align-items: center;
+        .delete {
+            opacity: .2;
+            color: $danger_3;
+        }
+        .delete:hover {
+            opacity: 1;
+        }
     }
 }

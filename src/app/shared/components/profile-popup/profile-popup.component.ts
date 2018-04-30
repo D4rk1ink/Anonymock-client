@@ -1,9 +1,9 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { UserService } from 'app/my-account/services/user.service';
-import * as otherAction from 'app/core/actions/other.action';
-import * as userAction from 'app/core/actions/user.action';
-import * as fromCore from 'app/core/reducers';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { UserService } from 'app/my-account/services/user.service'
+import * as otherAction from 'app/core/actions/other.action'
+import * as userAction from 'app/core/actions/user.action'
+import * as fromCore from 'app/core/reducers'
 
 @Component({
   selector: 'profile-popup',
@@ -12,7 +12,7 @@ import * as fromCore from 'app/core/reducers';
 })
 export class ProfilePopupComponent implements OnInit {
 
-  @ViewChild('pictureInput') pictureInput: ElementRef;
+  @ViewChild('pictureInput') pictureInput: ElementRef
 
   public tempUser: any
   public user: any
@@ -47,7 +47,7 @@ export class ProfilePopupComponent implements OnInit {
 
   @HostListener('click')
   clickInside() {
-    this.wasInside = true;
+    this.wasInside = true
   }
 
   @HostListener('document:click', ['$event'])
@@ -55,7 +55,7 @@ export class ProfilePopupComponent implements OnInit {
     if (!this.wasInside) {
       this.store.dispatch(new otherAction.IsProfilePopupAction())
     }
-    this.wasInside = false;
+    this.wasInside = false
   }
 
   ngOnInit() {
@@ -95,7 +95,7 @@ export class ProfilePopupComponent implements OnInit {
     const files = event.target.files
     if (files.length > 0) {
       const file = files[0]
-      if (file.size/1000 <= 2000) {
+      if (file.size / 1000 <= 2000) {
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = () => {

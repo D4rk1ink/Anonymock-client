@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { AuthService } from 'app/auth/services/auth.service'
-import * as database from 'app/core/services/database.service';
+import * as database from 'app/core/services/database.service'
 
 @Component({
   selector: 'app-sign-up',

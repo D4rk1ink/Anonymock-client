@@ -8,8 +8,8 @@
 @import "components";
 @import "methods";
 @import "base";
-html,
-body {
+
+html, body {
     color: $black;
     box-sizing: border-box;
     height: 100%;
@@ -69,8 +69,12 @@ hr {
     margin: 20px 0 !important;
 }
 
+hr.disable-margin {
+    margin: 0px !important;
+}
+
 .section:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 label.label-title {
@@ -96,7 +100,7 @@ label.link:hover {
 }
 
 .form-inline {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
 }
 

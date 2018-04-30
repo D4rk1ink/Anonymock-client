@@ -11,13 +11,6 @@ $border: #253545;
     z-index: 1;
     //  box-shadow: -10px 15px 10px 15px rgba(#050505, .3);
 }
-
-.banner {
-    height: 50px;
-    min-height: 50px;
-    background-color: $ocean_2;
-}
-
 .profile {
     display: flex;
     align-items: center;
@@ -171,6 +164,7 @@ $border: #253545;
     }
 }
 
-.pointer {
-    cursor: pointer;
+:host {
+    width: 200px;
+    display: block;
 }

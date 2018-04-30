@@ -57,7 +57,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit () {
-    
+
   }
 
   getRouterOutletLevel (outlet) {

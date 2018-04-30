@@ -1,5 +1,4 @@
 <div class="wrapper">
-  <div class="banner"></div>
   <div class="profile">
     <div class="img-profile">
       <img [src]="user.picture" class="" />
@@ -22,7 +21,7 @@
   </div>
   <div class="project-bar">
     <div class="name">Project</div>
-    <div class="create" (click)="onNewProject()">
+    <div class="create" (click)="onNewProject()" *ngIf="user.isAdmin">
       <i class="material-icons">add</i>
     </div>
   </div>
@@ -39,22 +38,25 @@
         {{ project.name }}
       </div>
       <div class="expand">
-        <div class="sub-row" [routerLink]="'/project/'+project.id+'/config'" [class.active]="subProject === 'config'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/config'" [class.active]="subProject === project.id+'config'">
           <i class="material-icons">settings</i> Config
         </div>
-        <div class="sub-row" [routerLink]="'/project/'+project.id+'/database'" [class.active]="subProject === 'database'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/database'" [class.active]="subProject === project.id+'database'">
           <i class="material-icons">storage</i> Database
         </div>
-        <div class="sub-row" [routerLink]="'/project/'+project.id+'/member'" [class.active]="subProject === 'member'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/member'" [class.active]="subProject === project.id+'member'">
           <i class="material-icons">group</i> Member
         </div>
-        <div class="sub-row" [routerLink]="'/project/'+project.id+'/endpoint'" [class.active]="subProject === 'endpoint'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/scraper'" [class.active]="subProject === project.id+'scraper'">
+          <i class="material-icons">cloud_download</i> Scraper
+        </div>
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/endpoint'" [class.active]="subProject === project.id+'endpoint'">
           <i class="material-icons">link</i> Endpoints
         </div>
-        <div class="sub-row" [routerLink]="'/project/'+project.id+'/folder'" [class.active]="subProject === 'folder'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/folder'" [class.active]="subProject === project.id+'folder'">
           <i class="material-icons">folder</i> Folders
         </div>
-        <div class="sub-row" [routerLink]="'/project/'+project.id+'/log'" [class.active]="subProject === 'log'">
+        <div class="sub-row" [routerLink]="'/project/'+project.id+'/log'" [class.active]="subProject === project.id+'log'">
           <i class="material-icons">history</i> Logs
         </div>
       </div>

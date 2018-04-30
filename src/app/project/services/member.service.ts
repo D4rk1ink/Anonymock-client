@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs/Observable'
 import * as constants from 'app/shared/constants'
 
 
@@ -15,7 +15,7 @@ export class MemberService {
     const url = constants.BASE_API + '/project/member'
     return this.http.post(url, payload)
   }
-  
+
   exit (payload): Observable<any> {
     const url = constants.BASE_API + '/project/member/exit'
     return this.http.patch(url, payload)

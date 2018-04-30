@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { LogService } from 'app/project/services/log.service'
 import * as fromProject from 'app/project/reducers'
