@@ -33,8 +33,8 @@
         transition: border-color .5s;
     }
     .c-tab-item.active {
-        color: $ocean_3;
-        border-color: $ocean_3 !important;
+        color: $pink_0;
+        border-color: $pink_0!important;
     }
 }
 
@@ -42,21 +42,21 @@
     .c-list-item {
         display: flex;
         padding: 10px 12px 10px 12px;
-        border-left: 3px solid rgba($ocean_3, 0);
+        border-left: 3px solid rgba($pink_0, 0);
         transition: background-color .5s, border-color .5s, margin .5s;
     }
     .c-list-item:hover {
         margin: 0 -5px;
         background-color: $white;
         box-shadow: 0 0 10px 0 $gray_0;
-        border-left: 3px solid rgba($ocean_3, 1);
+        border-left: 3px solid rgba($pink_0, 1);
         cursor: pointer;
     }
     .c-list-item.active {
         margin: 0 -5px;
         background-color: $white;
         box-shadow: 0 0 10px 0 $gray_0;
-        border-left: 3px solid rgba($ocean_3, 1);
+        border-left: 3px solid rgba($pink_0, 1);
     }
     .c-list-item.disable-scale {
         margin: 0 !important;
