@@ -27,12 +27,12 @@
     </div>
     <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.JSON">
       <div *ngFor="let datum of value.data; let i = index">
-        <json-ui [index]="i" [key]="datum.key" [value]="datum.value" (outputUpdate)="updateChild($event)" [keyReadOnly]="false || readOnly"></json-ui>
+        <json-ui [index]="i" [key]="datum.key" [value]="datum.value" (outputUpdate)="updateChild($event)" [keyReadOnly]="false || readOnly" [readOnly]="readOnly"></json-ui>
       </div>
     </div>
     <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.ARRAY">
       <div *ngFor="let datum of value.data; let i = index">
-        <json-ui [index]="i" [key]="i" [value]="datum" (outputUpdate)="updateChild($event)" [keyReadOnly]="true"></json-ui>
+        <json-ui [index]="i" [key]="i" [value]="datum" (outputUpdate)="updateChild($event)" [keyReadOnly]="true" [readOnly]="readOnly"></json-ui>
       </div>
     </div>
   </div>
