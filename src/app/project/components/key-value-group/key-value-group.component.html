@@ -6,6 +6,7 @@
         (inputValue)="onInputValue($event)"
         (blur)="onBlur($event)"
         (delete)="onDelete(i)"
-        [disableDelete]="autoKey"
-        [keyReadOnly]="autoKey"></key-value-item>
+        [disableDelete]="autoKey || readOnly"
+        [keyReadOnly]="autoKey || readOnly"
+        [valueReadOnly]="readOnly"></key-value-item>
 </div>

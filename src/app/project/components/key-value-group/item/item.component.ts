@@ -11,6 +11,7 @@ export class ItemComponent implements OnInit {
   @Input('entity') entity: any
   @Input('disableDelete') disableDelete: any
   @Input('keyReadOnly') keyReadOnly: any
+  @Input('valueReadOnly') valueReadOnly: any
   @Output('blur') blur: EventEmitter<any>
   @Output('inputKey') inputKey: EventEmitter<any>
   @Output('inputValue') inputValue: EventEmitter<any>

@@ -21,7 +21,7 @@
   </div>
   <div class="content" [ngSwitch]="tabSelector">
     <ng-container *ngSwitchCase="'T01'">
-      <key-value-group [data]="header" (save)="saveHeader($event)" [autoKey]="readOnly"></key-value-group>
+      <key-value-group [data]="header" (save)="saveHeader($event)" [readOnly]="readOnly"></key-value-group>
     </ng-container>
     <ng-container *ngSwitchCase="'T02'">
       <div class="body multi-view">
@@ -34,7 +34,7 @@
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'T03'">
-      <key-value-group [data]="queryString" (save)="saveQueryString($event)" [autoKey]="readOnly"></key-value-group>
+      <key-value-group [data]="queryString" (save)="saveQueryString($event)" [readOnly]="readOnly"></key-value-group>
     </ng-container>
   </div>
 </div>
