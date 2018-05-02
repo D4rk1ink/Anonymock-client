@@ -1,6 +1,9 @@
 @import "colors";
-
 .content {
     padding: 10px;
     border-top: 1px solid $gray_1;
+}
+
+.width {
+    width: 81px !important;
 }
