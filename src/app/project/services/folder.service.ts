@@ -26,6 +26,11 @@ export class FolderService {
     return this.http.get(url)
   }
 
+  delete (id): Observable<any> {
+    const url = constants.BASE_API + '/project/folder/' + id
+    return this.http.delete(url)
+  }
+
   search (payload): Observable<any> {
     if (payload.all === true) {
       payload = {

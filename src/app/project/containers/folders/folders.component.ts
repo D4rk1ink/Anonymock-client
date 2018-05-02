@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core'
 import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
 import { NotificationService } from 'app/shared/services/notification.service'
+import { ConfirmService } from 'app/shared/services/confirm.service'
 import { FolderService } from 'app/project/services/folder.service'
 import * as fromProject from 'app/project/reducers'
 
@@ -28,10 +29,12 @@ export class FoldersComponent implements OnInit, OnDestroy {
   public searchSub: Subscription
   public createSub: Subscription
   public renameSub: Subscription
+  public deleteSub: Subscription
 
   constructor (
     private store: Store<any>,
     private notificationService: NotificationService,
+    private confirmService: ConfirmService,
     private folderService: FolderService,
     private el: ElementRef
   ) {
@@ -70,6 +73,17 @@ export class FoldersComponent implements OnInit, OnDestroy {
         setTimeout(() => autofocus.focus(), 0)
       }
     }
+  }
+
+  onDelete (folder) {
+    this.confirmService.open({
+      message: 'Are you sure you want to delete this folder?. Endpoints in this folder will be deleted.'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.delete(folder.id)
+        }
+      })
   }
 
   onNewBlur () {
@@ -125,6 +139,24 @@ export class FoldersComponent implements OnInit, OnDestroy {
       })
   }
 
+  delete (id) {
+    this.deleteSub = this.folderService.delete(id)
+      .subscribe(res => {
+        if (!res.error) {
+          this.folders = this.folders.filter(folder => folder.id !== id)
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Delete folder successfully.'
+          })
+        } else {
+          this.notificationService.notify({
+            type: 'error',
+            message: 'Delete folder has errors.'
+          })
+        }
+      })
+  }
+
   search () {
     if (this.searchSub) {
       this.searchSub.unsubscribe()
@@ -154,6 +186,9 @@ export class FoldersComponent implements OnInit, OnDestroy {
     }
     if (this.renameSub) {
       this.renameSub.unsubscribe()
+    }
+    if (this.deleteSub) {
+      this.deleteSub.unsubscribe()
     }
     if (this.searchSub) {
       this.searchSub.unsubscribe()
