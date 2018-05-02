@@ -11,6 +11,7 @@ export class JsonUiComponent implements OnInit, OnChanges {
   @Input('key') key: string = 'Objects'
   @Input('value') value: any
   @Input('index') index: number
+  @Input('readOnly') readOnly: boolean
   @Input('keyReadOnly') keyReadOnly: boolean
   @Output('outputUpdate') outputUpdate: EventEmitter<any>
   @Output('save') save: EventEmitter<any>

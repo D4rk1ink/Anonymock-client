@@ -8,7 +8,7 @@
         <input type="text" class="key" [class.is-empty]="key === ''" [(ngModel)]="key" [ngStyle]="{ 'width.px': keyWidth }" (blur)="onInputBlur($event)" placeholder="key" [readonly]="keyReadOnly || init" />: 
         <label class="value">{{ value.data.length }} {{ (value.type === TYPE.JSON) ? 'keys' : 'items' }}</label>
       </label>
-      <div class="options">
+      <div class="options" *ngIf="!readOnly">
         <div class="add-bar">
           <div class="toggle add-string string" (click)="addElement(TYPE.NORMAL)">
             string
@@ -27,7 +27,7 @@
     </div>
     <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.JSON">
       <div *ngFor="let datum of value.data; let i = index">
-        <json-ui [index]="i" [key]="datum.key" [value]="datum.value" (outputUpdate)="updateChild($event)" [keyReadOnly]="false"></json-ui>
+        <json-ui [index]="i" [key]="datum.key" [value]="datum.value" (outputUpdate)="updateChild($event)" [keyReadOnly]="false || readOnly"></json-ui>
       </div>
     </div>
     <div class="child" [class.hidden]="!isExpand" *ngIf="value.type === TYPE.ARRAY">
@@ -44,7 +44,7 @@
       <label class="value">
         <input type="text" class="value {{ typeOfValue(value.data) }}" [class.is-empty]="value.data === ''" [(ngModel)]="value.data" [ngStyle]="{ 'width.px': valueWidth }" (blur)="onInputBlur($event)" placeholder="value" />
       </label>
-      <div class="options">
+      <div class="options" *ngIf="!readOnly">
         <div class="type">
           <div class="toggle {{ getTypeOf() }}">
             {{ getTypeOf()  }}
