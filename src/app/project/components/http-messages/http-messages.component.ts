@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
+import * as json from 'app/project/utils/json.util';
 
 @Component({
   selector: 'http-messages',
@@ -15,7 +16,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('statusCodeInput') statusCodeInput: boolean
   @Input('delayInput') delayInput: boolean
 
-  @Input('header') header: any
+  @Input('header') headers: any
   @Input('body') body: any
   @Input('queryString') queryString: any
 
@@ -26,7 +27,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('disableShadow') disableShadow: boolean
   @Input('readOnly') readOnly: boolean
 
-  @Output('outputHeader') outputHeader: EventEmitter<any>
+  @Output('outputHeader') outputHeaders: EventEmitter<any>
   @Output('outputBody') outputBody: EventEmitter<any>
   @Output('outputQueryString') outputQueryString: EventEmitter<any>
 
@@ -35,7 +36,9 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Output('outputDelay') outputDelay: EventEmitter<any>
 
   public jsonUI = {
-    body: {}
+    headers: '{}',
+    body: {},
+    queryString: '{}'
   }
 
   public temp: {
@@ -43,6 +46,13 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     body: any,
     queryString: any
   }
+
+  public multiViewSelector: string
+  public multiView: any[] = [
+    { id: 'V01', title: 'Viewer' },
+    { id: 'V02', title: 'Split' },
+    { id: 'V03', title: 'Coding' },
+  ]
 
   public tabSelector: string
   public tabAll: any[] = [
@@ -53,7 +63,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   public tab: any[] = []
 
   constructor() {
-    this.outputHeader = new EventEmitter<any>()
+    this.outputHeaders = new EventEmitter<any>()
     this.outputBody = new EventEmitter<any>()
     this.outputQueryString = new EventEmitter<any>()
 
@@ -64,10 +74,22 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     try {
+      if (Array.isArray(this.headers)) {
+        this.jsonUI.headers = JSON.stringify(json.toJSON(this.headers), null, 4)
+      }
+    } catch (err) { }
+
+    try {
       if (typeof this.body === 'string') {
         this.jsonUI.body = JSON.parse(this.body)
       } else {
         this.jsonUI.body = this.body
+      }
+    } catch (err) { }
+
+    try {
+      if (Array.isArray(this.queryString)) {
+        this.jsonUI.queryString = json.pretty(this.queryString)
       }
     } catch (err) { }
   }
@@ -76,6 +98,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     if (this.headerTab) this.tab.push(this.tabAll[0])
     if (this.bodyTab) this.tab.push(this.tabAll[1])
     if (this.queryStringTab) this.tab.push(this.tabAll[2])
+    this.multiViewSelector = (this.multiView[0] && this.multiView[0].id) || null
     this.tabSelector = (this.tab[0] && this.tab[0].id) || null
   }
 
@@ -83,8 +106,17 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     this.tabSelector = id
   }
 
-  saveHeader (data) {
-    this.outputHeader.emit(data.entities)
+  onSelectMultView (id) {
+    this.multiViewSelector = id
+  }
+
+  saveHeaders (data) {
+    try {
+      if (this.jsonUI.headers !== json.pretty(data)) {
+        const headers = json.toArray(JSON.parse(data))
+        this.outputHeaders.emit(headers)
+      }
+    } catch (err) {}
   }
 
   saveBody (data) {
@@ -95,7 +127,12 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   }
 
   saveQueryString (data) {
-    this.outputQueryString.emit(data.entities)
+    try {
+      if (this.jsonUI.queryString !== json.pretty(data)) {
+        const queryString = json.toArray(JSON.parse(data))
+        this.outputQueryString.emit(queryString)
+      }
+    } catch (err) {}
   }
 
   saveIsFindOne (data) {
@@ -110,8 +147,16 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     this.outputDelay.emit(data)
   }
 
-  saveBodyFromJsonUI (data) {
+  saveHeadersFromUI (data) {
+    this.outputHeaders.emit(data.entities)
+  }
+
+  saveBodyFromUI (data) {
     this.outputBody.emit(JSON.stringify(data, null, 4))
+  }
+
+  saveQueryStringFromUI (data) {
+    this.outputQueryString.emit(data.entities)
   }
 
   onNumberKeyPress (event) {

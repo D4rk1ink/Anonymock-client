@@ -49,7 +49,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
   onChange (text) {
     text = text.trim()
     if (text == '') {
-      text = "{}"
+      text = this._text
     }
     this.change.emit(text)
   }
