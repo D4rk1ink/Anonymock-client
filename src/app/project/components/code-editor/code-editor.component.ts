@@ -48,10 +48,9 @@ export class CodeEditorComponent implements OnInit, OnChanges {
 
   onChange (text) {
     text = text.trim()
-    if (text == '') {
-      text = this._text
+    if (text != '' && this._text !== text) {
+      this.change.emit(text)
     }
-    this.change.emit(text)
   }
 
   pretty(text) {
