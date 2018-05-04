@@ -26,7 +26,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
       if (typeof this.text === 'object') {
         this._text = this.pretty(JSON.stringify(this.text))
       } else {
-        this._text = this.text
+        this._text = this.pretty(this.text)
       }
     }
   }
