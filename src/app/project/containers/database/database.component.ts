@@ -32,7 +32,7 @@ export class DatabaseComponent implements OnInit {
                 data: data,
                 schema: schema,
                 generate: generate,
-                custom: []
+                custom: '[]'
               }
               this.store.dispatch(new databaseAction.DatabaseAction(database))
             }

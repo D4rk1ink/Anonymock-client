@@ -10,7 +10,7 @@
     </div>
     <div class="options">
       <div class="item">
-        <input type="file" class="file-input" #jsonImport (change)="import($event)" />
+        <input type="file" class="file-input" #jsonImport (change)="import($event)" accept=".json" />
         <button class="btn btn-sky outline" (click)="onImport()">Import Data</button>
       </div>
       <div class="item">
