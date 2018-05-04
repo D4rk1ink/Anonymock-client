@@ -45,7 +45,7 @@ export class DbGeneratorComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           const database = res.data
-          this.store.dispatch(new databaseAction.DataAction(database.data))
+          this.store.dispatch(new databaseAction.DataAction(JSON.stringify(database.data)))
           this.notificationService.notify({
             type: 'success',
             message: 'Generate database successfully'
@@ -65,7 +65,7 @@ export class DbGeneratorComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           const database = res.data
-          this.store.dispatch(new databaseAction.DataAction(database.data))
+          this.store.dispatch(new databaseAction.DataAction(JSON.stringify(database.data)))
           this.notificationService.notify({
             type: 'success',
             message: 'Import database successfully'
