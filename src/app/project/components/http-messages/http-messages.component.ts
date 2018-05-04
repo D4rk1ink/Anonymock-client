@@ -112,10 +112,8 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   saveHeaders (data) {
     try {
-      if (this.jsonUI.headers !== json.pretty(data)) {
-        const headers = json.toArray(JSON.parse(data))
-        this.outputHeaders.emit(headers)
-      }
+      const headers = json.toArray(JSON.parse(data))
+      this.outputHeaders.emit(headers)
     } catch (err) {}
   }
 
@@ -128,10 +126,8 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   saveQueryString (data) {
     try {
-      if (this.jsonUI.queryString !== json.pretty(data)) {
-        const queryString = json.toArray(JSON.parse(data))
-        this.outputQueryString.emit(queryString)
-      }
+      const queryString = json.toArray(JSON.parse(data))
+      this.outputQueryString.emit(queryString)
     } catch (err) {}
   }
 
