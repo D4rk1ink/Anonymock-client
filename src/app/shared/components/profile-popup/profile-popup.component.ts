@@ -4,6 +4,8 @@ import { UserService } from 'app/my-account/services/user.service'
 import * as otherAction from 'app/core/actions/other.action'
 import * as userAction from 'app/core/actions/user.action'
 import * as fromCore from 'app/core/reducers'
+import * as database from 'app/core/services/database.service'
+import * as constants from 'app/shared/constants'
 
 @Component({
   selector: 'profile-popup',
@@ -35,6 +37,7 @@ export class ProfilePopupComponent implements OnInit {
     this.store.select(fromCore.getOtherOtherUserPopup)
       .subscribe(otherUser => {
         this.user = {...otherUser}
+        this.user.picture = `${constants.BASE_API}/user/${this.user.id}/picture?authorization=${database.getToken()}`
       })
     this.store.select(fromCore.getUser)
       .subscribe(user => {
