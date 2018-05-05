@@ -31,14 +31,8 @@ export const verify = (_data: any, schema: any) => {
                 }
                 break
             case 'Number':
-                // if (typeof data[key] !== 'number') {
-                //     throw new Error(key + ' not number')
-                // }
                 break
             case 'Boolean':
-                // if (typeof data[key] !== 'boolean') {
-                //     throw new Error(key + ' not boolean')
-                // }
                 break
             case 'Array':
                 if (!Array.isArray(data[key])) {

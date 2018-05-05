@@ -32,16 +32,12 @@ export class GenerateComponent implements OnInit {
         this.schema = db.schema
         try {
           schema.isSchema(this.schema)
-          try {
-            schema.verify(this.model, this.schema)
-            this.invalid.isError = false
-            this.invalid.message = ''
-          } catch (err) {
-            this.invalid.isError = true
-            this.invalid.message = err.message
-          }
+          schema.verify(this.model, this.schema)
+          this.invalid.isError = false
+          this.invalid.message = ''
         } catch (err) {
           this.invalid.isError = true
+          this.invalid.message = err.message
         }
       })
   }
