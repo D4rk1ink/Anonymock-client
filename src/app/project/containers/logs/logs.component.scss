@@ -6,6 +6,20 @@
     position: absolute;
 }
 
+.c-header {
+    .options {
+        display: flex;
+        align-items: center;
+        .clear {
+            padding-left: 10px;
+            color: $danger_2;
+            font-weight: 600;
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+}
 .log {
     display: block;
     .main-row {
