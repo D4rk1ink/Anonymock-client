@@ -6,12 +6,15 @@ import * as database from 'app/core/services/database.service'
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['../styles/style.scss']
 })
 export class SignInComponent implements OnInit {
 
   public username: string
   public password: string
+
+  public isAlert: boolean
+  public alertMessage: string
 
   constructor (
     private router: Router,
@@ -28,15 +31,16 @@ export class SignInComponent implements OnInit {
       username: this.username,
       password: this.password
     }
-    console.log(payload)
     this.authService.signin(payload)
-    .subscribe(res => {
-      console.log(res)
-      if (!res.error) {
+      .subscribe(res => {
+        if (!res.error) {
           database.saveToken(res.data.token)
           database.saveUser(res.data.user)
           this.router.navigateByUrl('/my-account')
         }
+      }, err => {
+        this.isAlert = true
+        this.alertMessage = err.error
       })
   }
 
