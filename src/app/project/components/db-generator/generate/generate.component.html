@@ -12,8 +12,5 @@
       </div>
     </div>
   </div>
-  <code-editor
-    [text]="model"
-    [mode]="'json'"
-    (change)="onDataChange($event)"></code-editor>
+  <json-multi-view [data]="model" [readOnly]="readOnly" (save)="onDataChange($event)"></json-multi-view>
 </div>

@@ -34,6 +34,7 @@ export class CustomComponent implements OnInit {
       .subscribe(db => {
         this.data = db.custom
         this.schema = db.schema
+        this.setRow(this.data)
         try {
           schema.isSchema(this.schema)
           const group = JSON.parse(this.data)
@@ -59,7 +60,6 @@ export class CustomComponent implements OnInit {
 
   onDataChange (data) {
     this.store.dispatch(new databaseAction.CustomAction(data))
-    this.setRow(data)
   }
 
   import (event) {

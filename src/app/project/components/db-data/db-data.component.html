@@ -12,9 +12,6 @@
             <button class="btn btn-sky outline" (click)="onExport()">Export</button>
         </div>
     </div>
-    <code-editor
-        [text]="data"
-        [mode]="'json'"
-        [readOnly]="true"></code-editor>
+    <json-multi-view [data]="data" [readOnly]="true"></json-multi-view>
   </div>
 </div>

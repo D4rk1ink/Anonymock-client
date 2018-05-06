@@ -18,8 +18,5 @@
       </div>
     </div>
   </div>
-  <code-editor
-    [text]="data"
-    [mode]="'json'"
-    (change)="onDataChange($event)"></code-editor>
+  <json-multi-view [data]="data" (save)="onDataChange($event)"></json-multi-view>
 </div>
