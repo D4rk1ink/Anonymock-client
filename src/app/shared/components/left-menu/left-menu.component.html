@@ -34,8 +34,11 @@
   </div>
   <div class="projects-wrapper">
     <div class="project-menu" [class.active]="project.id === menuTarget" *ngFor="let project of projects">
-      <div class="main-row" (click)="onExpandProject(project.id)">
-        {{ project.name }}
+      <div class="main-row content-between" (click)="onExpandProject(project.id)">
+        <div class="name">
+          {{ project.name }}
+        </div>
+        <div class="active" *ngIf="project.status"></div>
       </div>
       <div class="expand">
         <div class="sub-row" [routerLink]="'/project/'+project.id+'/config'" [class.active]="subProject === project.id+'config'">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { DatabaseService } from 'app/project/services/database.service'
 import * as schema from 'app/project/utils/verify-schema.util'
@@ -11,6 +11,8 @@ import * as fromProject from 'app/project/reducers'
   styleUrls: ['./custom.component.scss']
 })
 export class CustomComponent implements OnInit {
+
+  @ViewChild('jsonImport') jsonImport: ElementRef
 
   @Output('submit') submit: EventEmitter<any>
   public data: string
@@ -32,26 +34,23 @@ export class CustomComponent implements OnInit {
       .subscribe(db => {
         this.data = db.custom
         this.schema = db.schema
+        this.setRow(this.data)
         try {
           schema.isSchema(this.schema)
-          try {
-            const group = JSON.parse(this.data)
-            if (Array.isArray(group)) {
-              for (const data of group) {
-                schema.verify(data, this.schema)
-              }
-              this.setRow(group)
-              this.invalid.isError = false
-              this.invalid.message = ''
-            } else {
-              throw new Error ('Not array')
+          const group = JSON.parse(this.data)
+          if (Array.isArray(group)) {
+            for (const data of group) {
+              schema.verify(data, this.schema)
             }
-          } catch (err) {
-            this.invalid.isError = true
-            this.invalid.message = err.message
+            this.setRow(group)
+            this.invalid.isError = false
+            this.invalid.message = ''
+          } else {
+            throw new Error ('Not array')
           }
         } catch (err) {
           this.invalid.isError = true
+          this.invalid.message = err.message
         }
       })
   }
@@ -60,10 +59,24 @@ export class CustomComponent implements OnInit {
   }
 
   onDataChange (data) {
-    try {
-      this.store.dispatch(new databaseAction.CustomAction(data))
-      this.setRow(data)
-    } catch (e) { }
+    this.store.dispatch(new databaseAction.CustomAction(data))
+  }
+
+  import (event) {
+    const files = event.target.files
+    if (files.length > 0) {
+      const file = files[0]
+      const reader = new FileReader()
+      reader.readAsText(file)
+      reader.onload = () => {
+        reader.result
+        this.store.dispatch(new databaseAction.CustomAction(reader.result))
+      }
+    }
+  }
+
+  onImport () {
+    this.jsonImport.nativeElement.click()
   }
 
   onSubmit () {

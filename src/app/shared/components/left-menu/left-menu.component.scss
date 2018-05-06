@@ -21,11 +21,12 @@ $border: #3f3d3d;
     font-weight: 600;
     border-bottom: 1px solid $border;
     .img-profile {
-        width: 50px;
-        height: 50px;
-        max-width: 80px;
-        max-height: 80px;
-        border-radius: 360px;
+        min-width: 50px;
+        min-height: 50px;
+        max-width: 50px;
+        max-height: 50px;
+        border-radius: 50%;
+        border: 1px solid $gray_1;
         background-color: $white;
         overflow: hidden;
         img {
@@ -36,6 +37,9 @@ $border: #3f3d3d;
         padding-left: 10px;
         text-align: center;
         cursor: pointer;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -106,10 +110,20 @@ $border: #3f3d3d;
     font-size: 12px;
     .main-row {
         cursor: pointer;
-        padding-left: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 10px;
         border-bottom: 1px solid $border;
+        .name {
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .active {
+            min-width: 7px;
+            min-height: 7px;
+            border-radius: 50px;
+            background-color: $ocean_3;
+            margin-left: 5px;
+        }
     }
     .main-row:hover {
         color: $gray_0;

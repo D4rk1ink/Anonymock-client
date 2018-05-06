@@ -11,6 +11,7 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   @Input('data') data: any[]
   @Input('temp') temp: any
   @Input('autoKey') autoKey: boolean
+  @Input('readOnly') readOnly: boolean
   @Output('save') save: EventEmitter<any>
   public entities: any[]
 
@@ -60,7 +61,7 @@ export class KeyValueGroupComponent implements OnInit, OnChanges {
   }
 
   addEmptyEntity () {
-    if (this.autoKey) return
+    if (this.autoKey || this.readOnly) return
     const notEmpty = this.entities.every(entity => {
       return entity.key !== '' || entity.value !== ''
     })

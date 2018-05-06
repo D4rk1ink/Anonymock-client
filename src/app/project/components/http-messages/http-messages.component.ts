@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
+import * as json from 'app/project/utils/json.util';
 
 @Component({
   selector: 'http-messages',
@@ -15,7 +16,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('statusCodeInput') statusCodeInput: boolean
   @Input('delayInput') delayInput: boolean
 
-  @Input('header') header: any
+  @Input('header') headers: any
   @Input('body') body: any
   @Input('queryString') queryString: any
 
@@ -26,7 +27,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('disableShadow') disableShadow: boolean
   @Input('readOnly') readOnly: boolean
 
-  @Output('outputHeader') outputHeader: EventEmitter<any>
+  @Output('outputHeader') outputHeaders: EventEmitter<any>
   @Output('outputBody') outputBody: EventEmitter<any>
   @Output('outputQueryString') outputQueryString: EventEmitter<any>
 
@@ -35,7 +36,9 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Output('outputDelay') outputDelay: EventEmitter<any>
 
   public jsonUI = {
-    body: {}
+    headers: '{}',
+    body: {},
+    queryString: '{}'
   }
 
   public temp: {
@@ -53,7 +56,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   public tab: any[] = []
 
   constructor() {
-    this.outputHeader = new EventEmitter<any>()
+    this.outputHeaders = new EventEmitter<any>()
     this.outputBody = new EventEmitter<any>()
     this.outputQueryString = new EventEmitter<any>()
 
@@ -63,13 +66,6 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges () {
-    try {
-      if (typeof this.body === 'string') {
-        this.jsonUI.body = JSON.parse(this.body)
-      } else {
-        this.jsonUI.body = this.body
-      }
-    } catch (err) { }
   }
 
   ngOnInit() {
@@ -83,8 +79,8 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     this.tabSelector = id
   }
 
-  saveHeader (data) {
-    this.outputHeader.emit(data.entities)
+  saveHeaders (data) {
+    this.outputHeaders.emit(data)
   }
 
   saveBody (data) {
@@ -95,7 +91,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   }
 
   saveQueryString (data) {
-    this.outputQueryString.emit(data.entities)
+    this.outputQueryString.emit(data)
   }
 
   saveIsFindOne (data) {
@@ -108,10 +104,6 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   saveDelay (data) {
     this.outputDelay.emit(data)
-  }
-
-  saveBodyFromJsonUI (data) {
-    this.outputBody.emit(JSON.stringify(data, null, 4))
   }
 
   onNumberKeyPress (event) {

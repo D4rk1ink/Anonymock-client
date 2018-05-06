@@ -2,8 +2,11 @@
   <div class="c-header content-between">
     <h4>Logs</h4>
     <div class="options">
-        <search-input (out)="onSearch($event)"></search-input>
+      <search-input (out)="onSearch($event)"></search-input>
+      <div class="clear" *ngIf="isManager">
+        <label (click)="onClear()">CLEAR</label>
       </div>
+    </div>
   </div>
   <div class="c-list">
     <ng-container *ngIf="!isLoading">
@@ -24,7 +27,7 @@
         <div class="expand">
           <section class="section">
             <div class="title-center">
-              RESPONSE
+              REQUEST
             </div>
             <div class="log-request">
               <log-request [data]="log.request"></log-request>

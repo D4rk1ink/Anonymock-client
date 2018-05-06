@@ -1,27 +1,22 @@
 <div class="import">
   <div class="items">
-    <div class="w-75 details">
+    <div class="details">
       <div class="item w-50">
         <label *ngIf="invalid.isError">{{ invalid.message }}</label>
       </div>
       <div class="item w-25">
         Documents : {{ row }}
       </div>
-      <div class="item w-25">
-        Size : 16M
-      </div>
     </div>
-    <div class="w-25 options">
+    <div class="options">
       <div class="item">
-        <button class="btn btn-sky outline">Import Data</button>
+        <input type="file" class="file-input" #jsonImport (change)="import($event)" accept=".json" />
+        <button class="btn btn-sky outline" (click)="onImport()">Import Data</button>
       </div>
       <div class="item">
         <button class="btn btn-sky outline" (click)="onSubmit()">Confirm</button>
       </div>
     </div>
   </div>
-  <code-editor
-    [text]="data"
-    [mode]="'json'"
-    (change)="onDataChange($event)"></code-editor>
+  <json-multi-view [data]="data" (save)="onDataChange($event)"></json-multi-view>
 </div>

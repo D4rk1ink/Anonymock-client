@@ -5,7 +5,7 @@ import * as database from 'app/core/services/database.service'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['../styles/style.scss']
 })
 export class SignUpComponent implements OnInit {
 
@@ -15,6 +15,10 @@ export class SignUpComponent implements OnInit {
   public email: string
   public password: string
   public confirmPassword: string
+
+  public isAlert: boolean
+  public alertStatus: boolean
+  public alertMessage: string
 
   constructor (
     private authService: AuthService
@@ -37,9 +41,11 @@ export class SignUpComponent implements OnInit {
       this.authService.signup(payload)
         .subscribe(res => {
           if (!res.error) {
-            console.log('Successfully')
+            this.isAlert = true
+            this.alertStatus = true
           } else {
-            console.log(res.error)
+            this.isAlert = true
+            this.alertStatus = false
           }
         })
     }

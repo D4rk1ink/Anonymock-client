@@ -58,10 +58,11 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        opacity: 0.1;
-        transition: opacity .2s;
+        opacity: 0;
+        transition: opacity .5s;
         .rename,
-        .open {
+        .open,
+        .delete {
             padding: 0 5px;
             display: flex;
             align-items: center;
@@ -71,6 +72,6 @@
 
 .folder:hover {
     .options {
-        opacity: 1;
+        opacity: .5;
     }
 }

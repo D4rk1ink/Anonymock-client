@@ -15,4 +15,9 @@ export class LogService {
     return this.http.get(url, { params: payload })
   }
 
+  clear (): Observable<any> {
+    const url = constants.BASE_API + '/project/log'
+    return this.http.delete(url)
+  }
+
 }

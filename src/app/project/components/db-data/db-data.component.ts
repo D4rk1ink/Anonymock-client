@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
 import { Store } from '@ngrx/store'
 import * as json from 'app/project/utils/json.util'
 import * as databaseAction from 'app/project/actions/database.action'
@@ -11,7 +11,9 @@ import * as fromProject from 'app/project/reducers'
 })
 export class DbDataComponent implements OnInit {
 
-  public data: string
+  @ViewChild('download') download: ElementRef
+
+  public data: any
   public row: number
   public size: number
 
@@ -22,12 +24,20 @@ export class DbDataComponent implements OnInit {
     this.size = 0
     this.store.select(fromProject.getDatabaseData)
       .subscribe(data => {
-        this.data = json.pretty(data)
+        this.data = data
         this.setRow(this.data)
       })
   }
 
   ngOnInit() {
+  }
+
+  onExport () {
+    const blob = new Blob([JSON.stringify(this.data)], {type : 'application/json'})
+    const url = URL.createObjectURL(blob)
+    this.download.nativeElement.setAttribute('href', url)
+    this.download.nativeElement.setAttribute('download', 'database.json')
+    this.download.nativeElement.click()
   }
 
   setRow (data) {

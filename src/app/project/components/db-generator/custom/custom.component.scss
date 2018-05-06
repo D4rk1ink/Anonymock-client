@@ -1,10 +1,19 @@
 .import {
     .items {
         display: flex;
+        justify-content: space-between;
         padding-bottom: 10px;
         .details {
             display: flex;
+            flex: 1;
+            justify-content: space-between;
             align-items: center;
+        }
+        .file-input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: -1;
         }
         .options {
             display: flex;

@@ -64,17 +64,24 @@ export class ScraperComponent implements OnInit {
   createEndpoint () {
     this.scraperService.createEndpoint()
       .subscribe(res => {
-        res.data.isNew = true
-        if (this.page > 1) {
-          this.page = 1
-          this.setPage()
-        } else {
-          if (this.endpoints.length >= 10) {
-            this.endpoints = this.endpoints.slice(0, this.endpoints.length - 1)
-            this.store.dispatch(new scraperAction.LimitPageAction(this.limitPage + 1))
+        if (!res.error) {
+          res.data.isNew = true
+          if (this.page > 1) {
+            this.page = 1
+            this.setPage()
+          } else {
+            if (this.endpoints.length >= 10) {
+              this.endpoints = this.endpoints.slice(0, this.endpoints.length - 1)
+              this.store.dispatch(new scraperAction.LimitPageAction(this.limitPage + 1))
+            }
+            this.endpoints = [res.data, ...this.endpoints]
+            this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
           }
-          this.endpoints = [res.data, ...this.endpoints]
-          this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+        } else {
+          this.notificationService.notify({
+            type: 'error',
+            message: 'Create endpoint has errors'
+          })
         }
       })
   }

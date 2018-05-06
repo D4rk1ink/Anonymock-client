@@ -43,21 +43,3 @@
         }
     }
 }
-.content {
-    .body {
-        padding: 10px;
-    }
-    .multi-view {
-        display: flex;
-        .json-viewer,
-        .json-code {
-            flex: 1;
-            overflow: auto;
-            border-radius: 3px;
-            border: 1px solid $gray_0;
-        }
-        .json-code:not(:first-child) {
-            margin-left: 10px;
-        }
-    }
-}

@@ -3,7 +3,7 @@
     <input type="text" name="key" placeholder="Key" [ngModel]="entity.key" (keyup)="onKey($event)" (blur)="onKeyBlur($event)" [readonly]="keyReadOnly" />
   </div>
   <div class="value w-75">
-    <input type="text" name="value" placeholder="Value" [ngModel]="entity.value" (keyup)="onValue($event)" (blur)="onValueBlur($event)" />
+    <input type="text" name="value" placeholder="Value" [ngModel]="entity.value" (keyup)="onValue($event)" (blur)="onValueBlur($event)" [readonly]="valueReadOnly" />
   </div>
   <div class="options" *ngIf="!disableDelete">
     <i class="material-icons btn-icon delete" (click)="onDelete()">clear</i>

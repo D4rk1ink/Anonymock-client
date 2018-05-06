@@ -32,16 +32,12 @@ export class GenerateComponent implements OnInit {
         this.schema = db.schema
         try {
           schema.isSchema(this.schema)
-          try {
-            schema.verifyGenerate(this.model, this.schema)
-            this.invalid.isError = false
-            this.invalid.message = ''
-          } catch (err) {
-            this.invalid.isError = true
-            this.invalid.message = err.message
-          }
+          schema.verify(this.model, this.schema)
+          this.invalid.isError = false
+          this.invalid.message = ''
         } catch (err) {
           this.invalid.isError = true
+          this.invalid.message = err.message
         }
       })
   }
@@ -65,9 +61,7 @@ export class GenerateComponent implements OnInit {
   }
 
   onCountKeyPress (event) {
-    if (Number.isInteger(+event.key)) {
-      this.count = parseInt(event.target.value + event.key)
-    } else {
+    if (!Number.isInteger(+event.key)) {
       event.preventDefault()
     }
   }

@@ -1,0 +1,13 @@
+<div class="toggle-multi-view">
+  <div class="" *ngFor="let view of multiView" [class.active]="multiViewSelector === view.id" (click)="onSelectMultView(view.id)">
+    {{ view.title }}
+  </div>
+</div>
+<div class="multi-view">
+  <div class="json-form" [class.show]="multiViewSelector === 'V01' || multiViewSelector === 'V02'">
+    <key-value-group [data]="data" (save)="saveFromUI($event)" [readOnly]="readOnly"></key-value-group>
+  </div>
+  <div class="json-code scrollbar" [class.show]="multiViewSelector === 'V02' || multiViewSelector === 'V03'">
+    <code-editor [text]="dataCode" [mode]="'json'" (change)="saveFromCode($event)" [readOnly]="readOnly"></code-editor>
+  </div>
+</div>

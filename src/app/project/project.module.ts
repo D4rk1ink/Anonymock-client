@@ -52,6 +52,8 @@ import { RequestGroupComponent } from './components/request-group/request-group.
 import { ResponseGroupComponent } from './components/response-group/response-group.component'
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component'
 import { ItemComponent } from './components/key-value-group/item/item.component'
+import { JsonMultiViewComponent } from './components/json-multi-view/json-multi-view.component'
+import { FormMultiViewComponent } from './components/form-multi-view/form-multi-view.component'
 
 import { ProjectService } from './services/project.service'
 import { DatabaseService } from './services/database.service'
@@ -61,7 +63,7 @@ import { ScraperService } from './services/scraper.service'
 import { EndpointService } from './services/endpoint.service'
 import { ResponseService } from './services/response.service'
 import { LogService } from './services/log.service'
-import { MethodService } from './services/method.service'
+import { MethodService } from './services/method.service';
 
 @NgModule({
   imports: [
@@ -126,6 +128,8 @@ import { MethodService } from './services/method.service'
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
+    JsonMultiViewComponent,
+    FormMultiViewComponent,
   ],
   exports: [
     ProjectComponent,
@@ -170,6 +174,8 @@ import { MethodService } from './services/method.service'
     ResponseGroupComponent,
     KeyValueGroupComponent,
     ItemComponent,
+    JsonMultiViewComponent,
+    FormMultiViewComponent,
   ],
   providers: [
     ProjectService,

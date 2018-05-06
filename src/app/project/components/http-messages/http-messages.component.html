@@ -21,20 +21,13 @@
   </div>
   <div class="content" [ngSwitch]="tabSelector">
     <ng-container *ngSwitchCase="'T01'">
-      <key-value-group [data]="header" (save)="saveHeader($event)" [autoKey]="readOnly"></key-value-group>
+      <form-multi-view [data]="headers" [readOnly]="readOnly" (save)="saveHeaders($event)"></form-multi-view>
     </ng-container>
     <ng-container *ngSwitchCase="'T02'">
-      <div class="body multi-view">
-        <div class="json-viewer scrollbar">
-          <json-ui [init]="jsonUI.body" (save)="saveBodyFromJsonUI($event)"></json-ui>
-        </div>
-        <div class="json-code scrollbar">
-          <code-editor [text]="body" [mode]="'json'" (change)="saveBody($event)" [readOnly]="readOnly"></code-editor>
-        </div>
-      </div>
+      <json-multi-view [data]="body" [readOnly]="readOnly" (save)="saveBody($event)"></json-multi-view>
     </ng-container>
     <ng-container *ngSwitchCase="'T03'">
-      <key-value-group [data]="queryString" (save)="saveQueryString($event)" [autoKey]="readOnly"></key-value-group>
+      <form-multi-view [data]="queryString" [readOnly]="readOnly" (save)="saveQueryString($event)"></form-multi-view>
     </ng-container>
   </div>
 </div>
