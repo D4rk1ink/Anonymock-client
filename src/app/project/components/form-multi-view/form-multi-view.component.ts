@@ -1,16 +1,18 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import * as json from 'app/project/utils/json.util';
 
 @Component({
-  selector: 'json-multi-view',
-  templateUrl: './json-multi-view.component.html',
-  styleUrls: ['./json-multi-view.component.scss']
+  selector: 'form-multi-view',
+  templateUrl: './form-multi-view.component.html',
+  styleUrls: ['./form-multi-view.component.scss']
 })
-export class JsonMultiViewComponent implements OnInit, OnChanges {
+export class FormMultiViewComponent implements OnInit {
 
   @Input('data') data: any
+  @Input('readOnly') readOnly: boolean
   @Output('save') save: EventEmitter<any>
 
-  public dataUI: any
+  public dataCode: any
 
   public multiViewSelector: string
   public multiView: any[] = [
@@ -25,10 +27,8 @@ export class JsonMultiViewComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     try {
-      if (typeof this.data === 'string') {
-        this.dataUI = JSON.parse(this.data)
-      } else {
-        this.dataUI = this.data
+      if (Array.isArray(this.data)) {
+        this.dataCode = JSON.stringify(json.toJSON(this.data), null, 4)
       }
     } catch (err) { }
   }
@@ -42,14 +42,14 @@ export class JsonMultiViewComponent implements OnInit, OnChanges {
   }
 
   saveFromUI (data) {
-    this.save.emit(JSON.stringify(data, null, 4))
+    this.save.emit(data.entities)
   }
 
   saveFromCode (data) {
-    if (!data) {
-      data = "{}"
-    }
-    this.save.emit(data)
+    try {
+      data = json.toArray(JSON.parse(data))
+      this.save.emit(data)
+    } catch (err) {}
   }
 
 }

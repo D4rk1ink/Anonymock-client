@@ -52,8 +52,8 @@ import { RequestGroupComponent } from './components/request-group/request-group.
 import { ResponseGroupComponent } from './components/response-group/response-group.component'
 import { KeyValueGroupComponent } from './components/key-value-group/key-value-group.component'
 import { ItemComponent } from './components/key-value-group/item/item.component'
-import { JsonMultiViewComponent } from './containers/json-multi-view/json-multi-view.component'
-import { FormMultiViewComponent } from './containers/form-multi-view/form-multi-view.component'
+import { JsonMultiViewComponent } from './components/json-multi-view/json-multi-view.component'
+import { FormMultiViewComponent } from './components/form-multi-view/form-multi-view.component'
 
 import { ProjectService } from './services/project.service'
 import { DatabaseService } from './services/database.service'
