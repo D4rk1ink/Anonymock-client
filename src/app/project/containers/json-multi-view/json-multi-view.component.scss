@@ -1,0 +1,52 @@
+@import "colors";
+
+.toggle-multi-view {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    
+    div {
+        width: 60px;
+        padding: 2px;
+        text-align: center;
+        background-color: rgba($gray_0, .3);
+        border-top: 1px solid $gray_1;
+        border-bottom: 1px solid $gray_1;
+        cursor: pointer;
+    }
+    div.active {
+        background-color: rgba($sky_0, .3);
+    }
+    div:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border: 1px solid $gray_1;
+    }
+    div:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid $gray_1;
+    }
+}
+.multi-view {
+    display: flex;
+    .json-form,
+    .json-viewer,
+    .json-code {
+        display: none;
+        flex: 1;
+        overflow: auto;
+        border-radius: 3px;
+    }
+    .json-viewer,
+    .json-code {
+        margin: 10px;
+        border: 1px solid $gray_0;
+    }
+    div.show ~ .json-code:nth-child(2) {
+        margin-left: 0px;
+    }
+    .show {
+        display: block;
+    }
+}
