@@ -9,6 +9,7 @@ import * as json from 'app/project/utils/json.util';
 export class FormMultiViewComponent implements OnInit {
 
   @Input('data') data: any
+  @Input('readOnly') readOnly: boolean
   @Output('save') save: EventEmitter<any>
 
   public dataCode: any

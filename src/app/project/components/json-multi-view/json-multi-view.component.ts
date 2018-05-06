@@ -8,6 +8,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 export class JsonMultiViewComponent implements OnInit, OnChanges {
 
   @Input('data') data: any
+  @Input('readOnly') readOnly: boolean
   @Output('save') save: EventEmitter<any>
 
   public dataUI: any
