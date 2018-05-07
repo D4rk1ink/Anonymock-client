@@ -33,7 +33,7 @@ export class DbDataComponent implements OnInit {
   }
 
   onExport () {
-    const blob = new Blob([JSON.stringify(this.data)], {type : 'application/json'})
+    const blob = new Blob([this.data], {type : 'application/json'})
     const url = URL.createObjectURL(blob)
     this.download.nativeElement.setAttribute('href', url)
     this.download.nativeElement.setAttribute('download', 'database.json')
