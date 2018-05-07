@@ -31,6 +31,7 @@ export const getUserIsAdmin = createSelector(getUserState, fromUser.getIsAdmin)
 
 export const getOtherState = (state: CoreState) => state.other
 export const getOther = createSelector(getOtherState, fromOther.getAll)
+export const getOtherTheme = createSelector(getOtherState, fromOther.getTheme)
 export const getOtherProfileDropdown = createSelector(getOtherState, fromOther.getIsProfileDropdown)
 export const getOtherProfilePopup = createSelector(getOtherState, fromOther.getIsProfilePopup)
 export const getOtherIsOtherUserPopup = createSelector(getOtherState, fromOther.getIsOtherUserPopup)

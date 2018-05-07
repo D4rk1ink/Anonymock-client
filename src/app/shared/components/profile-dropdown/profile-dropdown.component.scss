@@ -31,6 +31,32 @@
         }
     }
 }
+.theme {
+    display: flex;
+    .theme-item {
+        flex: 1;
+        height: 15px;
+        cursor: pointer;
+    }
+    .theme-item {
+        background-color: $darkblue_3;
+    }
+    .theme-item.sweet {
+        background-color: $pink_3;
+    }
+    .theme-item.ocean {
+        background-color: $ocean_3;
+    }
+    .theme-item.sky {
+        background-color: $sky_3;
+    }
+    .theme-item.orange {
+        background-color: $orange_3;
+    }
+    .theme-item.purple {
+        background-color: $purple_3;
+    }
+}
 .item {
     padding: 10px 15px;
 }

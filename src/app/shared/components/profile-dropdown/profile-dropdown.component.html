@@ -12,6 +12,9 @@
       </div>
     </div>
   </div>
+  <div class="theme">
+    <div *ngFor="let theme of themes" class="theme-item {{ theme }}" (click)="onTheme(theme)"></div>
+  </div>
   <div class="item align-center logout" [routerLink]="'/auth/sign-in'">
     LOGOUT
   </div>
