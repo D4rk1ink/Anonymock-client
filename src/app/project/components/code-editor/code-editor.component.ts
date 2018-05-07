@@ -37,7 +37,7 @@ export class CodeEditorComponent implements OnInit, OnChanges {
     this.editor.getEditor().setOptions({
       enableBasicAutocompletion: true,
       useWorker: false,
-      maxLines: 15,
+      maxLines: 50,
       minLines: 3
     })
     this.editor.getEditor().$blockScrolling = Infinity
