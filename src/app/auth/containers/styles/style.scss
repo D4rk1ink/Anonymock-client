@@ -1,86 +1,117 @@
 @import "colors";
 
-.card-wrapper {
-    position: relative;
+.form-inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    width: 150px;
+}
+.wrapper {
+  display: flex;
+}
+
+.info-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 50%;
+  padding: 0 50px;
+  height: 100vh;
+  background-color: $white;
+  font-weight: 600;
+  img {
     margin: 0 auto;
-    padding-top: 60px;
-    min-width: 500px;
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .image-circle-wrapper {
-        display: flex;
-        justify-content: center;
-        .image-circle {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            background-color: #1d2b36;
-            top: -50px;
-            color: $white;
-            i {
-                font-size: 4rem;
-            }
-        }
+  }
+}
+
+.card-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 180px 50px;
+  
+  min-width: 300px;
+  border: 1px solid $gray_1;
+  border-radius: 2px;
+  background-color: $yellow_0;
+  .image-circle-wrapper {
+    display: flex;
+    justify-content: center;
+    .image-circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      background-color: #1d2b36;
+      top: -50px;
+      color: $white;
+      i {
+        font-size: 4rem;
+      }
     }
+  }
+  .title {
+    color: $gray-4;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .content {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     
-    .title {
-        color: $gray-4;
+    .alert {
+      margin-bottom: 15px;
+      .success,
+      .error {
         display: flex;
-        align-content: center;
         justify-content: center;
-        padding: 15px;
-        font-size: 20px;
-        font-weight: 700;
+        align-items: center;
+      }
+      .success {
+        color: $green_2;
+      }
+      .error {
+        color: $danger_2;
+      }
+      label {
+        margin-left: 15px;
+      }
     }
-    .content {
-        padding: 15px;
-        border-top: 1px solid $gray_0;
-        border-bottom: 1px solid $gray_0;
-        .alert {
-            margin-bottom: 15px;
-            .success,
-            .error {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .success {
-                color: $green_2;
-            }
-            .error {
-                color: $danger_2;
-            }
-            label {
-                margin-left: 15px;
-            }
-        }
+  }
+  .footer {
+    padding: 15px;
+    .remember {
+      display: flex;
+      align-items: center;
+      .checkbox {
+        margin-right: 10px;
+      }
     }
-    .footer {
-        padding: 15px;
-        .remember {
-            display: flex;
-            align-items: center;
-            .checkbox {
-                margin-right: 10px;
-            }
-        }
-        .to-sign-in,
-        .to-sign-up {
-            color: $gray_2;
-            padding-top: 10px;
-            justify-content: center;
-            label {
-                cursor: pointer;
-            }
-        }
-        .to-sign-in:hover,
-        .to-sign-up:hover {
-            color: $gray_3;
-        }
+    .to-sign-in,
+    .to-sign-up {
+      color: $gray_2;
+      padding-top: 10px;
+      justify-content: center;
+      label {
+        cursor: pointer;
+      }
     }
+    .to-sign-in:hover,
+    .to-sign-up:hover {
+      color: $gray_3;
+    }
+  }
 }
