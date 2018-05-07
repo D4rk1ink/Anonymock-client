@@ -17,7 +17,7 @@ export class JsonMultiViewComponent implements OnInit, OnChanges {
   public multiView: any[] = [
     { id: 'V01', title: 'Viewer' },
     { id: 'V02', title: 'Split' },
-    { id: 'V03', title: 'Coding' },
+    { id: 'V03', title: 'Code' },
   ]
 
   constructor () {
@@ -35,7 +35,7 @@ export class JsonMultiViewComponent implements OnInit, OnChanges {
   }
 
   ngOnInit () {
-    this.multiViewSelector = (this.multiView[0] && this.multiView[0].id) || null
+    this.multiViewSelector = (this.multiView[2] && this.multiView[2].id) || null
   }
 
   onSelectMultView (id) {

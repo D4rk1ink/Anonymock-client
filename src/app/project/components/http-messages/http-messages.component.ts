@@ -72,7 +72,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     if (this.headerTab) this.tab.push(this.tabAll[0])
     if (this.bodyTab) this.tab.push(this.tabAll[1])
     if (this.queryStringTab) this.tab.push(this.tabAll[2])
-    this.tabSelector = (this.tab[0] && this.tab[0].id) || null
+    this.tabSelector = (this.tab[1] && this.tab[1].id) || null
   }
 
   onSelectMenu (id) {
