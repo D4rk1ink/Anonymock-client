@@ -1,18 +1,20 @@
-<div class="c-wrapper">
-  <scraper-detail (save)="save()" (scrap)="scrap()"></scraper-detail>
-  <hr class="disable-margin">
-  <ng-container>
-    <div class="c-list">
-      <add-item-bar (click)="createEndpoint()">ADD ENDPOINT</add-item-bar>
-      <scraper-endpoint-list *ngIf="!isLoading">
-        <ng-template let-onExpand="onExpand" let-endpointTarget="endpointTarget">
-          <app-scraper-endpoint
-            *ngFor="let endpoint of endpoints"
-            [endpoint]="endpoint"
-            [isTarget]="endpointTarget === endpoint.id"
-            (click)="onExpand(endpoint.id)"></app-scraper-endpoint>
-        </ng-template>
-      </scraper-endpoint-list>
-    </div>
-  </ng-container>
+<div class="main-wrapper">
+  <div class="c-wrapper">
+    <scraper-detail (save)="save()" (scrap)="scrap()"></scraper-detail>
+    <hr class="disable-margin">
+    <ng-container>
+      <div class="c-list">
+        <add-item-bar (click)="createEndpoint()">ADD ENDPOINT</add-item-bar>
+        <scraper-endpoint-list *ngIf="!isLoading">
+          <ng-template let-onExpand="onExpand" let-endpointTarget="endpointTarget">
+            <app-scraper-endpoint
+              *ngFor="let endpoint of endpoints"
+              [endpoint]="endpoint"
+              [isTarget]="endpointTarget === endpoint.id"
+              (click)="onExpand(endpoint.id)"></app-scraper-endpoint>
+          </ng-template>
+        </scraper-endpoint-list>
+      </div>
+    </ng-container>
+  </div>
 </div>
