@@ -1,10 +1,17 @@
 import { Action } from '@ngrx/store'
 
+export const THEME = '[Other] Theme'
 export const ISPROFILEDROPDOWN = '[Other] IsProfileDropdown'
 export const ISPROFILEPOPUP = '[Other] IsProfilePopup'
 export const ISOTHERUSERPOPUP = '[Other] IsOtherUserPopup'
 export const OTHERUSERPOPUP = '[Other] OtherUserPopup'
 export const CLEAR = '[Other] Clear'
+
+export class ThemeAction implements Action {
+    readonly type = THEME
+
+    constructor (public payload) { }
+}
 
 export class IsProfileDropdownAction implements Action {
     readonly type = ISPROFILEDROPDOWN
@@ -37,7 +44,8 @@ export class ClearAction implements Action {
 }
 
 export type Actions
-= IsProfileDropdownAction
+= ThemeAction
+| IsProfileDropdownAction
 | IsProfilePopupAction
 | IsOtherUserPopupAction
 | OtherUserPopupAction

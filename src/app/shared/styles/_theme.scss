@@ -1,0 +1,112 @@
+@import "colors";
+
+$themes: (
+    ("dark", $darkblue_0, $darkblue_1, $darkblue_2, $darkblue_3),
+    ("sweet", $pink_0, $pink_1, $pink_2, $pink_3),
+    ("ocean", $ocean_0, $ocean_1, $ocean_2, $ocean_3),
+    ("sky", $sky_0, $sky_1, $sky_2, $sky_3),
+    ("orange", $orange_0, $orange_1, $orange_2, $orange_3),
+    ("purple", $purple_0, $purple_1, $purple_2, $purple_3),
+);
+
+@each $theme in $themes {
+    $name: nth($theme, 1);
+    $color_0: nth($theme, 2);
+    $color_1: nth($theme, 3);
+    $color_2: nth($theme, 4);
+    $color_3: nth($theme, 5);
+    body.#{$name} {
+
+        .color-theme {
+            color: $color_1 !important;
+        }
+
+        label.link-theme {
+            color: $color_1 !important;
+        }
+        
+        label.link-theme:hover {
+            color: $color_2 !important;
+        }
+
+        button.btn.btn-theme {
+            color: $white;
+            background-color: $color_2 !important;
+        }
+        
+        button.btn.btn-theme:hover {
+            background-color: $color_0 !important;
+        }
+        
+        button.btn.btn-theme:active {
+            background-color: $color_3 !important;
+        }
+        
+        button.btn.btn-theme.outline {
+            color: $color_2 !important;
+            background-color: rgba($white, 0) !important;
+            border: 1px solid;
+            border-color: $color_2 !important;
+        }
+        
+        button.btn.btn-theme.outline:hover {
+            color: $color_0 !important;
+            border-color: $color_0 !important;
+        }
+        
+        button.btn.btn-theme.outline:active {
+            color: $color_3 !important;
+            border-color: $color_3 !important;
+        }
+
+        .c-tabs {
+            .c-tab-item.active {
+                color: $color_3;
+                border-color: $color_3 !important;
+            }
+        }
+
+        .c-list {
+            .c-list-item {
+                border-left: 3px solid rgba($color_3, 0);
+            }
+            .c-list-item.active,
+            .c-list-item:hover {
+                border-left: 3px solid rgba($color_3, 1);
+            }
+        }
+
+        .profile-popup {
+            .top-color {
+                background-color: $color_3 !important;
+            }
+        }
+
+        .top-bar {
+            .top-bar-fixed {
+                background-color: $color_2 !important;
+                .banner {
+                    background-color: $color_3 !important;
+                }
+            }
+        }
+
+        left-menu {
+            .member-menu.active,
+            .project-menu.active {
+                .main-row::before {
+                    border-right: 3px solid $color_3 !important;
+                }
+                .sub-row.active {
+                    color: $color_3 !important;
+                }
+            }
+        }
+
+        add-item-bar {
+            .add-item-bar {
+                background-color: $color_2 !important;
+            }
+        }
+    }
+}

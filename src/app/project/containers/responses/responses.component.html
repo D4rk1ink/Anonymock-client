@@ -12,7 +12,7 @@
         </div>
         <div class="c-list">
             <ng-container *ngIf="!isLoading">
-                <div class="c-list-item response" [class.new-response]="response.isNew" *ngFor="let response of responses">
+                <div class="c-list-item response disable-scale" [class.new-response]="response.isNew" *ngFor="let response of responses">
                     <div class="default" [class.active]="response.isDefault" (click)="setDefault(response)">
                         <i class="material-icons btn-icon btn-sky-icon">star</i>
                     </div>

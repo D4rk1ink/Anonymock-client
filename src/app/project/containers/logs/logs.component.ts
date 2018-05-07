@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { LogService } from 'app/project/services/log.service'
+import { NotificationService } from 'app/shared/services/notification.service'
+import { ConfirmService } from 'app/shared/services/confirm.service'
 import * as logsAction from 'app/project/actions/logs.action'
 import * as fromProject from 'app/project/reducers'
 import * as json from 'app/project/utils/json.util'
@@ -13,6 +15,7 @@ import * as json from 'app/project/utils/json.util'
 export class LogsComponent implements OnInit {
 
   public projectId: string
+  public isManager: boolean
 
   public isLoading: boolean
   public logs: any[]
@@ -23,11 +26,14 @@ export class LogsComponent implements OnInit {
 
   constructor (
     private store: Store<any>,
-    private logService: LogService
+    private logService: LogService,
+    private notificationService: NotificationService,
+    private confirmService: ConfirmService
   ) {
-    this.store.select(fromProject.getProjectId)
-      .subscribe(id => {
-        this.projectId = id
+    this.store.select(fromProject.getProject)
+      .subscribe(res => {
+        this.projectId = res.id
+        this.isManager = res.isManager
       })
     this.store.select(fromProject.getLogs)
       .subscribe(res => {
@@ -78,6 +84,32 @@ export class LogsComponent implements OnInit {
           this.store.dispatch(new logsAction.ItemsAction(res.data.logs))
           this.store.dispatch(new logsAction.LimitPageAction(res.data.limitPage))
           this.store.dispatch(new logsAction.IsLoadingAction(false))
+        }
+      })
+  }
+
+  onClear () {
+    this.confirmService.open({
+      message: 'Are you sure you want to clear logs'
+    })
+      .afterClose(val => {
+        if (val) {
+          this.logService.clear()
+            .subscribe(res => {
+              if (!res.error) {
+                this.store.dispatch(new logsAction.ItemsAction(res.data.logs))
+                this.store.dispatch(new logsAction.LimitPageAction(1))
+                this.notificationService.notify({
+                  type: 'success',
+                  message: 'Clear logs successfully.'
+                })
+              } else {
+                this.notificationService.notify({
+                  type: 'error',
+                  message: 'Clear logs Fail.'
+                })
+              }
+            })
         }
       })
   }

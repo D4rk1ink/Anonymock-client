@@ -19,41 +19,15 @@
       </div>
     </div>
   </div>
-  <div class="toggle-multi-view">
-    <div class="" *ngFor="let view of multiView" [class.active]="multiViewSelector === view.id" (click)="onSelectMultView(view.id)">
-      {{ view.title }}
-    </div>
-  </div>
   <div class="content" [ngSwitch]="tabSelector">
     <ng-container *ngSwitchCase="'T01'">
-      <div class="multi-view">
-        <div class="json-form" [class.show]="multiViewSelector === 'V01' || multiViewSelector === 'V02'">
-          <key-value-group [data]="headers" (save)="saveHeadersFromUI($event)" [readOnly]="readOnly"></key-value-group>
-        </div>
-        <div class="json-code scrollbar" [class.show]="multiViewSelector === 'V02' || multiViewSelector === 'V03'">
-          <code-editor [text]="jsonUI.headers" [mode]="'json'" (change)="saveHeaders($event)" [readOnly]="readOnly"></code-editor>
-        </div>
-      </div>
+      <form-multi-view [data]="headers" [readOnly]="readOnly" (save)="saveHeaders($event)"></form-multi-view>
     </ng-container>
     <ng-container *ngSwitchCase="'T02'">
-      <div class="multi-view">
-        <div class="json-viewer scrollbar" [class.show]="multiViewSelector === 'V01' || multiViewSelector === 'V02'">
-          <json-ui [init]="jsonUI.body" (save)="saveBodyFromUI($event)" [readOnly]="readOnly"></json-ui>
-        </div>
-        <div class="json-code scrollbar" [class.show]="multiViewSelector === 'V02' || multiViewSelector === 'V03'">
-          <code-editor [text]="body" [mode]="'json'" (change)="saveBody($event)" [readOnly]="readOnly"></code-editor>
-        </div>
-      </div>
+      <json-multi-view [data]="body" [readOnly]="readOnly" (save)="saveBody($event)"></json-multi-view>
     </ng-container>
     <ng-container *ngSwitchCase="'T03'">
-      <div class="multi-view">
-        <div class="json-form" [class.show]="multiViewSelector === 'V01' || multiViewSelector === 'V02'">
-          <key-value-group [data]="queryString" (save)="saveQueryStringFromUI($event)" [readOnly]="readOnly"></key-value-group>
-        </div>
-        <div class="json-code scrollbar" [class.show]="multiViewSelector === 'V02' || multiViewSelector === 'V03'">
-          <code-editor [text]="jsonUI.queryString" [mode]="'json'" (change)="saveQueryString($event)" [readOnly]="readOnly"></code-editor>
-        </div>
-      </div>
+      <form-multi-view [data]="queryString" [readOnly]="readOnly" (save)="saveQueryString($event)"></form-multi-view>
     </ng-container>
   </div>
 </div>

@@ -8,12 +8,43 @@ button.btn {
     margin: 0px;
     cursor: pointer;
 }
+// DEFAULT THEME
 button.btn:not(:first-child) {
     margin-left: 5px;
 }
 button.btn:not(:last-child) {
     margin-right: 5px;
 }
+button.btn.btn-theme {
+    color: $white;
+    background-color: $ocean_2;
+}
+
+button.btn.btn-theme:hover {
+    background-color: $ocean_0;
+}
+
+button.btn.btn-theme:active {
+    background-color: $ocean_3;
+}
+
+button.btn.btn-theme.outline {
+    color: $ocean_2 !important;
+    background-color: rgba($white, 0);
+    border: 1px solid;
+    border-color: $ocean_2;
+}
+
+button.btn.btn-theme.outline:hover {
+    color: $ocean_0;
+    border-color: $ocean_0;
+}
+
+button.btn.btn-theme.outline:active {
+    color: $ocean_3 !important;
+    border-color: $ocean_3 !important;
+}
+
 // START SKY BUTTON
 button.btn.btn-sky {
     color: $white;

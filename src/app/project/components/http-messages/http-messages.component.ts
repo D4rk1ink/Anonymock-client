@@ -47,13 +47,6 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     queryString: any
   }
 
-  public multiViewSelector: string
-  public multiView: any[] = [
-    { id: 'V01', title: 'Viewer' },
-    { id: 'V02', title: 'Split' },
-    { id: 'V03', title: 'Coding' },
-  ]
-
   public tabSelector: string
   public tabAll: any[] = [
     { id: 'T01', title: 'Header' },
@@ -73,32 +66,12 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges () {
-    try {
-      if (Array.isArray(this.headers)) {
-        this.jsonUI.headers = JSON.stringify(json.toJSON(this.headers), null, 4)
-      }
-    } catch (err) { }
-
-    try {
-      if (typeof this.body === 'string') {
-        this.jsonUI.body = JSON.parse(this.body)
-      } else {
-        this.jsonUI.body = this.body
-      }
-    } catch (err) { }
-
-    try {
-      if (Array.isArray(this.queryString)) {
-        this.jsonUI.queryString = json.pretty(this.queryString)
-      }
-    } catch (err) { }
   }
 
   ngOnInit() {
     if (this.headerTab) this.tab.push(this.tabAll[0])
     if (this.bodyTab) this.tab.push(this.tabAll[1])
     if (this.queryStringTab) this.tab.push(this.tabAll[2])
-    this.multiViewSelector = (this.multiView[0] && this.multiView[0].id) || null
     this.tabSelector = (this.tab[0] && this.tab[0].id) || null
   }
 
@@ -106,17 +79,8 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     this.tabSelector = id
   }
 
-  onSelectMultView (id) {
-    this.multiViewSelector = id
-  }
-
   saveHeaders (data) {
-    try {
-      if (this.jsonUI.headers !== json.pretty(data)) {
-        const headers = json.toArray(JSON.parse(data))
-        this.outputHeaders.emit(headers)
-      }
-    } catch (err) {}
+    this.outputHeaders.emit(data)
   }
 
   saveBody (data) {
@@ -127,12 +91,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   }
 
   saveQueryString (data) {
-    try {
-      if (this.jsonUI.queryString !== json.pretty(data)) {
-        const queryString = json.toArray(JSON.parse(data))
-        this.outputQueryString.emit(queryString)
-      }
-    } catch (err) {}
+    this.outputQueryString.emit(data)
   }
 
   saveIsFindOne (data) {
@@ -145,18 +104,6 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   saveDelay (data) {
     this.outputDelay.emit(data)
-  }
-
-  saveHeadersFromUI (data) {
-    this.outputHeaders.emit(data.entities)
-  }
-
-  saveBodyFromUI (data) {
-    this.outputBody.emit(JSON.stringify(data, null, 4))
-  }
-
-  saveQueryStringFromUI (data) {
-    this.outputQueryString.emit(data.entities)
   }
 
   onNumberKeyPress (event) {

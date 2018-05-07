@@ -78,6 +78,10 @@ hr.disable-margin {
     margin-bottom: 15px;
 }
 
+.color-theme {
+    color: $ocean_1;
+}
+
 label.label-title {
     display: block;
     padding-bottom: 5px;
@@ -91,6 +95,15 @@ label.link {
 
 label.link:hover {
     color: $sky_2;
+}
+
+label.link-theme {
+    cursor: pointer;
+    color: $ocean_1;
+}
+
+label.link-theme:hover {
+    color: $ocean_2;
 }
 
 .title-center {

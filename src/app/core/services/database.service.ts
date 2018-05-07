@@ -1,3 +1,11 @@
+export const saveTheme = (theme: string) => {
+    localStorage.setItem('theme', theme)
+}
+
+export const getTheme = (): string => {
+    return localStorage.getItem('theme')
+}
+
 export const saveToken = (token: string) => {
     localStorage.setItem('token', token)
 }

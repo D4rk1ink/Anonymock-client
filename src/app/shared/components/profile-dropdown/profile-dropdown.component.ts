@@ -13,6 +13,15 @@ export class ProfileDropdownComponent implements OnInit {
   public user: any
   public wasInside: boolean
 
+  public themes: any[] = [
+    "",
+    "sweet",
+    "ocean",
+    "sky",
+    "orange",
+    "purple"
+  ]
+
   constructor(
     private store: Store<any>
   ) {
@@ -43,6 +52,10 @@ export class ProfileDropdownComponent implements OnInit {
     this.store.dispatch(new otherAction.IsOtherUserPopupAction(false))
     this.store.dispatch(new otherAction.IsProfileDropdownAction())
     this.store.dispatch(new otherAction.IsProfilePopupAction())
+  }
+
+  onTheme (theme) {
+    this.store.dispatch(new otherAction.ThemeAction(theme))
   }
 
 }

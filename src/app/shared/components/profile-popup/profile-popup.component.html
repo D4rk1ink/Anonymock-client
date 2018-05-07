@@ -29,9 +29,9 @@
     </div>
   </div>
   <div class="options" *ngIf="!isOtherUser">
-    <button class="btn btn-sky outline" (click)="onSubmit()">SAVE</button>
+    <button class="btn btn-theme outline" (click)="onSubmit()">SAVE</button>
     <div class="change-page" [ngSwitch]="page">
-      <label class="link" *ngSwitchCase="'info'" (click)="onPage('password')">Change Password</label>
+      <label class="link-theme" *ngSwitchCase="'info'" (click)="onPage('password')">Change Password</label>
       <label class="link" *ngSwitchCase="'password'" (click)="onPage('info')">Profile</label>
     </div>
   </div>

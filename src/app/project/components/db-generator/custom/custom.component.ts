@@ -34,26 +34,23 @@ export class CustomComponent implements OnInit {
       .subscribe(db => {
         this.data = db.custom
         this.schema = db.schema
+        this.setRow(this.data)
         try {
           schema.isSchema(this.schema)
-          try {
-            const group = JSON.parse(this.data)
-            if (Array.isArray(group)) {
-              for (const data of group) {
-                schema.verify(data, this.schema)
-              }
-              this.setRow(group)
-              this.invalid.isError = false
-              this.invalid.message = ''
-            } else {
-              throw new Error ('Not array')
+          const group = JSON.parse(this.data)
+          if (Array.isArray(group)) {
+            for (const data of group) {
+              schema.verify(data, this.schema)
             }
-          } catch (err) {
-            this.invalid.isError = true
-            this.invalid.message = err.message
+            this.setRow(group)
+            this.invalid.isError = false
+            this.invalid.message = ''
+          } else {
+            throw new Error ('Not array')
           }
         } catch (err) {
           this.invalid.isError = true
+          this.invalid.message = err.message
         }
       })
   }
@@ -63,7 +60,6 @@ export class CustomComponent implements OnInit {
 
   onDataChange (data) {
     this.store.dispatch(new databaseAction.CustomAction(data))
-    this.setRow(data)
   }
 
   import (event) {

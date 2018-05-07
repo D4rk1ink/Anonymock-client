@@ -1,7 +1,9 @@
 import { Action, ActionReducer } from '@ngrx/store'
 import * as otherAction from '../actions/other.action'
+import * as database from 'app/core/services/database.service'
 
 export interface State {
+    theme: string
     isProfileDropdown: boolean
     isProfilePopup: boolean
     isOtherUserPopup: boolean
@@ -9,6 +11,7 @@ export interface State {
 }
 
 const initialState: State = {
+    theme: database.getTheme() || '',
     isProfileDropdown: false,
     isProfilePopup: false,
     isOtherUserPopup: false,
@@ -17,6 +20,11 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: otherAction.Actions): State {
     switch (action.type) {
+        case otherAction.THEME:
+            return {
+                ...state,
+                theme: action.payload
+            }
         case otherAction.ISPROFILEDROPDOWN:
             return {
                 ...state,
@@ -44,6 +52,7 @@ export function reducer (state = initialState, action: otherAction.Actions): Sta
     }
 }
 
+export const getTheme = (state: State) => state.theme
 export const getIsProfileDropdown = (state: State) => state.isProfileDropdown
 export const getIsProfilePopup = (state: State) => state.isProfilePopup
 export const getIsOtherUserPopup = (state: State) => state.isOtherUserPopup
