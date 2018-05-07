@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core'
 
 @Component({
   selector: 'search-input',
@@ -9,7 +9,11 @@ export class SearchInputComponent implements OnInit {
 
   @Output('out') out: EventEmitter<any>
 
-  constructor() {
+  public isFocus: boolean
+
+  constructor(
+    private el: ElementRef
+  ) {
     this.out = new EventEmitter<any>()
   }
 
@@ -18,6 +22,15 @@ export class SearchInputComponent implements OnInit {
 
   onChange (text) {
     this.out.emit(text)
+  }
+
+  onFocus () {
+    this.el.nativeElement.querySelector('.input').focus()
+    this.isFocus = true
+  }
+
+  onBlur () {
+    this.isFocus = false
   }
 
 }

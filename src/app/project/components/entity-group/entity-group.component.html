@@ -1,16 +1,8 @@
-<div class="entity-group">
-    <div class="header">
-        <div class="title" (click)="onExpand()">
-            <i class="material-icons arrow" [class.active]="isExpand">keyboard_arrow_right</i> {{ title }}
-        </div>
-        <div class="new" (click)="onNew()" *ngIf="!auto">
-            <i class="material-icons btn-icon btn-sky-icon">add_box</i>
-        </div>
+<div class="c-wrapper" [class.disable-shadow]="disableShadow">
+    <div class="c-header">
+        {{ title }}
     </div>
-    <div class="expand" [class.active]="isExpand">
-        <div class="item" *ngFor="let i of keys.length | range">
-            <div class="key w-25"><input type="text" placeholder="key" name="key" [ngModel]="keys[i]" (focus)="onKeyFocus($event, i)" (blur)="onKeyBlur($event, i)" (keyup)="onKey($event, i)" [readonly]="auto" /></div>
-            <div class="value w-75"><input type="text" placeholder="value" name="value" [ngModel]="values[i]" (keyup)="onValue($event, i)" (blur)="onValueBlur($event, i)" /></div>
-        </div>
+    <div class="expand active">
+        <key-value-group [autoKey]="autoKey" [data]="entities" [temp]="temp" (save)="saveData($event)"></key-value-group>
     </div>
 </div>

@@ -1,54 +1,27 @@
 @import "colors";
 
-.entity-group {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .header {
-        cursor: pointer;
+.c-wrapper {
+    box-shadow: 0 0 0 0;
+}
+.c-header {
+    .title {
         display: flex;
         align-items: center;
-        padding: 10px;
-        max-height: 40px;
-        .title {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            .arrow {
-                transition: transform .5s, color .5s;
-            }
-            .arrow.active {
-                color: $sky_2;
-                transform: rotateZ(90deg)
-            }
+        flex: 1;
+        .arrow {
+            transition: transform .5s, color .5s;
         }
-        .new {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+        .arrow.active {
+            color: $sky_2;
+            transform: rotateZ(90deg)
         }
     }
-    .expand {
-        max-height: 0px;
-        overflow: hidden;
-        transition:  height, max-height .5s;
-        .item {
-            display: flex;
-            border-top: 1px solid $gray_1;
-            padding: 10px;
-            // .key {
-            //     padding: 0px;
-            //     border-right: 1px solid $gray_1;
-            // }
-            // .value {
-            //     padding: 0px;
-            // }
-            // input {
-            //     border: 0px;
-            // }
-        }
-    }
-    .expand.active {
-        max-height: 500px !important;
-    }
+}
+.expand {
+    max-height: 0px;
+    overflow: hidden;
+    transition:  height .5s, max-height .5s;
+}
+.expand.active {
+    max-height: 500px !important;
 }

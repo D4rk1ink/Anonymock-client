@@ -1,41 +1,47 @@
-<section class="section responses">
-    <div class="header">
-        <div class="title">
-        Responses
-        </div>
-        <div class="environments">
-        <div class="environment dev" [class.active]="environment === 'dev'" (click)="onChangeEnvironment('dev')">
-            Dev
-        </div>
-        <div class="environment test" [class.active]="environment === 'test'" (click)="onChangeEnvironment('test')">
-            Test
-        </div>
-        </div>
-        <div class="new" (click)="onNew()">
-        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
-        </div>
-    </div>
-    <div class="items">
-        <div class="item" *ngFor="let response of responses">
-        <div class="status-code">
-            {{ response.response.statusCode }}
-        </div>
-        <div class="name" [routerLink]="'./'+response.id">
-            {{ response.name }}
-        </div>
-        <div class="options">
-            <div class="default">
-            <i class="material-icons btn-icon btn-sky-icon">star</i>
+<section class="section">
+    <div class="c-wrapper">
+        <div class="c-tabs">
+            <div class="item c-tab-item" *ngFor="let item of tabAll" [class.active]="tabSelector.id === item.id" (click)="onSelectMenu(item)">
+                {{ item.title }}
+            </div>
+            <div class="options">
+                <div class="new" (click)="onNew()">
+                    <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+                </div>
             </div>
         </div>
+        <div class="c-list">
+            <ng-container *ngIf="!isLoading">
+                <div class="c-list-item response disable-scale" [class.new-response]="response.isNew" *ngFor="let response of responses">
+                    <div class="default" [class.active]="response.isDefault" (click)="setDefault(response)">
+                        <i class="material-icons btn-icon btn-sky-icon">star</i>
+                    </div>
+                    <div class="status-code">
+                        {{ response.response.statusCode }}
+                    </div>
+                    <div class="name" [routerLink]="'./'+response.id">
+                        {{ response.name }}
+                    </div>
+                    <div class="options">
+                        <div class="delete" (click)="deleteResponse(response.id)">
+                            <i class="material-icons btn-icon">clear</i>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <empty-item
+                [items]="responses"
+                [isLoading]="isLoading"
+                [icon]="'folder_open'"
+                [message]="'Empty Response'"></empty-item>
         </div>
     </div>
 </section>
-<section class="section form-inline between">
+<section class="section form-inline content-between">
     <div class="">
-        <button class="btn btn-sky" (click)="onSubmit()">Save</button>
+        <button class="btn btn-sky" (click)="saveEndpoint()">Save</button>
     </div>
     <div class="">
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger" (click)="deleteEndpoint()">Delete</button>
     </div>
 </section>

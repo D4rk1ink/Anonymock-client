@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { MemberService } from 'app/member-management/services/member.service'
 import * as database from 'app/core/services/database.service'
 import * as membersAction from 'app/member-management/actions/members.action'
+import * as otherAction from 'app/core/actions/other.action'
 import * as fromMembers from 'app/member-management/reducers'
 
 @Component({
@@ -14,19 +15,27 @@ export class MembersComponent implements OnInit {
 
   public all: any[]
   public members: any[]
+  public isLoading: boolean
 
   constructor (
     private store: Store<any>,
     private memberService: MemberService
   ) {
     this.store.select(fromMembers.getMembers)
-      .subscribe(members => {
-        this.all = members
-        this.members = members.filter(member => member.isApproved)
+      .subscribe(res => {
+        this.isLoading = res.isLoading
+        this.all = res.items
+        this.members = res.items.filter(member => member.isApproved)
       })
   }
 
   ngOnInit () {
+  }
+
+  modalUserPopup (user) {
+    this.store.dispatch(new otherAction.OtherUserPopupAction(user))
+    this.store.dispatch(new otherAction.IsOtherUserPopupAction(true))
+    this.store.dispatch(new otherAction.IsProfilePopupAction())
   }
 
   onAdmin (id, isAdmin) {
@@ -43,7 +52,7 @@ export class MembersComponent implements OnInit {
             }
             return user
           })
-          this.store.dispatch(new membersAction.MembersAction(this.all))
+          this.store.dispatch(new membersAction.ItemsAction(this.all))
         }
       })
   }
@@ -62,7 +71,7 @@ export class MembersComponent implements OnInit {
             }
             return user
           })
-          this.store.dispatch(new membersAction.MembersAction(this.all))
+          this.store.dispatch(new membersAction.ItemsAction(this.all))
         }
       })
   }

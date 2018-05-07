@@ -1,0 +1,33 @@
+<div class="c-header content-between">
+  <h4>Scraper</h4>
+  <div class="options">
+    <search-input (out)="onSearch($event)"></search-input>
+  </div>
+</div>
+<div class="c-body">
+  <section class="section">
+    <div class="form-inline">
+      <div class="w-100 form-input">
+        <label class="label-title">
+          Base API
+        </label>
+        <input type="text" name="name" [(ngModel)]="baseAPI" (ngModelChange)="onBaseAPIChange($event)" placeholder="base" />
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <http-messages
+      [headerTab]="true"
+      [queryStringTab]="true"
+      [header]="http.headers"
+      [queryString]="http.queryString"
+      [disableShadow]="true"
+      (outputHeader)="saveHeaders($event)"
+      (outputQueryString)="saveQueryString($event)"
+    ></http-messages>
+  </section>
+  <div class="footer content-between">
+    <button class="btn btn-sky" (click)="onSave()">Save</button>
+    <button class="btn btn-sky" (click)="onScrap()">Scrap API</button>
+  </div>
+</div>

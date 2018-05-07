@@ -1,13 +1,34 @@
 <div class="wrapper">
-    <left-menu></left-menu>
-    <div class="right">
-        <!-- <div class="top-bar">
-            <div class="logout">
-                LOGOUT
+    <div class="top-bar">
+        <div class="top-bar-fixed">
+            <div class="banner"></div>
+            <div class="content">
+                <div class="profile">
+                    <div class="img-profile" [class.active]="isProfileDropdown" id="top-bar-img-profile" (click)="profileDropdown()">
+                        <img [src]="user.picture"/>
+                    </div>
+                    <div class="profile-dropdown" *ngIf="isProfileDropdown">
+                        <profile-dropdown></profile-dropdown>
+                    </div>
+                </div>
             </div>
-        </div> -->
+        </div>
+    </div>
+    <div class="body">
+        <div class="left">
+            <left-menu></left-menu>
+        </div>
         <div class="content">
             <router-outlet></router-outlet>
         </div>
     </div>
+</div>
+<div class="confirm-box">
+    <confirm-box></confirm-box>
+</div>
+<div class="notification">
+    <notification *ngFor="let data of notification" [data]="data" (destroy)="destroyNotification($event)"></notification>
+</div>
+<div class="profile-popup" *ngIf="isProfilePopup">
+    <profile-popup></profile-popup>
 </div>

@@ -1,33 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { EndpointService } from 'app/project/services/endpoint.service';
-import { MethodService } from 'app/project/services/method.service';
-import { FolderService } from 'app/project/services/folder.service';
+import { NotificationService } from 'app/shared/services/notification.service'
+import { EndpointService } from 'app/project/services/endpoint.service'
+import { MethodService } from 'app/project/services/method.service'
+import { FolderService } from 'app/project/services/folder.service'
+import { slideAnimation } from 'app/shared/animations/slide.animation'
 import * as endpointAction from 'app/project/actions/endpoint.action'
+import * as foldersAction from 'app/project/actions/folders.action'
+import * as methodsAction from 'app/project/actions/methods.action'
 import * as fromProject from 'app/project/reducers'
 
 @Component({
   selector: 'app-endpoint',
   templateUrl: './endpoint.component.html',
-  styleUrls: ['./endpoint.component.scss']
+  styleUrls: ['./endpoint.component.scss'],
 })
 export class EndpointComponent implements OnInit {
 
   public endpoint: any
   public responses: any[]
-  public folders: any[]
-  public methods: any[]
 
   constructor (
     private store: Store<any>,
+    private notificationService: NotificationService,
     private endpointService: EndpointService,
     private methodService: MethodService,
     private folderService: FolderService,
     private route: ActivatedRoute
   ) {
-    this.folders = []
-    this.methods = []
     this.getFolders()
     this.getMethods()
     this.store.select(fromProject.getEndpoint)
@@ -53,47 +54,23 @@ export class EndpointComponent implements OnInit {
   ngOnInit () {
   }
 
-  onNameChange (name) {
-    this.store.dispatch(new endpointAction.NameAction(name))
-  }
-
-  onPathChange (path) {
-    this.store.dispatch(new endpointAction.PathAction(path))
-  }
-
-  onMethodChange (method) {
-    this.store.dispatch(new endpointAction.MethodAction({ id: method }))
-  }
-
-  onFolderChange (folder) {
-    this.store.dispatch(new endpointAction.FolderAction({ id: folder }))
-  }
-
   getFolders () {
-    this.store.select(fromProject.getProjectId)
-      .subscribe(projectId => {
-        if (!projectId) return
-        const payload = {
-          project: projectId,
-          search: '',
-          all: true
+    this.folderService.search({ all: true })
+      .subscribe(res => {
+        if (!res.error) {
+          this.store.dispatch(new foldersAction.ItemsAction(res.data.folders))
+          this.store.dispatch(new foldersAction.IsLoadingAction(true))
         }
-        this.folderService.search(payload)
-          .subscribe(res => {
-            if (!res.error) {
-              this.folders = res.data.folders
-            }
-          })
       })
   }
-  
+
   getMethods () {
     this.methodService.search()
       .subscribe(res => {
         if (!res.error) {
-          this.methods = res.data
+          this.store.dispatch(new methodsAction.ItemsAction(res.data))
+          this.store.dispatch(new methodsAction.IsLoadingAction(true))
         }
       })
   }
-
 }

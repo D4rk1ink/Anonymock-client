@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div class="box">
+    <div class="header content-center {{ data.type }}">
+      <i class="material-icons btn-icon">{{ (data.type === 'success') ? 'done' : 'error' }}</i>
+    </div>
+    <div class="content">
+      {{ data.message }}
+    </div>
+    <div class="close">
+      <i class="material-icons btn-icon" (click)="close()">clear</i>
+    </div>
+  </div>
+</div>

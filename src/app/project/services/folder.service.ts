@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs/Observable'
 import * as constants from 'app/shared/constants'
 
 
@@ -16,12 +16,27 @@ export class FolderService {
     return this.http.post(url, payload)
   }
 
+  update (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/folder/' + id
+    return this.http.patch(url, payload)
+  }
+
   getById (id): Observable<any> {
     const url = constants.BASE_API + '/project/folder/' + id
     return this.http.get(url)
   }
 
+  delete (id): Observable<any> {
+    const url = constants.BASE_API + '/project/folder/' + id
+    return this.http.delete(url)
+  }
+
   search (payload): Observable<any> {
+    if (payload.all === true) {
+      payload = {
+        search: ''
+      }
+    }
     const url = constants.BASE_API + '/project/search/folder'
     return this.http.get(url, { params: payload })
   }

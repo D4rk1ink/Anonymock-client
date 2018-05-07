@@ -1,0 +1,6 @@
+<entity-group
+    *ngIf="_params.length > 0"
+    [title]="'Params'"
+    [entities]="_params"
+    [autoKey]="true"
+    (save)="saveParam($event)"></entity-group>

@@ -1,42 +1,52 @@
-<div class="">
-  <h2>Folders</h2>
-</div>
-
-<search-input (out)="onSearch($event)"></search-input>
-<div class="folders">
-  <div class="header">
-    <div class="title">
-      Folders
-    </div>
-    <div class="new" (click)="onNew()">
-      <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+<div class="c-wrapper">
+  <div class="c-header content-between">
+    <h4>Folders</h4>
+    <div class="options">
+      <search-input (out)="onSearch($event)"></search-input>
+      <div class="new align-center" (click)="onNew()">
+        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
+      </div>
     </div>
   </div>
-  <div class="items">
-    <div class="item new-folder" *ngIf="isNewFolder">
+  <div class="c-list">
+    <div class="c-list-item folder new-folder" [class.none]="!isNewFolder">
       <div class="id">
         new
       </div>
       <div class="name">
         <div class="input">
-          <form #form="ngForm" (ngSubmit)="onSubmitNewFolder(form.value)">
-            <input type="text" name="name" class="input-name" placeholder="New Folder" ngModel/>
+          <form #form="ngForm" (ngSubmit)="submitNewFolder(form.value)">
+            <input type="text" name="name" class="input-name" placeholder="New Folder" ngModel (blur)="onNewBlur()" />
           </form>
         </div>
       </div>
     </div>
-    <div class="item" *ngFor="let folder of folders">
-      <div class="id">
-        {{ folder.id }}
-      </div>
-      <div class="name" [routerLink]="'./'+folder.id">
-        {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
-      </div>
-      <div class="options">
-        <div class="rename">
-          <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item folder" *ngFor="let folder of folders; let i = index">
+        <div class="id color-theme">
+          {{ folder.id }}
+        </div>
+        <div class="name" [class.none]="isRename === folder.id" [routerLink]="'./'+folder.id">
+          {{ folder.name }} <label class="count">({{ folder.countEndpoints }})</label>
+        </div>
+        <form #form="ngForm" (ngSubmit)="submitRename(folder.id, form.value)" class="rename" [class.none]="isRename !== folder.id">
+          <input type="text" name="rename" class="input-rename-{{ folder.id }}" placeholder="{{ folder.name }}" ngModel (blur)="onRenameBlur()" />
+        </form>
+        <div class="options" [class.none]="isRename === folder.id">
+          <div class="rename">
+            <i class="material-icons btn-icon btn-sky-icon" (click)="onRename(folder)">mode_edit</i>
+          </div>
+          <div class="delete">
+            <i class="material-icons btn-icon btn-danger-icon" (click)="onDelete(folder)">clear</i>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <empty-item
+      *ngIf="!isNewFolder"
+      [items]="folders"
+      [isLoading]="isLoading"
+      [icon]="'folder_open'"
+      [message]="'Folders Not Found'"></empty-item>
   </div>
 </div>

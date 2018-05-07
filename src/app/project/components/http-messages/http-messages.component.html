@@ -1,0 +1,33 @@
+<div class="c-wrapper" [class.disable-shadow]="disableShadow">
+  <div class="c-tabs">
+    <div class="c-tab-item item" *ngFor="let item of tab" [class.active]="tabSelector === item.id" (click)="onSelectMenu(item.id)">
+      {{ item.title }}
+    </div>
+    <div class="options">
+      <div class="find-one" *ngIf="isFindOneInput">
+        <div class="checkbox">
+          <input type="checkbox" [ngModel]="isFindOne" (ngModelChange)="saveIsFindOne($event)" [readOnly]="readOnly">
+          <span class="checkmark"></span>
+        </div>
+        Find One
+      </div>
+      <div class="delay" *ngIf="delayInput">
+        Delay : <input type="text" name="delay" [ngModel]="delay" (keypress)="onNumberKeyPress($event)" (blur)="saveDelay($event.target.value)" [readOnly]="readOnly"> ms
+      </div>
+      <div class="status" *ngIf="statusCodeInput">
+        Status : <input type="text" name="status" maxlength="3" [ngModel]="statusCode" (keypress)="onNumberKeyPress($event)" (blur)="saveStatusCode($event.target.value)" [readOnly]="readOnly">
+      </div>
+    </div>
+  </div>
+  <div class="content" [ngSwitch]="tabSelector">
+    <ng-container *ngSwitchCase="'T01'">
+      <form-multi-view [data]="headers" [readOnly]="readOnly" (save)="saveHeaders($event)"></form-multi-view>
+    </ng-container>
+    <ng-container *ngSwitchCase="'T02'">
+      <json-multi-view [data]="body" [readOnly]="readOnly" (save)="saveBody($event)"></json-multi-view>
+    </ng-container>
+    <ng-container *ngSwitchCase="'T03'">
+      <form-multi-view [data]="queryString" [readOnly]="readOnly" (save)="saveQueryString($event)"></form-multi-view>
+    </ng-container>
+  </div>
+</div>

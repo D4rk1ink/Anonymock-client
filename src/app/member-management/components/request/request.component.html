@@ -1,10 +1,17 @@
-<div class="member-list">
-  <div class="member" *ngFor="let request of requests">
-    <div class="name w-30">{{ request.firstname }} {{ request.lastname }}</div>
-    <div class="email w-40">{{ request.email }}</div>
-    <div class="options">
-      <div class="approve" (click)="onApprove(request.id)">Approve</div>
-      <div class="reject" (click)="onReject(request.id)">Reject</div>
+<div class="c-list">
+  <ng-container *ngIf="!isLoading">
+    <div class="c-list-item member" *ngFor="let request of requests">
+      <div class="name w-30">{{ request.firstname }} {{ request.lastname }}</div>
+      <div class="email w-40">{{ request.email }}</div>
+      <div class="options">
+        <div class="approve" (click)="onApprove(request.id)">Approve</div>
+        <div class="reject" (click)="onReject(request.id)">Reject</div>
+      </div>
     </div>
-  </div>
+  </ng-container>
+  <empty-item
+    [items]="requests"
+    [isLoading]="isLoading"
+    [icon]="'inbox'"
+    [message]="'Request Not Found'"></empty-item>
 </div>

@@ -2,6 +2,7 @@ import { Action, ActionReducer } from '@ngrx/store'
 import * as endpointsAction from '../actions/endpoints.action'
 
 export interface State {
+    isLoading: boolean
     search: string
     page: number
     limitPage: number
@@ -9,6 +10,7 @@ export interface State {
 }
 
 const initialState: State = {
+    isLoading: true,
     search: '',
     page: 1,
     limitPage: 1,
@@ -17,27 +19,34 @@ const initialState: State = {
 
 export function reducer (state = initialState, action: endpointsAction.Actions): State {
     switch (action.type) {
-        case endpointsAction.SEARCH: 
+        case endpointsAction.ISLOADING:
+            return {
+                ...state,
+                isLoading: action.payload
+            }
+        case endpointsAction.SEARCH:
             return {
                 ...state,
                 search: action.payload
             }
-        case endpointsAction.PAGE: 
+        case endpointsAction.PAGE:
             return {
                 ...state,
                 page: action.payload
             }
-        case endpointsAction.LIMITPAGE: 
+        case endpointsAction.LIMITPAGE:
             return {
                 ...state,
                 limitPage: action.payload
             }
-        case endpointsAction.ITEMS: 
+        case endpointsAction.ITEMS:
             return {
                 ...state,
                 items: action.payload
             }
-        default: 
+        case endpointsAction.CLEAR:
+            return initialState
+        default:
             return state
     }
 }

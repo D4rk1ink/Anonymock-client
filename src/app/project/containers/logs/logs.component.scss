@@ -1,0 +1,74 @@
+@import "colors";
+
+:host {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.c-header {
+    .options {
+        display: flex;
+        align-items: center;
+        .clear {
+            padding-left: 10px;
+            color: $danger_2;
+            font-weight: 600;
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+}
+.log {
+    display: block;
+    .main-row {
+        padding: 2px 0px;
+        display: flex;
+        align-items: center;
+        .id {
+            color: $sky_2;
+            width: 80px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .name {
+            padding-left: 10px;
+            font-weight: 400;
+        }
+        .method {
+            width: 60px;
+            display: flex;
+            justify-content: center;
+        }
+        .path {
+            flex: 1;
+        }
+        .date {
+            width: 150px;
+        }
+    }
+    .expand {
+        max-height: 0px;
+        overflow: hidden;
+        transition: max-height .5s;
+        .log-request,
+        .log-response {
+            
+        }
+    }
+}
+.log.active {
+    .main-row {
+        padding-bottom: 7px;
+    }
+    .expand {
+        max-height: 999px;
+        margin-top: 15px;
+    }
+}
+.pagging {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

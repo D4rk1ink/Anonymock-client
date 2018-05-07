@@ -1,42 +1,67 @@
-<div class="add-search">
-  <div class="select-option">
-    <label class="select">
-      <select [(ngModel)]="selectOption" (ngModelChange)="onSelect()">
-        <option value="add">ADD</option>
-        <option value="search">SEARCH</option>
-      </select>
-    </label>
-  </div>
-  <div class="text-input">
-    <input-add-member *ngIf="selectOption === 'add';else input_search" [users]="users" (keyinput)="onInput($event)" (add)="onAdd($event)"></input-add-member>
-    <ng-template #input_search>
-      <input type="text" name="input" class="input" [(ngModel)]="search" (keyup)="onInput($event.target.value)" />
-    </ng-template>
-  </div>
-</div>
-<div class="member-management">
-  <div class="detail">
-      Member : {{ members.length }}
-  </div>
-  <div class="member-list">
-    <div class="member" *ngFor="let member of members">
-      <div class="position">
-        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isManager;else normal_member" />
-        <ng-template #normal_member>
-            <div class="circle"></div>
-        </ng-template>
-      </div>
-      <div class="name w-30">
-        {{ member.user.firstname }} {{ member.user.lastname }}
-      </div>
-      <div class="email w-30">
-        {{ member.user.email }}
-      </div>
+<div class="c-wrapper">
+  <div class="c-header content-between">
+      <h4>Member</h4>
       <div class="options">
-        <div class="remove">
-          <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.user.id)" >exit_to_app</i>
+        <search-input (out)="onSearch($event)"></search-input>
+      </div>
+  </div>
+  <!-- For Member -->
+  <div class="c-list" *ngIf="!isSearchUser" >
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item member" *ngFor="let member of members; let i = index">
+        <div class="position">
+          <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isManager;else normal_member" (click)="onManager(member.user, !member.isManager)"/>
+          <ng-template #normal_member>
+              <div class="circle" (click)="onManager(member.user, !member.isManager)"></div>
+          </ng-template>
+        </div>
+        <div class="info" (click)="modalUserPopup(member.user)">
+          <div class="name w-30">
+            {{ member.user.firstname }} {{ member.user.lastname }}
+          </div>
+          <div class="email w-30">
+            {{ member.user.email }}
+          </div>
+        </div>
+        <div class="options">
+          <div class="exit" *ngIf="isManager">
+            <i class="material-icons btn-icon btn-danger-icon" (click)="onExit(member.user)">exit_to_app</i>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <empty-item
+      [items]="members"
+      [isLoading]="isLoading"
+      [icon]="'people'"
+      [message]="'Members Not Found'"></empty-item>
+  </div>
+  <!-- For Add Member -->
+  <div class="c-list for-add" *ngIf="isSearchUser">
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item member" *ngFor="let user of users" (click)="onAdd(user)">
+        <div class="info">
+          <div class="name w-30">
+            {{ user.firstname }} {{ user.lastname }}
+          </div>
+          <div class="email w-30">
+            {{ user.email }}
+          </div>
+        </div>
+        <div class="options">
+          <div class="is-member" *ngIf="user.isMember">
+            MEMBER
+          </div>
+          <div class="is-not-member" *ngIf="!user.isMember">
+            ADD
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <empty-item
+      [items]="users"
+      [isLoading]="isLoading"
+      [icon]="'person'"
+      [message]="'Users Not Found'"></empty-item>
   </div>
 </div>

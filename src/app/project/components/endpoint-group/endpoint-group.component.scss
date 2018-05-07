@@ -1,99 +1,59 @@
 @import "colors";
 
-.endpoints {
-    border: 1px solid $gray_1;
-    border-radius: 2px;
-    background-color: $white;
-    .header {
-        cursor: pointer;
+.c-header {
+    .options {
         display: flex;
-        align-items: center;
-        padding: 10px;
-        max-height: 40px;
-        border-bottom: 1px solid $gray_1;
-        .title {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            
-        }
         .new {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+            margin-left: 10px;
         }
     }
-    .items {
-        padding: 10px 0;
-        .item {
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            .id {
-                color: $sky_2;
-                width: 80px;
-                font-size: 12px;
-                cursor: pointer;
-            }
-            .method {
-                width: 80px;
-                display: flex;
-                justify-content: center;
-                .toggle-method {
-                    padding: 2px 8px;
-                    border-radius: 6px;
-                    color: $white;
-                    font-size: 10px;
-                    font-weight: 400;
-                }
-                .toggle-get {
-                    background-color: $get_color;
-                }
-                .toggle-post {
-                    background-color: $post_color;
-                }
-                .toggle-put {
-                    background-color: $put_color;
-                }
-                .toggle-patch {
-                    background-color: $patch_color;
-                }
-                .toggle-delete {
-                    background-color: $delete_color;
-                }
-            }
-            .name {
-                padding-left: 10px;
-                font-weight: 400;
-                flex: 1;
-            }
-            .options {
-                width: 100px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                opacity: 0.1;
-                transition: opacity .2s;
-                .copy,
-                .share,
-                .edit {
-                    padding: 0 5px;
-                    display: flex;
-                    align-items: center;
-                }
-            }
-        }
-        .item:hover {
-            background-color: rgba($sky_0, 0.1);
-            .options {
-                opacity: 1;
-            }
-        }
+}
+.new-endpoint {
+    animation: itemExpand .5s;
+}
+.endpoint {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    .id {
+        color: $sky_2;
+        width: 80px;
+        font-size: 12px;
+        cursor: pointer;
     }
-    .pagging {
-        padding: 10px;
+    .method {
+        width: 80px;
+        display: flex;
+        justify-content: center;
+    }
+    .name {
+        padding-left: 10px;
+        font-weight: 400;
+        flex: 1;
+    }
+    .options {
+        width: 100px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
+        opacity: 0.1;
+        transition: opacity .2s;
+        .copy,
+        .share,
+        .edit {
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+        }
     }
+}
+.endpoint:hover {
+    .options {
+        opacity: 1;
+    }
+}
+.pagging {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

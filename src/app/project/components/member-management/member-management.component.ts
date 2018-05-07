@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Component, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
 import { MemberService } from 'app/project/services/member.service'
-import * as projectAction from 'app/project/actions/project.action'
 import * as fromProject from 'app/project/reducers'
-import * as fromProjectReducer from 'app/project/reducers/project.reducer'
+import * as database from 'app/core/services/database.service'
+import * as otherAction from 'app/core/actions/other.action'
 
 @Component({
   selector: 'member-management',
@@ -13,11 +13,13 @@ import * as fromProjectReducer from 'app/project/reducers/project.reducer'
 })
 export class MemberManagementComponent implements OnInit {
 
+  public isLoading: boolean
+  public isManager: boolean
   public projectId: string
   public members: any[]
   public users: any[]
   public search: string
-  public selectOption: string
+  public isSearchUser: boolean
 
   public searchSub: Subscription
 
@@ -25,33 +27,65 @@ export class MemberManagementComponent implements OnInit {
     private store: Store<any>,
     private memberService: MemberService
   ) {
-    this.selectOption = 'search'
+    this.isLoading = true
     this.members = []
     this.users = []
-    this.store.select(fromProject.getProjectId)
-      .subscribe(id => {
-        this.projectId = id
-        this.memberService.searchMember({
-          project: id,
-          search: ''
-        })
-          .subscribe(res => {
-            if (!res.error) {
-              this.members = res.data
-            }
-          })
+    this.search = ''
+    this.store.select(fromProject.getProject)
+      .subscribe(project => {
+        this.projectId = project.id
+        this.isManager = project.isManager
+        this.searchMember()
       })
   }
 
   ngOnInit () {
   }
 
-  onExit (id) {
-    console.log(id)
+  modalUserPopup (user) {
+    this.store.dispatch(new otherAction.OtherUserPopupAction(user))
+    this.store.dispatch(new otherAction.IsOtherUserPopupAction(true))
+    this.store.dispatch(new otherAction.IsProfilePopupAction())
+  }
+
+  onExit (user) {
+    if (this.isManager && !this.isMyself(user.id)) {
+      const payload = {
+        project: this.projectId,
+        user: user.id
+      }
+      this.memberService.exit(payload)
+        .subscribe(res => {
+          if (!res.error) {
+            this.members = this.members.filter(member => member.user.id !== user.id)
+          }
+        })
+    }
+  }
+
+  onManager (user, isManager) {
+    if (this.isManager && !this.isMyself(user.id)) {
+      const payload = {
+        project: this.projectId,
+        user: user.id,
+        isManager: isManager
+      }
+      this.memberService.manager(payload)
+        .subscribe(res => {
+          if (!res.error) {
+            this.members = this.members.map(member => {
+              if (member.user.id === user.id) {
+                member.isManager = res.data.isManager
+              }
+              return member
+            })
+          }
+        })
+    }
   }
 
   onAdd (user) {
-    if (!user.isMember) {
+    if (this.isManager && !user.isMember) {
       const payload = {
         project: this.projectId,
         user: user.id
@@ -59,25 +93,26 @@ export class MemberManagementComponent implements OnInit {
       this.memberService.addMember(payload)
         .subscribe(res => {
           if (!res.error) {
-            this.members = [res.data, ...this.members]
+            this.users = this.users.map(_user => {
+              if (user.id === _user.id) {
+                _user.isMember = true
+              }
+              return _user
+            })
           }
         })
     }
   }
 
-  onInput (text) {
+  onSearch (text) {
     this.search = text
-    if (this.selectOption === 'add') { 
+    this.isLoading = true
+    if (new RegExp('^add:(.*)').test(text)) {
+      this.search = new RegExp('^add:(.*)').exec(text).slice(1).pop()
+      this.isSearchUser = true
       this.searchUser()
-    } else if (this.selectOption === 'search') {
-      this.searchMember()
-    }
-  }
-
-  onSelect () {
-    this.search = ''
-    this.users = []
-    if (this.selectOption === 'search') {
+    } else {
+      this.isSearchUser = false
       this.searchMember()
     }
   }
@@ -97,6 +132,7 @@ export class MemberManagementComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           this.users = res.data
+          this.isLoading = false
         }
       })
   }
@@ -109,8 +145,13 @@ export class MemberManagementComponent implements OnInit {
       .subscribe(res => {
         if (!res.error) {
           this.members = res.data
+          this.isLoading = false
         }
       })
+  }
+
+  isMyself (id) {
+    return database.getUser().id === id
   }
 
 }

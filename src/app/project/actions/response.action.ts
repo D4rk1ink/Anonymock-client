@@ -1,9 +1,17 @@
 import { Action } from '@ngrx/store'
 
+export const ALL = '[Response] All'
 export const ID = '[Response] Id'
 export const NAME = '[Response] Name'
 export const CONDITION = '[Response] Condition'
 export const RESPONSE = '[Response] Response'
+export const CLEAR = '[Response] Clear'
+
+export class AllAction implements Action {
+    readonly type = ALL
+
+    constructor (public payload) { }
+}
 
 export class IdAction implements Action {
     readonly type = ID
@@ -29,8 +37,16 @@ export class ResponseAction implements Action {
     constructor (public payload) { }
 }
 
+export class ClearAction implements Action {
+    readonly type = CLEAR
+
+    constructor () { }
+}
+
 export type Actions
-= IdAction
+= AllAction
+| IdAction
 | NameAction
 | ConditionAction
 | ResponseAction
+| ClearAction

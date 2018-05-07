@@ -1,18 +1,1 @@
-<div class="">
-  <h2>Member Management</h2>
-</div>
-
-<search-input (out)="onSearch($event)"></search-input>
-
-<div class="management">
-  <div class="tabs">
-    <div class="item" *ngFor="let item of menu" [class.active]="menuSelector === item.id" (click)="onSelectMenu(item.id)">
-      {{ item.title }}
-    </div>
-  </div>
-  <div class="content" [ngSwitch]="menuSelector">
-    <members *ngSwitchCase="'M01'"></members>
-    <request *ngSwitchCase="'M02'"></request>
-  </div>
-</div>
-
+<router-outlet></router-outlet>

@@ -1,40 +1,47 @@
-<div class="endpoints">
-  <div class="header">
-    <div class="title">
-      Endpoints
-    </div>
-    <div class="new" (click)="onNew()">
-      <i class="material-icons btn-icon btn-sky-icon">add_box</i>
-    </div>
-  </div>
-  <div class="items">
-    <div class="item" *ngFor="let endpoint of endpoints">
-      <div class="id">
-        {{ endpoint.id }}
-      </div>
-      <div class="method">
-        <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
-          {{ endpoint.method.name }}
-        </span>
-      </div>
-      <div class="name" (click)="onLink(endpoint.id)">
-        {{ endpoint.name }}
-      </div>
-      <div class="options">
-        <div class="copy">
-          <i class="material-icons btn-icon btn-sky-icon">content_copy</i>
-        </div>
-        <div class="share">
-          <i class="material-icons btn-icon btn-sky-icon">share</i>
-        </div>
-        <div class="edit">
-          <i class="material-icons btn-icon btn-sky-icon">mode_edit</i>
-        </div>
+<div class="c-wrapper">
+  <div class="c-header content-between">
+    <h4>Endpoints</h4>
+    <div class="options">
+      <search-input (out)="onSearch($event)"></search-input>
+      <div class="new align-center" *ngIf="canNew" (click)="onNew()">
+        <i class="material-icons btn-icon btn-sky-icon">add_box</i>
       </div>
     </div>
   </div>
-  <div class="pagging">
-    <div class="" (click)="onPage(-1)">Prev</div>
-    <div class="" (click)="onPage(+1)">Next</div>
+  <div class="c-list">
+    <ng-container *ngIf="!isLoading">
+      <div class="c-list-item endpoint" [class.new-endpoint]="endpoint.isNew" *ngFor="let endpoint of endpoints; let i = index">
+        <div class="id color-theme">
+          {{ endpoint.id }}
+        </div>
+        <div class="method">
+          <span class="toggle-method toggle-{{ endpoint.method.name | lowercase }}">
+            {{ endpoint.method.name }}
+          </span>
+        </div>
+        <div class="name" (click)="onLink(endpoint.id)">
+          {{ endpoint.name }}
+        </div>
+        <div class="options">
+          <div class="copy">
+            <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="copyPath(endpoint.path)">content_copy</i>
+          </div>
+          <div class="share">
+            <i class="material-icons btn-icon btn-sky-icon" ngxClipboard  [cbContent]="shareEndpoint(endpoint.id)">share</i>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <empty-item
+      [items]="endpoints"
+      [isLoading]="isLoading"
+      [icon]="'inbox'"
+      [message]="'Endpoint Not Found'"></empty-item>
+  </div>
+  <div class="c-footer" *ngIf="limitPage > 1">
+    <div class="pagging">
+      <div class=""><label *ngIf="page > 1" (click)="onPage(-1)">Prev</label></div>
+      <div class=""><label *ngIf="page < limitPage" (click)="onPage(+1)">Next</label></div>
+    </div>
   </div>
 </div>

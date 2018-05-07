@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
 import { HttpClient } from '@angular/common/http'
 import * as constants from 'app/shared/constants'
 
@@ -17,6 +17,11 @@ export class UserService {
 
   update (id, payload): Observable<any> {
     const url = constants.BASE_API + '/user/' + id
+    return this.http.patch(url, payload)
+  }
+
+  uploadPicture (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/user/' + id + '/picture'
     return this.http.patch(url, payload)
   }
 

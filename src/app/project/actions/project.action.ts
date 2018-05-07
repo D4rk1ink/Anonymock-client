@@ -7,6 +7,7 @@ export const STATUS = '[Project] Status'
 export const DESCRIPTION = '[Project] Description'
 export const REPOSITORY = '[Project] Repository'
 export const ENVIRONMENTS = '[Project] Environments'
+export const ISMANAGER = '[Project] IsManager'
 
 export class ProjectAction implements Action {
     readonly type = PROJECT
@@ -50,6 +51,12 @@ export class EnvironmentsAction implements Action {
     constructor (public payload) { }
 }
 
+export class IsManagerAction implements Action {
+    readonly type = ISMANAGER
+
+    constructor (public payload) { }
+}
+
 export type Actions
 = ProjectAction
 | IdAction
@@ -58,3 +65,4 @@ export type Actions
 | DescriptionAction
 | RepositoryAction
 | EnvironmentsAction
+| IsManagerAction

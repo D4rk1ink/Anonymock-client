@@ -1,17 +1,26 @@
-<div class="member-list">
-  <div class="member" *ngFor="let member of members">
-    <div class="admin">
-      <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isAdmin;else normal_member" (click)="onAdmin(member.id, !member.isAdmin)" />
-      <ng-template #normal_member>
-          <div class="circle" (click)="onAdmin(member.id, !member.isAdmin)"></div>
-      </ng-template>
-    </div>
-    <div class="name w-30">{{ member.firstname }} {{ member.lastname }}</div>
-    <div class="email w-40">{{ member.email }}</div>
-    <div class="options">
-      <div class="deactivate" [class.active]="member.deactivated">
-        <i class="material-icons btn-icon btn-danger-icon" (click)="onDeactivate(member.id, !member.deactivated)">lock_outline</i>
+<div class="c-list">
+  <ng-container *ngIf="!isLoading">
+    <div class="c-list-item member" *ngFor="let member of members">
+      <div class="admin">
+        <img src="/assets/icons/crown.png" class="img-icon" *ngIf="member.isAdmin;else normal_member" (click)="onAdmin(member.id, !member.isAdmin)" />
+        <ng-template #normal_member>
+            <div class="circle" (click)="onAdmin(member.id, !member.isAdmin)"></div>
+        </ng-template>
+      </div>
+      <div class="info" (click)="modalUserPopup(member)">
+        <div class="name w-30">{{ member.firstname }} {{ member.lastname }}</div>
+        <div class="email w-40">{{ member.email }}</div>
+      </div>
+      <div class="options">
+        <div class="deactivate" [class.active]="member.deactivated">
+          <i class="material-icons btn-icon" (click)="onDeactivate(member.id, !member.deactivated)">lock_outline</i>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <empty-item
+    [items]="members"
+    [isLoading]="isLoading"
+    [icon]="'inbox'"
+    [message]="'Member Not Found'"></empty-item>
 </div>

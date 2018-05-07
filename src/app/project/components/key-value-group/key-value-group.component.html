@@ -2,6 +2,11 @@
     <key-value-item 
         [index]="i"
         [entity]="entity"
-        (saveTemp)="saveTemp($event)"
-        (delete)="onDelete(i)"></key-value-item>
+        (inputKey)="onInputKey($event)"
+        (inputValue)="onInputValue($event)"
+        (blur)="onBlur($event)"
+        (delete)="onDelete(i)"
+        [disableDelete]="autoKey || readOnly"
+        [keyReadOnly]="autoKey || readOnly"
+        [valueReadOnly]="readOnly"></key-value-item>
 </div>

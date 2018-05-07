@@ -1,13 +1,10 @@
 @import "colors";
 
-.member-list {
-    padding: 10px 0;
-}
 .member {
     display: flex;
-    padding: 10px;
-    display: flex;
     align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
     .admin {
         width: 30px;
         display: flex;
@@ -26,19 +23,20 @@
             opacity: .5;
         }
     }
+    .info {
+        display: flex;
+        flex: 1;
+        padding: 15px 10px;
+    }
     .name {
         cursor: pointer;
         font-weight: 400;
-    }
-    .name:hover {
-        color: $sky_3;
     }
     .email {
         color: $gray_4;
     }
     .options {
         display: flex;
-        flex: 1;
         justify-content: flex-end;
         .deactivate {
             opacity: 0.1;
@@ -50,8 +48,4 @@
             opacity: 1;
         }
     }
-}
-
-.member:hover {
-    background-color: rgba($sky_0, 0.1);
 }

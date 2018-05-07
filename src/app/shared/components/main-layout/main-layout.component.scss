@@ -1,20 +1,84 @@
 @import "colors";
 
 .wrapper {
-    display: flex;
     min-height: 100%;
 }
-.right {
-    flex: 1;
-    .top-bar {
-        height: 60px;
-        background-color: $sky_2;
+.top-bar {
+    position: relative;
+    height: 50px;
+    z-index: 500;
+}
+.top-bar-fixed {
+    display: flex;
+    width: 100%;
+    height: inherit;
+    position: fixed;
+    background-color: #323d48;
+    .banner {
+        width: 200px;
+        background-color: #0c161d;
+    }
+    .content {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        padding: 7px 20px;
+        .profile {
+            position: relative;
+            .img-profile {
+                width: 35px;
+                height: 35px;
+                max-width: 80px;
+                max-height: 80px;
+                border-radius: 360px;
+                border: 1px solid;
+                border-color: rgba($white, 0);
+                background-color: $white;
+                overflow: hidden;
+                cursor: pointer;
+                img {
+                    width: 100%
+                }
+            }
+            .img-profile.active,
+            .img-profile:hover {
+                border-color: $ocean_3;
+            }
+            .profile-dropdown {
+                position: absolute;
+                right: -10px;
+                top: 40px;
+                z-index: 99;
+            }
+        }
+    }
+}
+.body {
+    display: flex;
+    .left {
+
     }
     .content {
         margin: 0 auto;
-        padding: 50px;
+        padding: 50px 0;
         width: 100%;
         max-width: 900px;
         max-width: 1100px;
     }
+}
+.notification {
+    position: fixed;
+    right: 15px;
+    bottom: 100px;
+    z-index: 999;
+}
+.profile-popup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 888;
 }

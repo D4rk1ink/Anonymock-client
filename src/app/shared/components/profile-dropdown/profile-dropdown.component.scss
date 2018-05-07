@@ -1,0 +1,44 @@
+@import "colors";
+
+
+.dropdown {
+    position: relative;
+    box-shadow: 0 10px 20px 0 $gray_2;
+}
+.profile {
+    display: flex;
+    width: 300px;
+    padding: 15px;
+    cursor: pointer;
+    .img-profile {
+        min-width: 80px;
+        min-height: 80px;
+        max-width: 80px;
+        max-height: 80px;
+        border: 1px solid $gray_1;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: $white;
+        img {
+            width: 100%;
+        }
+    }
+    .info {
+        padding-left: 20px;
+        .name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}
+.item {
+    padding: 10px 15px;
+}
+.logout {
+    cursor: pointer;
+    border: 1px solid $gray_0;
+    justify-content: center;
+}
+.logout:hover {
+    background-color: rgba($gray_0, .3);
+}

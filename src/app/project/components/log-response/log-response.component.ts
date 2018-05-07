@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
 
 @Component({
   selector: 'log-response',
@@ -7,21 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogResponseComponent implements OnInit {
 
-  public menuSelector: string
-  public menu: any[] = [
-    { id: 'M01', title: 'Header' },
-    { id: 'M02', title: 'Body' },
-  ]
+  @Input('data') data: any
 
-  constructor () {
-    this.menuSelector = this.menu[0].id
-  }
+  constructor () {}
 
   ngOnInit () {
-  }
-
-  onSelectMenu (id) {
-    this.menuSelector = id
   }
 
 }

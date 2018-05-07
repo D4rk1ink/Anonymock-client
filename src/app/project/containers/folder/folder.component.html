@@ -1,5 +1,3 @@
 <div class="">
-    <h2>Folder: {{ name }}</h2>
+    <endpoint-group [folderId]="folderId" [canNew]="true"></endpoint-group>
 </div>
-<search-input (out)="onSearch($event)"></search-input>
-<endpoint-group [folderId]="folderId"></endpoint-group>

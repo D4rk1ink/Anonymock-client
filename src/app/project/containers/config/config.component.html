@@ -1,67 +1,73 @@
-<div class="">
-    <h2>Config</h2>
+<div class="c-wrapper">
+    <div class="c-header">
+        <h4>Config</h4>
+    </div>
+    <div class="c-body">
+        <section class="section">
+            <div class="form-inline">
+                <div class="w-25 form-input">
+                    <label class="label-title">
+                        ID
+                    </label>
+                    <div class="">
+                        <input type="text" name="id" [ngModel]="project.id" [readonly]="true" />
+                    </div>
+                </div>
+                <div class="w-50 form-input">
+                    <label class="label-title">
+                        Name
+                    </label>
+                    <div class="">
+                        <input type="text" name="name" [(ngModel)]="project.name" placeholder="Name" />
+                    </div>
+                </div>
+                <div class="w-25 form-input">
+                    <label class="label-title">
+                        Status
+                    </label>
+                    <div class="">
+                        <label class="select">
+                            <select name="status" [(ngModel)]="project.status">
+                                <option value="true">Active</option>
+                                <option value="false">Unactive</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="w-100 form-input">
+                    <label class="label-title">
+                        Description
+                    </label>
+                    <div class="">
+                        <textarea placeholder="Descript..." [(ngModel)]="project.description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="w-100 form-input">
+                    <label class="label-title">
+                        Repository
+                    </label>
+                    <div class="">
+                        <input type="text" name="repository" [(ngModel)]="project.repository" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <entity-group [title]="'Environments'" [entities]="project.environments" (save)="onEnvironment($event)"></entity-group>
+        </section>
+    </div>
+    <div class="c-footer">
+        <section class="section form-inline content-between" *ngIf="project.isManager">
+            <div class="">
+                <button class="btn btn-sky" (click)="update()">Save</button>
+            </div>
+            <div class="">
+                <button class="btn btn-danger" (click)="delete()">Delete</button>
+            </div>
+        </section>
+    </div>
 </div>
-<section class="section">
-    <div class="form-inline">
-        <div class="w-25 form-input">
-            <label class="label-title">
-                ID
-            </label>
-            <div class="">
-                <input type="text" name="id" [ngModel]="project.id" [readonly]="true" />
-            </div>
-        </div>
-        <div class="w-50 form-input">
-            <label class="label-title">
-                Name
-            </label>
-            <div class="">
-                <input type="text" name="name" [(ngModel)]="project.name" placeholder="Name" />
-            </div>
-        </div>
-        <div class="w-25 form-input">
-            <label class="label-title">
-                Status
-            </label>
-            <div class="">
-                <label class="select">
-                    <select name="status" [(ngModel)]="project.status">
-                        <option value="true">Active</option>
-                        <option value="false">Unactive</option>
-                    </select>
-                </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-inline">
-        <div class="w-100 form-input">
-            <label class="label-title">
-                Description
-            </label>
-            <div class="">
-                <textarea placeholder="Descript..." [(ngModel)]="project.description"></textarea>
-            </div>
-        </div>
-    </div>
-    <div class="form-inline">
-        <div class="w-100 form-input">
-            <label class="label-title">
-                Repository
-            </label>
-            <div class="">
-                <input type="text" name="repository" [(ngModel)]="project.repository" />
-            </div>
-        </div>
-    </div>
-</section>
-<section class="section">
-    <entity-group [title]="'Environments'" [entities]="project.environments" (out)="onEnvironment($event)"></entity-group>
-</section>
-<section class="section form-inline between">
-    <div class="">
-        <button class="btn btn-sky" (click)="onUpdate()">Save</button>
-    </div>
-    <div class="">
-        <button class="btn btn-danger">Delete</button>
-    </div>
-</section>
