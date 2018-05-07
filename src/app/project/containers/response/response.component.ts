@@ -36,6 +36,11 @@ export class ResponseComponent implements OnInit, OnDestroy {
     this.store.select(fromProject.getEndpoint)
       .subscribe(endpoint => {
         this.endpoint = endpoint
+        const paramPattern = /{{\s*([A-Za-z0-9\-]+)\s*}}/g
+        if (this.endpoint.path && !this.endpoint.path.match(paramPattern)) {
+          this.response.condition.params = []
+          this.store.dispatch(new responseAction.ConditionAction(this.response.condition))
+        }
       })
     // Call service get response
     this.route.params.subscribe(params => {
@@ -57,6 +62,7 @@ export class ResponseComponent implements OnInit, OnDestroy {
   }
 
   saveParams (params) {
+    console.log(params)
     this.response.condition.params = params
     this.store.dispatch(new responseAction.ConditionAction(this.response.condition))
   }

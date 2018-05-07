@@ -15,7 +15,7 @@ const initialState: State = {
     name: '',
     method: {},
     folder: {},
-    path: null,
+    path: '',
     responses: []
 }
 
