@@ -23,8 +23,10 @@
       </section>
       <section class="content">
         <div class="alert" *ngIf="isAlert">
-          <i class="material-icons btn-icon">report_problem</i>
-          <label>Username or Password is invaild</label>
+          <div class="error">
+              <i class="material-icons btn-icon">report_problem</i>
+              <label>Username or Password is invaild</label>
+          </div>
         </div>
         <div class="form-inline">
           <div class="w-60 form-input">
