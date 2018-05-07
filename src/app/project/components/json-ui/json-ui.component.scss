@@ -75,6 +75,7 @@ input.value.boolean {
 .child.hidden {
     visibility: hidden;
     max-height: 0px;
+    overflow: hidden;
 }
 .parent,
 .text {
