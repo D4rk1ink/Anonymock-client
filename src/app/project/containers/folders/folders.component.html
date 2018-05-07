@@ -23,7 +23,7 @@
     </div>
     <ng-container *ngIf="!isLoading">
       <div class="c-list-item folder" *ngFor="let folder of folders; let i = index">
-        <div class="id">
+        <div class="id color-theme">
           {{ folder.id }}
         </div>
         <div class="name" [class.none]="isRename === folder.id" [routerLink]="'./'+folder.id">

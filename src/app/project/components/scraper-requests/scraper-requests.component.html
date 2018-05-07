@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="c-list">
-      <div class="c-list-item request disable-scale disable-border" *ngFor="let request of requests; let i = index"
+      <div class="c-list-item request disable-scale" *ngFor="let request of requests; let i = index"
         [class.animate-item-expand]="request.isNew">
         <div class="default" [class.active]="request.isDefault" (click)="setDefault(request.id)">
           <i class="material-icons btn-icon btn-sky-icon">star</i>
