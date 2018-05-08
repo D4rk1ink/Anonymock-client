@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { NotificationService } from 'app/shared/services/notification.service'
 import { UserService } from 'app/my-account/services/user.service'
 import * as otherAction from 'app/core/actions/other.action'
 import * as userAction from 'app/core/actions/user.action'
@@ -26,6 +27,7 @@ export class ProfilePopupComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
+    private notificationService: NotificationService,
     private userService: UserService,
   ) {
     this.wasInside = true
@@ -128,6 +130,10 @@ export class ProfilePopupComponent implements OnInit {
           this.store.dispatch(new userAction.FirstnameAction(res.data.firstname))
           this.store.dispatch(new userAction.LastnameAction(res.data.lastname))
           this.store.dispatch(new userAction.EmailAction(res.data.email))
+          this.notificationService.notify({
+            type: 'success',
+            message: 'Update successfully.'
+          })
         } else {
         }
       })
