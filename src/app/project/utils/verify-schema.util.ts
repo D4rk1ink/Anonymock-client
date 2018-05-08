@@ -8,15 +8,15 @@ export const verify = (_data: any, schema: any) => {
     }
     let data = JSON.parse(JSON.stringify(_data))
     for (let key in data) {
-        key = key.replace(/\<\d+\>$/g, '')
+        key = key.replace(/\<\d+(?:,\d+)?\>$/g, '')
         if (!schema.hasOwnProperty(key)) {
             throw new Error(key + ' undefined')
         }
     }
     for (let key in schema) {
         for (let key in data) {
-            if (/\<\d+\>$/g.test(key)) {
-                const newKey = key.replace(/\<\d+\>$/g, '')
+            if (/\<\d+(?:,\d+)?\>$/g.test(key)) {
+                const newKey = key.replace(/\<\d+(?:,\d+)?\>$/g, '')
                 data[newKey] = data[key]
                 delete data[key]
             }

@@ -19,13 +19,13 @@
   </div>
   <div class="change-password" *ngIf="page === 'password'">
     <div class="old form-inline">
-      <input type="text" spellcheck="false" [(ngModel)]="password.old" placeholder="Old Password"/>
+      <input type="password" spellcheck="false" [(ngModel)]="password.old" placeholder="Old Password"/>
     </div>
     <div class="new form-inline">
-      <input type="text" spellcheck="false" [(ngModel)]="password.new" placeholder="New Password"/>
+      <input type="password" spellcheck="false" [(ngModel)]="password.new" placeholder="New Password"/>
     </div>
     <div class="new form-inline">
-      <input type="text" spellcheck="false" [(ngModel)]="password.newconfirm" placeholder="Confirm New Password"/>
+      <input type="password" spellcheck="false" [(ngModel)]="password.newconfirm" placeholder="Confirm New Password"/>
     </div>
   </div>
   <div class="options" *ngIf="!isOtherUser">

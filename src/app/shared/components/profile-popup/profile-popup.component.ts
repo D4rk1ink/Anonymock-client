@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core'
+import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { NotificationService } from 'app/shared/services/notification.service'
 import { UserService } from 'app/my-account/services/user.service'
@@ -27,6 +28,7 @@ export class ProfilePopupComponent implements OnInit {
 
   constructor(
     private store: Store<any>,
+    private router: Router,
     private notificationService: NotificationService,
     private userService: UserService,
   ) {
@@ -140,7 +142,28 @@ export class ProfilePopupComponent implements OnInit {
   }
 
   changePassword () {
-
+    if (this.password.new === this.password.newconfirm) {
+      this.userService.changePassword(this.user.id, {
+        newPassword: this.password.new,
+        oldPassword: this.password.old
+      })
+        .subscribe(res => {
+          if (!res.error) {
+            this.notificationService.notify({
+              type: 'success',
+              message: 'Change password successfully.'
+            })
+            setTimeout(() => {
+              this.router.navigateByUrl('/auth/sign-in')
+            }, 5000)
+          } else {
+            this.notificationService.notify({
+              type: 'error',
+              message: 'Change password fail.'
+            })
+          }
+        })
+    }
   }
 
 }
