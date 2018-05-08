@@ -7,6 +7,7 @@ $themes: (
     ("sky", $sky_0, $sky_1, $sky_2, $sky_3),
     ("orange", $orange_0, $orange_1, $orange_2, $orange_3),
     ("purple", $purple_0, $purple_1, $purple_2, $purple_3),
+    ("yellow", $yellow_0, $yellow_1, $yellow_2, $yellow_3)
 );
 
 @each $theme in $themes {

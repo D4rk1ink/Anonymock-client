@@ -19,7 +19,8 @@ export class ProfileDropdownComponent implements OnInit {
     "ocean",
     "sky",
     "orange",
-    "purple"
+    "purple",
+    "yellow"
   ]
 
   constructor(
