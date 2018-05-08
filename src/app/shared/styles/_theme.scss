@@ -83,6 +83,12 @@ $themes: (
             }
         }
 
+        notification {
+            .header.success {
+                background-color: $color_3 !important;
+            }
+        }
+
         .top-bar {
             .top-bar-fixed {
                 background-color: $color_2 !important;
