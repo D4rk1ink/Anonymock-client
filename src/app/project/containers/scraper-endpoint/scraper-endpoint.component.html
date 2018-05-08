@@ -9,6 +9,7 @@
       (goto)="goToRequest($event)" (default)="setDefault($event)" (delete)="deleteRequest($event)"></scraper-requests>
     <!-- requestTarget not null -->
     <ng-template #conetentRequestTarget>
+      <i class="material-icons icon-sky" (click)="backToRequests()">keyboard_arrow_left</i>
       <scraper-request [endpoint]="endpoint" [request]="requestTarget" (back)="backToRequests()"></scraper-request>
     </ng-template>
   </div>
