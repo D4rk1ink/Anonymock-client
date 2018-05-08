@@ -89,6 +89,12 @@ $themes: (
             }
         }
 
+        rect-loading {
+            .spinner > div {
+                background-color: $color_3 !important;
+            }
+        }
+
         .top-bar {
             .top-bar-fixed {
                 background-color: $color_2 !important;
