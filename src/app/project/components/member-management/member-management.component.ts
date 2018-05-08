@@ -50,11 +50,7 @@ export class MemberManagementComponent implements OnInit {
 
   onExit (user) {
     if (this.isManager && !this.isMyself(user.id)) {
-      const payload = {
-        project: this.projectId,
-        user: user.id
-      }
-      this.memberService.exit(payload)
+      this.memberService.exit(user.id)
         .subscribe(res => {
           if (!res.error) {
             this.members = this.members.filter(member => member.user.id !== user.id)
@@ -66,11 +62,9 @@ export class MemberManagementComponent implements OnInit {
   onManager (user, isManager) {
     if (this.isManager && !this.isMyself(user.id)) {
       const payload = {
-        project: this.projectId,
-        user: user.id,
         isManager: isManager
       }
-      this.memberService.manager(payload)
+      this.memberService.manager(user.id, payload)
         .subscribe(res => {
           if (!res.error) {
             this.members = this.members.map(member => {
@@ -86,11 +80,7 @@ export class MemberManagementComponent implements OnInit {
 
   onAdd (user) {
     if (this.isManager && !user.isMember) {
-      const payload = {
-        project: this.projectId,
-        user: user.id
-      }
-      this.memberService.addMember(payload)
+      this.memberService.addMember(user.id)
         .subscribe(res => {
           if (!res.error) {
             this.users = this.users.map(_user => {

@@ -11,18 +11,18 @@ export class MemberService {
     private http: HttpClient
   ) { }
 
-  addMember (payload): Observable<any> {
-    const url = constants.BASE_API + '/project/member'
-    return this.http.post(url, payload)
+  addMember (id): Observable<any> {
+    const url = constants.BASE_API + '/project/member/' + id
+    return this.http.post(url, {})
   }
 
-  exit (payload): Observable<any> {
-    const url = constants.BASE_API + '/project/member/exit'
-    return this.http.patch(url, payload)
+  exit (id): Observable<any> {
+    const url = constants.BASE_API + '/project/member/' + id + '/exit'
+    return this.http.patch(url, {})
   }
 
-  manager (payload): Observable<any> {
-    const url = constants.BASE_API + '/project/member/manager'
+  manager (id, payload): Observable<any> {
+    const url = constants.BASE_API + '/project/member/' + id + '/manager'
     return this.http.patch(url, payload)
   }
 
