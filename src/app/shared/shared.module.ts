@@ -6,6 +6,7 @@ import { AceEditorModule } from 'ng2-ace-editor'
 
 import { MainLayoutComponent } from './components/main-layout/main-layout.component'
 import { LeftMenuComponent } from './components/left-menu/left-menu.component'
+import { HomeComponent } from './components/home/home.component'
 import { SearchInputComponent } from './components/search-input/search-input.component'
 import { BoxTabsComponent } from './components/box-tabs/box-tabs.component'
 import { ProfileDropdownComponent } from './components/profile-dropdown/profile-dropdown.component'
@@ -19,7 +20,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ConfirmService } from './services/confirm.service'
 import { NotificationService } from './services/notification.service'
 import { ProjectService } from 'app/project/services/project.service'
-import { UserService } from 'app/my-account/services/user.service'
+import { UserService } from 'app/my-account/services/user.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { UserService } from 'app/my-account/services/user.service'
   declarations: [
     MainLayoutComponent,
     LeftMenuComponent,
+    HomeComponent,
     SearchInputComponent,
     BoxTabsComponent,
     ProfileDropdownComponent,
@@ -51,6 +53,7 @@ import { UserService } from 'app/my-account/services/user.service'
 
     MainLayoutComponent,
     LeftMenuComponent,
+    HomeComponent,
     SearchInputComponent,
     BoxTabsComponent,
     ProfileDropdownComponent,
