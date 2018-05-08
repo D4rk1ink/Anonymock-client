@@ -11,7 +11,7 @@ export interface State {
 }
 
 const initialState: State = {
-    theme: database.getTheme() || '',
+    theme: database.getTheme() || 'yellow',
     isProfileDropdown: false,
     isProfilePopup: false,
     isOtherUserPopup: false,
