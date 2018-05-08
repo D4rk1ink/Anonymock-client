@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight:400; 
 }
 button{
     width: 150px;
@@ -58,7 +59,7 @@ button{
     }
   }
   .title {
-    color: $gray-4;
+    color: $darkblack;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -102,7 +103,8 @@ button{
     }
     .to-sign-in,
     .to-sign-up {
-      color: $gray_2;
+      color: $white;
+      font-weight: 600;
       padding-top: 10px;
       justify-content: center;
       label {
@@ -111,7 +113,7 @@ button{
     }
     .to-sign-in:hover,
     .to-sign-up:hover {
-      color: $gray_3;
+      color: $white;
     }
   }
 }
