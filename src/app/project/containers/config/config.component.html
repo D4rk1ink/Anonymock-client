@@ -62,11 +62,11 @@
             </section>
         </div>
         <div class="c-footer">
-            <section class="section form-inline content-between" *ngIf="project.isManager">
+            <section class="section form-inline content-between">
                 <div class="">
                     <button class="btn btn-sky" (click)="update()">Save</button>
                 </div>
-                <div class="">
+                <div class="" *ngIf="project.isManager">
                     <button class="btn btn-danger" (click)="delete()">Delete</button>
                 </div>
             </section>
