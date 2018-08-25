@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
 
@@ -8,7 +9,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './request-group.component.html',
   styleUrls: ['./request-group.component.scss']
 })
-export class RequestGroupComponent implements OnInit {
+export class RequestGroupComponent implements OnInit, OnDestroy {
 
   public condition: {
     params: any,
@@ -17,10 +18,12 @@ export class RequestGroupComponent implements OnInit {
     queryString: any
   }
 
+  public getResponseConditionSub: Subscription
+
   constructor (
     private store: Store<any>
   ) {
-    this.store.select(fromProject.getResponseCondition)
+    this.getResponseConditionSub = this.store.select(fromProject.getResponseCondition)
       .subscribe(condition => {
         this.condition = condition
       })
@@ -46,5 +49,11 @@ export class RequestGroupComponent implements OnInit {
 
   dispatch () {
     this.store.dispatch(new responseAction.ConditionAction(this.condition))
+  }
+
+  ngOnDestroy () {
+    if (this.getResponseConditionSub) {
+      this.getResponseConditionSub.unsubscribe()
+    }
   }
 }

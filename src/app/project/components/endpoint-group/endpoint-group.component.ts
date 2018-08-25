@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { EndpointService } from 'app/project/services/endpoint.service'
 import * as database from 'app/core/services/database.service'
 import * as endpointsAction from 'app/project/actions/endpoints.action'
@@ -21,6 +22,8 @@ export class EndpointGroupComponent implements OnInit {
   public page: number
   public limitPage: number
 
+  public getEndpointsSub: Subscription
+
   constructor (
     private store: Store<any>,
     private endpointService: EndpointService,
@@ -28,7 +31,7 @@ export class EndpointGroupComponent implements OnInit {
   ) {
     this.page = 1
     this.setPage()
-    this.store.select(fromProject.getEndpoints)
+    this.getEndpointsSub = this.store.select(fromProject.getEndpoints)
       .subscribe(endpoints => {
         this.isLoading = endpoints.isLoading
         this.endpoints = endpoints.items
@@ -83,6 +86,12 @@ export class EndpointGroupComponent implements OnInit {
 
   shareEndpoint (id) {
     return `${location.host}/project/${database.getProject()}/endpoint/${id}`
+  }
+
+  ngOnDestroy () {
+    if (this.getEndpointsSub) {
+      this.getEndpointsSub.unsubscribe()
+    }
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { NotificationService } from 'app/shared/services/notification.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
 import { MethodService } from 'app/project/services/method.service'
@@ -16,10 +17,12 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './endpoint.component.html',
   styleUrls: ['./endpoint.component.scss'],
 })
-export class EndpointComponent implements OnInit {
+export class EndpointComponent implements OnInit, OnDestroy {
 
   public endpoint: any
   public responses: any[]
+
+  public getEndpointSub: Subscription
 
   constructor (
     private store: Store<any>,
@@ -31,7 +34,7 @@ export class EndpointComponent implements OnInit {
   ) {
     this.getFolders()
     this.getMethods()
-    this.store.select(fromProject.getEndpoint)
+    this.getEndpointSub = this.store.select(fromProject.getEndpoint)
       .subscribe(endpoint => {
         this.endpoint = endpoint
       })
@@ -72,5 +75,12 @@ export class EndpointComponent implements OnInit {
           this.store.dispatch(new methodsAction.IsLoadingAction(true))
         }
       })
+  }
+
+  ngOnDestroy () {
+    this.store.dispatch(new endpointAction.ClearAction())
+    if (this.getEndpointSub) {
+      this.getEndpointSub.unsubscribe()
+    }
   }
 }

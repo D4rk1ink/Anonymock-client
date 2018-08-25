@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Rx'
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { MemberService } from 'app/member-management/services/member.service'
 import * as membersAction from 'app/member-management/actions/members.action'
 import * as fromMembers from 'app/member-management/reducers'
@@ -10,7 +10,7 @@ import * as fromMembers from 'app/member-management/reducers'
   templateUrl: './management.component.html',
   styleUrls: ['./management.component.scss']
 })
-export class ManagementComponent implements OnInit {
+export class ManagementComponent implements OnInit, OnDestroy {
 
   public members: any[]
   public searchMember: string
@@ -21,6 +21,7 @@ export class ManagementComponent implements OnInit {
     { id: 'M02', title: 'Request' }
   ]
 
+  public getMembersSearchSub: Subscription
   public searchSub: Subscription
 
   constructor (
@@ -28,7 +29,7 @@ export class ManagementComponent implements OnInit {
     private memberService: MemberService
   ) {
     this.tabSelector = this.tabAll[0].id
-    this.store.select(fromMembers.getMembersSearch)
+    this.getMembersSearchSub = this.store.select(fromMembers.getMembersSearch)
       .subscribe(search => {
         if (this.searchMember !== search) {
           this.searchMember = search
@@ -60,6 +61,15 @@ export class ManagementComponent implements OnInit {
           this.store.dispatch(new membersAction.IsLoadingAction(false))
         }
       })
+  }
+
+  ngOnDestroy () {
+    if (this.getMembersSearchSub) {
+      this.getMembersSearchSub.unsubscribe()
+    }
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
   }
 
 }

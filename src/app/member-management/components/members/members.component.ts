@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, OnDestroy, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { MemberService } from 'app/member-management/services/member.service'
 import * as database from 'app/core/services/database.service'
 import * as membersAction from 'app/member-management/actions/members.action'
@@ -11,17 +12,19 @@ import * as fromMembers from 'app/member-management/reducers'
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.scss']
 })
-export class MembersComponent implements OnInit {
+export class MembersComponent implements OnInit, OnDestroy {
 
   public all: any[]
   public members: any[]
   public isLoading: boolean
 
+  public getMemberSub: Subscription
+
   constructor (
     private store: Store<any>,
     private memberService: MemberService
   ) {
-    this.store.select(fromMembers.getMembers)
+    this.getMemberSub = this.store.select(fromMembers.getMembers)
       .subscribe(res => {
         this.isLoading = res.isLoading
         this.all = res.items
@@ -78,6 +81,12 @@ export class MembersComponent implements OnInit {
 
   isMyself (id) {
     return database.getUser().id === id
+  }
+
+  ngOnDestroy () {
+    if (this.getMemberSub) {
+      this.getMemberSub.unsubscribe()
+    }
   }
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
 
@@ -8,7 +9,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './scraper-detail.component.html',
   styleUrls: ['./scraper-detail.component.scss']
 })
-export class ScraperDetailComponent implements OnInit {
+export class ScraperDetailComponent implements OnInit, OnDestroy {
 
   @Output('save') save: EventEmitter<any>
   @Output('scrap') scrap: EventEmitter<any>
@@ -16,12 +17,14 @@ export class ScraperDetailComponent implements OnInit {
   public baseAPI: string
   public http: any
 
+  public getScraperSub: Subscription
+
   constructor(
     private store: Store<any>
   ) {
     this.save = new EventEmitter<any>()
     this.scrap = new EventEmitter<any>()
-    this.store.select(fromProject.getScraper)
+    this.getScraperSub = this.store.select(fromProject.getScraper)
       .subscribe(res => {
         this.baseAPI = res.baseAPI
         this.http = res.http
@@ -55,6 +58,12 @@ export class ScraperDetailComponent implements OnInit {
   
   onScrap () {
     this.scrap.emit()
+  }
+
+  ngOnDestroy () {
+    if (this.getScraperSub) {
+      this.getScraperSub.unsubscribe()
+    }
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { NotificationService } from 'app/shared/services/notification.service'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
@@ -13,7 +14,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './responses.component.html',
   styleUrls: ['./responses.component.scss']
 })
-export class ResponsesComponent implements OnInit {
+export class ResponsesComponent implements OnInit, OnDestroy {
 
   public isLoading: boolean
   public endpointId: string
@@ -25,6 +26,9 @@ export class ResponsesComponent implements OnInit {
     { id: 'M02', title: 'Test' }
   ]
 
+  public getEndpointIdSub: Subscription
+  public getEndpointSub: Subscription
+
   constructor(
     private store: Store<any>,
     private router: Router,
@@ -34,12 +38,12 @@ export class ResponsesComponent implements OnInit {
     private confirmService: ConfirmService
   ) {
     this.tabSelector = this.tabAll[0]
-    this.store.select(fromProject.getEndpointId)
+    this.getEndpointIdSub = this.store.select(fromProject.getEndpointId)
       .subscribe(endpointId => {
         this.endpointId = endpointId
         this.search()
       })
-    this.store.select(fromProject.getEndpoint)
+    this.getEndpointSub = this.store.select(fromProject.getEndpoint)
       .subscribe(endpoint => {
         this.endpoint = endpoint
       })
@@ -171,6 +175,15 @@ export class ResponsesComponent implements OnInit {
             })
         }
       })
+  }
+
+  ngOnDestroy () {
+    if (this.getEndpointIdSub) {
+      this.getEndpointIdSub.unsubscribe()
+    }
+    if (this.getEndpointSub) {
+      this.getEndpointSub.unsubscribe()
+    }
   }
 
 }

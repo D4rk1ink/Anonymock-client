@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { LogService } from 'app/project/services/log.service'
 import { NotificationService } from 'app/shared/services/notification.service'
 import { ConfirmService } from 'app/shared/services/confirm.service'
@@ -12,7 +13,7 @@ import * as json from 'app/project/utils/json.util'
   templateUrl: './logs.component.html',
   styleUrls: ['./logs.component.scss']
 })
-export class LogsComponent implements OnInit {
+export class LogsComponent implements OnInit, OnDestroy {
 
   public projectId: string
   public isManager: boolean
@@ -24,18 +25,21 @@ export class LogsComponent implements OnInit {
   public limitPage: number
   public logTarget: string
 
+  public getProjectSub: Subscription
+  public getLogsSub: Subscription
+
   constructor (
     private store: Store<any>,
     private logService: LogService,
     private notificationService: NotificationService,
     private confirmService: ConfirmService
   ) {
-    this.store.select(fromProject.getProject)
+    this.getProjectSub = this.store.select(fromProject.getProject)
       .subscribe(res => {
         this.projectId = res.id
         this.isManager = res.isManager
       })
-    this.store.select(fromProject.getLogs)
+    this.getLogsSub = this.store.select(fromProject.getLogs)
       .subscribe(res => {
         this.isLoading = res.isLoading
         this.logs = res.items
@@ -122,6 +126,15 @@ export class LogsComponent implements OnInit {
     const page = this.page + val
     if (page >= 1 || page <= this.limitPage) {
       this.store.dispatch(new logsAction.PageAction(page))
+    }
+  }
+
+  ngOnDestroy () {
+    if (this.getProjectSub) {
+      this.getProjectSub.unsubscribe()
+    }
+    if (this.getLogsSub) {
+      this.getLogsSub.unsubscribe()
     }
   }
 

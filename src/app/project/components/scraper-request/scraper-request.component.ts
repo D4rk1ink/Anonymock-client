@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import * as json from 'app/project/utils/json.util'
 import * as scraperAction from 'app/project/actions/scraper.action'
 import * as fromProject from 'app/project/reducers'
@@ -9,17 +10,19 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './scraper-request.component.html',
   styleUrls: ['./scraper-request.component.scss']
 })
-export class ScraperRequestComponent implements OnInit {
+export class ScraperRequestComponent implements OnInit, OnDestroy {
 
   @Input('endpoint') endpoint: any
   @Input('request') request: any
 
   public endpoints: any[]
 
+  public getScraperItemsSub: Subscription
+
   constructor(
     private store: Store<any>
   ) {
-    this.store.select(fromProject.getScraperItems)
+    this.getScraperItemsSub = this.store.select(fromProject.getScraperItems)
       .subscribe(endpoints => {
         this.endpoints = endpoints
       })
@@ -63,6 +66,12 @@ export class ScraperRequestComponent implements OnInit {
       return endpoint
     })
     this.store.dispatch(new scraperAction.ItemsAction(this.endpoints))
+  }
+
+  ngOnDestroy () {
+    if (this.getScraperItemsSub) {
+      this.getScraperItemsSub.unsubscribe()
+    }
   }
 
 }

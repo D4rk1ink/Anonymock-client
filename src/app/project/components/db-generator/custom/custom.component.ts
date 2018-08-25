@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core'
+import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { DatabaseService } from 'app/project/services/database.service'
 import * as schema from 'app/project/utils/verify-schema.util'
 import * as databaseAction from 'app/project/actions/database.action'
@@ -10,7 +11,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './custom.component.html',
   styleUrls: ['./custom.component.scss']
 })
-export class CustomComponent implements OnInit {
+export class CustomComponent implements OnInit, OnDestroy {
 
   @ViewChild('jsonImport') jsonImport: ElementRef
 
@@ -19,6 +20,8 @@ export class CustomComponent implements OnInit {
   public schema: string
   public invalid: any
   public row: number
+
+  public getDatabaseSub: Subscription
 
   constructor (
     private store: Store<any>,
@@ -30,7 +33,7 @@ export class CustomComponent implements OnInit {
       isError: false,
       message: ''
     }
-    this.store.select(fromProject.getDatabase)
+    this.getDatabaseSub = this.store.select(fromProject.getDatabase)
       .subscribe(db => {
         this.data = db.custom
         this.schema = db.schema
@@ -97,5 +100,11 @@ export class CustomComponent implements OnInit {
       }
     } catch (err) { }
     return this.row = 0
+  }
+
+  ngOnDestroy () {
+    if (this.getDatabaseSub) {
+      this.getDatabaseSub.unsubscribe()
+    }
   }
 }

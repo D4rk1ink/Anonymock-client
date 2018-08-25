@@ -51,6 +51,8 @@ export function reducer (state = initialState, action: endpointAction.Actions): 
                 ...state,
                 responses: action.payload
             }
+        case endpointAction.CLEAR:
+            return initialState
         default:
             return state
     }

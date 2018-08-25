@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Subscription } from 'rxjs/Rx'
 import { Store } from '@ngrx/store'
 import { MemberService } from 'app/project/services/member.service'
@@ -11,7 +11,7 @@ import * as otherAction from 'app/core/actions/other.action'
   templateUrl: './member-management.component.html',
   styleUrls: ['./member-management.component.scss']
 })
-export class MemberManagementComponent implements OnInit {
+export class MemberManagementComponent implements OnInit, OnDestroy {
 
   public isLoading: boolean
   public isManager: boolean
@@ -21,6 +21,7 @@ export class MemberManagementComponent implements OnInit {
   public search: string
   public isSearchUser: boolean
 
+  public getProjectSub: Subscription
   public searchSub: Subscription
 
   constructor (
@@ -31,7 +32,7 @@ export class MemberManagementComponent implements OnInit {
     this.members = []
     this.users = []
     this.search = ''
-    this.store.select(fromProject.getProject)
+    this.getProjectSub = this.store.select(fromProject.getProject)
       .subscribe(project => {
         this.projectId = project.id
         this.isManager = project.isManager
@@ -142,6 +143,15 @@ export class MemberManagementComponent implements OnInit {
 
   isMyself (id) {
     return database.getUser().id === id
+  }
+
+  ngOnDestroy () {
+    if (this.getProjectSub) {
+      this.getProjectSub.unsubscribe()
+    }
+    if (this.searchSub) {
+      this.searchSub.unsubscribe()
+    }
   }
 
 }

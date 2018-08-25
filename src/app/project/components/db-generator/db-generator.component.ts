@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, OnDestroy, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { DatabaseService } from 'app/project/services/database.service'
 import { NotificationService } from 'app/shared/services/notification.service'
 import * as databaseAction from 'app/project/actions/database.action'
@@ -10,7 +11,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './db-generator.component.html',
   styleUrls: ['./db-generator.component.scss']
 })
-export class DbGeneratorComponent implements OnInit {
+export class DbGeneratorComponent implements OnInit, OnDestroy {
 
   public projectId: string
   public menuSelector: string
@@ -19,13 +20,15 @@ export class DbGeneratorComponent implements OnInit {
     { id: 'M02', title: 'Custom' }
   ]
 
+  public getProjectIdSub: Subscription
+
   constructor (
     private store: Store<any>,
     private notificationService: NotificationService,
     private databaseService: DatabaseService
   ) {
     this.menuSelector = this.menu[0].id
-    this.store.select(fromProject.getProjectId)
+    this.getProjectIdSub = this.store.select(fromProject.getProjectId)
       .subscribe(id => {
         this.projectId = id
       })
@@ -77,6 +80,12 @@ export class DbGeneratorComponent implements OnInit {
           })
         }
       })
+  }
+
+  ngOnDestroy () {
+    if (this.getProjectIdSub) {
+      this.getProjectIdSub.unsubscribe()
+    }
   }
 
 }

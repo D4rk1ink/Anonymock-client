@@ -7,6 +7,7 @@ export const PATH = '[Endpoint] Path'
 export const METHOD = '[Endpoint] Method'
 export const FOLDER = '[Endpoint] Folder'
 export const RESPONSES = '[Endpoint] Responses'
+export const CLEAR = '[Endpoint] Clear'
 
 export class IsLoadingAction implements Action {
     readonly type = ISLOADING
@@ -50,6 +51,12 @@ export class ResponsesAction implements Action {
     constructor (public payload) { }
 }
 
+export class ClearAction implements Action {
+    readonly type = CLEAR
+
+    constructor () { }
+}
+
 export type Actions
 = IsLoadingAction
 | IdAction
@@ -58,3 +65,4 @@ export type Actions
 | MethodAction
 | FolderAction
 | ResponsesAction
+| ClearAction

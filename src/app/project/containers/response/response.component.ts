@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { NotificationService } from 'app/shared/services/notification.service'
 import { ResponseService } from 'app/project/services/response.service'
 import { EndpointService } from 'app/project/services/endpoint.service'
@@ -20,6 +21,9 @@ export class ResponseComponent implements OnInit, OnDestroy {
   public path: string
   public response: any
 
+  public getResponseSub: Subscription
+  public getEndpointSub: Subscription
+
   constructor(
     private store: Store<any>,
     private notificationService: NotificationService,
@@ -29,11 +33,11 @@ export class ResponseComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.store.select(fromProject.getResponse)
+    this.getResponseSub = this.store.select(fromProject.getResponse)
       .subscribe(response => {
         this.response = response
       })
-    this.store.select(fromProject.getEndpoint)
+    this.getEndpointSub = this.store.select(fromProject.getEndpoint)
       .subscribe(endpoint => {
         this.endpoint = endpoint
         const paramPattern = /{{\s*([A-Za-z0-9\-]+)\s*}}/g
@@ -138,6 +142,12 @@ export class ResponseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy () {
+    if (this.getEndpointSub) {
+      this.getEndpointSub.unsubscribe()
+    }
+    if (this.getResponseSub) {
+      this.getResponseSub.unsubscribe()
+    }
     this.store.dispatch(new responseAction.ClearAction())
   }
 }

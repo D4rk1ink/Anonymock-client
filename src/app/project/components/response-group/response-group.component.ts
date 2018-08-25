@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import * as responseAction from 'app/project/actions/response.action'
 import * as fromProject from 'app/project/reducers'
 
@@ -8,7 +9,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './response-group.component.html',
   styleUrls: ['./response-group.component.scss']
 })
-export class ResponseGroupComponent implements OnInit {
+export class ResponseGroupComponent implements OnInit, OnDestroy {
 
   public response: {
     headers: any,
@@ -18,10 +19,12 @@ export class ResponseGroupComponent implements OnInit {
     isFindOne: boolean
   }
 
+  public getResponseResponseSub: Subscription
+
   constructor (
     private store: Store<any>
   ) {
-    this.store.select(fromProject.getResponseResponse)
+    this.getResponseResponseSub = this.store.select(fromProject.getResponseResponse)
       .subscribe(response => {
         this.response = response
       })
@@ -57,6 +60,12 @@ export class ResponseGroupComponent implements OnInit {
 
   dispatch () {
     this.store.dispatch(new responseAction.ResponseAction(this.response))
+  }
+
+  ngOnDestroy () {
+    if (this.getResponseResponseSub) {
+      this.getResponseResponseSub.unsubscribe()
+    }
   }
 
 }

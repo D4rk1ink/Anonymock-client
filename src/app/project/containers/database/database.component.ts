@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { DatabaseService } from 'app/project/services/database.service'
 import * as json from 'app/project/utils/json.util'
 import * as databaseAction from 'app/project/actions/database.action'
@@ -10,15 +11,17 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.scss']
 })
-export class DatabaseComponent implements OnInit {
+export class DatabaseComponent implements OnInit, OnDestroy {
 
   public projectId: string
+
+  public getProjectIdSub: Subscription
 
   constructor (
     private store: Store<any>,
     private databaseService: DatabaseService
   ) {
-    this.store.select(fromProject.getProjectId)
+    this.getProjectIdSub = this.store.select(fromProject.getProjectId)
       .subscribe(id => {
         if (!id) return
         this.projectId = id
@@ -41,5 +44,11 @@ export class DatabaseComponent implements OnInit {
   }
 
   ngOnInit () {
+  }
+
+  ngOnDestroy () {
+    if (this.getProjectIdSub) {
+      this.getProjectIdSub.unsubscribe()
+    }
   }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import * as json from 'app/project/utils/json.util'
 import * as databaseAction from 'app/project/actions/database.action'
 import * as fromProject from 'app/project/reducers'
@@ -9,7 +10,7 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './db-data.component.html',
   styleUrls: ['./db-data.component.scss']
 })
-export class DbDataComponent implements OnInit {
+export class DbDataComponent implements OnInit, OnDestroy {
 
   @ViewChild('download') download: ElementRef
 
@@ -17,12 +18,14 @@ export class DbDataComponent implements OnInit {
   public row: number
   public size: number
 
+  public getDatabaseDataSub: Subscription
+
   constructor(
     private store: Store<any>
   ) {
     this.row = 0
     this.size = 0
-    this.store.select(fromProject.getDatabaseData)
+    this.getDatabaseDataSub = this.store.select(fromProject.getDatabaseData)
       .subscribe(data => {
         this.data = data
         this.setRow(this.data)
@@ -48,6 +51,12 @@ export class DbDataComponent implements OnInit {
       }
     } catch (err) { }
     return this.row = 0
+  }
+
+  ngOnDestroy () {
+    if (this.getDatabaseDataSub) {
+      this.getDatabaseDataSub.unsubscribe()
+    }
   }
 
 }

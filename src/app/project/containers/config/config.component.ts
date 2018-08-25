@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import { NotificationService } from 'app/shared/services/notification.service'
 import { ProjectService } from 'app/project/services/project.service'
 import { ConfirmService } from 'app/shared/services/confirm.service'
@@ -14,10 +15,13 @@ import * as json from 'app/project/utils/json.util'
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss'],
 })
-export class ConfigComponent implements OnInit {
+export class ConfigComponent implements OnInit, OnDestroy{
 
   public projects: any[]
   public project: any
+
+  public getProjectsItemsSub: Subscription
+  public getProjectSub: Subscription
 
   constructor (
     private store: Store<any>,
@@ -93,6 +97,15 @@ export class ConfigComponent implements OnInit {
             })
         }
       })
+  }
+
+  ngOnDestroy () {
+    if (this.getProjectsItemsSub) {
+      this.getProjectsItemsSub.unsubscribe()
+    }
+    if (this.getProjectSub) {
+      this.getProjectSub.unsubscribe()
+    }
   }
 
 }

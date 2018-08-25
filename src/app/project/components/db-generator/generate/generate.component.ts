@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Subscription } from 'rxjs/Rx'
 import * as schema from 'app/project/utils/verify-schema.util'
 import * as databaseAction from 'app/project/actions/database.action'
 import * as fromProject from 'app/project/reducers'
@@ -9,13 +10,15 @@ import * as fromProject from 'app/project/reducers'
   templateUrl: './generate.component.html',
   styleUrls: ['./generate.component.scss']
 })
-export class GenerateComponent implements OnInit {
+export class GenerateComponent implements OnInit, OnDestroy {
 
   @Output('submit') submit: EventEmitter<any>
   public model: string
   public count: number
   public schema: string
   public invalid: any
+
+  public getDatabaseSub: Subscription
 
   constructor (
     private store: Store<any>
@@ -26,7 +29,7 @@ export class GenerateComponent implements OnInit {
       isError: false,
       message: ''
     }
-    this.store.select(fromProject.getDatabase)
+    this.getDatabaseSub = this.store.select(fromProject.getDatabase)
       .subscribe(db => {
         this.model = db.generate
         this.schema = db.schema
@@ -63,6 +66,12 @@ export class GenerateComponent implements OnInit {
   onCountKeyPress (event) {
     if (!Number.isInteger(+event.key)) {
       event.preventDefault()
+    }
+  }
+
+  ngOnDestroy () {
+    if (this.getDatabaseSub) {
+      this.getDatabaseSub.unsubscribe()
     }
   }
 
