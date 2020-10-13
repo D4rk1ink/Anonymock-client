@@ -6,6 +6,7 @@ export const NAME = '[Project] Name'
 export const STATUS = '[Project] Status'
 export const DESCRIPTION = '[Project] Description'
 export const REPOSITORY = '[Project] Repository'
+export const FORWARD_ENDPOINT = '[Project] FORWARD_ENDPOINT'
 export const ENVIRONMENTS = '[Project] Environments'
 export const ISMANAGER = '[Project] IsManager'
 
@@ -45,6 +46,12 @@ export class RepositoryAction implements Action {
     constructor (public payload) { }
 }
 
+export class ForwardEndpointAction implements Action {
+    readonly type = FORWARD_ENDPOINT
+
+    constructor (public payload) { }
+}
+
 export class EnvironmentsAction implements Action {
     readonly type = ENVIRONMENTS
 
@@ -64,5 +71,6 @@ export type Actions
 | StatusAction
 | DescriptionAction
 | RepositoryAction
+| ForwardEndpointAction
 | EnvironmentsAction
 | IsManagerAction

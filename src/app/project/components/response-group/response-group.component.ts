@@ -16,6 +16,7 @@ export class ResponseGroupComponent implements OnInit, OnDestroy {
     body: any,
     delay: number,
     statusCode: number,
+    isForward: boolean
     isFindOne: boolean
   }
 
@@ -40,6 +41,11 @@ export class ResponseGroupComponent implements OnInit, OnDestroy {
 
   saveBody (data) {
     this.response.body = data
+    this.dispatch()
+  }
+
+  saveIsForward (data) {
+    this.response.isForward = data
     this.dispatch()
   }
 

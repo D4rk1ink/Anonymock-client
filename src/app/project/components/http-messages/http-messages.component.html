@@ -4,6 +4,13 @@
       {{ item.title }}
     </div>
     <div class="options">
+      <div class="find-one" *ngIf="isForwardInput">
+        <div class="checkbox">
+          <input type="checkbox" [ngModel]="isForward" (ngModelChange)="saveIsForward($event)" [readOnly]="readOnly">
+          <span class="checkmark"></span>
+        </div>
+        Forward
+      </div>
       <div class="find-one" *ngIf="isFindOneInput">
         <div class="checkbox">
           <input type="checkbox" [ngModel]="isFindOne" (ngModelChange)="saveIsFindOne($event)" [readOnly]="readOnly">

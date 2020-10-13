@@ -38,6 +38,7 @@ export class ProjectComponent implements OnInit {
               status: res.data.status,
               description: res.data.description,
               repository: res.data.repository,
+              forwardEndpoint: res.data.forwardEndpoint,
               environments: json.toArray(res.data.environments),
               isManager: res.data.isManager,
             }
