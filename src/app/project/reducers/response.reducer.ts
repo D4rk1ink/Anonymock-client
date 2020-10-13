@@ -15,6 +15,7 @@ export interface State {
         body: any,
         delay: number,
         statusCode: number,
+        isForward: boolean,
         isFindOne: boolean
     }
 }
@@ -33,6 +34,7 @@ const initialState: State = {
         body: {},
         delay: 10,
         statusCode: 200,
+        isForward: false,
         isFindOne: false
     }
 }

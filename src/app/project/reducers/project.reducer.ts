@@ -7,6 +7,7 @@ export interface State {
     status: boolean
     description: string
     repository: string
+    forwardEndpoint: string
     environments: any[]
     isManager: boolean
 }
@@ -17,6 +18,7 @@ const initialState: State = {
     status: true,
     description: '',
     repository: '',
+    forwardEndpoint: '',
     environments: [],
     isManager: false
 }

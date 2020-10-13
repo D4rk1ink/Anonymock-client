@@ -12,6 +12,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('bodyTab') bodyTab: boolean
   @Input('queryStringTab') queryStringTab: boolean
 
+  @Input('isForwardInput') isForwardInput: boolean
   @Input('isFindOneInput') isFindOneInput: boolean
   @Input('statusCodeInput') statusCodeInput: boolean
   @Input('delayInput') delayInput: boolean
@@ -20,6 +21,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Input('body') body: any
   @Input('queryString') queryString: any
 
+  @Input('isForward') isForward: boolean
   @Input('isFindOne') isFindOne: boolean
   @Input('statusCode') statusCode: number
   @Input('delay') delay: number
@@ -31,6 +33,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
   @Output('outputBody') outputBody: EventEmitter<any>
   @Output('outputQueryString') outputQueryString: EventEmitter<any>
 
+  @Output('outputIsForward') outputIsForward: EventEmitter<any>
   @Output('outputIsFindOne') outputIsFindOne: EventEmitter<any>
   @Output('outputStatusCode') outputStatusCode: EventEmitter<any>
   @Output('outputDelay') outputDelay: EventEmitter<any>
@@ -60,6 +63,7 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
     this.outputBody = new EventEmitter<any>()
     this.outputQueryString = new EventEmitter<any>()
 
+    this.outputIsForward = new EventEmitter<any>()
     this.outputIsFindOne = new EventEmitter<any>()
     this.outputStatusCode = new EventEmitter<any>()
     this.outputDelay = new EventEmitter<any>()
@@ -92,6 +96,10 @@ export class HttpMessagesComponent implements OnInit, OnChanges {
 
   saveQueryString (data) {
     this.outputQueryString.emit(data)
+  }
+
+  saveIsForward (data) {
+    this.outputIsForward.emit(data)
   }
 
   saveIsFindOne (data) {
